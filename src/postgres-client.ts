@@ -16,6 +16,13 @@ interface PostgreSQLConfig {
   database: string;
 }
 
+export const TABLES = {
+  PROJECTS: "projects",
+  TAGS: "tags",
+  TYPES: "types",
+  INVESTMENT_ROUNDS: "investment_rounds",
+} as const;
+
 const validateEnvironmentVariables = (): PostgreSQLConfig => {
   const requiredVars = {
     user: process.env.POSTGRES_USER,
