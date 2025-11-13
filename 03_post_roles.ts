@@ -24,46 +24,30 @@ process.on('SIGINT', async () => {
 
 try {
     const geoEntities = await loadGeoEntities()
-    const podcast_name = "All-In with Chamath, Jason, Sacks & Friedberg";
-    const fn = `push_10_ep_no_topics_allin.txt`;
     
     let tables = await read_in_tables({
         pgClient: pgClient,
         offset: offset,
-        limit: limit,
-        podcast_name: podcast_name
+        limit: limit
     });
 
-    
-
-    /*
-    episodeBreakdown.relations = episodeBreakdown.relations.filter(
-        r => !['notable_claims', 'notable_quotes'].includes(r.type)
-    );
-    console.log(episodeBreakdown)
-    */
-
-    console.log(tables.episodes)
-    /*
-    
-    const formattedEpisodes = tables.episodes.map(p =>
-        buildEntityCached(p, episodeBreakdown, SPACE_IDS.podcasts, tables, geoEntities, entityCache)
+    const formattedRoles = tables.roles.map(e =>
+        buildEntityCached(e, roleBreakdown, SPACE_IDS.podcasts, tables, geoEntities, entityCache)
     );
 
-    for (const episode of formattedEpisodes) {
+    for (const role of formattedRoles) {
         addOps = await processEntity({
             currentOps: ops,
             processingCache: processingCache,
-            entity: episode
+            entity: role
         })
         ops.push(...addOps.ops)
     }
 
-    printOps(ops, "published_ops", fn)
+    printOps(ops, "published_ops", "push_roles.txt")
     await publishOps(ops)
-
-    /*
-    */
+    ops.length = 0;
+    
 } catch (error) {
     console.error(error);
 } finally {

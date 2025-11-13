@@ -1,11 +1,11 @@
 import { Graph, IdUtils, SystemIds, type Op } from '@graphprotocol/grc-20';
 import * as fs from "fs";
 //import { publish } from './src/publish';
-import { addSpace, cleanText, fetchWithRetry, filterOps, GEO_IDS, getSpaces, normalizeToUUID, normalizeToUUID_STRING, propertyToIdMap, propertyToTypeIdMap, readAllOpsFromFolder, testnetWalletAddress, typeToIdMap } from './src/constants_v2';
+import { addSpace, cleanText, fetchWithRetry, filterOps, GEO_IDS, getSpaces, normalizeToUUID, normalizeToUUID_STRING, propertyToIdMap, propertyToTypeIdMap, readAllOpsFromFolder, testnetWalletAddress, typeToIdMap } from '../src/constants';
 import path from 'path';
-import PostgreSQLClient, { TABLES, DB_ID } from "./src/postgres-client";
-import { processEntity } from './post_entity';
-import { printOps, publishOps, searchEntities } from './src/functions';
+import PostgreSQLClient, { TABLES, DB_ID } from "../src/postgres-client";
+import { processEntity } from '../post_entity';
+import { printOps, publishOps, searchEntities } from './functions';
 
 
 async function read_in_tables({

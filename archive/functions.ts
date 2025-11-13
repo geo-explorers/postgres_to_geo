@@ -4,13 +4,13 @@ import * as fs from "fs";
 import {Id, Base58, SystemIds, Graph, Position, type Op, IdUtils} from "@graphprotocol/grc-20";
 
 import { validate as uuidValidate } from 'uuid';
-import { addSpace, cleanText, fetchWithRetry, filterOps, GEO_IDS, getSpaces, normalizeToUUID, normalizeToUUID_STRING, propertyToIdMap, propertyToTypeIdMap, readAllOpsFromFolder, testnetWalletAddress, typeToIdMap } from './constants.ts';
+import { addSpace, cleanText, fetchWithRetry, filterOps, GEO_IDS, getSpaces, normalizeToUUID, normalizeToUUID_STRING, propertyToIdMap, propertyToTypeIdMap, readAllOpsFromFolder, testnetWalletAddress, typeToIdMap } from '../src/constants.ts';
 //import path from 'path';
 //import PostgreSQLClient, { TABLES, DB_ID } from "./postgres-client";
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { publish } from './publish.ts';
+import { publish } from '../src/publish.ts';
 
 // Convert import.meta.url to a __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);

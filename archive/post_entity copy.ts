@@ -1,9 +1,9 @@
-import { PROD_TABLE_IDS } from "./src/teable-meta";
-import { searchEntities, searchEntity, hasBeenEdited, searchOps, normalizeToUUID, propertyToIdMap, relationPropertyExistsOnGeo, valuePropertyExistsOnGeo, processNewRelation, GEO_IDS,  addSpace, addSources, propertyToTypeIdMap } from "./src/constants_v2";
+import { PROD_TABLE_IDS } from "../src/teable-meta";
+import { searchEntities, searchEntity, hasBeenEdited, searchOps, normalizeToUUID, propertyToIdMap, relationPropertyExistsOnGeo, valuePropertyExistsOnGeo, processNewRelation, GEO_IDS,  addSpace, addSources, propertyToTypeIdMap } from "../src/constants";
 
 import { type DataType,  type Op } from "@graphprotocol/grc-20";
 import { Graph, Position, Id, Ipfs, SystemIds } from "@graphprotocol/grc-20";
-import { processTag } from "./junk/ethcc_post_tag";
+import { processTag } from "../junk/ethcc_post_tag";
 
 
 

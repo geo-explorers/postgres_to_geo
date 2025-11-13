@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { filterOps, getSpaces, testnetWalletAddress } from './src/constants_v2';
+import { filterOps, getSpaces, testnetWalletAddress } from './src/constants';
 import { publish } from './src/publish';
 
 function readOpsFromFile(dir: string, fn: string): any {

@@ -619,6 +619,22 @@
       {
         "column": "x_logo",
         "type": "text"
+      },
+      {
+        "column": "editor_description",
+        "type": "text"
+      },
+      {
+        "column": "github_url",
+        "type": "text"
+      },
+      {
+        "column": "youtube_url",
+        "type": "text"
+      },
+      {
+        "column": "telegram_url",
+        "type": "text"
       }
     ]
   },
@@ -857,6 +873,10 @@
       {
         "column": "podchaser_rating_rank",
         "type": "integer"
+      },
+      {
+        "column": "bankless_transcript",
+        "type": "text"
       }
     ]
   },
@@ -1347,22 +1367,6 @@
         "type": "bigint"
       },
       {
-        "column": "podcast_id",
-        "type": "bigint"
-      },
-      {
-        "column": "podcast_episode_id",
-        "type": "bigint"
-      },
-      {
-        "column": "person_id",
-        "type": "bigint"
-      },
-      {
-        "column": "tag_id",
-        "type": "bigint"
-      },
-      {
         "column": "tag_category",
         "type": "text"
       },
@@ -1373,6 +1377,26 @@
       {
         "column": "created_at",
         "type": "timestamp with time zone"
+      },
+      {
+        "column": "from_podcast_id",
+        "type": "bigint"
+      },
+      {
+        "column": "from_episode_id",
+        "type": "bigint"
+      },
+      {
+        "column": "from_person_id",
+        "type": "bigint"
+      },
+      {
+        "column": "from_tag_id",
+        "type": "bigint"
+      },
+      {
+        "column": "to_tag_id",
+        "type": "bigint"
       }
     ]
   },

@@ -1,5 +1,5 @@
 import { PROD_TABLE_IDS } from "../src/teable-meta";
-import { searchEntities, searchEntity, hasBeenEdited, searchOps, normalizeToUUID, propertyToIdMap, relationPropertyExistsOnGeo, valuePropertyExistsOnGeo, processNewRelation, GEO_IDS,  addSpace, addSources, normalizeToUUID_STRING } from "../src/constants_v2";
+import { searchEntities, searchEntity, hasBeenEdited, searchOps, normalizeToUUID, propertyToIdMap, relationPropertyExistsOnGeo, valuePropertyExistsOnGeo, processNewRelation, GEO_IDS,  addSpace, addSources, normalizeToUUID_STRING } from "../src/constants";
 
 import { type DataType,  type Op } from "@graphprotocol/grc-20";
 import { Graph, Position, Id, Ipfs, SystemIds } from "@graphprotocol/grc-20";

@@ -3,7 +3,7 @@
 
 import { TeableClient } from "./src/teable-client";
 import { PROD_TABLE_IDS } from "./src/teable-meta";
-import { testnetWalletAddress, getSpaces, searchEntity, filterOps, normalizeToUUID, normalizeToUUID_STRING, propertyToIdMap, GEO_IDS, readAllOpsFromFolder, searchEntities, propertyToTypeIdMap, searchEntities_byId } from "./src/constants_v2";
+import { testnetWalletAddress, getSpaces, searchEntity, filterOps, normalizeToUUID, normalizeToUUID_STRING, propertyToIdMap, GEO_IDS, readAllOpsFromFolder, searchEntities, propertyToTypeIdMap, searchEntities_byId } from "./src/constants";
 import { processInvestment } from "./junk/ethcc_post_investment";
 import { processProject } from "./junk/ethcc_post_project";
 import * as fs from "fs";

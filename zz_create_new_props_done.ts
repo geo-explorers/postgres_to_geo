@@ -1,7 +1,7 @@
 import { Graph, type Op } from '@graphprotocol/grc-20';
 import * as fs from "fs";
 import { publish } from './src/publish';
-import { addSpace, filterOps, GEO_IDS, getSpaces, normalizeToUUID, propertyToIdMap, readAllOpsFromFolder, testnetWalletAddress } from './src/constants_v2';
+import { addSpace, filterOps, GEO_IDS, getSpaces, normalizeToUUID, propertyToIdMap, readAllOpsFromFolder, testnetWalletAddress } from './src/constants';
 
 async function publishOps(ops: any) {
     if ((ops.length > 0) && (true)) {

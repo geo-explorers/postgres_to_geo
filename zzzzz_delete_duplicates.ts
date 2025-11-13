@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import { publish } from "./src/publish";
-import { mainnetWalletAddress, TABLES, getConcatenatedPlainText, GEO_IDS, getSpaces, filterOps, addSpace } from './src/constants_v2';
+import { mainnetWalletAddress, TABLES, getConcatenatedPlainText, GEO_IDS, getSpaces, filterOps, addSpace } from './src/constants';
 import { searchEntity } from "./search_entity";
 import { Graph } from "@graphprotocol/grc-20";
 

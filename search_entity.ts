@@ -1,5 +1,5 @@
 import { SystemIds } from "@graphprotocol/grc-20";
-import { GEO_IDS } from "./src/constants_v2";
+import { GEO_IDS } from "./src/constants";
 
 //UPDATE QUERY URL
 const mainnet_query_url = "https://hypergraph.up.railway.app/graphql";

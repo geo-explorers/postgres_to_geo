@@ -1,7 +1,6 @@
-import { searchEntities, searchEntity, hasBeenEdited, searchOps, normalizeToUUID, propertyToIdMap, relationPropertyExistsOnGeo, valuePropertyExistsOnGeo, processNewRelation, GEO_IDS,  addSpace, addSources, propertyToTypeIdMap } from "./src/constants_v2.ts";
-import { IdUtils, type DataType,  type Op, Graph, Position, Id, Ipfs, SystemIds } from "@graphprotocol/grc-20";
-
-
+import { propertyToIdMap } from "./src/constants.ts";
+import { type Op, Graph, Position, Id, SystemIds } from "@graphprotocol/grc-20";
+import { normalizeToUUID, processNewRelation,  addSpace  } from "./src/functions.ts";
 
 type Value = {
   spaceId: string;

@@ -1,14 +1,14 @@
 import fs from 'fs';
 import path from 'path';
-import { addSpace, filterOps, GEO_IDS, getSpaces, testnetWalletAddress } from './src/constants_v2.ts';
-import { publish } from './src/publish.ts';
+import { SPACE_IDS, } from './src/constants.ts';
 import { Graph, type Op } from '@graphprotocol/grc-20';
+import { publishOps, addSpace } from './src/functions.ts';
 
-function readOpsFromFile(index: number): any {
-  const filePath = path.join(__dirname, 'src', `test_push_podcast_0${index}.txt`);
+function readOpsFromFile(dir_in: string, fn: string): any {
+  const filePath = path.join(dir_in, fn);
 
   if (!fs.existsSync(filePath)) {
-    console.error(`File test_push_podcast_${index}.txt does not exist`);
+    console.error(`File ${fn} does not exist`);
     return null;
   }
 
@@ -16,63 +16,12 @@ function readOpsFromFile(index: number): any {
 
   try {
     const ops = JSON.parse(fileContents);
-    console.log(`Read ${ops.length} ops from test_push_podcast_${index}.txt`);
+    console.log(`Read ${ops.length} ops from ${fn}`);
     return ops;
   } catch (err) {
-    console.error(`Failed to parse JSON from file test_push_podcast_${index}.txt`, err);
+    console.error(`Failed to parse JSON from file ${fn}`, err);
     return null;
   }
-}
-function printOps(ops: any) {
-  const outputDir = path.join(__dirname, '');
-  console.log("NUMBER OF OPS: ", ops.length);
-
-  if (ops.length > 0) {
-    // Get existing filenames in the directory
-    const existingFiles = fs.readdirSync(outputDir);
-
-    // Create output text
-    const outputText = JSON.stringify(ops, null, 2);
-
-    // Write to file
-    const filename = `test_push_podcast_delete.txt`;
-    const filePath = path.join(outputDir, filename);
-    fs.writeFileSync(filePath, outputText);
-
-    console.log(`OPS PRINTED to ${filename}`);
-  } else {
-    console.log("NO OPS TO PRINT");
-  }
-}
-
-async function publishOps(ops: any) {
-    if ((ops.length > 0) && (true)) {
-        const iso = new Date().toISOString();
-        let txHash;
-        const spaces = await getSpaces(ops);
-
-        for (const space of spaces) { 
-            txHash = await publish({
-                spaceId: space,
-                author: testnetWalletAddress,
-                editName: `Upload news stories ${iso}`,
-                ops: await filterOps(ops, space), // An edit accepts an array of Ops
-            }, "TESTNET");
-    
-            console.log(`Your transaction hash for ${space} is:`, txHash);
-            console.log(iso);
-            
-            console.log(`Number of ops published in ${space}: `, (await filterOps(ops, space)).length)
-        }   
-        console.log(`Total ops: ${ops.length}`);
-    } else {
-        const spaces = await getSpaces(ops);
-        console.log("Spaces", spaces);
-        for (const space of spaces) {
-            console.log(`Number of ops published in ${space}: `, (await filterOps(ops, space)).length)
-            console.log(await filterOps(ops, space))
-        }
-    }
 }
 
 function getPropertyIdsFromUpdateOp(ops: any[], entityId: string): string[] {
@@ -91,11 +40,12 @@ function getPropertyIdsFromUpdateOp(ops: any[], entityId: string): string[] {
 
 
 const del_ops: Array<Op> = [];
-const currSpaceId = GEO_IDS.podcastsSpace;
+const currSpaceId = SPACE_IDS.podcasts;
 let addOps;
 
-const index_num = 9;
-const ops = readOpsFromFile(index_num);
+const dir_in = "published_ops";
+const fn = "push_10_ep_no_topics_allin.txt";
+const ops = readOpsFromFile(dir_in, fn);
 
 const del_ent_vals: Array<Op> = [];
 

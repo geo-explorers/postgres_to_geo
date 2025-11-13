@@ -1,6 +1,6 @@
-import { normalizeToUUID, typeToIdMap } from "./constants_v2.ts";
+import { typeToIdMap } from "./constants.ts";
 import PostgreSQLClient, { DB_ID, TABLES } from "./postgres-client.ts";
-import { flatten_api_response, searchEntities } from './inputs.ts';
+import { flatten_api_response, searchEntities, normalizeToUUID } from './functions.ts';
 import { v4 as uuidv4 } from "uuid";
 import levenshtein from "fast-levenshtein";
 
@@ -12,7 +12,7 @@ type Source = {
   person_id: string | null;
   web_url: string | null;
   source_db_identifier: string;
-  source_db_key: string;
+  source_database_key: string;
 };
 
 function mergeSources(sources: Source[]): Source[] {
@@ -73,21 +73,29 @@ export const topicBreakdown: EntityBreakdown = {
     value_fields: ["name"],
     relations: [],
 }
+/*
 // Now that topicBreakdown exists, you can reference it safely
 topicBreakdown.relations = [
   {
       type: "broader_topics",
       toEntityBreakdown: topicBreakdown,
       entityBreakdown: null,
-      image: true
+      image: false
   },
   {
       type: "subtopics",
       toEntityBreakdown: topicBreakdown,
       entityBreakdown: null,
+      image: false
+  },
+  {
+      type: "cover",
+      toEntityBreakdown: null,
+      entityBreakdown: null,
       image: true
   },
 ];
+*/
 
 export const platformBreakdown = {
     table: "platforms",
@@ -110,7 +118,7 @@ export const sourceBreakdown = {
     table: "sources",
     not_unique: false,
     types: [normalizeToUUID(typeToIdMap['source'])],
-    value_fields: ["source_db_identifier", 'web_url', 'source_db_key'],
+    value_fields: ["source_db_identifier", 'web_url', 'source_database_key'],
     relations: [],
 }
 
@@ -118,7 +126,7 @@ export const personBreakdown = {
     table: "people",
     not_unique: false,
     types: [normalizeToUUID(typeToIdMap['person'])],
-    value_fields: ["name","x_url"],
+    value_fields: ["name", "description", "x_url"],
     relations: [
         {
             type: "avatar",
@@ -167,12 +175,14 @@ export const podcastBreakdown = {
             entityBreakdown: null,
             image: false,
         },
+        /*
         {
             type: "topics",
             toEntityBreakdown: topicBreakdown,
             entityBreakdown: null,
             image: false,
         },
+        */
         {
             type: "listen_on",
             toEntityBreakdown: platformBreakdown,
@@ -249,11 +259,11 @@ export const quoteBreakdown = {
     value_fields: ["name"],
     relations: [
       {
-            type: "targets",
-            toEntityBreakdown: textBlockBreakdown,
-            entityBreakdown: selectorBreakdown,
-            image: false
-        },
+          type: "targets",
+          toEntityBreakdown: textBlockBreakdown,
+          entityBreakdown: selectorBreakdown,
+          image: false
+      },
     ],
 }
 
@@ -264,11 +274,11 @@ export const claimBreakdown = {
     value_fields: ["name"],
     relations: [
       {
-            type: "supporting_quotes",
-            toEntityBreakdown: quoteBreakdown,
-            entityBreakdown: null,
-            image: false
-        },
+          type: "supporting_quotes",
+          toEntityBreakdown: quoteBreakdown,
+          entityBreakdown: null,
+          image: false
+      },
     ],
 }
 
@@ -326,12 +336,13 @@ export const episodeBreakdown = {
             entityBreakdown: sourceBreakdown,
             image: false,
         },
-        {
-            type: "notable_quotes",
-            toEntityBreakdown: quoteBreakdown,
-            entityBreakdown: null,
-            image: false,
-        },
+        //{
+        //    type: "notable_quotes",
+        //    toEntityBreakdown: quoteBreakdown,
+        //    entityBreakdown: null,
+        //    image: false,
+        //},
+        /*
         {
             type: "notable_claims",
             toEntityBreakdown: claimBreakdown,
@@ -344,6 +355,7 @@ export const episodeBreakdown = {
             entityBreakdown: null,
             image: false,
         },
+        */
     ],
 }
 
@@ -359,10 +371,12 @@ export async function read_in_tables({
   pgClient,
   offset,
   limit,
+  podcast_name,
 }: {
   pgClient: any;
   offset?: number;
   limit?: number;
+  podcast_name?: string;
 }): Promise<{
     podcasts: any; episodes: any; hosts: any; guests: any; people: any; topics: any; sources: any; roles: any; platforms: any; listen_on_links: any; quotes: any; claims: any; pages: any; text_blocks: any; selectors: any;
 }> {
@@ -414,7 +428,7 @@ export async function read_in_tables({
         ON p.id = ex.podcast_id
       LEFT JOIN "${DB_ID}".${TABLES.LISTEN_ON} AS l
         ON p.id = l.podcast_id
-      WHERE p.name IN ('All-In with Chamath, Jason, Sacks & Friedberg')
+      WHERE p.name IN ('${podcast_name}')
       GROUP BY p.id
       LIMIT ${limit} OFFSET ${offset}
   `);
@@ -520,15 +534,22 @@ export async function read_in_tables({
             LEFT JOIN "${DB_ID}".${TABLES.EXTERNAL_IDS} AS ex ON e.id = ex.podcast_episode_id
             LEFT JOIN "${DB_ID}".${TABLES.LISTEN_ON} AS l ON e.id = l.podcast_episode_id
             LEFT JOIN "${DB_ID}".${TABLES.QUOTES} AS q ON e.id = q.episode_id
-            LEFT JOIN "${DB_ID}".${TABLES.CLAIM_QUOTES} AS cq ON cq.quote_id = q.id
-            LEFT JOIN "${DB_ID}".${TABLES.CLAIMS} AS c ON c.id = cq.claim_id
+            LEFT JOIN "${DB_ID}".${TABLES.CLAIMS} AS c ON c.episode_id = e.id
             LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t ON e.id = t.from_episode_id
-            WHERE (e.rn > 0) AND (e.rn <= 5) AND (e.transcript IS NOT NULL)
+            WHERE (e.rn <= 10) AND (e.transcript IS NOT NULL)
             GROUP BY e.id, e.name, e.description, e.transcript, e.episode_number, e.duration,
                       e.air_date, e.avatar, e.audio_url, e.podcast_id
             ORDER BY e.air_date DESC;
           `)
           : [];
+
+          /*
+          LEFT JOIN "${DB_ID}".${TABLES.QUOTES} AS q ON e.id = q.episode_id
+          LEFT JOIN "${DB_ID}".${TABLES.CLAIM_QUOTES} AS cq ON cq.quote_id = q.id
+          LEFT JOIN "${DB_ID}".${TABLES.CLAIMS} AS c ON c.id = cq.claim_id
+          LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t ON e.id = t.from_episode_id
+          WHERE (e.rn > 0) AND (e.rn <= 5) AND (e.transcript IS NOT NULL)
+          */
 
         console.log("Episodes read")
         const episodeIds = [
@@ -646,6 +667,12 @@ export async function read_in_tables({
             FROM "${DB_ID}".${TABLES.TAGS} as t
             LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS tm
               ON t.id = tm.from_tag_id
+            where t.name IS NOT NULL
+            AND EXISTS (
+              SELECT 1
+              FROM "${DB_ID}".${TABLES.TAG_MAP} tm2
+              WHERE tm2.to_tag_id = t.id
+            )
             GROUP BY t.id
             `);
 
@@ -719,7 +746,7 @@ export async function read_in_tables({
         let sources = sourceWhereClauses.length
             ? await pgClient.query(`
                 SELECT 
-                    e.id, e.podcast_id, e.podcast_episode_id, e.platform_id, e.person_id, e.website as web_url, e.external_db_id as source_db_identifier, e.external_db_key as source_db_key
+                    e.id, e.podcast_id, e.podcast_episode_id, e.platform_id, e.person_id, e.website as web_url, e.external_db_id as source_db_identifier, e.external_db_key as source_database_key
                 FROM "${DB_ID}".${TABLES.EXTERNAL_IDS} as e
                 WHERE (${sourceWhereClauses.join(" OR ")}) 
                   AND (e.external_db_id <> 'NOT_FOUND')

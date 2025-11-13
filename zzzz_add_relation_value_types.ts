@@ -1,7 +1,7 @@
 import { Graph, Id, Position, SystemIds, type Op } from '@graphprotocol/grc-20';
 import * as fs from "fs";
 //import { publish } from './src/publish';
-import { addSpace, filterOps, GEO_IDS, getSpaces, normalizeToUUID, normalizeToUUID_STRING, propertyToIdMap, propertyToTypeIdMap, readAllOpsFromFolder, testnetWalletAddress } from './src/constants_v2';
+import { addSpace, filterOps, GEO_IDS, getSpaces, normalizeToUUID, normalizeToUUID_STRING, propertyToIdMap, propertyToTypeIdMap, readAllOpsFromFolder, testnetWalletAddress } from './src/constants';
 import path from 'path';
 import { publish } from './src/publish';
 

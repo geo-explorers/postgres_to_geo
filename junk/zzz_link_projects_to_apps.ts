@@ -1,5 +1,5 @@
 import { Graph, Id, SystemIds } from "@graphprotocol/grc-20";
-import { addSpace, GEO_IDS, normalizeToUUID, propertyToIdMap } from "../src/constants_v2";
+import { addSpace, GEO_IDS, normalizeToUUID, propertyToIdMap } from "../src/constants";
 import * as fs from "fs";
 import path from 'path';
 

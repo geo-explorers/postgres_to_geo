@@ -1,15 +1,15 @@
 // To do
 // - Do we want to add the project avatar as the avatar in the funding round entity?
 
-import { TeableClient } from "./src/teable-client";
-import { PROD_TABLE_IDS } from "./src/teable-meta";
-import { testnetWalletAddress, getSpaces, searchEntity, filterOps, normalizeToUUID, normalizeToUUID_STRING, propertyToIdMap, GEO_IDS, readAllOpsFromFolder, searchEntities, propertyToTypeIdMap, searchEntities_byId } from "./src/constants_v2";
-import { processInvestment } from "./junk/ethcc_post_investment";
-import { processProject } from "./junk/ethcc_post_project";
+import { TeableClient } from "../src/teable-client";
+import { PROD_TABLE_IDS } from "../src/teable-meta";
+import { testnetWalletAddress, getSpaces, searchEntity, filterOps, normalizeToUUID, normalizeToUUID_STRING, propertyToIdMap, GEO_IDS, readAllOpsFromFolder, searchEntities, propertyToTypeIdMap, searchEntities_byId } from "../src/constants";
+import { processInvestment } from "../junk/ethcc_post_investment";
+import { processProject } from "../junk/ethcc_post_project";
 import * as fs from "fs";
-import { publish } from "./src/publish";
+import { publish } from "../src/publish";
 import { SystemIds, type Op } from "@graphprotocol/grc-20";
-import PostgreSQLClient, { TABLES, DB_ID } from "./src/postgres-client";
+import PostgreSQLClient, { TABLES, DB_ID } from "../src/postgres-client";
 import path from 'path';
 
 
