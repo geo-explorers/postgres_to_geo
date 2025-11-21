@@ -1,0 +1,15 @@
+[
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5ba0635d-41e2-4781-a06a-6fda68a0ac85",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "5ll0fkqIGyUfSOn9CTfHjC"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  }
+]

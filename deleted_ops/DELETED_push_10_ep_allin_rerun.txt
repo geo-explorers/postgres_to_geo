@@ -1,0 +1,780 @@
+[
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "49311e9a-f1ef-4ea3-bbd6-6019809762f1",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1000735785304"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a39eda0d-7038-4dfa-aeef-35b4ad9495a8",
+      "entity": "ea671ac5-0f5f-4d6b-885b-c452a7488ca1",
+      "fromEntity": "49311e9a-f1ef-4ea3-bbd6-6019809762f1",
+      "position": "a15QG",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "1d66082a-3186-476e-bbbc-a1fbce06c9c4",
+      "entity": "49311e9a-f1ef-4ea3-bbd6-6019809762f1",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "a25Ep",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "d03e3811-2712-4353-9c90-800370ee7b7d",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "4963"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6a89ef29-6af5-413b-a803-b7b4c67246dc",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "13278"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3ab2b5d1-fa62-4cbc-b7a6-5b724a531fd0",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "33514"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "527a32ef-665a-4757-b84c-d3ad39ac863c",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "David O. Sacks"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "Entrepreneur and investor, former PayPal COO and Yammer founder; he has served as the White House AI & Crypto Czar, continuing as a general partner at Craft Ventures and co-hosting the All-In podcast."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e9cf87c4-9082-4596-981a-684296b32aec",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "36691"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "b6e00428-534e-40a0-b680-bf86b7b64a7d",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1502871393"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7d19ed38-8cb4-4adc-9494-49e4f2fae969",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://podcasts.apple.com/us/podcast/does-openai-need-a-bailout-mamdani-wins-socialism/id1502871393?i=1000735785304"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "bc29df91-1088-4827-b2ff-578a4cd00f64",
+      "entity": "f4e9eb6b-4be6-4683-a27e-ea8781ab7b60",
+      "fromEntity": "7d19ed38-8cb4-4adc-9494-49e4f2fae969",
+      "position": "a13Yz",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "42309660-2610-41b8-8040-2b299a873266",
+      "entity": "7d19ed38-8cb4-4adc-9494-49e4f2fae969",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "a12kF",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "36e7193e-8da5-43c1-a52b-7d2d0e5439d5",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Social Issues"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "eb2d5120-6246-4760-a28b-a5456cc0e90e",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1000735457837"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7ab8621e-0954-475e-af5d-8ef2602542c5",
+      "entity": "18dddf85-0910-49db-909b-a645c0ff512c",
+      "fromEntity": "eb2d5120-6246-4760-a28b-a5456cc0e90e",
+      "position": "a11r5",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5e44a4c3-c917-4151-9d5d-ce5f057db869",
+      "entity": "eb2d5120-6246-4760-a28b-a5456cc0e90e",
+      "fromEntity": "84777f39-844d-4cdb-bfd7-7fc13c7137e4",
+      "position": "a2BNb",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "81360623-94cb-4bbc-b20f-ecbb096fe169",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://podcasts.apple.com/us/podcast/ari-emanuel-on-the-future-of-entertainment-hollywood/id1502871393?i=1000735457837"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "42118c37-b146-4555-9575-ae2a6e0a19cc",
+      "entity": "d1bda845-0293-4bdb-9160-e538a1cb2d33",
+      "fromEntity": "81360623-94cb-4bbc-b20f-ecbb096fe169",
+      "position": "a18Rl",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "009040d9-00a0-466e-9c42-d99aaf2a4b89",
+      "entity": "81360623-94cb-4bbc-b20f-ecbb096fe169",
+      "fromEntity": "84777f39-844d-4cdb-bfd7-7fc13c7137e4",
+      "position": "a10s8",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9119d25e-9a0b-440d-ba03-8960750c8e40",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1000735293105"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a4fc2a9f-857f-4506-842a-e8090f15d21e",
+      "entity": "76046d07-b8cb-4059-92e9-1cb2295f5492",
+      "fromEntity": "9119d25e-9a0b-440d-ba03-8960750c8e40",
+      "position": "a17PX",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "f2b743ac-851c-4bd0-ab22-a541ed2868b8",
+      "entity": "9119d25e-9a0b-440d-ba03-8960750c8e40",
+      "fromEntity": "3e07c00a-7862-4b49-9da0-10113d96644f",
+      "position": "a2BEa",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6a64caa0-4353-4eea-8f9f-456f56678021",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://podcasts.apple.com/us/podcast/inside-saudi-arabias-ai-ambition-tareq-amin-on-building/id1502871393?i=1000735293105"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6348f7fa-c7ce-4f77-9023-ffca5dd89bb9",
+      "entity": "499fd99d-1e20-4a2b-8f5f-0f5c610864cb",
+      "fromEntity": "6a64caa0-4353-4eea-8f9f-456f56678021",
+      "position": "a1Ajk",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "678f4438-e072-4c4d-804e-fbd7ee75313d",
+      "entity": "6a64caa0-4353-4eea-8f9f-456f56678021",
+      "fromEntity": "3e07c00a-7862-4b49-9da0-10113d96644f",
+      "position": "a11pB",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9f7d959a-c689-4054-b715-4ca9ef20e6e7",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1000735099841"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "e9b8f49c-9e75-4d2a-8c13-a23bd0a5f3e2",
+      "entity": "f5803a92-74fe-4da8-bdfb-a5fa11f68e77",
+      "fromEntity": "9f7d959a-c689-4054-b715-4ca9ef20e6e7",
+      "position": "a16VO",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5995c5d2-a3e4-4fbc-9493-cbd9b27a2012",
+      "entity": "9f7d959a-c689-4054-b715-4ca9ef20e6e7",
+      "fromEntity": "3bd3d2e7-ca05-4c2e-a5e5-89e545b2a2ee",
+      "position": "a26lo",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6d3bfa55-c30a-465b-a272-e60fb44b6efe",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://podcasts.apple.com/us/podcast/triple-h-on-wwes-evolution-the-rise-of/id1502871393?i=1000735099841"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b532681f-f815-47f4-8947-8cfc78e82187",
+      "entity": "2ec9d751-0593-44d0-ac42-408ed477630c",
+      "fromEntity": "6d3bfa55-c30a-465b-a272-e60fb44b6efe",
+      "position": "a14VI",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "0a63c078-3eb5-4a6b-9175-aa4738979ca1",
+      "entity": "6d3bfa55-c30a-465b-a272-e60fb44b6efe",
+      "fromEntity": "3bd3d2e7-ca05-4c2e-a5e5-89e545b2a2ee",
+      "position": "a162t",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9c4efc95-2bd2-4dc2-bd5b-f74b9840b329",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "901"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "1f8141dd-4951-4723-a743-cf89260f5169",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1000734261935"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b59f4e94-895c-457a-a75c-9d863cf6b0a1",
+      "entity": "84b4392a-36e8-43f0-859d-acf4d4031d31",
+      "fromEntity": "1f8141dd-4951-4723-a743-cf89260f5169",
+      "position": "a12NS",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3e2aacab-ae0f-4d71-a1e9-bad5b5447f22",
+      "entity": "1f8141dd-4951-4723-a743-cf89260f5169",
+      "fromEntity": "a38eb16b-bcba-4b10-ba1c-99d8df01bd8b",
+      "position": "a269t",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3d7356b8-a8f9-45b1-a7ca-f2d8b4499574",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107ZztJDdR"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a9f75905-b7fc-4e6c-960a-e668342cc92b",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://podcasts.apple.com/us/podcast/pete-buttigieg-the-lefts-identity-crisis-wealth-tax/id1502871393?i=1000734261935"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "51ba851f-fa3b-4c30-8e79-29ab0124d925",
+      "entity": "1238126d-1a46-4d59-a48f-ce919fa9d7b5",
+      "fromEntity": "a9f75905-b7fc-4e6c-960a-e668342cc92b",
+      "position": "a15ZU",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "f20b9dde-854a-4ff0-be45-ce4ae6952e7f",
+      "entity": "a9f75905-b7fc-4e6c-960a-e668342cc92b",
+      "fromEntity": "a38eb16b-bcba-4b10-ba1c-99d8df01bd8b",
+      "position": "a16bk",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5c7d7cbe-e85e-482e-a8af-42a1986136d2",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1000733890017"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "78987104-4610-448d-ade3-ab436a008cf3",
+      "entity": "c78adbb1-d371-42a6-be14-e82493b1ad10",
+      "fromEntity": "5c7d7cbe-e85e-482e-a8af-42a1986136d2",
+      "position": "a14uX",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "865c4eee-b291-4063-983d-541da7c98c17",
+      "entity": "5c7d7cbe-e85e-482e-a8af-42a1986136d2",
+      "fromEntity": "7fd47ceb-276f-4d63-8a55-4a8f2f3c55ba",
+      "position": "a21wH",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "fa31c615-b177-4731-8f3b-3ad53f1ee944",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://podcasts.apple.com/us/podcast/nobel-peace-prize-winner-mar%C3%ADa-corina-machado-on-defeating/id1502871393?i=1000733890017"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "19647776-ed62-4a6d-b6de-8a4e54d6f231",
+      "entity": "e416664c-6e69-4197-b548-d31412a86206",
+      "fromEntity": "fa31c615-b177-4731-8f3b-3ad53f1ee944",
+      "position": "a11ed",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ce53d743-077a-41b1-a9c1-674fb822351c",
+      "entity": "fa31c615-b177-4731-8f3b-3ad53f1ee944",
+      "fromEntity": "7fd47ceb-276f-4d63-8a55-4a8f2f3c55ba",
+      "position": "a14lR",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "161104fd-8660-42f1-8aa5-6baf831fd1dd",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "270661343"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "d22f3dbe-7279-45e0-a7f8-2e65b541e2b2",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1000733734252"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "32677087-904d-4f08-8bbc-fd6cc00f5b23",
+      "entity": "cd200272-eb00-4a52-8d94-9aa8f773efdd",
+      "fromEntity": "d22f3dbe-7279-45e0-a7f8-2e65b541e2b2",
+      "position": "a1AO1",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7778e78f-bf2c-42e4-9563-ae3eb45f2042",
+      "entity": "d22f3dbe-7279-45e0-a7f8-2e65b541e2b2",
+      "fromEntity": "af3baef4-1c91-411f-ae93-081129170837",
+      "position": "a38ZN",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6f8c3684-587d-4da3-9ee9-0f2bec5a7b19",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://podcasts.apple.com/us/podcast/nobel-prize-in-physics-winner-john-martinis-on-the/id1502871393?i=1000733734252"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b3c82e6d-8623-4779-88f0-3024e97031ed",
+      "entity": "4994aa36-eb3a-40f5-9901-782e56dfcaf9",
+      "fromEntity": "6f8c3684-587d-4da3-9ee9-0f2bec5a7b19",
+      "position": "a12sX",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "1f28d09d-8326-404b-9a36-4f951235f158",
+      "entity": "6f8c3684-587d-4da3-9ee9-0f2bec5a7b19",
+      "fromEntity": "af3baef4-1c91-411f-ae93-081129170837",
+      "position": "a18nf",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7ba07654-8ba8-45a2-b10b-d251bba02b70",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1000733393647"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "95da7f72-24c1-4e74-a342-a9be0240cc07",
+      "entity": "3068875d-5793-4cee-81c6-713b4ef942ea",
+      "fromEntity": "7ba07654-8ba8-45a2-b10b-d251bba02b70",
+      "position": "a16nF",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5cfe5c69-101c-48c3-908d-2dca867ad6f2",
+      "entity": "7ba07654-8ba8-45a2-b10b-d251bba02b70",
+      "fromEntity": "41b37adb-817a-43ac-9e41-f82a1b11e4a6",
+      "position": "a27u5",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e3be2657-0f12-4e1d-a150-720ed3d45d12",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://podcasts.apple.com/us/podcast/nba-gambling-scandal-tesla-trillion-dollar-vote-billionaire/id1502871393?i=1000733393647"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "cd0a7316-a78e-4514-bf14-af28c5ac3fbb",
+      "entity": "b5a0d1ea-2c61-4ebd-a591-24c3137b4de5",
+      "fromEntity": "e3be2657-0f12-4e1d-a150-720ed3d45d12",
+      "position": "a1AbT",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "68900856-fe54-4fdf-8542-25b9f73ea33a",
+      "entity": "e3be2657-0f12-4e1d-a150-720ed3d45d12",
+      "fromEntity": "41b37adb-817a-43ac-9e41-f82a1b11e4a6",
+      "position": "a11SF",
+      "toEntity": "e799a693-c432-487a-bd19-a77dd48eb092",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  }
+]

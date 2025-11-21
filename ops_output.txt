@@ -1,0 +1,39 @@
+[
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "76fd1480-f3e3-4809-b2a6-de65d5f4c313",
+      "entity": "4a1d9fde-210f-4b3f-918b-bc59082b9892",
+      "fromEntity": "cbdd07fa-ce96-42be-bb30-91fd94dcbf57",
+      "position": "a185W",
+      "toEntity": "7ed45f2b-c48b-419e-8e46-64d5ff680b0d",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "1f8685ef-035a-45db-a83e-1df343badec3",
+      "entity": "8c84f075-2a47-4345-a0c6-dc09d94d6f7f",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a13GB",
+      "toEntity": "cbdd07fa-ce96-42be-bb30-91fd94dcbf57",
+      "type": "cb60a1a6-6fb5-48c9-b936-200c5c271330"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c580ffd3-7b5d-49d5-b368-6af7b5f0b189",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "5ll0fkqIGyUfSOn9CTfHjC"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  }
+]

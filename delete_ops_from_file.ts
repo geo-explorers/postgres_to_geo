@@ -43,8 +43,9 @@ const del_ops: Array<Op> = [];
 const currSpaceId = SPACE_IDS.podcasts;
 let addOps;
 
+//published_ops/push_1_ep_allin_claims_corrected.txt published_ops/push_1_ep_allin_claims_fail.txt published_ops/push_1_ep_allin_rerun_last_fix_sacks.txt published_ops/push_1_ep_allin.txt published_ops/push_1_ep_fridman.txt published_ops/push_10_ep_allin_rerun.txt published_ops/push_10_ep_allin.txt published_ops/push_10_ep_bankless.txt published_ops/push_10_ep_daily.txt published_ops/push_10_ep_freakonomics.txt published_ops/push_10_ep_fridman.txt published_ops/push_10_ep_honestly.txt published_ops/push_10_ep_huberman_v1.txt published_ops/push_10_ep_rogan.txt published_ops/push_10_ep_upfirst.txt published_ops/push_100_ep_allin_claims_attempt1.txt published_ops/push_100_ep_allin_claims_corrected.txt published_ops/push_100_ep_allin.txt published_ops/push_100_ep_daily.txt published_ops/push_100_ep_freakonomics.txt published_ops/push_100_ep_fridman.txt published_ops/push_100_ep_huberman.txt published_ops/push_100_ep_rogan.txt published_ops/push_100_ep_upfirst.txt published_ops/push_roles.txt published_ops/push_topics_second_pass.txt published_ops/push_topics.txt
 const dir_in = "published_ops";
-const fn = "push_10_ep_no_topics_allin.txt";
+const fn = "push_100_ep_allin_claims.txt";
 const ops = readOpsFromFile(dir_in, fn);
 
 const del_ent_vals: Array<Op> = [];

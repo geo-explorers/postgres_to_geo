@@ -1,0 +1,244 @@
+[
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a34a0a51-3827-47bb-b1f5-fa855ee2767e",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "3rYUFbdNvYwuxdEIJ3wDjg"
+        },
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://open.spotify.com/episode/3rYUFbdNvYwuxdEIJ3wDjg"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "fd8449ce-815c-4c3d-b43f-072d3f9d38d7",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Epstein tracked Trump's political ascent from 2015 to 2018, calling him 'the worst person' in a 2017 message to Lawrence Summers."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "0b91c092-61e3-4daa-9285-b64d4ce9f473",
+      "entity": "41a34aa2-473b-48b1-af13-ae4daae5e5df",
+      "fromEntity": "fd8449ce-815c-4c3d-b43f-072d3f9d38d7",
+      "position": "a103X",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "962b1e40-84bb-4576-b03d-23f40630aa6f",
+      "entity": "b29430f3-2bc3-4f1a-bd7b-31a778337aa7",
+      "fromEntity": "6a8c7919-c53e-4c0a-82a4-a544e36a047e",
+      "position": "a10OF",
+      "toEntity": "fd8449ce-815c-4c3d-b43f-072d3f9d38d7",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a1e60f2b-b058-4376-9c4f-4445c2b323ad",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "The government shutdown ended after 43 days, with no resolution on extending Affordable Care Act subsidies."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "d272c07e-fde8-46fb-9ff4-f49cc8c552a0",
+      "entity": "6ee6cc99-d8d3-443b-9277-a22db6a87cda",
+      "fromEntity": "a1e60f2b-b058-4376-9c4f-4445c2b323ad",
+      "position": "a1CKZ",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "20a289af-278b-4572-bddb-885a8e616a82",
+      "entity": "71ea7b40-56bc-417c-ac71-4250d3a2e454",
+      "fromEntity": "6a8c7919-c53e-4c0a-82a4-a544e36a047e",
+      "position": "a292K",
+      "toEntity": "a1e60f2b-b058-4376-9c4f-4445c2b323ad",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "354b6888-ff4d-4217-9713-c308aaf5a3ca",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "The Congressional Budget Office estimates extending subsidies would cost $350 billion over 10 years."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2a9d14d7-9e33-420a-be66-696b9dbafd88",
+      "entity": "fef88660-2199-48a5-a727-bc57e6b0cf70",
+      "fromEntity": "354b6888-ff4d-4217-9713-c308aaf5a3ca",
+      "position": "a14H3",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ab708d03-520a-4a8a-bb01-8a6f948face8",
+      "entity": "a8fa45bd-6dde-4391-a9e3-f40a0a8efb17",
+      "fromEntity": "6a8c7919-c53e-4c0a-82a4-a544e36a047e",
+      "position": "a34FN",
+      "toEntity": "354b6888-ff4d-4217-9713-c308aaf5a3ca",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "8a4a86e0-d29c-4ca8-a9d0-c505fa8ed506",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Democrats believe extending subsidies would be a policy win, though Republicans remain skeptical."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "9f6273cb-fca9-4027-83e8-db7deb5bda58",
+      "entity": "dea05045-7b84-45ff-b705-cb8477dc8d3d",
+      "fromEntity": "8a4a86e0-d29c-4ca8-a9d0-c505fa8ed506",
+      "position": "a19ms",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "cd5bad95-1447-494f-a9e4-4fbe3946dcee",
+      "entity": "2dcc315d-b8c6-4bda-91b2-5057d7991c50",
+      "fromEntity": "6a8c7919-c53e-4c0a-82a4-a544e36a047e",
+      "position": "a4BfS",
+      "toEntity": "8a4a86e0-d29c-4ca8-a9d0-c505fa8ed506",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "ae419d53-ebda-478e-a777-18ee1d78f7fa",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "15470"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5e842969-3091-409c-8e78-9265f682c6b2",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "965"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5e842969-3091-409c-8e78-9265f682c6b2",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "34761"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "65a5c561-60b9-4587-9739-128e7b6fedba",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. politics"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "4ad9ecb9-5771-4877-8f5d-d4af418d0a14",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. Congress"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  }
+]

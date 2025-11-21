@@ -1,0 +1,1041 @@
+[
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a0ccc20c-2037-4a73-9a8f-5e9bf702c5af",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US history"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7e7cd8c2-4b8f-4c28-a53b-b6b4eb2873cd",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Skill vs. Chance"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6b5b1ddd-9047-46c3-ae60-3df1a6c635bf",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. Foreign Policy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e26abffb-1939-4132-b19e-930d7301f971",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "China-U.S. Relations"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3d080197-4574-4396-ba4f-26463ddec436",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. Presidency"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a39ae134-3f71-4daf-83d0-d3657497412a",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Mental Health"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "01c95208-9dd1-4bd4-aab3-817b05840928",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "H1B Visas"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c9184a44-f1b4-46d7-a52b-e3a775883948",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US presidential election"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9aa21c06-30ca-44bc-99e0-dd4eb66eb353",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Modern Love (essay)"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "235bde0a-685a-4656-9ded-ca2e044755d1",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. economy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "ca60b90b-394a-4f26-90ac-2e3092f0994c",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "RFK Jr."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5f1e9936-e6c2-4ed1-bfef-c07527c22560",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. trade policy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a5099721-8059-4262-8036-c373c6f573e9",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Social Issues"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f65bd700-0e7e-45bb-8a59-f6b7fb6b3bd1",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Nuremberg (film)"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5eb6b737-da9a-4659-8134-119629495be8",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US Healthcare System"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "0373d0a5-dd17-416d-824d-90c0cbf7dd80",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "JD Vance"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "0094ea0a-f4f4-4c3f-a549-1cb35b7c6d7b",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "ETHBTC ratio"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c5f2bf27-0366-4d0a-b4d8-09af0fa1d3b7",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Onchain economy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9dbac0ab-920d-454b-82c7-dc7922383017",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. legal system"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "65a5c561-60b9-4587-9739-128e7b6fedba",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. politics"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "01d162e2-6d64-4acb-b0a6-be94169b8746",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. elections"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a7e16281-e278-4912-8c4f-de7054941bdf",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. democracy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6a495f92-8ec3-411b-9ae5-db36acd94a0c",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Cease-fire deal"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "4ad9ecb9-5771-4877-8f5d-d4af418d0a14",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. Congress"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "8af46371-5f12-4af5-99f1-493301cc7f04",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S.-China trade war"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7f615149-9409-46e8-a3c4-f76def0638d2",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. immigration"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "822fe065-b7fb-4ddd-b05a-6bb53ab0e28f",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Russia - Ukraine war"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "07e27d17-d0ba-4a51-97f5-b804976c6d35",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "CloudKitchens"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "d410fb84-351c-4821-b4cd-99a7298b71ee",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Nuclear fusion"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3ad3e867-0a95-4bca-be7f-53d52e005b7d",
+      "entity": "38c42431-e423-4adf-817a-4afe9a36b41a",
+      "fromEntity": "d410fb84-351c-4821-b4cd-99a7298b71ee",
+      "position": "a17io",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "096119da-45bb-48a2-8998-eb38003f5ad2",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Plasma physics"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2b903162-75e0-43a8-a55a-2892325b3683",
+      "entity": "43aee890-e1a1-45c1-ab22-6b32bb3877a5",
+      "fromEntity": "096119da-45bb-48a2-8998-eb38003f5ad2",
+      "position": "a19do",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "176559c1-a4ba-4bba-9e43-8c67f24d0764",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Helion Energy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "385ca4ef-77ba-4ff1-a03e-9148c00f3911",
+      "entity": "abf955ea-3b04-416d-a0f5-3ba9c81c6af7",
+      "fromEntity": "176559c1-a4ba-4bba-9e43-8c67f24d0764",
+      "position": "a10X6",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "90e1f323-e9b5-423b-9e73-6493ae385961",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Commercial fusion power"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b44c302c-7a70-4256-b4ac-d77d4607f1d0",
+      "entity": "9b548cfe-6942-4633-a3fb-6485ee779d2d",
+      "fromEntity": "90e1f323-e9b5-423b-9e73-6493ae385961",
+      "position": "a18wO",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5bb2c405-a9fc-4c86-9978-7b154223bfb1",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Energy generation"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8d9cc494-633f-4e40-b587-aae4e1a1b0b3",
+      "entity": "fa37d130-6b78-4e2e-b5ff-478a1c290d6a",
+      "fromEntity": "5bb2c405-a9fc-4c86-9978-7b154223bfb1",
+      "position": "a14Fo",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "0b54cc7c-48fd-4a67-974a-93c0a7ef486f",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Blueprint project"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "06ab9269-cbf5-4a1e-964e-1b48e4ea8e54",
+      "entity": "adcd1ebb-78b6-4b40-b71a-9467bd261ef1",
+      "fromEntity": "0b54cc7c-48fd-4a67-974a-93c0a7ef486f",
+      "position": "a1ALc",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "22c25685-1dcb-4144-9601-723ac9ce9bcc",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Entropy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7ea3f72d-0ce4-4457-8c18-cf57d1117e70",
+      "entity": "916072e5-0004-48b9-9db5-b750c1b4e0c2",
+      "fromEntity": "22c25685-1dcb-4144-9601-723ac9ce9bcc",
+      "position": "a17zZ",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "727bfdfb-2b16-4665-9cb0-78009cc0f8d5",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "AI alignment"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "dd9700e0-4f89-4051-9e39-c16be461a201",
+      "entity": "d3a6c6c0-2325-4731-88e1-4126673cbc2a",
+      "fromEntity": "727bfdfb-2b16-4665-9cb0-78009cc0f8d5",
+      "position": "a19Kp",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "fd3c1409-1b37-4f52-9682-2d84e3501f11",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Two-species future"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2cd8b0c4-a200-42b5-bf67-c2e73589ffde",
+      "entity": "0dd3c31b-a5a2-485f-ae6a-17ff9daba902",
+      "fromEntity": "fd3c1409-1b37-4f52-9682-2d84e3501f11",
+      "position": "a16zA",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "0fa08d3b-6576-4aca-a350-4adbda60de20",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Moral framework"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a19415c4-cd82-4acb-876d-f037150e4c69",
+      "entity": "4904d382-e910-46f1-bb27-2ff7d7533def",
+      "fromEntity": "0fa08d3b-6576-4aca-a350-4adbda60de20",
+      "position": "a14vG",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "955b4831-4f82-4aa4-9215-c5eda5722a07",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Health optimization"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a8797c69-48fe-45b8-9abf-100ab06ab16f",
+      "entity": "42f59f03-0954-40e7-9ea9-eac1c07f6764",
+      "fromEntity": "955b4831-4f82-4aa4-9215-c5eda5722a07",
+      "position": "a12qw",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "cc931d20-c5e6-4116-b650-f5c77c56841e",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Smartphone addiction"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "20359a3f-5c11-4ddd-b5dd-8c1865b9a3e9",
+      "entity": "6e70baf0-5ce8-494f-a5de-2e0c6ce7e7bf",
+      "fromEntity": "cc931d20-c5e6-4116-b650-f5c77c56841e",
+      "position": "a12OF",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "36945a09-796b-4ad2-b433-5c911c356971",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Anxious Generation"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ab3e94fc-5b6a-4e09-844c-fe93f20f2d38",
+      "entity": "986dec5d-9956-4133-a4fd-6c3d55ce009e",
+      "fromEntity": "36945a09-796b-4ad2-b433-5c911c356971",
+      "position": "a11CO",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "26abd6ce-9e32-4b4b-a62a-6ddfc9401310",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Social condition"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b2430b7d-8b31-485e-bad6-1ef21e6d1037",
+      "entity": "ffcc7b1a-bab2-4b77-a866-50e12624fd3e",
+      "fromEntity": "26abd6ce-9e32-4b4b-a62a-6ddfc9401310",
+      "position": "a12Tr",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9b04132d-1e43-4136-ae7a-5848023f7ec6",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "College campus culture"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6ef8b625-3431-4e4c-bd81-cb525b4ffdd7",
+      "entity": "8303eab5-4f89-41d5-a77e-198666199515",
+      "fromEntity": "9b04132d-1e43-4136-ae7a-5848023f7ec6",
+      "position": "a10fu",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "d4f9b68a-57a5-4e8e-9821-3b2c924a1901",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Public speaking"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "36b4e326-1443-4db7-a0b7-aa52ab6f792b",
+      "entity": "b5f19c66-cdd4-49e4-a319-cb6dc355aaf9",
+      "fromEntity": "d4f9b68a-57a5-4e8e-9821-3b2c924a1901",
+      "position": "a1CM5",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "bc5be7d9-a3d4-47cd-9734-dc8cf4146e03",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Confidence"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "bb2e0b4e-808a-4109-a4be-9542c7af7acd",
+      "entity": "5a5a0c39-8813-4442-9806-5f9ca9583d61",
+      "fromEntity": "bc5be7d9-a3d4-47cd-9734-dc8cf4146e03",
+      "position": "a16QB",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "295ddffe-510f-45d1-b80a-eeb088940e6f",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Stage fright"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b8f068e4-c351-4505-b21f-d7ab4ebcfe5d",
+      "entity": "1cd1d29f-cb40-4c83-ba24-c412c8fce0af",
+      "fromEntity": "295ddffe-510f-45d1-b80a-eeb088940e6f",
+      "position": "a12qy",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6c9ccddb-cb48-4fd6-b944-8a274fe235f3",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Filler words"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ee93ad57-6065-44a5-aaff-3b3adbda2d55",
+      "entity": "ddc99533-4bdf-4220-ae18-6066107f31c6",
+      "fromEntity": "6c9ccddb-cb48-4fd6-b944-8a274fe235f3",
+      "position": "a127C",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "008ffb22-9752-4c9a-8129-34e181ac05a2",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Presentation techniques"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4cbf04d9-db24-4788-b178-09a5e7ce2528",
+      "entity": "03439fe4-7e88-43a8-89db-9b0e1f596bf8",
+      "fromEntity": "008ffb22-9752-4c9a-8129-34e181ac05a2",
+      "position": "a19Dh",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6c1a9bcc-c3f8-428c-bcaf-2a2d5adc1622",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "America First agenda"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "77663716-769d-4b8b-a0e9-7958a3f20dbb",
+      "entity": "aec799f5-98e4-46c5-8a6c-915d1dc8100d",
+      "fromEntity": "6c1a9bcc-c3f8-428c-bcaf-2a2d5adc1622",
+      "position": "a11Ls",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e128087d-09ba-4a41-bad9-33ffa35a662f",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Crown Prince"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a2e895cd-397a-49c4-8b09-d71f6c209444",
+      "entity": "52174172-fcd2-4111-9cb4-2733b268ae02",
+      "fromEntity": "e128087d-09ba-4a41-bad9-33ffa35a662f",
+      "position": "a18En",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7eadc09c-c643-4daf-8b8d-6acdb26d3a88",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "White House visit"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a5376b4a-3071-4a0f-8624-28f9e0ccc618",
+      "entity": "464beb42-e054-48c7-a527-8db6aa6a4d75",
+      "fromEntity": "7eadc09c-c643-4daf-8b8d-6acdb26d3a88",
+      "position": "a16DM",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "adf56a39-dd8b-4b1b-91ba-80aac889ef72",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US military buildup"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "33b3f484-1289-4646-87c0-f9c2f4f2ec68",
+      "entity": "f5dca81a-056e-406d-8f7c-5f046eb8abf9",
+      "fromEntity": "adf56a39-dd8b-4b1b-91ba-80aac889ef72",
+      "position": "a19Av",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "011ab75b-0e13-4771-a03e-fdd21f45abda",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Charlotte"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5e82caa5-e184-403f-a16c-fe725140ddc2",
+      "entity": "79afe9fc-0b00-4373-aafd-0b6665d366fe",
+      "fromEntity": "011ab75b-0e13-4771-a03e-fdd21f45abda",
+      "position": "a14rM",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "ab3fc964-41cf-409d-bd6e-32201ec33bf2",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "President Maduro"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8a6a40d1-cfc5-4c43-937d-cd5acd51cd9c",
+      "entity": "5c9b670b-486b-430a-9b71-d547bc1416f0",
+      "fromEntity": "ab3fc964-41cf-409d-bd6e-32201ec33bf2",
+      "position": "a15I4",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c2e72199-f2aa-4f3b-b064-672964d5aaa4",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Artificial intelligence"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a3c2142c-bd0e-42c4-89d1-40373f72fafb",
+      "entity": "e86b8f9b-2088-4208-ade3-146e9539d658",
+      "fromEntity": "c2e72199-f2aa-4f3b-b064-672964d5aaa4",
+      "position": "a177k",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  }
+]

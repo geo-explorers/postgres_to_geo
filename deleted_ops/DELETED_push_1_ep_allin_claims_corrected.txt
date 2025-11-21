@@ -1,0 +1,967 @@
+[
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "2f2f0e17-4ea1-48f2-80ba-ff0119421455",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "The AI sector is described as one of the healthiest and most competitive sectors of the American economy due to strong private investment and market competition."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4cab7b3d-1104-447d-aec3-1b2df36aadf4",
+      "entity": "c56b2774-601d-450b-9116-7ab8eab3c10c",
+      "fromEntity": "2f2f0e17-4ea1-48f2-80ba-ff0119421455",
+      "position": "a13QA",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b58ea022-0c77-47c7-9bea-d3a8a9dbb3b0",
+      "entity": "91f27237-9b95-441d-8b89-072b79888067",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "a10kM",
+      "toEntity": "2f2f0e17-4ea1-48f2-80ba-ff0119421455",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7b8f0f1e-92d6-43a6-aede-3c108de4152f",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "The government's role is to support infrastructure build-out through regulatory reform, such as easing permitting and enabling behind-the-meter power generation."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7c4d58cb-c8c6-44f7-bce7-6e90d879c856",
+      "entity": "bb649807-0e24-47fa-8f1d-ff18adb8dcdf",
+      "fromEntity": "7b8f0f1e-92d6-43a6-aede-3c108de4152f",
+      "position": "a19TS",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "03d73f8b-c721-4f34-b329-e51e6e1e0c23",
+      "entity": "33189c99-9ea6-4926-87ff-6d644265900f",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "a27Rx",
+      "toEntity": "7b8f0f1e-92d6-43a6-aede-3c108de4152f",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "86ebd47c-31e6-48ba-b19d-656c0b32861c",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "OpenAI's partnerships with Microsoft, Nvidia, Oracle, and Broadcom have seen a 6–20% drop in valuation following the public disclosure of spending plans."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "9e222429-3d87-4345-a645-6b54b64514ae",
+      "entity": "1394cfb3-851d-4c1f-92a1-c48efa114017",
+      "fromEntity": "86ebd47c-31e6-48ba-b19d-656c0b32861c",
+      "position": "a19jC",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "acc2bf50-5ffd-4d6b-8c69-37a1bf831596",
+      "entity": "85530611-d08f-4a53-b233-c12884831c9d",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "a34DV",
+      "toEntity": "86ebd47c-31e6-48ba-b19d-656c0b32861c",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "b0c61aed-c21e-42e2-b109-63977562da7d",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "OpenAI's CFO, Sarah Friar, initially suggested a federal backstop for financing its data centers, but clarified that no federal bailout is being sought."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "30f8b9bb-d9d2-49c1-aec4-f74daef11e19",
+      "entity": "1114f51f-f974-461f-85a8-37b43a0636fa",
+      "fromEntity": "b0c61aed-c21e-42e2-b109-63977562da7d",
+      "position": "a1BYW",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4459256a-d746-4d52-87b1-8eee5368d839",
+      "entity": "15a74be3-7da4-4c31-bc09-c1aea330d1d2",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "a4Bf0",
+      "toEntity": "b0c61aed-c21e-42e2-b109-63977562da7d",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "cab56efd-c866-4697-aad5-a9ac78ccec76",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Republican governors are reacting to past censorship by big tech companies with a 'state's rights' argument, but this is now outdated given current federal power."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "bada184e-3a48-46ec-85d9-089d7934c7b7",
+      "entity": "9eee05b3-5790-41ff-8b56-2f17fbe90814",
+      "fromEntity": "cab56efd-c866-4697-aad5-a9ac78ccec76",
+      "position": "a19Cs",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c305bdb4-a82d-4950-83f7-677489e5584f",
+      "entity": "607a03f2-dfd7-4fcc-8ea7-601c2f519d51",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "a58GL",
+      "toEntity": "cab56efd-c866-4697-aad5-a9ac78ccec76",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f66177f7-65e5-477c-ae79-3ce620e8b085",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "AI narratives on social media are contradictory—some claim AI is a bubble, others claim it is on the verge of superintelligence—making both claims implausible."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "0ba536eb-146c-4845-8b66-3759862d05e9",
+      "entity": "881bb8a0-6e68-4a2f-bf5a-3a973d5a6600",
+      "fromEntity": "f66177f7-65e5-477c-ae79-3ce620e8b085",
+      "position": "a18vK",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8f27cfaf-25f5-4407-a22d-0d3563ed6e08",
+      "entity": "84bae5cd-43ef-41f9-8133-95cbad040dc0",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "a694Y",
+      "toEntity": "f66177f7-65e5-477c-ae79-3ce620e8b085",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "4e4eec59-81cf-4539-8e45-1206a63230da",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "The U.S. auto industry faced market disruption due to California’s emissions standards, which created two sets of vehicles for different markets."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5295bb19-ef54-449a-94f2-08d1e342d19b",
+      "entity": "ab3cb3bb-f540-4e36-ba8e-658c332b2105",
+      "fromEntity": "4e4eec59-81cf-4539-8e45-1206a63230da",
+      "position": "a10fx",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "e910b968-874d-4ba5-a50e-17d5c422fdc2",
+      "entity": "1b36202c-015e-4a5a-bcdd-fbb5fb0a3911",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "a7An1",
+      "toEntity": "4e4eec59-81cf-4539-8e45-1206a63230da",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5b928e61-7294-49af-ae86-9d838fcdded5",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "The blue states have the most market power in AI and are pushing for DEI in AI models under the guise of prohibiting algorithmic discrimination."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "0a3c197b-797a-4377-bda8-be9191889da1",
+      "entity": "f6148d42-b09c-440f-8799-e9ab344906d3",
+      "fromEntity": "5b928e61-7294-49af-ae86-9d838fcdded5",
+      "position": "a101a",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "760da536-d79a-4c53-b29a-13912a0babea",
+      "entity": "88712a6d-daff-4333-9398-9e668504b2a2",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "a84en",
+      "toEntity": "5b928e61-7294-49af-ae86-9d838fcdded5",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c2552b06-cd1f-4cdb-8432-60904639d062",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Anthropic generates revenue primarily through enterprise APIs and is among the fastest-growing companies in Silicon Valley."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "e607044a-d426-440a-81ec-ce786e58bc49",
+      "entity": "bf75cef9-fefb-4de7-a4b1-b0b5eed98317",
+      "fromEntity": "c2552b06-cd1f-4cdb-8432-60904639d062",
+      "position": "a1AzF",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "fb1d7b41-294f-4740-954c-718c835ad8c1",
+      "entity": "9f3415aa-cfe0-4685-ad9c-4ef17850e434",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "a9BTF",
+      "toEntity": "c2552b06-cd1f-4cdb-8432-60904639d062",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5d574cde-4677-4c63-ac49-b8ace101a75d",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Google, Apple, and other companies offer free AI products (Gemini, Claude) that compete with OpenAI's offerings."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2e314466-e2ae-4f60-961e-8ec6f532ce8b",
+      "entity": "77303103-42d6-4f80-a0e4-8cf7f355689c",
+      "fromEntity": "5d574cde-4677-4c63-ac49-b8ace101a75d",
+      "position": "a1BSI",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a1b694f5-77d9-4ed6-9050-b7cd4fa2cd7d",
+      "entity": "5d30e1a5-e989-4bb9-b5f4-17221b315d73",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aA88h",
+      "toEntity": "5d574cde-4677-4c63-ac49-b8ace101a75d",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "076fe1bf-3dd5-49fe-8af2-ecb8e6dec506",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "AI stocks are driving index performance despite underlying economic concerns for middle-income Americans."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "0abda0dd-a084-478c-9526-06ed2c2e613a",
+      "entity": "50e72d26-1cfe-48de-80d9-79a9cc11e827",
+      "fromEntity": "076fe1bf-3dd5-49fe-8af2-ecb8e6dec506",
+      "position": "a11Te",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "45a66a8c-26ea-4ef8-bfe3-760512b8b59c",
+      "entity": "5ef646cf-8886-45f3-b574-fc42e066e5da",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aB7tR",
+      "toEntity": "076fe1bf-3dd5-49fe-8af2-ecb8e6dec506",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e499abfe-669d-4192-8619-4e4c0ccb1013",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Trump's net approval rating has declined from 9.4 to 13% in November, with 63% of Americans believing he has failed on the economy and middle-class concerns."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "00d39db7-22ae-4996-9946-dce8f42953f7",
+      "entity": "a906dbd3-bb7a-4b2d-b292-63661927dbf8",
+      "fromEntity": "e499abfe-669d-4192-8619-4e4c0ccb1013",
+      "position": "a15lT",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3599b164-96ee-4cb9-ae99-fd9a0dc28f7f",
+      "entity": "ef8c2d39-e535-4936-8747-2edbdfe9e382",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aC6fb",
+      "toEntity": "e499abfe-669d-4192-8619-4e4c0ccb1013",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "d3e4259c-0a76-4950-8c5a-ecffa1eb53f9",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "The U.S. economy is growing at 1.5% with interest rates remaining high, and there is a prediction of three to four interest rate cuts in the coming year."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2ea276be-e2db-4a89-bc7a-5ef57db5ad17",
+      "entity": "ace4e87b-6960-43aa-9747-6ef1b2c9c202",
+      "fromEntity": "d3e4259c-0a76-4950-8c5a-ecffa1eb53f9",
+      "position": "a141g",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "14bfe084-9265-4038-ba12-8a2a7a66f0df",
+      "entity": "0e57aa8f-2f02-4984-aaad-da0e0e160c96",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aD0xe",
+      "toEntity": "d3e4259c-0a76-4950-8c5a-ecffa1eb53f9",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "32b6acef-69d2-4377-a3ef-e040fdc3314a",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "The percentage of white-collar jobs in the U.S. economy has remained stable since the pandemic, indicating no significant job loss shock."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5c2452b9-b6d0-4418-8768-1276e3720115",
+      "entity": "ecdfa342-5d7f-448a-bdca-63776ea8b6b6",
+      "fromEntity": "32b6acef-69d2-4377-a3ef-e040fdc3314a",
+      "position": "a13xw",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "43b86ad2-9271-436d-b30e-c0dea0577db0",
+      "entity": "352a1e25-c3dd-49c7-93e3-d68b842d2548",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aE6zj",
+      "toEntity": "32b6acef-69d2-4377-a3ef-e040fdc3314a",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "42efcd60-51a5-452b-b85a-505e4fe0c289",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Student loan forgiveness is now supported as a policy solution to prevent graduates from becoming economically dependent."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "918f6367-5274-4df3-b7bf-1f91fd65e631",
+      "entity": "b6177087-c4fb-4e01-86bf-d5590fa6fc12",
+      "fromEntity": "42efcd60-51a5-452b-b85a-505e4fe0c289",
+      "position": "a10t8",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2381b4b2-2027-4765-aae7-a51a75dc1268",
+      "entity": "c8f3c26c-8650-4da3-9cdc-32cb1ddb8150",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aF0qZ",
+      "toEntity": "42efcd60-51a5-452b-b85a-505e4fe0c289",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "4f3de178-b2b0-49cd-814d-c916f36540c8",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Peter Thiel predicted in 2020 that student debt and housing affordability lead to opposition to capitalism."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "eedf9320-d3d5-42db-a5c7-6e9f5c3a31e9",
+      "entity": "1e93d495-d6dd-43fd-bfea-2ed2ae645a97",
+      "fromEntity": "4f3de178-b2b0-49cd-814d-c916f36540c8",
+      "position": "a15Ge",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "56206871-b392-46a9-ab4f-035c276b1036",
+      "entity": "47573908-acf1-47bb-a576-b8dbdd6b7106",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aG5im",
+      "toEntity": "4f3de178-b2b0-49cd-814d-c916f36540c8",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e1850ff7-947f-46d8-a478-f4a2a1cbc60c",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Millennials' economic struggles and debt may contribute to rising socialist or anti-capitalist views."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "38743905-69e9-4574-813f-d47b7e6dcba3",
+      "entity": "f516a792-041d-4720-8394-e4e6cba52fb9",
+      "fromEntity": "e1850ff7-947f-46d8-a478-f4a2a1cbc60c",
+      "position": "a17pu",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3e53c38e-b105-4973-817c-4c86a8087be3",
+      "entity": "9e6e7c80-9f72-4b6e-89e6-f0341a53bfd1",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aH6cR",
+      "toEntity": "e1850ff7-947f-46d8-a478-f4a2a1cbc60c",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9da8a9e3-8c47-4243-a3f4-6a52371627d4",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "In New York City, Mayor Adams has proposed policies such as abolishing gifted programs in schools, closing Rikers Island, and implementing cashless bail."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "495a934d-7191-440d-8cde-52326bd02996",
+      "entity": "877bde43-dc1b-4f1e-83e3-639025e0bd83",
+      "fromEntity": "9da8a9e3-8c47-4243-a3f4-6a52371627d4",
+      "position": "a14fS",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "95b818fe-ab33-441a-b5a2-5cd4cfcb3ebe",
+      "entity": "666a555f-b0ee-4196-8df6-4dd5a839b4c4",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aI3UW",
+      "toEntity": "9da8a9e3-8c47-4243-a3f4-6a52371627d4",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7a8401a9-8147-4f99-b032-bd545763b142",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "The U.S. political landscape is shifting, with concerns that a socialist takeover could occur if Democrats gain control and eliminate the filibuster."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "17ce864b-2349-438e-a6c7-87f022d8fb30",
+      "entity": "2dbaef79-ea45-4b28-8878-bbb052cbae5c",
+      "fromEntity": "7a8401a9-8147-4f99-b032-bd545763b142",
+      "position": "a15C7",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4d072f8d-99c0-4315-b4c8-032d8102d534",
+      "entity": "68fd02a7-e1ff-463d-a396-8dc7821ff56f",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aJ2f8",
+      "toEntity": "7a8401a9-8147-4f99-b032-bd545763b142",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3787c154-3932-4b4b-b342-357ec411b64f",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "San Francisco has seen a shift toward centrist policies under Mayor Daniel Lurie, contrasting with New York's move toward socialist policies."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "11189218-aed4-44f1-a46f-cf3bee2777f4",
+      "entity": "93ea9fbd-a4cd-4159-870b-f984fe5794f8",
+      "fromEntity": "3787c154-3932-4b4b-b342-357ec411b64f",
+      "position": "a1Bx2",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "44d0fcda-dcaa-442e-8952-2c93bd68e841",
+      "entity": "100b329f-e846-46ea-9327-223225374001",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aK8g9",
+      "toEntity": "3787c154-3932-4b4b-b342-357ec411b64f",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "8dd30578-0627-46de-aa55-1dabf5074ae9",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Millennials are increasingly influenced by socialist ideology, which may contribute to their unemployment and difficulty in securing jobs."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "af45eb0e-3b1b-4a2f-b5a8-f804f1239ace",
+      "entity": "b63285f5-f645-43df-8cd1-786362e50424",
+      "fromEntity": "8dd30578-0627-46de-aa55-1dabf5074ae9",
+      "position": "a16Sv",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2b47845f-e4bd-4a05-84db-808b1a52f067",
+      "entity": "e2a4de29-6c96-4e2e-a0f3-11a0c335b12a",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aL7cG",
+      "toEntity": "8dd30578-0627-46de-aa55-1dabf5074ae9",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "b5781267-bdc5-4528-a7d5-0601796ef587",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "A holiday event is scheduled for Saturday, December 6th, featuring eggnog and caroling songs."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b80848a3-ced8-4926-9bea-265f4f07d088",
+      "entity": "fe4f0774-d830-43bf-bb9e-8dc8ebcc4695",
+      "fromEntity": "b5781267-bdc5-4528-a7d5-0601796ef587",
+      "position": "a11yw",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "d736356a-23c4-4155-be8e-81321f5220a8",
+      "entity": "87a4fabc-d726-4fd3-9ae8-3dd5635271b3",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aM8YN",
+      "toEntity": "b5781267-bdc5-4528-a7d5-0601796ef587",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c9efd59d-f18c-4a63-956b-35a6af1fdec7",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "The show will be hosted with a festive atmosphere and community gathering."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8af31f1f-2b07-40c4-a0e0-6344cb82636f",
+      "entity": "d8733ccd-1a65-4a27-9e2e-cdfbb822b708",
+      "fromEntity": "c9efd59d-f18c-4a63-956b-35a6af1fdec7",
+      "position": "a11Ud",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ddbb421f-f9cc-47a9-9b88-4f938b0711f9",
+      "entity": "536a440c-bf28-46ad-8903-cc8d456ffdff",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aN6Pf",
+      "toEntity": "c9efd59d-f18c-4a63-956b-35a6af1fdec7",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "da84366a-38db-4ee9-bfe7-7620943d4c9a",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Brad will participate as the fifth bestie in the holiday special."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "406100ad-bf3f-4e25-a70e-f83f059b3e1c",
+      "entity": "f5cb8891-43f1-431b-82e7-1579846b0604",
+      "fromEntity": "da84366a-38db-4ee9-bfe7-7620943d4c9a",
+      "position": "a19wz",
+      "toEntity": "96f859ef-a1ca-4b22-9372-c86ad58b694b",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "be97d8a8-7348-41d4-ac60-3eabdda89d87",
+      "entity": "53a0bdb8-43ca-4c6d-b9fc-29df4be02007",
+      "fromEntity": "1e5766dd-fe58-4e93-8010-b32cc223bcde",
+      "position": "aOAtK",
+      "toEntity": "da84366a-38db-4ee9-bfe7-7620943d4c9a",
+      "type": "e1371bcd-a704-4396-adb7-ea7ecc8fe3d4"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "d03e3811-2712-4353-9c90-800370ee7b7d",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107Zznfis7"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6a89ef29-6af5-413b-a803-b7b4c67246dc",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107a4TAeGu"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3ab2b5d1-fa62-4cbc-b7a6-5b724a531fd0",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107aDqVxPI"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e9cf87c4-9082-4596-981a-684296b32aec",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "129644"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "b6e00428-534e-40a0-b680-bf86b7b64a7d",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1571751338"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  }
+]

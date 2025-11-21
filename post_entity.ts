@@ -1,7 +1,7 @@
 import { propertyToIdMap } from "./src/constants.ts";
 import { type Op, Graph, Position, Id, SystemIds } from "@graphprotocol/grc-20";
 import { normalizeToUUID, processNewRelation,  addSpace  } from "./src/functions.ts";
-
+import * as fs from "fs";
 type Value = {
   spaceId: string;
   property: string;
@@ -27,6 +27,7 @@ type Entity = {
 export async function processEntity({
   currentOps,
   processingCache,
+  imageCache,
   entity,
   client,
   currSpaceId,
@@ -34,6 +35,7 @@ export async function processEntity({
 }: {
   currentOps: Array<Op>;
   processingCache: Record<string, Entity>;
+  imageCache: Record<string, Entity>;
   entity: Entity;
   client?: any;
   currSpaceId?: any,
@@ -61,7 +63,7 @@ export async function processEntity({
 
     if (searchTrigger) {
         entityOnGeo = entity.entityOnGeo
-        console.log("entity exists on geo: ", geoId)
+        //console.log("entity exists on geo: ", geoId)
         //console.log(entityOnGeo?.relations?.[0]?.entity)
     }
     
@@ -111,7 +113,7 @@ export async function processEntity({
     let relationEntity;
     let last_position = Position.generateBetween(null, null);
     let last_type = null;
-    const image_types = [normalizeToUUID(propertyToIdMap["avatar"]), SystemIds.COVER_PROPERTY]
+    const image_types = [propertyToIdMap["avatar"], SystemIds.COVER_PROPERTY]
     for (const relation of entity.relations) {
         if (relation.type == last_type) {
             last_position = Position.generateBetween(last_position, null);
@@ -123,18 +125,36 @@ export async function processEntity({
         //Step 1: Check if relation is an image relation
         if (image_types.includes(Id(relation?.type))) {
             const search = entityOnGeo?.relations?.find(r=>
-                r.typeId === relation.type
+                r.typeId === relation.type &&
+                r.spaceId === relation.spaceId
             )
             if (!search) {
-                // Create image entity
-                const { id: imageId, ops: createImageOps } = await Graph.createImage({
-                    url: relation?.toEntity?.name,
-                    network: "TESTNET"
-                });
-                ops.push(...await addSpace(createImageOps, relation.spaceId));
-                toEntityId = imageId;
+                //const imageCacheKey: any = relation?.toEntity?.name;
+                //if (imageCache[imageCacheKey]) {
+                //    toEntityId = imageCache[imageCacheKey].geoId ;
+                //    console.log("Re-using image: ", toEntityId)
+                //} else {
+                    // Create image entity
+                try {
+                    const t0 = performance.now();
+                    const { id: imageId, ops: createImageOps } = await Graph.createImage({
+                        url: relation?.toEntity?.name,
+                        network: "TESTNET"
+                    });
+                    const t1 = performance.now();
+                    console.log(`Call to Graph.createImage took ${t1 - t0} milliseconds`);
+                    ops.push(...await addSpace(createImageOps, relation.spaceId));
+                    toEntityId = imageId;
+                    //imageCache[imageCacheKey] = { imageId, createImageOps };
+
+                } catch {
+                    console.error("IMAGE UPLOAD FAILED", relation?.toEntity?.name)
+                }
+                    
+                    
+                    //toEntityId = undefined;
+                //}
                 
-                //toEntityId = undefined;
             } else {
                 toEntityId = undefined;
             }
@@ -142,6 +162,7 @@ export async function processEntity({
             addOps = await processEntity({
                 currentOps: ops,
                 processingCache: processingCache,
+                imageCache: imageCache,
                 entity: relation?.toEntity,
             })
             ops.push(...addOps.ops)
@@ -157,7 +178,8 @@ export async function processEntity({
             if (entityOnGeo) {
                 relExists = entityOnGeo.relations.find(r => 
                     r.typeId == relation.type &&
-                    r.toEntityId == toEntityId
+                    r.toEntityId == toEntityId &&
+                    r.spaceId === relation.spaceId
                 )
                 if (relExists) {
                     relation.entity.entityOnGeo = relExists.entity ?? null;
@@ -167,6 +189,7 @@ export async function processEntity({
             addOps = await processEntity({
                 currentOps: ops,
                 processingCache: processingCache,
+                imageCache: imageCache,
                 entity: relation?.entity,
             })
             ops.push(...addOps.ops)
@@ -175,6 +198,7 @@ export async function processEntity({
         } else {
             relationEntity = undefined
         }
+        
         if (toEntityId) {
             addOps = processNewRelation({
                 currenOps: ops, 
@@ -190,8 +214,6 @@ export async function processEntity({
         }
     }
     
-
-    //console.log(ops)
     processingCache[cacheKey] = { geoId, entity };
     return { ops: ops, id: geoId }
     //return { ops: (await addSpace(ops, currSpaceId)), id: geoId }

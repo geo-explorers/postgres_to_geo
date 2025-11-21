@@ -12,8 +12,59 @@ import { fileURLToPath } from 'node:url';
 
 import { publish } from './publish.ts';
 
+
+function normalizeName_tmp(name: string): string {
+    return String(name)
+        .toLowerCase()
+        .trim()
+        .replace(/\./g, '')         // remove periods
+        .replace(/&/g, 'and')       // convert & to "and"
+        .replace(/[\s\-]+/g, ' ')   // normalize spaces and hyphens
+        .normalize('NFD')            // normalize accents
+        .replace(/[\u0300-\u036f]/g, ''); // remove diacritics
+}
+
+export function normalizeName(name: string = ""): string | null {
+    if (!name) return null;
+
+    let normalized = name
+        .toLowerCase()
+        .replace(/\b(dr|mr|ms|mrs|the)\b/g, "") // drop common prefixes/articles
+        .replace(/&/g, "and")                   // convert & to "and"
+        .replace(/\./g, "")                      // remove periods
+        .replace(/[^a-z0-9\s]/g, "")            // strip other punctuation
+        .replace(/\b(u\s?s)\b/g, "us")          // normalize U S / U.S. → US
+        .replace(/\s+/g, " ")                    // collapse spaces
+        .trim();
+
+    return normalized;
+}
+
+export function normalizeName_v1(name: string = ""): string | null {
+    if (name) {
+        return name
+            .toLowerCase()
+            .replace(/\b(dr|mr|ms|mrs|the)\b/g, "") // drop common prefixes/articles
+            .replace(/[^a-z0-9\s]/g, "")            // strip punctuation
+            .replace(/\s+/g, " ")                   // collapse spaces
+            .trim();
+    } else {
+        return null;
+    }
+}
+
 export const normalizeUrl = (url: string) =>
     url.endsWith('/') ? url.slice(0, -1) : url;
+
+function normalizeUrl_for_matching(url: string): string {
+    let u = url.trim().toLowerCase();
+
+    u = u.replace(/^https?:\/\//, ""); // remove http/https
+    u = u.replace(/^www\./, "");       // remove www.
+    u = u.replace(/\/$/, "");          // remove trailing slash
+
+    return u;
+}
 
 export function cleanText(input: string): string {
   // Remove invisible/control characters from the start and end
@@ -247,9 +298,9 @@ export function processNewRelation({
     // Search in the current ops whether relation exists...
     const match = currenOps.find(op =>
         op.type === "CREATE_RELATION" &&
-        op.relation.fromEntity === normalizeToUUID_STRING(fromEntityId) &&
-        op.relation.type === normalizeToUUID_STRING(propertyId) &&
-        op.relation.toEntity === normalizeToUUID_STRING(toEntityId)
+        op.relation.fromEntity === fromEntityId &&
+        op.relation.type === propertyId &&
+        op.relation.toEntity === toEntityId
     );
     if (match) {
         return { ops: ops, relationEntityId: match.relation.entity, position: match.relation.position };
@@ -268,8 +319,8 @@ export function processNewRelation({
         geoProperties = entityOnGeo?.relations?.filter(
             (item) => 
                 item.spaceId == spaceId &&
-                item.typeId == normalizeToUUID_STRING(propertyId) &&
-                item.toEntityId == normalizeToUUID_STRING(toEntityId)
+                item.typeId == propertyId &&
+                item.toEntityId == toEntityId
         );
         if (!geoProperties) {
             geoProperties = []
@@ -277,11 +328,11 @@ export function processNewRelation({
 
         if (geoProperties.length == 0) {
             addOps = Graph.createRelation({
-                toEntity: normalizeToUUID(toEntityId),
-                fromEntity: normalizeToUUID(fromEntityId),
-                type: normalizeToUUID(propertyId),
+                toEntity: toEntityId,
+                fromEntity: fromEntityId,
+                type: propertyId,
                 position: position,
-                entityId: normalizeToUUID(relationEntity)
+                entityId: relationEntity
             });
             ops.push(...addOps.ops);
         } else {
@@ -318,14 +369,15 @@ export function processNewRelation({
         //console.log("To entity: ", normalizeToUUID(toEntityId))
         //console.log("Type: ", normalizeToUUID(propertyId))
         addOps = Graph.createRelation({
-            toEntity: normalizeToUUID(toEntityId),
-            fromEntity: normalizeToUUID(fromEntityId),
-            type: normalizeToUUID(propertyId),
+            toEntity: toEntityId,
+            fromEntity: fromEntityId,
+            type: propertyId,
             position: position,
-            entityId: normalizeToUUID(relationEntity)
+            entityId: relationEntity
         });
         ops.push(...addOps.ops);
     }
+
 
     return { ops: ops, relationEntityId: relationEntity, position: position };
 }
@@ -438,7 +490,6 @@ export async function publishOps(ops: any) {
         
 
         for (const space of spaces) { 
-          console.log(testnetWalletAddress)
             txHash = await publish({
                 spaceId: space,
                 author: testnetWalletAddress,
@@ -501,18 +552,7 @@ export function extractUrls(values: any[] = [], isApi: boolean = false): { url: 
     }));
 }
 
-export function normalizeName(name: string = ""): string | null {
-    if (name) {
-        return name
-            .toLowerCase()
-            .replace(/\b(dr|mr|ms|mrs|the)\b/g, "") // drop common prefixes/articles
-            .replace(/[^a-z0-9\s]/g, "")            // strip punctuation
-            .replace(/\s+/g, " ")                   // collapse spaces
-            .trim();
-    } else {
-        return null;
-    }
-}
+
 
 export function levenshtein(a: string, b: string): number {
   const m = a.length, n = b.length;
@@ -636,6 +676,7 @@ export function buildEntityCached(
   geoEntities: Record<string, any[]>,
   cache: Record<string, Record<string, any>>
 ): any {
+
   const tableName = breakdown.table;
 
   // --- cache check ---
@@ -692,7 +733,7 @@ export function buildEntityCached(
     const relatedItems = Array.isArray(row[rel.type]) ? row[rel.type] : row[rel.type] ? [row[rel.type]] : []; // now [{ to_id, entity_id }, ...]
       return relatedItems.flatMap((relatedItem: any) => {
         if (rel.image) {
-          console.log(`${rel.type} IMAGE FOUND`, relatedItem)
+          //console.log(`${rel.type} IMAGE FOUND`, relatedItem)
           return [
             {
               spaceId,
@@ -775,7 +816,7 @@ export function buildEntityCached(
 
           
           if (rel.type == "sources" && childEntity.entityOnGeo) { //Todo - Check that this doesnt pull anything in if the child entity is empty (even if it just has a type...)
-              console.log("SOURCE FOUND")
+              //console.log("SOURCE FOUND")
               const hasSourceDbIdentifier = childEntity?.entityOnGeo?.values?.some(
                 v => v.propertyId === String(normalizeToUUID(propertyToIdMap["source_db_identifier"]))
               );
@@ -840,6 +881,7 @@ export function buildEntityCached(
 
 // 2. Match on URL + property
 if (!match) {
+  /*
   const localUrls = extractUrls(values, false);
 
   match = geoRows.find(p => {
@@ -864,8 +906,37 @@ if (!match) {
       )
     );
   });
+  */
+  const localUrls = extractUrls(values, false);
 
-  console.log(localUrls);
+  match = geoRows.find(p => {
+    const apiUrls = extractUrls(p.values, true);
+
+    return (
+      // must have correct type
+      p.relations?.some(r =>
+        String(r.typeId) === String(SystemIds.TYPES_PROPERTY) &&
+        String(r.toEntityId) === String(breakdown.types[0])
+      ) &&
+
+      // must not have a source already in existingSources
+      p.relations?.every(r =>
+        !(
+          String(r.typeId) === String(normalizeToUUID(propertyToIdMap["sources"])) &&
+          existingSources.includes(String(r.toEntityId))
+        )
+      ) &&
+
+      // must share a URL AND property (normalized!)
+      localUrls.some(local =>
+        apiUrls.some(api =>
+          normalizeUrl_for_matching(api.url) === normalizeUrl_for_matching(local.url) &&
+          String(api.propertyId) === String(local.propertyId)
+        )
+      )
+    );
+  });
+  //console.log(localUrls);
 }
 
 // 3. Match on name similarity
@@ -889,6 +960,7 @@ if (!match && row.name) {
         if (!valid) continue;
 
         // ✅ check URL/property alignment
+        /*
         let mismatch = false;
         for (const localVal of values) {
             if (typeof localVal.value != "string") continue;
@@ -905,6 +977,40 @@ if (!match && row.name) {
                 }
             }
         }
+        */
+       let mismatch = false;
+
+        for (const localVal of values) {
+            if (typeof localVal.value !== "string") continue;
+
+            const localIsUrl = (
+                /^https?:\/\//i.test(String(localVal.value)) ||
+                /\.(com|org|net|io|co|fm)$/i.test(String(localVal.value))
+            );
+            if (!localIsUrl) continue;
+
+            const apiVal = p.values?.find(v =>
+                String(v.propertyId) === String(localVal.property)
+            );
+
+            if (apiVal && typeof apiVal.value === "string") {
+                const apiIsUrl = (
+                    /^https?:\/\//i.test(String(apiVal.value)) ||
+                    /\.(com|org|net|io|co|fm)$/i.test(String(apiVal.value))
+                );
+
+                if (apiIsUrl) {
+                    const localNorm = normalizeUrl_for_matching(localVal.value);
+                    const apiNorm   = normalizeUrl_for_matching(apiVal.value);
+
+                    if (localNorm !== apiNorm) {
+                        mismatch = true;
+                        break;
+                    }
+                }
+            }
+        }
+
         if (mismatch) continue; // 🚫 reject this candidate
 
         const apiName = normalizeName(p.name);
@@ -916,7 +1022,7 @@ if (!match && row.name) {
         }
     }
 
-    console.log(bestScore);
+    //console.log(bestScore);
     if (bestScore > 0.9) match = bestMatch; // adjust threshold as needed
 }
 
@@ -930,7 +1036,7 @@ if (!match && row.name) {
       const relatedItems = Array.isArray(row[rel.type]) ? row[rel.type] : row[rel.type] ? [row[rel.type]] : []; // now [{ to_id, entity_id }, ...]
         return relatedItems.flatMap((relatedItem: any) => {
           if (rel.image) {
-            console.log(`${rel.type} IMAGE FOUND`, relatedItem)
+            //console.log(`${rel.type} IMAGE FOUND`, relatedItem)
             return [
               {
                 spaceId,
@@ -1013,7 +1119,7 @@ if (!match && row.name) {
 
             
             if (rel.type == "sources" && childEntity.entityOnGeo) { //Todo - Check that this doesnt pull anything in if the child entity is empty (even if it just has a type...)
-                console.log("SOURCE FOUND")
+                //console.log("SOURCE FOUND")
                 const hasSourceDbIdentifier = childEntity?.entityOnGeo?.values?.some(
                   v => v.propertyId === String(normalizeToUUID(propertyToIdMap["source_db_identifier"]))
                 );
@@ -1116,6 +1222,25 @@ export function flatten_api_response(response: any[]): any[] {
       value: normalizeValue(v),
     })),
     relations: (item.relations?.nodes ?? []).map((r: any) => ({
+      ...r,
+      entity: r.entity ? flattenEntity(r.entity) : null,
+    })),
+  }));
+}
+
+export function flatten_api_response_w_backlinks(response: any[]): any[] {
+  return response.map(item => ({
+    ...item,
+    values: (item.values?.nodes ?? []).map((v: any) => ({
+      spaceId: v.spaceId,
+      propertyId: v.propertyId,
+      value: normalizeValue(v),
+    })),
+    relations: (item.relations?.nodes ?? []).map((r: any) => ({
+      ...r,
+      entity: r.entity ? flattenEntity(r.entity) : null,
+    })),
+    backlinks: (item.relations?.nodes ?? []).map((r: any) => ({
       ...r,
       entity: r.entity ? flattenEntity(r.entity) : null,
     })),
@@ -1258,6 +1383,168 @@ export async function searchEntities({
                   }
                 }
             }
+        }
+      }
+    }
+  `;
+
+
+  const variables: Record<string, any> = {
+    name: name,
+    type: type,
+    spaceId: spaceId
+  };
+
+
+  const data = await fetchWithRetry(query, variables);
+  const entities = data?.data?.entities;
+  return entities
+
+  if (entities?.length === 1) {
+    return entities[0]?.id;
+  } else if (entities?.length > 1) {
+    console.error("DUPLICATE ENTITIES FOUND...");
+    console.log(entities);
+    return entities[0]?.id;
+  }
+
+  return null;
+}
+
+
+export async function searchEntities_w_backlinks({
+  name, // Note: For V1, can assume always have name and type, but it is possible that there will not be a name to associate this with? 
+  type,
+  spaceId,
+  property,
+  searchText,
+  typeId,
+  notTypeId
+}: {
+  name?: string;
+  type: string[];
+  spaceId?: string[];
+  property?: string;
+  searchText?: string | string[];
+  typeId?: string;
+  notTypeId?: string;
+}) {
+  
+  await new Promise(resolve => setTimeout(resolve, 200));
+
+  const query = `
+    query GetEntities(
+      ${name ?  '$name: String!': ''}
+      ${spaceId ? '$spaceId: [UUID!]' : ''}
+      $type: [UUID!]
+    ) {
+      entities(
+        filter: {
+          ${name ? 'name: {isInsensitive: $name},' : ''}  
+          ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}  
+          relations: {some: {typeId: {is: "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"}, toEntityId: {in: $type}}},
+        }
+      ) {
+        id
+        name
+        values {
+            nodes {
+                spaceId
+                propertyId
+                string
+                language
+                time
+                number
+                unit
+                boolean
+                point
+            }
+        }
+        relations {
+          nodes {
+                id
+                spaceId
+                fromEntityId
+                toEntityId
+                typeId
+                verified
+                position
+                toSpaceId
+                entityId
+                entity {
+                  id
+                  name
+                  values {
+                      nodes {
+                          spaceId
+                          propertyId
+                          string
+                          language
+                          time
+                          number
+                          unit
+                          boolean
+                          point
+                      }
+                  }
+                  relations {
+                      nodes {
+                          id
+                          spaceId
+                          fromEntityId
+                          toEntityId
+                          typeId
+                          verified
+                          position
+                          toSpaceId
+                          entityId
+                    }
+                  }
+                }
+          }
+        }
+        backlinks {
+          nodes {
+                id
+                spaceId
+                fromEntityId
+                toEntityId
+                typeId
+                verified
+                position
+                toSpaceId
+                entityId
+                entity {
+                  id
+                  name
+                  values {
+                      nodes {
+                          spaceId
+                          propertyId
+                          string
+                          language
+                          time
+                          number
+                          unit
+                          boolean
+                          point
+                      }
+                  }
+                  relations {
+                      nodes {
+                          id
+                          spaceId
+                          fromEntityId
+                          toEntityId
+                          typeId
+                          verified
+                          position
+                          toSpaceId
+                          entityId
+                    }
+                  }
+                }
+          }
         }
       }
     }

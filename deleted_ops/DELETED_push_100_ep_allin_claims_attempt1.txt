@@ -1,0 +1,2320 @@
+[
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "d03e3811-2712-4353-9c90-800370ee7b7d",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107Zznfis7"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6a89ef29-6af5-413b-a803-b7b4c67246dc",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107a4TAeGu"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3ab2b5d1-fa62-4cbc-b7a6-5b724a531fd0",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107aDqVxPI"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e9cf87c4-9082-4596-981a-684296b32aec",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "129644"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "b6e00428-534e-40a0-b680-bf86b7b64a7d",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1571751338"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a8fe807a-fa3e-401f-b520-52502ef70920",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. politics"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a03b10d4-75a4-4021-9304-d2b45240f496",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1243"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "ff15c21f-9e3b-41db-9559-2dfa18dac783",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafkreigplmd5o3wmmt5kjp6ezptd363ewtkmvn2n3sa6gccxhuvgkjubqm"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "400"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "400"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c4fa431d-e137-4be7-91dd-a694fdbc54b0",
+      "entity": "314e4bd3-5021-4648-bb96-7c17ee3c9c8b",
+      "fromEntity": "ff15c21f-9e3b-41db-9559-2dfa18dac783",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ff440c9e-5b74-4fd1-a752-28e3a640340d",
+      "entity": "bcb5a8dd-4ff3-42f3-9092-b824042debfd",
+      "fromEntity": "7e19ff0a-efea-4c01-91da-e1aa7b2e33db",
+      "position": "a15eA",
+      "toEntity": "ff15c21f-9e3b-41db-9559-2dfa18dac783",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9c4efc95-2bd2-4dc2-bd5b-f74b9840b329",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "901"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3d7356b8-a8f9-45b1-a7ca-f2d8b4499574",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107ZztJDdR"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "76f6e050-f072-4622-b34a-87d9bad95e7e",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "María Corina Machado"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "Venezuelan opposition leader and founder of Vente Venezuela, former National Assembly member leading the movement for democratic change against the Maduro regime."
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "161104fd-8660-42f1-8aa5-6baf831fd1dd",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "270661343"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c88e3bfb-d98b-4b67-b437-960cf5b0cacf",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Joe Manchin"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "U.S. Senator from West Virginia (2010-2025), former governor of West Virginia (2005-2010) and co-founder of the coal-brokerage firm Enersystems; known for his centrist turn and registering as an independent in 2024."
+        },
+        {
+          "property": "0d625978-4b3c-4b57-a86f-de45c997c73c",
+          "value": "https://www.x.com/Sen_JoeManchin"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "2eee26da-0cee-4551-a15a-a3c736ab2ede",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "62301"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "e760fddd-c0a7-4822-8458-99288d5d38fb",
+      "entity": "362ea037-e236-41b9-90d3-fa30b905bd4a",
+      "fromEntity": "2eee26da-0cee-4551-a15a-a3c736ab2ede",
+      "position": "a15iy",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "348b9363-2c37-40c2-8405-692d61f37728",
+      "entity": "2eee26da-0cee-4551-a15a-a3c736ab2ede",
+      "fromEntity": "c88e3bfb-d98b-4b67-b437-960cf5b0cacf",
+      "position": "a12xs",
+      "toEntity": "11ffa1ba-7144-48d9-80f9-e82e3a67d2cd",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "db701f3b-a442-46a6-a1ae-923326a53603",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "Q538868"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2a5e2fc3-7677-438f-b1fd-b4f11e5e9fb7",
+      "entity": "e6bce815-6001-49f8-ab3d-f864e37e5d28",
+      "fromEntity": "db701f3b-a442-46a6-a1ae-923326a53603",
+      "position": "a13ty",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "006e69ce-2194-41a6-b897-9a074c71e5fc",
+      "entity": "db701f3b-a442-46a6-a1ae-923326a53603",
+      "fromEntity": "c88e3bfb-d98b-4b67-b437-960cf5b0cacf",
+      "position": "a33FN",
+      "toEntity": "67e384f6-f8a7-43fe-bde0-20628aa7c7cb",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a716411e-57b4-4034-9a77-6c7c74a28c64",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "58444163"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "cluster_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "064ce219-7381-4502-bd4b-e0062b79800d",
+      "entity": "adec9405-7c7c-4a98-9e9e-fb89e268aed8",
+      "fromEntity": "a716411e-57b4-4034-9a77-6c7c74a28c64",
+      "position": "a13ej",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4fb80433-1b51-4a34-aaba-19cd0047f6b6",
+      "entity": "a716411e-57b4-4034-9a77-6c7c74a28c64",
+      "fromEntity": "c88e3bfb-d98b-4b67-b437-960cf5b0cacf",
+      "position": "a49lb",
+      "toEntity": "b3c42167-bdcc-4c12-84e4-6ba2f65e1903",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "fedc0a84-e6d3-4069-b6c5-c08845cede2b",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "000000003397139X"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5956748a-f66a-4f60-a909-40710cf30cc1",
+      "entity": "dcda8d2f-0f70-4ede-925c-7c6e498283fa",
+      "fromEntity": "fedc0a84-e6d3-4069-b6c5-c08845cede2b",
+      "position": "a14MH",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "57132495-8163-4867-9696-83e43ed15b73",
+      "entity": "fedc0a84-e6d3-4069-b6c5-c08845cede2b",
+      "fromEntity": "c88e3bfb-d98b-4b67-b437-960cf5b0cacf",
+      "position": "a52wa",
+      "toEntity": "4510aef1-1d3c-4660-addc-b66f3706c677",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "29e53861-0d8b-4e2b-af46-a83845836dbe",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "n2002106932"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c84f18f2-e63e-4708-994a-eb0c63efb9af",
+      "entity": "3f7940c1-6372-474d-90e8-1791ae0ce0fb",
+      "fromEntity": "29e53861-0d8b-4e2b-af46-a83845836dbe",
+      "position": "a16P5",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a68a9763-3f57-44cc-8439-f31977ff5b13",
+      "entity": "29e53861-0d8b-4e2b-af46-a83845836dbe",
+      "fromEntity": "c88e3bfb-d98b-4b67-b437-960cf5b0cacf",
+      "position": "a60Zm",
+      "toEntity": "e7d64a84-e86a-4e0d-8014-5704802c825c",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "75d5f2e6-9098-47c5-b70f-741ebbc3c9d4",
+      "entity": "678ebbb9-324d-4853-aaa5-602b0591cb1f",
+      "fromEntity": "c88e3bfb-d98b-4b67-b437-960cf5b0cacf",
+      "position": "a13cd",
+      "toEntity": "7ed45f2b-c48b-419e-8e46-64d5ff680b0d",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6fdb88ae-b80e-43da-b9a5-05c77f747375",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafkreibteqdttfcnxalsilymkw5yilv6mvlms4vs2y5y5ltht5ue52p6hm"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "512"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "512"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a8570d85-73f0-4528-bf64-7d27f023afa2",
+      "entity": "78212025-562b-4552-924c-3a1ea988b8d0",
+      "fromEntity": "6fdb88ae-b80e-43da-b9a5-05c77f747375",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "05695b72-838a-4585-804f-012e1ea582a3",
+      "entity": "d608b0e1-637b-4009-b83c-4db001f46c4e",
+      "fromEntity": "c88e3bfb-d98b-4b67-b437-960cf5b0cacf",
+      "position": "a15BG",
+      "toEntity": "6fdb88ae-b80e-43da-b9a5-05c77f747375",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "58ff4a86-016e-460d-863d-4c3bd64344a5",
+      "entity": "29eae887-0043-4ec6-9dd7-aa0b5622fa45",
+      "fromEntity": "d446c8db-985f-4dfa-adb4-44a75092ed94",
+      "position": "a15Ex",
+      "toEntity": "791b9eef-81ed-4389-a9c0-e991f38783cc",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b6f36abe-42fc-475b-ba89-3680d0160ba9",
+      "entity": "2bebf7ab-feee-4322-93d2-cba986c3d61d",
+      "fromEntity": "d446c8db-985f-4dfa-adb4-44a75092ed94",
+      "position": "a1BPa",
+      "toEntity": "a704ce28-c557-4eae-9fbc-80ec37d64cef",
+      "type": "8fcfe5ef-3d91-47bd-8322-3830a998d26b"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "cf602173-0254-411d-903d-ca612031082d",
+      "entity": "d446c8db-985f-4dfa-adb4-44a75092ed94",
+      "fromEntity": "e4dd7b01-0db6-4068-b256-ad61349be120",
+      "position": "a18Ko",
+      "toEntity": "c88e3bfb-d98b-4b67-b437-960cf5b0cacf",
+      "type": "cb60a1a6-6fb5-48c9-b936-200c5c271330"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "19234ec9-0ca2-4cff-a2cf-69ebaa7350ff",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US-China trade war"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5593c4a2-9a32-4ca4-9454-01c87d5d3aa7",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "42231"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5ea934c6-14bd-478e-ab32-315531cff708",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107ZzkEby5"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "39ef273e-f80c-486f-9884-532a71cd00c5",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "268637064"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "464d4b1e-3c56-4ac1-8797-96002940a0f9",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "188494"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8799e9c8-f57b-43b3-9631-e5fc77e18430",
+      "entity": "3fe4e5d3-468b-4c18-bc12-85c3d4ec0add",
+      "fromEntity": "464d4b1e-3c56-4ac1-8797-96002940a0f9",
+      "position": "a15gs",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5d021ab5-e337-49e5-82d4-d10e746ca33e",
+      "entity": "464d4b1e-3c56-4ac1-8797-96002940a0f9",
+      "fromEntity": "a2faf62f-be6b-4754-9645-3a2d87996226",
+      "position": "a17ar",
+      "toEntity": "11ffa1ba-7144-48d9-80f9-e82e3a67d2cd",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "cbd7bae2-25b1-4bb0-9ecd-be4fad31822b",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafkreiavofnzqbcjzpulm2vrsiwewy5dzhozvza35p7hbfib6d3pahkjju"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "480"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "480"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "9455ae5b-fa2e-43d5-8523-5bb91ce47b6b",
+      "entity": "1a5740ee-db12-42b0-8178-9af6b09ef4ed",
+      "fromEntity": "cbd7bae2-25b1-4bb0-9ecd-be4fad31822b",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3b079265-4518-4fd6-8f8f-20e0e586c798",
+      "entity": "b607df79-0359-4b72-b82e-2a1aa73f6ea3",
+      "fromEntity": "a2faf62f-be6b-4754-9645-3a2d87996226",
+      "position": "a16iZ",
+      "toEntity": "cbd7bae2-25b1-4bb0-9ecd-be4fad31822b",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "eedb145b-db56-4baf-af9a-1c59405c4711",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Rohit Khanna"
+        },
+        {
+          "property": "0d625978-4b3c-4b57-a86f-de45c997c73c",
+          "value": "https://www.x.com/RepRoKhanna"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "35bd703c-1f15-46c5-8843-e3e170f51a54",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "23210"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e2546d10-e857-4552-a14c-af4d9c61a230",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafybeicgcbecg5gtqlz3ht7x4dfnlgloxq3ej3ofqyc76nnirzayge2bqa"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "800"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "800"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "d7e608ba-53ff-4027-859f-c45488901225",
+      "entity": "76303fd0-b2e9-41d6-8b63-b26411394f8b",
+      "fromEntity": "e2546d10-e857-4552-a14c-af4d9c61a230",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "f984c3df-ecf9-456c-9188-96bd6642e355",
+      "entity": "68ad6017-628f-4d5d-bb33-3145cf421ebf",
+      "fromEntity": "eedb145b-db56-4baf-af9a-1c59405c4711",
+      "position": "a1BPW",
+      "toEntity": "e2546d10-e857-4552-a14c-af4d9c61a230",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "285478c2-05bc-4d47-bbb7-b59eb59f24c4",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. immigration"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "80ef5c23-75c7-4052-badb-017056b389bd",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "8767"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "80ef5c23-75c7-4052-badb-017056b389bd",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107ZzsCkr9"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f52255db-7a15-4ffa-8479-4711eb8e0019",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "7857"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "90777585-c7c0-4036-a11a-10c247eb5c69",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "26687"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f7d265e8-3cd6-4482-8d4e-d33523de44e4",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "6614"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "136c5212-49ab-4bb1-8efd-da67f295675a",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107a4UIUl6"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f520f5ae-d5a3-4574-a01d-a88544ba00dc",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107a9DH0Ii"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7f45aa54-1140-448a-b083-a96f6b8b08fc",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107aRsEdMq"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a18a17cd-fa08-4af6-965c-a49b0f56f34a",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "76191"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a59f8d73-0685-4828-9b52-535ed34219e3",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107aNARoKf"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "22481f7d-5471-40dd-8290-7b9fcaa8b420",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Rand Paul"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "U.S. Senator from Kentucky since 2011, ophthalmologist turned libertarian-leaning Republican, and current Chairman of the Senate Committee on Homeland Security and Governmental Affairs."
+        },
+        {
+          "property": "0d625978-4b3c-4b57-a86f-de45c997c73c",
+          "value": "https://www.x.com/RandPaul"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9a9b6cf3-ef34-4d7c-9792-ed6e30360f8f",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "12181"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "fd9365e1-d14f-4340-bd8d-2f1ef7616821",
+      "entity": "9dcd540b-cd5c-4d1f-a626-5833933021da",
+      "fromEntity": "9a9b6cf3-ef34-4d7c-9792-ed6e30360f8f",
+      "position": "a16i8",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "244adf11-943c-453e-8f43-42f067493a72",
+      "entity": "9a9b6cf3-ef34-4d7c-9792-ed6e30360f8f",
+      "fromEntity": "22481f7d-5471-40dd-8290-7b9fcaa8b420",
+      "position": "a16Pg",
+      "toEntity": "11ffa1ba-7144-48d9-80f9-e82e3a67d2cd",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "69e459d3-0203-4b04-8168-0f58a904c0fa",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107a4S1yld"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "287238f6-f088-4796-a9b0-3e4f7fac2e21",
+      "entity": "48797d9c-ac0f-46b9-a249-b570b0d239d1",
+      "fromEntity": "69e459d3-0203-4b04-8168-0f58a904c0fa",
+      "position": "a10ve",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f2bd8b98-4fd5-4212-8a60-6dcd96d45a2a",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "Q463557"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "04798e9a-84e8-4406-9ef7-d9b03aa2dab0",
+      "entity": "6cb16e1a-1966-4942-840f-1940d92fa3f9",
+      "fromEntity": "f2bd8b98-4fd5-4212-8a60-6dcd96d45a2a",
+      "position": "a11P8",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ad234517-5fc3-4238-9dc3-142c31d43d9a",
+      "entity": "f2bd8b98-4fd5-4212-8a60-6dcd96d45a2a",
+      "fromEntity": "22481f7d-5471-40dd-8290-7b9fcaa8b420",
+      "position": "a43ps",
+      "toEntity": "67e384f6-f8a7-43fe-bde0-20628aa7c7cb",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "035719e7-3c01-454a-bae5-2789a2fbc10e",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "169556843"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "cluster_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8aa6b2c3-6a2b-41df-acc6-69586c5461b7",
+      "entity": "7e9f1235-e833-43cd-a704-0ff457b5f06f",
+      "fromEntity": "035719e7-3c01-454a-bae5-2789a2fbc10e",
+      "position": "a17iX",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "939b43a0-43a6-47f0-af15-1150db276ba3",
+      "entity": "035719e7-3c01-454a-bae5-2789a2fbc10e",
+      "fromEntity": "22481f7d-5471-40dd-8290-7b9fcaa8b420",
+      "position": "a57pk",
+      "toEntity": "b3c42167-bdcc-4c12-84e4-6ba2f65e1903",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "72c12c70-ea21-4226-b9a3-dc9ae9860260",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "0000000373552896"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "af2c1e01-25c7-4ebb-aff7-073ef5b6c8a1",
+      "entity": "fd15f11d-2063-4b99-b715-05d03a9d33c8",
+      "fromEntity": "72c12c70-ea21-4226-b9a3-dc9ae9860260",
+      "position": "a1AvW",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "eff83843-4a25-44f4-963c-3a9dc0864bf3",
+      "entity": "72c12c70-ea21-4226-b9a3-dc9ae9860260",
+      "fromEntity": "22481f7d-5471-40dd-8290-7b9fcaa8b420",
+      "position": "a66LC",
+      "toEntity": "4510aef1-1d3c-4660-addc-b66f3706c677",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "252e9655-37fa-4040-b5a9-ae40728a5e29",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "no2011039480"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "cbfd990a-5fb7-4848-bb22-790d856cd65f",
+      "entity": "0738c469-d60c-48d4-878d-57516e4b4b5a",
+      "fromEntity": "252e9655-37fa-4040-b5a9-ae40728a5e29",
+      "position": "a1BPW",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ec27cf03-4241-4b89-aae3-8165c7a30a71",
+      "entity": "252e9655-37fa-4040-b5a9-ae40728a5e29",
+      "fromEntity": "22481f7d-5471-40dd-8290-7b9fcaa8b420",
+      "position": "a72Rl",
+      "toEntity": "e7d64a84-e86a-4e0d-8014-5704802c825c",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ef45f1c6-3652-4a55-8523-601be4b0e341",
+      "entity": "9c187765-661b-41ad-be13-c9b782e34dfb",
+      "fromEntity": "22481f7d-5471-40dd-8290-7b9fcaa8b420",
+      "position": "a1Br5",
+      "toEntity": "7ed45f2b-c48b-419e-8e46-64d5ff680b0d",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "ba6501e3-3b81-4846-b828-27dbba0ea8f0",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafybeidq4azgcuztlqgdpp2765gvjqitv36gka4qp25tmch4mxhjqd3n4u"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "1280"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "1280"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c70c79ad-e908-470f-afd5-8913392fc44f",
+      "entity": "5730c526-70ef-42f6-b0c4-5e8ea5476b61",
+      "fromEntity": "ba6501e3-3b81-4846-b828-27dbba0ea8f0",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "29707d3a-2fed-479e-bc59-71c1607fd356",
+      "entity": "adac0bcd-1b92-4974-8c72-0f2abcf7df58",
+      "fromEntity": "22481f7d-5471-40dd-8290-7b9fcaa8b420",
+      "position": "a18Bi",
+      "toEntity": "ba6501e3-3b81-4846-b828-27dbba0ea8f0",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5944c000-46d1-426f-845a-9a36f74323d2",
+      "entity": "e49d585c-68dd-4c01-847e-6e7f9779bb5b",
+      "fromEntity": "9388ed53-dd18-4c16-9072-b18f2c2cf294",
+      "position": "a11RG",
+      "toEntity": "791b9eef-81ed-4389-a9c0-e991f38783cc",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "09e731bb-5c32-4767-8555-df5b5925eea3",
+      "entity": "02f23847-f7b2-4f60-aec0-485578839f88",
+      "fromEntity": "9388ed53-dd18-4c16-9072-b18f2c2cf294",
+      "position": "a12Tv",
+      "toEntity": "a704ce28-c557-4eae-9fbc-80ec37d64cef",
+      "type": "8fcfe5ef-3d91-47bd-8322-3830a998d26b"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8bec84b1-1ce9-4181-9d74-e8821ccf82b2",
+      "entity": "9388ed53-dd18-4c16-9072-b18f2c2cf294",
+      "fromEntity": "ac417bae-652b-4ba8-a863-51ebde5a4ceb",
+      "position": "a59Mk",
+      "toEntity": "22481f7d-5471-40dd-8290-7b9fcaa8b420",
+      "type": "cb60a1a6-6fb5-48c9-b936-200c5c271330"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "afa6dae6-21b7-449b-8157-b498a34996d8",
+      "entity": "9fe659cc-1f84-490b-8140-872caf64f68c",
+      "fromEntity": "86d5a628-f566-4396-bfe1-166ef1a899ae",
+      "position": "a187H",
+      "toEntity": "791b9eef-81ed-4389-a9c0-e991f38783cc",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3dc1577f-d229-4854-a081-fcf209bc3635",
+      "entity": "b8584a0d-f802-4245-9c5e-86a84d9fffc4",
+      "fromEntity": "86d5a628-f566-4396-bfe1-166ef1a899ae",
+      "position": "a1CCi",
+      "toEntity": "a704ce28-c557-4eae-9fbc-80ec37d64cef",
+      "type": "8fcfe5ef-3d91-47bd-8322-3830a998d26b"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4bc7cffc-3457-4527-bd55-c7b4369744d3",
+      "entity": "86d5a628-f566-4396-bfe1-166ef1a899ae",
+      "fromEntity": "7415e575-6567-46aa-979c-178de1cf470b",
+      "position": "a14WD",
+      "toEntity": "22481f7d-5471-40dd-8290-7b9fcaa8b420",
+      "type": "cb60a1a6-6fb5-48c9-b936-200c5c271330"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5af56d75-08cd-4388-a763-7e69fbfc7c94",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "3216"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f1b94c0f-e9ec-4eb7-ae55-a005adc674e5",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107a4Qug6y"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "e77d3e76-b8e9-4316-b4dd-ba94ec3c03ad",
+      "entity": "6d43158e-79c6-425c-a924-3ab3692ebd9b",
+      "fromEntity": "45cf7e7f-4651-4faf-a990-85b3e3075178",
+      "position": "a19Wu",
+      "toEntity": "791b9eef-81ed-4389-a9c0-e991f38783cc",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2bbaefaf-fd55-407b-b2ca-3eacc5987661",
+      "entity": "cc17d414-c026-4e88-bfab-feeee80248d8",
+      "fromEntity": "45cf7e7f-4651-4faf-a990-85b3e3075178",
+      "position": "a19ph",
+      "toEntity": "a704ce28-c557-4eae-9fbc-80ec37d64cef",
+      "type": "8fcfe5ef-3d91-47bd-8322-3830a998d26b"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a7bc9e40-9290-426a-8eb3-8a3cd4e05c80",
+      "entity": "45cf7e7f-4651-4faf-a990-85b3e3075178",
+      "fromEntity": "b28d5440-cb2e-45f3-95d6-274929fccf39",
+      "position": "a17bg",
+      "toEntity": "6b227554-59a5-463d-a364-7e62880ce102",
+      "type": "cb60a1a6-6fb5-48c9-b936-200c5c271330"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "18dc906f-6b5b-416f-8d38-b7ba735ee172",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "J.D. Vance"
+        },
+        {
+          "property": "0d625978-4b3c-4b57-a86f-de45c997c73c",
+          "value": "https://www.x.com/JDVance"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f73ce2a3-f4e9-48e6-8fd9-3cacf147e2a4",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "156670"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5700d4a3-283e-4c44-a6b5-5814b2d2df9e",
+      "entity": "785422f9-e3a4-4c8b-9640-4a53082fc6cb",
+      "fromEntity": "f73ce2a3-f4e9-48e6-8fd9-3cacf147e2a4",
+      "position": "a19ou",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "61a33305-8be6-4faa-a1eb-1400b032b073",
+      "entity": "f73ce2a3-f4e9-48e6-8fd9-3cacf147e2a4",
+      "fromEntity": "18dc906f-6b5b-416f-8d38-b7ba735ee172",
+      "position": "a18Bx",
+      "toEntity": "11ffa1ba-7144-48d9-80f9-e82e3a67d2cd",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9055237c-7234-4ebc-a35d-fb65225520cd",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "28997"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5b7dd0fd-a266-46b2-b9ed-be2fd8d970a1",
+      "entity": "660cc8c2-93b9-49e4-83de-ae822883856e",
+      "fromEntity": "9055237c-7234-4ebc-a35d-fb65225520cd",
+      "position": "a11mc",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9752d844-a374-4a76-99e0-34dd06c05dc8",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107a9FXnXj"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "01240ec6-35e5-49e3-b5eb-bc6edd3b3774",
+      "entity": "4a34773a-64e6-421f-b1db-05cb2a428311",
+      "fromEntity": "9752d844-a374-4a76-99e0-34dd06c05dc8",
+      "position": "a109g",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "faf05a7a-95e6-45b4-989e-8ae2a063188d",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "Q28935729"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "31e85eb9-295d-4b6b-8bef-f23d8e6ea8d3",
+      "entity": "29d0df0c-5bc7-4176-abc4-a3edc33c4fd4",
+      "fromEntity": "faf05a7a-95e6-45b4-989e-8ae2a063188d",
+      "position": "a15EE",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5f7d8435-8c86-4d1e-8afe-b5f223b1ea43",
+      "entity": "faf05a7a-95e6-45b4-989e-8ae2a063188d",
+      "fromEntity": "18dc906f-6b5b-416f-8d38-b7ba735ee172",
+      "position": "a69ap",
+      "toEntity": "67e384f6-f8a7-43fe-bde0-20628aa7c7cb",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a12a9541-b8f2-4de2-9ae0-b50dc640ccb2",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "227145970112932251004"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "cluster_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7583b16f-29a0-4882-a8f2-8ae9a418ae51",
+      "entity": "f050515d-60cc-4e4e-ad60-c62ba8f8a4ec",
+      "fromEntity": "a12a9541-b8f2-4de2-9ae0-b50dc640ccb2",
+      "position": "a18wX",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "da0f0121-9e32-4aae-b5e7-e27c590ff422",
+      "entity": "a12a9541-b8f2-4de2-9ae0-b50dc640ccb2",
+      "fromEntity": "18dc906f-6b5b-416f-8d38-b7ba735ee172",
+      "position": "a7A9d",
+      "toEntity": "b3c42167-bdcc-4c12-84e4-6ba2f65e1903",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5155c550-9cf6-43d3-94a4-f89b5aa5bb9b",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "0000000463593659"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "aa8859f8-11ae-4207-8d8d-249a07ee1139",
+      "entity": "a58bfe68-7860-44de-a445-9f5019bc0df1",
+      "fromEntity": "5155c550-9cf6-43d3-94a4-f89b5aa5bb9b",
+      "position": "a19O0",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4a313c85-96ec-496e-b0be-466c37e17c59",
+      "entity": "5155c550-9cf6-43d3-94a4-f89b5aa5bb9b",
+      "fromEntity": "18dc906f-6b5b-416f-8d38-b7ba735ee172",
+      "position": "a85Mv",
+      "toEntity": "4510aef1-1d3c-4660-addc-b66f3706c677",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "570f73f6-784d-496b-b3d7-1157bc8531ed",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "no2016097284"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "878b0cd9-25af-4bb0-906c-0c514d32552e",
+      "entity": "80a10438-d268-416f-80a5-f6b208c8c66d",
+      "fromEntity": "570f73f6-784d-496b-b3d7-1157bc8531ed",
+      "position": "a11TN",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "73b1b4b3-6276-4e91-8990-7bdf7441bf6b",
+      "entity": "570f73f6-784d-496b-b3d7-1157bc8531ed",
+      "fromEntity": "18dc906f-6b5b-416f-8d38-b7ba735ee172",
+      "position": "a9AyQ",
+      "toEntity": "e7d64a84-e86a-4e0d-8014-5704802c825c",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "15a30214-9814-45e4-891e-88920100fc8f",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafybeibjmtscj7b63na7oczb7yttmfd55xgibzhnyskl5xy5t3w6zeqdte"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "1199"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "1200"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2a33007e-5a8a-4576-bb12-cb26f3d88865",
+      "entity": "c2a8e6cb-1626-4487-88b4-62cff0b8ca0a",
+      "fromEntity": "15a30214-9814-45e4-891e-88920100fc8f",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "f3e4bbf3-3197-4ea7-b5d6-db62f49c75b2",
+      "entity": "cf85a323-27b0-4532-b8b6-2be3e1d33fe7",
+      "fromEntity": "18dc906f-6b5b-416f-8d38-b7ba735ee172",
+      "position": "a11KP",
+      "toEntity": "15a30214-9814-45e4-891e-88920100fc8f",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "be249b0e-97d0-4b22-8afe-33faef9a1596",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Bill Hagerty"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "U.S. Senator from Tennessee since 2021, former U.S. Ambassador to Japan (2017–2019), and member of the Senate Banking, Foreign Relations and Appropriations Committees."
+        },
+        {
+          "property": "0d625978-4b3c-4b57-a86f-de45c997c73c",
+          "value": "https://www.x.com/BillHagertyTN"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "55e71215-6eba-420f-b260-8a52af248394",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "169343"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2882fcec-df80-46f9-ad48-5d07d43a4ef2",
+      "entity": "4a8a914f-b142-48cc-8a4e-51a31d85ccac",
+      "fromEntity": "55e71215-6eba-420f-b260-8a52af248394",
+      "position": "a17Bu",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "e72bdd94-23ba-4994-b633-df3abebe6284",
+      "entity": "55e71215-6eba-420f-b260-8a52af248394",
+      "fromEntity": "be249b0e-97d0-4b22-8afe-33faef9a1596",
+      "position": "a19t5",
+      "toEntity": "11ffa1ba-7144-48d9-80f9-e82e3a67d2cd",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5a23de95-b45e-4e06-949b-b1016230d754",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "Q27734214"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6fbfaf0f-d16e-491e-baf2-fad6cd860f95",
+      "entity": "3b335ec9-d2fa-434f-a9e8-02964b3102b9",
+      "fromEntity": "5a23de95-b45e-4e06-949b-b1016230d754",
+      "position": "a18I7",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3e0ba2bd-813a-4825-9d2d-4a4f7c26cd3c",
+      "entity": "5a23de95-b45e-4e06-949b-b1016230d754",
+      "fromEntity": "be249b0e-97d0-4b22-8afe-33faef9a1596",
+      "position": "a38w3",
+      "toEntity": "67e384f6-f8a7-43fe-bde0-20628aa7c7cb",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "301d6819-3f10-4369-a708-c2c1c22c7908",
+      "entity": "a28caa49-c6c2-4e7b-8d4a-67ed7b6e34c1",
+      "fromEntity": "be249b0e-97d0-4b22-8afe-33faef9a1596",
+      "position": "a13J7",
+      "toEntity": "7ed45f2b-c48b-419e-8e46-64d5ff680b0d",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f069cd29-a11f-48b5-af64-54f0db1e54d8",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafybeidmqbsvjhjijqb7s3upl5txsyhuds5miolaralw7qewqcjpfam24m"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "5000"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "5000"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ae17ddc7-6ed0-44aa-b5c4-25a05ba8e05e",
+      "entity": "4bbe12e3-9aa4-4b32-bf51-623be545f876",
+      "fromEntity": "f069cd29-a11f-48b5-af64-54f0db1e54d8",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c08fb618-74b2-44dd-8876-90ed6c450f33",
+      "entity": "f31f9319-b105-4f4f-816f-fbfbaf3dae52",
+      "fromEntity": "be249b0e-97d0-4b22-8afe-33faef9a1596",
+      "position": "a12yp",
+      "toEntity": "f069cd29-a11f-48b5-af64-54f0db1e54d8",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a0d842a6-9d11-40cb-b5a5-6f08d3d929d2",
+      "entity": "06bfff68-cb53-48b8-bf15-82224ba77d70",
+      "fromEntity": "96f68870-3030-4663-8d85-d5a575790ccf",
+      "position": "a12kg",
+      "toEntity": "791b9eef-81ed-4389-a9c0-e991f38783cc",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ee8363f0-f0ad-4f7c-a769-18259e8e87d4",
+      "entity": "af3fedca-cf85-4f06-b666-7bd23dfd8011",
+      "fromEntity": "96f68870-3030-4663-8d85-d5a575790ccf",
+      "position": "a17cz",
+      "toEntity": "a704ce28-c557-4eae-9fbc-80ec37d64cef",
+      "type": "8fcfe5ef-3d91-47bd-8322-3830a998d26b"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "9f7cc02c-79fc-4f82-a8bf-5f8e2383cb9d",
+      "entity": "96f68870-3030-4663-8d85-d5a575790ccf",
+      "fromEntity": "25e212f7-b406-48c7-b8ec-dd24b9d68789",
+      "position": "a17eR",
+      "toEntity": "be249b0e-97d0-4b22-8afe-33faef9a1596",
+      "type": "cb60a1a6-6fb5-48c9-b936-200c5c271330"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "4b517304-3e6f-40d3-a76f-a65f573f3565",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107a4a07WK"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "35753612-7bcd-4534-b603-978c40dab588",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107ZzkEbdV"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c586b93c-c712-4269-af5e-f709c831f1fd",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107aS0BfWf"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "dc854738-8143-4cc9-94d9-960e9773539c",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "36398"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "d4615196-bdca-4dd2-9c21-8ebf7fd38964",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafkreidwgdj5rz4x462mrawwbc3wm6524nngwli4osfazxv7dvm6lkkeoy"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "768"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "768"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7b530dfa-8724-4571-9465-8032ee285891",
+      "entity": "2a4abe43-7325-492a-86b9-9d4efc4e59b4",
+      "fromEntity": "d4615196-bdca-4dd2-9c21-8ebf7fd38964",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7bdd19ce-b4ab-462f-aa66-ef9038576cbc",
+      "entity": "4b1084c9-4852-4252-b023-7e1680b1f7cd",
+      "fromEntity": "d3e4f9e0-be94-4695-827d-8fae319c3ccb",
+      "position": "a188l",
+      "toEntity": "d4615196-bdca-4dd2-9c21-8ebf7fd38964",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "db9d6981-784e-4b3f-a8a4-27c4597502e4",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107a98gwiL"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "bdb3f1dc-2970-4393-9423-87650c9a39a8",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107aIcrBfV"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "31c14c82-928c-47d8-88bb-f43507ead8c6",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "96230"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6c5db495-66e0-4d1e-aa50-b649d156f4ce",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "109013"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6c5db495-66e0-4d1e-aa50-b649d156f4ce",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "37794"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "1db66f9a-3657-4e06-82c4-3210d87a2590",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1667"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "ddcd6d10-b7c1-45e7-808f-bdb95a3a3598",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107aIaaOIR"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "d55c7c6e-ab4e-424d-bc75-af66d1692049",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107Zzpurge"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c88771e5-8331-4078-b739-a8646a8db519",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107aIYJ3Du; 107Zzr459b"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a29ab565-ad6e-40ac-b5ef-9b4332199355",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107ZzpvPmh"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f09a7aae-00f8-4d2b-8b96-4d84e45d3bec",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107Zzpv8Kr"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3f52798b-98cf-4db1-8d18-4e7d9a424262",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107a4Qufyg"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3485d002-f2e2-4bdf-b37c-2c7af7ed3b17",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "107aRtNqpo"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "text_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "88be7395-b6aa-4d73-aaad-6e7e51186c97",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Ted Cruz"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "Ted Cruz is an American politician and attorney serving as the junior United States Senator for Texas since 2013. He was the runner-up for the Republican nomination for President of the United States in the 2016 election."
+        },
+        {
+          "property": "0d625978-4b3c-4b57-a86f-de45c997c73c",
+          "value": "https://www.x.com/tedcruz"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "4f3c52fc-5711-41cd-9ed2-f3606bc2114c",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "11776"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "636d1ca6-2278-460d-91a3-3c2751bb6588",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafybeiaskueeu75qadxmz6gthvn6r2mviwgi4wh2kkkccd5taszslvyqvq"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "1133"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "1133"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "0f731e8e-3a25-4f18-a93d-21d40b65504d",
+      "entity": "ba59b2c4-635f-4c95-8f06-8fe8f4fee191",
+      "fromEntity": "636d1ca6-2278-460d-91a3-3c2751bb6588",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "787177aa-92d0-49e2-920b-b0e1b1243f3d",
+      "entity": "f2964ddd-e45d-4ced-b8dd-cd6f7df4c931",
+      "fromEntity": "88be7395-b6aa-4d73-aaad-6e7e51186c97",
+      "position": "a13yF",
+      "toEntity": "636d1ca6-2278-460d-91a3-3c2751bb6588",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  }
+]

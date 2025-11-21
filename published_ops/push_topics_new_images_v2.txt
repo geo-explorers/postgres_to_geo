@@ -1,0 +1,1241 @@
+[
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a39ae134-3f71-4daf-83d0-d3657497412a",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Mental health"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a5099721-8059-4262-8036-c373c6f573e9",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Social issues"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "65a5c561-60b9-4587-9739-128e7b6fedba",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US politics"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5eb6b737-da9a-4659-8134-119629495be8",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. healthcare system"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3d080197-4574-4396-ba4f-26463ddec436",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US Presidency"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a7e16281-e278-4912-8c4f-de7054941bdf",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US Democracy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6b5b1ddd-9047-46c3-ae60-3df1a6c635bf",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US foreign policy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "ca60b90b-394a-4f26-90ac-2e3092f0994c",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "RFK Jr"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e26abffb-1939-4132-b19e-930d7301f971",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "China-US relations"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "235bde0a-685a-4656-9ded-ca2e044755d1",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US Economy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "4ad9ecb9-5771-4877-8f5d-d4af418d0a14",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US Congress"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7f615149-9409-46e8-a3c4-f76def0638d2",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US immigration"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "01d162e2-6d64-4acb-b0a6-be94169b8746",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US elections"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9aa21c06-30ca-44bc-99e0-dd4eb66eb353",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Modern Love essay"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "5f1e9936-e6c2-4ed1-bfef-c07527c22560",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US trade policy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9dbac0ab-920d-454b-82c7-dc7922383017",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US legal system"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "8af46371-5f12-4af5-99f1-493301cc7f04",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "US-China trade war"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "07e27d17-d0ba-4a51-97f5-b804976c6d35",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Cloud Kitchens"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c5f2bf27-0366-4d0a-b4d8-09af0fa1d3b7",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "On-chain economy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "0094ea0a-f4f4-4c3f-a549-1cb35b7c6d7b",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "ETH/BTC ratio"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7e7cd8c2-4b8f-4c28-a53b-b6b4eb2873cd",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Skill vs chance"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c9184a44-f1b4-46d7-a52b-e3a775883948",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. Presidential Election"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "822fe065-b7fb-4ddd-b05a-6bb53ab0e28f",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Russia Ukraine war"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f65bd700-0e7e-45bb-8a59-f6b7fb6b3bd1",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Nuremberg film"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6a495f92-8ec3-411b-9ae5-db36acd94a0c",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Ceasefire deal"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "01c95208-9dd1-4bd4-aab3-817b05840928",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "H-1B visas"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "0373d0a5-dd17-416d-824d-90c0cbf7dd80",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "J.D. Vance"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a0ccc20c-2037-4a73-9a8f-5e9bf702c5af",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "U.S. history"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "35edf8d8-194a-4557-abdc-31a63e69feab",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Michael Burry"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5777d897-2097-4585-b131-106b89e20499",
+      "entity": "a0c34f1b-38b5-43e7-8006-9e99a7975fc8",
+      "fromEntity": "35edf8d8-194a-4557-abdc-31a63e69feab",
+      "position": "a10qq",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "a61e7017-5d28-424e-bfe3-75dc040ef8bd",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "AI short selling"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "eba202f5-48c3-48f5-aa62-39a4f2ebe235",
+      "entity": "f3fb9b6d-4a58-4ded-941d-d17bb7c65e24",
+      "fromEntity": "a61e7017-5d28-424e-bfe3-75dc040ef8bd",
+      "position": "a19si",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "b3525466-57d7-4235-a064-0f8d78310e9d",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Palantir valuation"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2d30f09d-f28e-4188-8f2a-e28375818591",
+      "entity": "4273feab-c7fb-43c1-bf7c-97877595cd94",
+      "fromEntity": "b3525466-57d7-4235-a064-0f8d78310e9d",
+      "position": "a17WJ",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "95e677c9-9e23-4294-9140-e23c257b0735",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Home affordability crisis"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "81c8a987-cc38-46bf-b838-ef48bd3689e9",
+      "entity": "2ca80c6b-373b-4902-a9ca-f79ff38bd2cc",
+      "fromEntity": "95e677c9-9e23-4294-9140-e23c257b0735",
+      "position": "a1BNu",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "773b0b06-647b-4571-81f5-ea1b8709883f",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Mortgage innovation"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4dffa8b5-38df-4a6a-ab07-55837320e767",
+      "entity": "f381cd02-adda-474f-9291-fe47081a95fe",
+      "fromEntity": "773b0b06-647b-4571-81f5-ea1b8709883f",
+      "position": "a12FJ",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "42719aef-0424-470d-8580-9007d30733df",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "H-1B visa abuse"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "42b7973b-2e80-4405-979f-ecb3de98ea2a",
+      "entity": "03e3feeb-5170-4e9f-b088-742150a650b4",
+      "fromEntity": "42719aef-0424-470d-8580-9007d30733df",
+      "position": "a16Di",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f0d1bb96-7e18-4fd6-985e-b8fb3e66eea7",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Solar storms"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "21744a7a-8fc1-45f7-8379-b85404234420",
+      "entity": "cb42045a-1735-484d-be1b-2956dfe74194",
+      "fromEntity": "f0d1bb96-7e18-4fd6-985e-b8fb3e66eea7",
+      "position": "a18RE",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "20b305b9-a6d4-4aa4-b406-f7a644dd269b",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Coronal mass ejection"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "dbc3e798-fca5-4deb-9df9-000eea3fff37",
+      "entity": "83e158ec-da58-4b22-a0d9-2806b225cb8f",
+      "fromEntity": "20b305b9-a6d4-4aa4-b406-f7a644dd269b",
+      "position": "a1AU8",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3256b34d-982c-49d8-87ce-7775e23920f4",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Wealth migration"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "079799d8-be39-492a-8b76-0a19d22e02d2",
+      "entity": "92c5fb45-c379-447f-90f4-7c2d5519e49d",
+      "fromEntity": "3256b34d-982c-49d8-87ce-7775e23920f4",
+      "position": "a131s",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "62962e2c-932d-4bac-9914-d3950e3a5bea",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Horse racing industry"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5f6c896c-8dea-40dd-9c12-43d0bb3f4cde",
+      "entity": "4b342316-bc95-4b38-bf92-35b0926dfa20",
+      "fromEntity": "62962e2c-932d-4bac-9914-d3950e3a5bea",
+      "position": "a18r4",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "389d27ba-aba2-409a-8478-762b1f0e3610",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Thoroughbred auctions"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4b921148-cb07-48ac-b4d8-18a2f3488689",
+      "entity": "f2dfe0f7-88b6-4e90-8f57-073b14da58fe",
+      "fromEntity": "389d27ba-aba2-409a-8478-762b1f0e3610",
+      "position": "a13wR",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "1cd20b88-b3a6-439a-ae21-5514b4a8390c",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Gambling revenues"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "fa48721f-ee41-42bb-af9a-da5b376b682f",
+      "entity": "0e84ca40-164d-44bd-96bd-141243d42761",
+      "fromEntity": "1cd20b88-b3a6-439a-ae21-5514b4a8390c",
+      "position": "a18HU",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "9055d05f-cb96-45cf-b5f2-6faab54e341f",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Sport subsidies"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "bb33532d-bd86-4fca-b819-1119375f017b",
+      "entity": "429b52e6-00f4-45aa-8d91-b13d95abc9f8",
+      "fromEntity": "9055d05f-cb96-45cf-b5f2-6faab54e341f",
+      "position": "a13Bf",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "701b0200-c33b-4204-9514-16a88b65596e",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Race track closures"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "1fe6deb8-bbeb-41a3-990e-3703093cac1c",
+      "entity": "55cb1617-700a-44a3-8928-5e2c8b798aa7",
+      "fromEntity": "701b0200-c33b-4204-9514-16a88b65596e",
+      "position": "a144G",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "4dad8234-6592-4ca9-988c-d88e497b563a",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Streaming documentaries"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "44239a08-15b2-4120-86e7-ddaaea050b80",
+      "entity": "2e236b7c-593a-4802-9419-000cbe92fc0c",
+      "fromEntity": "4dad8234-6592-4ca9-988c-d88e497b563a",
+      "position": "a12OU",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "8d4670d9-45b7-4918-9e83-a369540118f2",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "True crime documentaries"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "55d8d296-b539-4eeb-b640-a01093446457",
+      "entity": "60ba8ee5-fa59-4bbf-a8e0-d0482616f4cf",
+      "fromEntity": "8d4670d9-45b7-4918-9e83-a369540118f2",
+      "position": "a11Ra",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "0ed9ed9e-c878-4c46-97a7-044c14a742ba",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Celebrity documentaries"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b22805e4-38dc-4d08-aa8a-0c35a65b8e4e",
+      "entity": "f7827007-a60d-444a-8ce8-3cf212de073c",
+      "fromEntity": "0ed9ed9e-c878-4c46-97a7-044c14a742ba",
+      "position": "a11fa",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f6ce6a88-2983-4a3f-b1c0-8082e497dd60",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Music documentaries"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "e6f9fb56-6a0a-4b7e-9db8-2d119ebbe571",
+      "entity": "fa4bf1f1-a371-4e3e-a2d0-f110d050a46a",
+      "fromEntity": "f6ce6a88-2983-4a3f-b1c0-8082e497dd60",
+      "position": "a120n",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "50bde2e4-5c0d-4daf-860f-dec9605201b0",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Tina Brown"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "dd28831f-b259-459b-a390-509983eab851",
+      "entity": "453ab971-4a6e-4fca-af4d-9352e94451ac",
+      "fromEntity": "50bde2e4-5c0d-4daf-860f-dec9605201b0",
+      "position": "a19d0",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7b507cd9-9f09-4df2-b53e-bfb0bdb997a5",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Elite society"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6c351ad3-abba-45ce-9954-0f845eaa27d9",
+      "entity": "570b04f0-b8a0-44d1-8618-2b3c7f742b8c",
+      "fromEntity": "7b507cd9-9f09-4df2-b53e-bfb0bdb997a5",
+      "position": "a10DB",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "1020ff74-38f6-4625-82b4-7eb1c2d8e777",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Wealthy individuals"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c039d5eb-be8c-4213-acfb-a1d20154188c",
+      "entity": "29db2cfb-c448-4c71-8c32-cff7f4caaa85",
+      "fromEntity": "1020ff74-38f6-4625-82b4-7eb1c2d8e777",
+      "position": "a14FU",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "bf188b0f-f8f2-4563-93cf-4d6e841fdd6c",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Zepbound"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "14da295b-b0e9-4352-b8e2-1ce169c5467f",
+      "entity": "f7ab8707-0a3a-43bf-8720-cd2e33deb7d5",
+      "fromEntity": "bf188b0f-f8f2-4563-93cf-4d6e841fdd6c",
+      "position": "a1BAM",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f4299c9f-dc25-439c-9f94-ea5545e43476",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Pharmaceutical pricing"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4153bdb2-912e-4813-9584-ee0ac4e06c81",
+      "entity": "0e58a12e-7559-41c9-882d-7834132002a8",
+      "fromEntity": "f4299c9f-dc25-439c-9f94-ea5545e43476",
+      "position": "a19mi",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "57795b90-0900-4f3a-91ca-92e999673bc2",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Novo Nordisk"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "be0f8700-0511-46b2-aea4-fdfc99592334",
+      "entity": "01e569a5-2c1f-4918-a13d-6e27109a6fc6",
+      "fromEntity": "57795b90-0900-4f3a-91ca-92e999673bc2",
+      "position": "a12Nq",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "298d82a6-2f9a-452d-ba8b-b14ec0fff238",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Drug affordability"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7da69497-6e8c-4524-b1ca-81552ea01fc4",
+      "entity": "af90e439-7fee-42d8-b6d6-f03809b8b75d",
+      "fromEntity": "298d82a6-2f9a-452d-ba8b-b14ec0fff238",
+      "position": "a16Qd",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "1017348a-f5bc-4fba-bad1-18f0f5881196",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Congressional negotiations"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "9ba9178b-072f-424c-8460-79ee723ea84c",
+      "entity": "d46e2f89-34ea-4df1-91a9-3569ffe4f644",
+      "fromEntity": "1017348a-f5bc-4fba-bad1-18f0f5881196",
+      "position": "a12H5",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "8c75116b-2d35-4073-88ae-02d17d49fc16",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Healthcare subsidies"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2ddc6868-b7c0-46e9-b5e3-28121cd40939",
+      "entity": "2256bd1c-2711-4a84-b69a-033fef205fc8",
+      "fromEntity": "8c75116b-2d35-4073-88ae-02d17d49fc16",
+      "position": "a1B1l",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7798f4e2-6a3d-4818-9e6e-6e996a9cbf05",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Trump BBC lawsuit"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "d4a979e6-1a57-44b7-889f-2775730158f6",
+      "entity": "6ef3aa4e-8f5b-4f97-b23d-97a07462b5ca",
+      "fromEntity": "7798f4e2-6a3d-4818-9e6e-6e996a9cbf05",
+      "position": "a19je",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "718d4e1a-45dd-41b7-9056-edfbf53c4545",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Ukraine war update"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "84bb735c-3eac-467c-ba98-031a740cabfc",
+      "entity": "2075e7e9-2f40-4d21-ae8f-6f30cc3aaefe",
+      "fromEntity": "718d4e1a-45dd-41b7-9056-edfbf53c4545",
+      "position": "a14aS",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "ff68cb88-8526-457c-8407-3204a63e21f8",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Russian attacks"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "71bab3c6-e010-4df8-94c3-9993a826c17d",
+      "entity": "4fe07fc6-5602-4fb7-886b-db9b9b94bb02",
+      "fromEntity": "ff68cb88-8526-457c-8407-3204a63e21f8",
+      "position": "a17Bo",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "47e7b1bf-5b94-48f4-bd5f-0d951af9a301",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Kyiv corruption probe"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a72686b1-1715-4b0e-a7b3-068f76982169",
+      "entity": "8818565f-0c4e-4f3e-bf79-b1ed77797eca",
+      "fromEntity": "47e7b1bf-5b94-48f4-bd5f-0d951af9a301",
+      "position": "a16my",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "4221d333-249c-496d-b547-c01311bb1273",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Epstein documents"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c5894ee5-c466-4c40-9ccd-13458d4eb766",
+      "entity": "eb46300d-fe6b-430a-a4fb-a29c173929e2",
+      "fromEntity": "4221d333-249c-496d-b547-c01311bb1273",
+      "position": "a12OZ",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "ebf9a99d-625a-413a-8416-97bd6dade026",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Border Patrol Charlotte"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "1b48d6ca-1f7e-4a49-98d6-f2682f08da58",
+      "entity": "a7b403e1-11aa-4531-838d-04eb50b3f391",
+      "fromEntity": "ebf9a99d-625a-413a-8416-97bd6dade026",
+      "position": "a1Aqm",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6be28d49-65f0-42e0-976e-3a6ad9ea26d4",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Federal data recovery"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "513cf47c-3eef-40b3-a633-18247f9ce3d6",
+      "entity": "aabb3e64-56fc-4dc7-b19b-9a0ccdc5817c",
+      "fromEntity": "6be28d49-65f0-42e0-976e-3a6ad9ea26d4",
+      "position": "a1B38",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "0babbadc-0925-474a-9bda-4e421f556a42",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Lost wages"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "e0caf05f-40ac-4bc5-8c2a-d2d2b07f1476",
+      "entity": "3db3aec0-bd49-43a4-b6b7-73e4275cbfc6",
+      "fromEntity": "0babbadc-0925-474a-9bda-4e421f556a42",
+      "position": "a1B06",
+      "toEntity": "5ef5a586-0f27-4d8e-8f6c-59ae5b3e89e2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  }
+]

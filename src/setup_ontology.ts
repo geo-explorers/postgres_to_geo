@@ -1,6 +1,6 @@
 import { typeToIdMap } from "./constants.ts";
 import PostgreSQLClient, { DB_ID, TABLES } from "./postgres-client.ts";
-import { flatten_api_response, searchEntities, normalizeToUUID } from './functions.ts';
+import { flatten_api_response, searchEntities, normalizeToUUID, searchEntities_w_backlinks, flatten_api_response_w_backlinks } from './functions.ts';
 import { v4 as uuidv4 } from "uuid";
 import levenshtein from "fast-levenshtein";
 
@@ -73,9 +73,10 @@ export const topicBreakdown: EntityBreakdown = {
     value_fields: ["name"],
     relations: [],
 }
-/*
+
 // Now that topicBreakdown exists, you can reference it safely
 topicBreakdown.relations = [
+  /*
   {
       type: "broader_topics",
       toEntityBreakdown: topicBreakdown,
@@ -88,6 +89,7 @@ topicBreakdown.relations = [
       entityBreakdown: null,
       image: false
   },
+  */
   {
       type: "cover",
       toEntityBreakdown: null,
@@ -95,7 +97,7 @@ topicBreakdown.relations = [
       image: true
   },
 ];
-*/
+
 
 export const platformBreakdown = {
     table: "platforms",
@@ -161,7 +163,7 @@ export const podcastBreakdown = {
     table: "podcasts",
     not_unique: false,
     types: [normalizeToUUID(typeToIdMap['podcast'])],
-    value_fields: ["name", "description", "date_founded", 'rss_feed_url'],
+    value_fields: ["name", "description", 'rss_feed_url'], //"date_founded",
     relations: [
         {
             type: "avatar",
@@ -175,14 +177,12 @@ export const podcastBreakdown = {
             entityBreakdown: null,
             image: false,
         },
-        /*
         {
             type: "topics",
             toEntityBreakdown: topicBreakdown,
             entityBreakdown: null,
             image: false,
         },
-        */
         {
             type: "listen_on",
             toEntityBreakdown: platformBreakdown,
@@ -273,12 +273,14 @@ export const claimBreakdown = {
     types: [normalizeToUUID(typeToIdMap['claim'])],
     value_fields: ["name"],
     relations: [
+      /*
       {
           type: "supporting_quotes",
           toEntityBreakdown: quoteBreakdown,
           entityBreakdown: null,
           image: false
       },
+      */
     ],
 }
 
@@ -295,11 +297,21 @@ export const episodeBreakdown = {
             image: true
         },
         {
+            type: "notable_claims",
+            toEntityBreakdown: claimBreakdown,
+            entityBreakdown: null,
+            image: false,
+        },
+
+        /*
+        {
             type: "tabs",
             toEntityBreakdown: pageBreakdown,
             entityBreakdown: null,
             image: false,
         },
+        */
+
         {
             type: "hosts",
             toEntityBreakdown: personBreakdown,
@@ -336,6 +348,13 @@ export const episodeBreakdown = {
             entityBreakdown: sourceBreakdown,
             image: false,
         },
+        {
+            type: "topics",
+            toEntityBreakdown: topicBreakdown,
+            entityBreakdown: null,
+            image: false,
+        },
+        
         //{
         //    type: "notable_quotes",
         //    toEntityBreakdown: quoteBreakdown,
@@ -343,18 +362,6 @@ export const episodeBreakdown = {
         //    image: false,
         //},
         /*
-        {
-            type: "notable_claims",
-            toEntityBreakdown: claimBreakdown,
-            entityBreakdown: null,
-            image: false,
-        },
-        {
-            type: "topics",
-            toEntityBreakdown: topicBreakdown,
-            entityBreakdown: null,
-            image: false,
-        },
         */
     ],
 }
@@ -372,17 +379,34 @@ export async function read_in_tables({
   offset,
   limit,
   podcast_name,
+  num_episodes,
+  date_filter,
 }: {
+  
   pgClient: any;
+  podcast_name: string[];
+  num_episodes: number;
+  date_filter: string;
   offset?: number;
   limit?: number;
-  podcast_name?: string;
 }): Promise<{
     podcasts: any; episodes: any; hosts: any; guests: any; people: any; topics: any; sources: any; roles: any; platforms: any; listen_on_links: any; quotes: any; claims: any; pages: any; text_blocks: any; selectors: any;
 }> {
+
+    const inClause = podcast_name
+          .map(name => `'${name.replace(/'/g, "''")}'`) // SQL escape
+          .join(", ");
+
+    let date_filter_str = '';
+    if (date_filter) {
+      date_filter_str = `AND e.air_date > '${date_filter}'`
+    } else {
+      date_filter_str = ''
+    }
+  
     const podcasts = await pgClient.query(`
       SELECT 
-          p.id, p.name, p.description, p.logo as avatar, p.created_at as date_founded, p.is_explicit, p.rss_feed_url,
+          p.id, p.name, p.description, p.logo as avatar, p.is_explicit, p.rss_feed_url,
           COALESCE(
             json_agg(
               DISTINCT jsonb_build_object(
@@ -428,10 +452,12 @@ export async function read_in_tables({
         ON p.id = ex.podcast_id
       LEFT JOIN "${DB_ID}".${TABLES.LISTEN_ON} AS l
         ON p.id = l.podcast_id
-      WHERE p.name IN ('${podcast_name}')
+      WHERE p.name IN (${inClause})
       GROUP BY p.id
       LIMIT ${limit} OFFSET ${offset}
   `);
+    //('${podcast_name}')
+    //('Lex Fridman Podcast', 'The Joe Rogan Experience', 'Up First from NPR', 'Freakonomics Radio', 'Huberman Lab', 'The Daily', 'Honestly with Bari Weiss', 'Bankless' )
     //'Bankless', 'The Joe Rogan Experience', 'Freakonomics Radio', 'The Daily', 'Lex Fridman Podcast', 'Today, Explained', 'The Genius Life', 'All-In with Chamath, Jason, Sacks & Friedberg'
 
     console.log("Podcast read")
@@ -445,7 +471,9 @@ export async function read_in_tables({
         //COALESCE(array_agg(g.person_id) FILTER (WHERE g.role = 'guest'), '{}') AS guests,
         //COALESCE(array_agg(g.person_id) FILTER (WHERE g.role IN ('host', 'coHost', 'guest_host', 'guestHost')), '{}') AS hosts,
         //ARRAY[e.podcast_id] as podcast,
-        console.log("Podcast read")
+
+        
+        
 
         const episodes = podcastIds.length
           ? await pgClient.query(`
@@ -454,7 +482,8 @@ export async function read_in_tables({
                 e.id,
                 e.name,
                 e.description,
-                e.podscribe_transcript as transcript,
+                e.podscribe_transcript,
+                e.bankless_transcript,
                 e.episode_number,
                 e.duration,
                 e.published_at AS air_date,
@@ -472,7 +501,6 @@ export async function read_in_tables({
               e.id,
               e.name,
               e.description,
-              e.transcript,
               e.episode_number,
               e.duration,
               e.air_date,
@@ -536,12 +564,16 @@ export async function read_in_tables({
             LEFT JOIN "${DB_ID}".${TABLES.QUOTES} AS q ON e.id = q.episode_id
             LEFT JOIN "${DB_ID}".${TABLES.CLAIMS} AS c ON c.episode_id = e.id
             LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t ON e.id = t.from_episode_id
-            WHERE (e.rn <= 10) AND (e.transcript IS NOT NULL)
-            GROUP BY e.id, e.name, e.description, e.transcript, e.episode_number, e.duration,
+            WHERE (e.rn <= ${num_episodes}) AND ((e.podscribe_transcript IS NOT NULL) OR (e.bankless_transcript IS NOT NULL))
+            ${date_filter_str}
+            AND e.name = 'Does OpenAI Need a Bailout? Mamdani Wins, Socialism Rising, Filibuster Nuclear Option'
+            GROUP BY e.id, e.name, e.description, e.episode_number, e.duration,
                       e.air_date, e.avatar, e.audio_url, e.podcast_id
             ORDER BY e.air_date DESC;
           `)
           : [];
+          //AND e.name in (${inClause})
+          //How Your Thoughts Are Built & How You Can Shape Them | Dr. Jennifer Groh
 
           /*
           LEFT JOIN "${DB_ID}".${TABLES.QUOTES} AS q ON e.id = q.episode_id
@@ -592,6 +624,7 @@ export async function read_in_tables({
             GROUP BY id
         `)
         : [];
+        console.log("Guests read")
 
         const guestIds = [
             ...new Set(
@@ -643,9 +676,10 @@ export async function read_in_tables({
                 GROUP BY p.id
                 `)
             : [];
+            console.log("PEOPLE read")
 
         const topics = await pgClient.query(`
-            SELECT t.id, t.name, t.description,
+            SELECT t.id, t.name, t.description, t.logo as cover,
             COALESCE(
               json_agg(
                 DISTINCT jsonb_build_object(
@@ -675,6 +709,12 @@ export async function read_in_tables({
             )
             GROUP BY t.id
             `);
+
+            for (const t of topics) {
+              if (t.name)
+                t.name = t.name.charAt(0).toUpperCase() + t.name.slice(1);
+            }
+            console.log("Topics read")
 
         const podcastListenOnIds = [
           ...new Set(
@@ -706,6 +746,7 @@ export async function read_in_tables({
               WHERE ${listenOnWhereClauses.join(" OR ")}
               `)
           : [];
+        console.log("Listen on read")
 
 
 
@@ -754,7 +795,7 @@ export async function read_in_tables({
                   AND (e.external_db_key <> 'pcid')
                 `)
             : [];
-
+            console.log("Sources read")
         //sources = mergeSources(sources)
         
 
@@ -774,6 +815,7 @@ export async function read_in_tables({
             WHERE id IN (${platformIds.map((id) => `'${id}'`).join(",")})
         `)
         : [];
+        console.log("Platforms read")
 
 
 
@@ -793,9 +835,12 @@ export async function read_in_tables({
             
             return { ...r, name };
         });
+        console.log("Roles read")
 
 
-        const quotes = episodeIds.length //ARRAY[role] as roles,
+        const quotes = [];
+        /*
+        episodeIds.length //ARRAY[role] as roles,
         ? await pgClient.query(`
             SELECT q.id, q.quote_text as name, episode_id
             FROM "${DB_ID}".${TABLES.QUOTES} as q
@@ -803,6 +848,8 @@ export async function read_in_tables({
             GROUP BY q.id
         `)
         : [];
+        */
+        console.log("Quotes read")
 
         const quoteIds = [
             ...new Set(
@@ -812,6 +859,8 @@ export async function read_in_tables({
             ),
         ];
 
+        /*
+        //Use this for when mapping claims to quotes
         const claims = quoteIds.length
         ? await pgClient.query(`
             SELECT id, episode_id, claim_text as name, 
@@ -831,6 +880,17 @@ export async function read_in_tables({
             GROUP BY c.id
         `)
         : [];
+        */
+       const claims = episodeIds.length
+        ? await pgClient.query(`
+            SELECT c.id, c.episode_id, c.claim_text as name
+            FROM "${DB_ID}".${TABLES.CLAIMS} as c
+            WHERE c.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")}) 
+              AND c.is_verified IS TRUE
+              AND c.is_flagged IS FALSE
+        `)
+        : [];
+        console.log("Claims read")
 
     interface TextBlock {
       id: string;
@@ -852,6 +912,7 @@ export async function read_in_tables({
     const text_blocks: TextBlock[] = [];
     const pages: Page[] = [];
 
+    /*
     for (const ep of episodes) {
       const transcriptText = ep.transcript?.trim();
       if (!transcriptText) {
@@ -900,6 +961,7 @@ export async function read_in_tables({
       // Remove the original transcript text
       delete ep.transcript;
     }
+      */
 
     interface Selector {
       id: string;
@@ -940,15 +1002,17 @@ export async function read_in_tables({
       return { similarity: maxSim, start: bestStart, end: bestStart + qLen };
     }
 
+
+    // --- Create selectors table ---
+    const selectors: Selector[] = [];
+
+    /*
     // --- Pre-group text blocks by episode_id ---
     const blocksByEpisode: Record<string, TextBlock[]> = {};
     for (const tb of text_blocks) {
       if (!blocksByEpisode[tb.episode_id]) blocksByEpisode[tb.episode_id] = [];
       blocksByEpisode[tb.episode_id].push(tb);
     }
-
-    // --- Create selectors table ---
-    const selectors: Selector[] = [];
 
     // --- Assign targets to quotes and create selectors ---
     for (const quote of quotes) {
@@ -981,9 +1045,11 @@ export async function read_in_tables({
         quote.targets = [];
       }
     }
+      */
 
 
 
+    console.log("All read in")
     return { podcasts, episodes, hosts, guests, people, topics, sources, roles, platforms, listen_on_links, claims, quotes, pages, text_blocks, selectors};
 }
 
@@ -1016,7 +1082,33 @@ export async function loadGeoEntities() {
   return geoEntities;
 }
 
+export async function loadGeoEntities_to_delete() {
+  const breakdowns = {
+    people: personBreakdown,
+    podcasts: podcastBreakdown,
+    episodes: episodeBreakdown,
+    platforms: platformBreakdown,
+    roles: roleBreakdown,
+    guests: podcastAppearanceBreakdown,
+    listen_on_links: listenOnBreakdown,
+    topics: topicBreakdown,
+    claims: claimBreakdown,
+    quotes: quoteBreakdown,
+    pages: pageBreakdown,
+    text_blocks: textBlockBreakdown,
+  };
 
+  const geoEntities: any = {};
+
+  for (const [key, breakdown] of Object.entries(breakdowns)) {
+    geoEntities[key] = flatten_api_response_w_backlinks(
+      await searchEntities_w_backlinks({ type: breakdown.types })
+    );
+  }
+
+  console.log("GEO API READ")
+  return geoEntities;
+}
 
 //Enable deleting and republishing claims / quotes from an episode when desired.
 //handle not_unique relation entities (to_entities have already been handled)

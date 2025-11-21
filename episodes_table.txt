@@ -1,0 +1,240 @@
+[
+  {
+    "id": "946096",
+    "name": "Ethereum's Next Decade | Vitalik Buterin",
+    "description": "Ethereum just turned 10, and Vitalik Buterin returns to reflect on the last decade—and where it’s headed next.\n\nIn this conversation, Vitalik shares what surprised him most about Ethereum’s growth, the hard lessons from challenges like The DAO and NFTs, and what he’d do differently if starting again.\n\nWe explore Ethereum’s evolving cultural identity, privacy as a core value, the tradeoffs between L1 and L2, and how Vitalik envisions Ethereum surviving an AI-dominated future.\n\n------\n🎬 DEBRIEF | RYAN & DAVID UNPACKING THE EPISODE\nhttps://www.bankless.com/podcast/debrief-ethereums-next-decade-vitalik-buterin\n\n------\nBANKLESS SPONSOR TOOLS:\n\n🪙FRAX | SELF SUFFICIENT DeFi\nhttps://bankless.cc/Frax\n\n🦄UNISWAP | SWAP ON UNICHAIN\nhttps://bankless.cc/unichain\n\n🛞MANTLE | MODULAR LAYER 2 NETWORK\nhttps://bankless.cc/Mantle\n\n------\nTIMESTAMPS\n\n0:00 Intro\n0:52 Ethereum’s First 2 Years\n2:25 Ethereum’s Top Contributions\n4:18 Biggest Surprises\n7:37 What Took Longer than Expected\n9:05 Overcoming Challenges\n11:03 Lesson for Younger Vitalik\n15:53 Bitcoin vs Ethereum\n18:49 Ethereum’s Cultural Evolution\n32:11 Privacy on Ethereum\n37:42 Nation State Resistant Privacy\n43:03 Cypherpunk vs Mainstream\n56:05 World Ledger\n59:09 Ethereum in 2024\n1:02:23 Changes in the Ethereum Foundation\n1:10:10 Economic Alignment\n1:16:38 Scaling the L1\n1:31:21 Ethereum’s Barbell Strategy\n1:39:28 Ethereum Nationalism\n1:48:28 ETH Treasuries\n1:55:19 The Next 10 Years for Ethereum\n1:59:35 The Next 10 Years for Vitalik\n2:01:25 The Next 10 Years for Bankless\n2:02:52 Closing & Disclaimers\n\n------\nRESOURCES\n\nVitalik Buterin\nhttps://x.com/VitalikButerin\n\n2021 Endgame\nhttps://vitalik.eth.limo/general/2021/12/06/endgame.html\n\nConvex and Concave Dispositions\nhttps://vitalik.eth.limo/general/2020/11/08/concave.html\n\n------\nNot financial or tax advice. See our investment disclosures here:\nhttps://www.bankless.com/disclosures⁠",
+    "episode_number": null,
+    "duration": null,
+    "air_date": "2025-08-11T04:00:00.000Z",
+    "avatar": "https://assets.flightcast.com/V2Uploads/vzyepv1wunc8uo4au6e1tld4/01K221SQFJTEBT58XZV784QYXF/_cover__vitalik_mon_pod.jpg",
+    "audio_url": "https://episode.flightcast.com/01K221M46V4XRENY4Y3CH5NC27.mp3",
+    "podcast": [
+      {
+        "to_id": 857,
+        "entity_id": null
+      }
+    ],
+    "guests": [
+      {
+        "to_id": 101795,
+        "entity_id": 2896532
+      }
+    ],
+    "hosts": [
+      {
+        "to_id": 101787,
+        "entity_id": 2359039
+      },
+      {
+        "to_id": 101788,
+        "entity_id": 2359041
+      }
+    ],
+    "contributors": [],
+    "notable_quotes": [],
+    "notable_claims": [
+      {
+        "to_id": 14939,
+        "entity_id": null
+      },
+      {
+        "to_id": 14940,
+        "entity_id": null
+      },
+      {
+        "to_id": 14941,
+        "entity_id": null
+      },
+      {
+        "to_id": 14942,
+        "entity_id": null
+      },
+      {
+        "to_id": 14943,
+        "entity_id": null
+      },
+      {
+        "to_id": 14944,
+        "entity_id": null
+      },
+      {
+        "to_id": 14945,
+        "entity_id": null
+      },
+      {
+        "to_id": 14946,
+        "entity_id": null
+      },
+      {
+        "to_id": 14947,
+        "entity_id": null
+      },
+      {
+        "to_id": 14948,
+        "entity_id": null
+      },
+      {
+        "to_id": 14949,
+        "entity_id": null
+      },
+      {
+        "to_id": 14950,
+        "entity_id": null
+      },
+      {
+        "to_id": 14951,
+        "entity_id": null
+      },
+      {
+        "to_id": 14952,
+        "entity_id": null
+      },
+      {
+        "to_id": 14953,
+        "entity_id": null
+      },
+      {
+        "to_id": 14954,
+        "entity_id": null
+      },
+      {
+        "to_id": 14955,
+        "entity_id": null
+      },
+      {
+        "to_id": 14956,
+        "entity_id": null
+      },
+      {
+        "to_id": 14957,
+        "entity_id": null
+      },
+      {
+        "to_id": 14958,
+        "entity_id": null
+      },
+      {
+        "to_id": 14959,
+        "entity_id": null
+      },
+      {
+        "to_id": 14960,
+        "entity_id": null
+      },
+      {
+        "to_id": 14961,
+        "entity_id": null
+      },
+      {
+        "to_id": 14962,
+        "entity_id": null
+      },
+      {
+        "to_id": 14963,
+        "entity_id": null
+      },
+      {
+        "to_id": 14964,
+        "entity_id": null
+      },
+      {
+        "to_id": 14965,
+        "entity_id": null
+      }
+    ],
+    "listen_on": [
+      {
+        "to_id": 2,
+        "entity_id": 241702
+      },
+      {
+        "to_id": 3,
+        "entity_id": 177140
+      }
+    ],
+    "topics": [
+      {
+        "to_id": 2274,
+        "entity_id": null
+      },
+      {
+        "to_id": 2336,
+        "entity_id": null
+      },
+      {
+        "to_id": 3385,
+        "entity_id": null
+      },
+      {
+        "to_id": 6878,
+        "entity_id": null
+      },
+      {
+        "to_id": 6879,
+        "entity_id": null
+      },
+      {
+        "to_id": 6880,
+        "entity_id": null
+      },
+      {
+        "to_id": 6881,
+        "entity_id": null
+      },
+      {
+        "to_id": 6882,
+        "entity_id": null
+      },
+      {
+        "to_id": 6883,
+        "entity_id": null
+      },
+      {
+        "to_id": 6884,
+        "entity_id": null
+      },
+      {
+        "to_id": 6885,
+        "entity_id": null
+      },
+      {
+        "to_id": 6886,
+        "entity_id": null
+      },
+      {
+        "to_id": 7129,
+        "entity_id": null
+      },
+      {
+        "to_id": 9795,
+        "entity_id": null
+      },
+      {
+        "to_id": 10018,
+        "entity_id": null
+      },
+      {
+        "to_id": 10024,
+        "entity_id": null
+      }
+    ],
+    "sources": [
+      {
+        "to_id": 1,
+        "entity_id": 779340
+      },
+      {
+        "to_id": 2,
+        "entity_id": 2258377
+      },
+      {
+        "to_id": 2,
+        "entity_id": 2258378
+      },
+      {
+        "to_id": 3,
+        "entity_id": 779341
+      }
+    ]
+  }
+]

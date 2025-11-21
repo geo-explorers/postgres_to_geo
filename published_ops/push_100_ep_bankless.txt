@@ -1,0 +1,2416 @@
+[
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "How Crypto Neobanks Work: Frax, Cards, and Visa’s Role | Sam Kazemian"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "Neobanks might be the quiet coordination hack that makes Visa optional. David sits down with Frax’s Sam Kazemian to map the new payment stack: why cards today settle over Visa yet still onboard users into stablecoins, how Frax USD (payments) pairs with sFRAX USD (savings), and why Ethereum remains the “savings/issuance” base while specialized payment chains battle for flows. Sam unpacks Frax’s white-label issuance strategy and RWA plumbing, shares an institutional DD story that highlights reliability over hype, and lays out the metrics that actually matter—card acceptance, bank deposits, chain coverage, and real-world spend. If you’re tracking how stablecoins, neobanks, and RWAs converge into an on-chain economy, this one connects the pipes.\n\n\n\n---\n\n📣SPOTIFY PREMIUM RSS FEED | USE CODE: SPOTIFY24\nhttps://bankless.cc/spotify-premium\n\n\n---\nBANKLESS SPONSOR TOOLS:\n\n\n🪙FRAXNET | MINT, REDEEM, EARN\nhttps://bankless.cc/fraxnet\n\n\n🦄UNISWAP | SWAP ON UNICHAIN\nhttps://bankless.cc/unichain\n\n\n🛞MANTLE | MODULAR L2 NETWORK\nhttps://bankless.cc/Mantle\n\n\n🌳KGEN | REQUEST A DEMO\nhttps://bankless.cc/KGEN-podcast\n\n\n💠BIT DIGITAL ($BTBT) | ETH TREASURY\nhttps://bankless.cc/bit-digital\nWe’re being compensated by Bit Digital (NASDAQ BTBT) for this segment promoting their company and BTBT. The compensation is paid in cash as a one time payment. You can find additional information about Bit Digital and BTBT on their Investor page at https://bit-digital.com/investors\n\n\n---\nTIMESTAMPS\n\n\n0:00 Intro\n0:54 What Is a Neobank\n2:45 Crypto Neobanks & Frax’s Two-Coin Model\n5:28 Strategy: Be the Pipes, Not the Card\n14:48 Design: RWAs On-Chain & Compliance Surface\n18:16 Cards Today, Native Pay Tomorrow\n28:52 The Standards Fight\n33:30 Institutional Proof Point & Growth Curve\n40:28 Closed-Loop On-Chain Economy\n55:36 What to Track Next\n\n\n---\nRESOURCES\n\n\nSam Kazemian\nhttps://x.com/samkazemian\n\n\n---\nNot financial or tax advice. See our investment disclosures here:\nhttps://www.bankless.com/disclosures"
+        },
+        {
+          "property": "77999397-f78d-44a7-bbc5-d93a617af47c",
+          "value": "2025-10-28T04:00:00.000Z"
+        },
+        {
+          "property": "87f919d5-560b-408c-be8d-318e2c5c098b",
+          "value": "https://episode.flightcast.com/01K8N0DGJ7SAG97A1E1DGF0HZE.mp3"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "adb34031-8321-4f2a-a850-74af76a61299",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "270752200"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "bbedc90e-c1b1-4393-a7d5-008056db7066",
+      "entity": "e031a74e-f924-4220-a834-a14671eb5266",
+      "fromEntity": "adb34031-8321-4f2a-a850-74af76a61299",
+      "position": "a1AWa",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "f67303f8-cac0-4fd5-a040-ed8ecc9e5a54",
+      "entity": "adb34031-8321-4f2a-a850-74af76a61299",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a1A8Z",
+      "toEntity": "056ae1e4-adb5-4fdc-99ca-9aadb8855365",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "b83e807d-1e6d-46ff-a1fe-bc9e67580bdb",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1000733854753"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "22e4b407-7271-4ad9-a15a-ffcc971a4fe1",
+      "entity": "478f9633-16ab-47bf-990e-511e7ab77fac",
+      "fromEntity": "b83e807d-1e6d-46ff-a1fe-bc9e67580bdb",
+      "position": "a1Bzp",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "9ec92b12-beb2-4151-869a-a6bf601149e3",
+      "entity": "b83e807d-1e6d-46ff-a1fe-bc9e67580bdb",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a26oE",
+      "toEntity": "1b788149-3955-4800-8757-16ea4a0e9ece",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "221ce043-e9e2-426a-9166-54eea330f009",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "7fBsZVPu4Eb3i4iPUq5Yaa"
+        },
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://open.spotify.com/episode/7fBsZVPu4Eb3i4iPUq5Yaa"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "21eeaf0c-0ef7-47e3-873c-b1d80e6c6dc7",
+      "entity": "65de5daa-98d6-444b-97f5-3d1473ffcc1f",
+      "fromEntity": "221ce043-e9e2-426a-9166-54eea330f009",
+      "position": "a10Qm",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5c9d8033-69f8-4372-99eb-d195f2112762",
+      "entity": "221ce043-e9e2-426a-9166-54eea330f009",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a4Agt",
+      "toEntity": "1a608e9f-2f96-4b0a-9cbe-3be7d9ef4023",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "bb567eec-0008-45e7-a0e1-40c76ebfd4cd",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "140506742"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "episode_id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7b8bbf2a-04d3-4b67-874b-359f9383b9b5",
+      "entity": "6ad560be-e83f-463b-9f87-9299270c3fa0",
+      "fromEntity": "bb567eec-0008-45e7-a0e1-40c76ebfd4cd",
+      "position": "a18dU",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "390b1125-05f5-4be0-bcdf-018cbd39e79c",
+      "entity": "bb567eec-0008-45e7-a0e1-40c76ebfd4cd",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a59Q0",
+      "toEntity": "cacc8d5c-a473-44e2-8e1d-e4dc7add93da",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8f99e97e-2f5a-4908-be8c-b5eafe8fac63",
+      "entity": "463a0f89-bfdd-4231-9513-13c3639bf64c",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a19N6",
+      "toEntity": "972d201a-d780-4568-9e01-543f67b26bee",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "2ddcfdd1-e579-4a17-9fc8-dc1d45311db9",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafkreigtxl6d7ecwfdquzae4sw6wqcotwk4wiov7kw2mhmlen7ddcwg7qq"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "1400"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "1400"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8913e392-0d3e-4d9e-9aa2-5206ab5fdb4c",
+      "entity": "4ee8af09-5139-4c05-8960-f8a7dfdaa54e",
+      "fromEntity": "2ddcfdd1-e579-4a17-9fc8-dc1d45311db9",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "193b901d-71e8-4e47-b74b-0d8f242be742",
+      "entity": "61534c7c-6344-49d0-aa06-a9b53b96c512",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a14oy",
+      "toEntity": "2ddcfdd1-e579-4a17-9fc8-dc1d45311db9",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "3b9e44ec-f0df-43e4-bb67-20df94464b65",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Ryan Sean Adams"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "Co-founder of the crypto media brand Bankless, founder of investment firm Mythos Capital, and host of the Bankless podcast focused on decentralized finance and crypto adoption."
+        },
+        {
+          "property": "0d625978-4b3c-4b57-a86f-de45c997c73c",
+          "value": "https://www.x.com/RyanSAdams"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "ca59c5a0-c1c7-4671-9dd5-eb7ab209f617",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "70670"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7a8ef804-8f18-43cd-832f-6547c3543986",
+      "entity": "50dd3c92-208f-4d0e-9934-90674ff4728d",
+      "fromEntity": "ca59c5a0-c1c7-4671-9dd5-eb7ab209f617",
+      "position": "a17vS",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "44d0a079-59e1-4704-8552-c7c947549e79",
+      "entity": "ca59c5a0-c1c7-4671-9dd5-eb7ab209f617",
+      "fromEntity": "3b9e44ec-f0df-43e4-bb67-20df94464b65",
+      "position": "a13ze",
+      "toEntity": "056ae1e4-adb5-4fdc-99ca-9aadb8855365",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6d39bdc4-7b77-42f8-8865-2161f57e3072",
+      "entity": "1449a53b-51dc-4279-803e-8af4b479f5ce",
+      "fromEntity": "3b9e44ec-f0df-43e4-bb67-20df94464b65",
+      "position": "a1691",
+      "toEntity": "7ed45f2b-c48b-419e-8e46-64d5ff680b0d",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "b2aa5b49-9195-4a0b-bbfd-ee3f94128185",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafkreifarq6a3cng7eewyt3wswyls73h4zulqoumgbs7hbwigmbslnf5vm"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "400"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "400"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "15c1448f-7c3f-41c2-8ad7-f65fbc66f5b2",
+      "entity": "e53437ca-d014-4d77-9808-15f3a68231ed",
+      "fromEntity": "b2aa5b49-9195-4a0b-bbfd-ee3f94128185",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7995aa0f-cf0c-4e19-9f9c-2b1c13420a45",
+      "entity": "19cd2da6-637e-4a9e-abb0-056a85c79462",
+      "fromEntity": "3b9e44ec-f0df-43e4-bb67-20df94464b65",
+      "position": "a19g1",
+      "toEntity": "b2aa5b49-9195-4a0b-bbfd-ee3f94128185",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c72b5a40-c5db-48e7-a456-92736973f786",
+      "entity": "1b6eb1e9-6fc9-4993-8c73-7b6f7f7c11b4",
+      "fromEntity": "ccc69560-36ee-4dbf-96bb-c1d6fe6d4027",
+      "position": "a10g4",
+      "toEntity": "791b9eef-81ed-4389-a9c0-e991f38783cc",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "602ed2bf-4d2a-4f4d-a60e-2a8585b71513",
+      "entity": "45e573c2-c61d-4aa6-bf84-f1050ba25857",
+      "fromEntity": "ccc69560-36ee-4dbf-96bb-c1d6fe6d4027",
+      "position": "a19PN",
+      "toEntity": "def1f7e5-92b0-47d6-9bea-befdde39c9e8",
+      "type": "8fcfe5ef-3d91-47bd-8322-3830a998d26b"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b84778c9-9789-4fa3-9b6b-e80c7eba9103",
+      "entity": "ccc69560-36ee-4dbf-96bb-c1d6fe6d4027",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a1Apk",
+      "toEntity": "3b9e44ec-f0df-43e4-bb67-20df94464b65",
+      "type": "c72d9abb-bca8-4e86-b7e8-b71e91d2b37e"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "d67c5b59-4529-4aea-86cf-40d2cff77f26",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "David Hoffman"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "David Hoffman is a co-host of the Bankless podcast."
+        },
+        {
+          "property": "0d625978-4b3c-4b57-a86f-de45c997c73c",
+          "value": "https://www.x.com/TrustlessState"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6b8d62aa-f68d-4523-98f1-fc206021607f",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "108954"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ccc50ef5-d7ac-4fa4-87b8-4ac40f8fc328",
+      "entity": "36a15e3a-f5fc-46b1-9ce9-a6515000bb18",
+      "fromEntity": "6b8d62aa-f68d-4523-98f1-fc206021607f",
+      "position": "a13K5",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "27884760-0983-4726-977d-e55f82dc6133",
+      "entity": "6b8d62aa-f68d-4523-98f1-fc206021607f",
+      "fromEntity": "d67c5b59-4529-4aea-86cf-40d2cff77f26",
+      "position": "a1BaU",
+      "toEntity": "056ae1e4-adb5-4fdc-99ca-9aadb8855365",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "d758d5b3-c280-4bc2-a41c-df1789b12e47",
+      "entity": "3b6f26fb-c391-46e9-96dc-4f93bd738b89",
+      "fromEntity": "d67c5b59-4529-4aea-86cf-40d2cff77f26",
+      "position": "a1AgF",
+      "toEntity": "7ed45f2b-c48b-419e-8e46-64d5ff680b0d",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "811df537-9bab-4529-ad28-5b4ee98c434a",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafkreiar646zorvwhyor4znkddpapkbbjue7vod754na2ciyragkf2ihci"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "380"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "380"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "d85ab611-5c2f-4369-abac-45632a45aa8f",
+      "entity": "ce40b9db-7840-47f8-82f4-997978d570e5",
+      "fromEntity": "811df537-9bab-4529-ad28-5b4ee98c434a",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4fd06c4a-e20a-4074-8715-89f34d50484a",
+      "entity": "6e8754b7-2abb-411d-9adc-adc9c89f0260",
+      "fromEntity": "d67c5b59-4529-4aea-86cf-40d2cff77f26",
+      "position": "a1Azf",
+      "toEntity": "811df537-9bab-4529-ad28-5b4ee98c434a",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "d0d5887c-943d-4312-8a15-569bf05b5cea",
+      "entity": "831d9b11-dfdc-47f7-aa57-1a432d1d31ff",
+      "fromEntity": "f46506ec-f2bd-4e57-a81b-391c83407fd7",
+      "position": "a1AiP",
+      "toEntity": "791b9eef-81ed-4389-a9c0-e991f38783cc",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "51e17942-cf6e-463b-830a-ffdef2a95d06",
+      "entity": "d5829bbd-4463-4c67-bb0a-04019d05d931",
+      "fromEntity": "f46506ec-f2bd-4e57-a81b-391c83407fd7",
+      "position": "a12d5",
+      "toEntity": "8c564667-b240-45c6-8deb-19acf5b21be2",
+      "type": "8fcfe5ef-3d91-47bd-8322-3830a998d26b"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "09d46591-b1ad-41da-923e-37ccce93f05b",
+      "entity": "f46506ec-f2bd-4e57-a81b-391c83407fd7",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a252j",
+      "toEntity": "d67c5b59-4529-4aea-86cf-40d2cff77f26",
+      "type": "c72d9abb-bca8-4e86-b7e8-b71e91d2b37e"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "b1253435-17e1-4a28-9be5-2c0d3599609d",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Sam Kazemian"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "Iranian-American software engineer and entrepreneur, founder of the DeFi stablecoin protocol Frax Finance and co-founder of wiki project Everipedia while a student at UCLA."
+        },
+        {
+          "property": "0d625978-4b3c-4b57-a86f-de45c997c73c",
+          "value": "https://x.com/samkazemian"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "d934419d-9649-48f3-97b6-10de49365a5e",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "179943"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "d2c3bd50-0c59-41fd-a22d-7ebca7cbcc1d",
+      "entity": "29856f10-37a3-4791-a8d9-76d89886b3ce",
+      "fromEntity": "d934419d-9649-48f3-97b6-10de49365a5e",
+      "position": "a1BH3",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7304cc44-98d7-4d6a-b70e-2fd1841bbfaa",
+      "entity": "d934419d-9649-48f3-97b6-10de49365a5e",
+      "fromEntity": "b1253435-17e1-4a28-9be5-2c0d3599609d",
+      "position": "a16Zd",
+      "toEntity": "056ae1e4-adb5-4fdc-99ca-9aadb8855365",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "34b77577-21aa-42d7-84c5-3349f9e80e8d",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "Q44962326"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "d1718ad4-6316-4bf2-bb4a-cd5c40b12bd3",
+      "entity": "121abe6d-9337-49a9-a80d-12d4cc9a8d06",
+      "fromEntity": "34b77577-21aa-42d7-84c5-3349f9e80e8d",
+      "position": "a17kE",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c8f5754a-7aee-4d2a-8646-4036e285be90",
+      "entity": "34b77577-21aa-42d7-84c5-3349f9e80e8d",
+      "fromEntity": "b1253435-17e1-4a28-9be5-2c0d3599609d",
+      "position": "a3Bvu",
+      "toEntity": "6bb1885f-5d49-4597-af24-b9050bfde5de",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ff4790c3-955c-4574-ace4-00fd7202e9c7",
+      "entity": "b0103bd4-6499-46d0-9d9a-95a413b2b76d",
+      "fromEntity": "b1253435-17e1-4a28-9be5-2c0d3599609d",
+      "position": "a16eo",
+      "toEntity": "7ed45f2b-c48b-419e-8e46-64d5ff680b0d",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f0f52418-a11e-4335-97c6-62c59e9163cc",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafybeicgjnmvrmdhk4i2nthwprcrx2jztezzodlhsd7jiu3obof4c7jqem"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "5000"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "5000"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "1d491366-d3d8-40ce-881e-c15d33a115dd",
+      "entity": "3021213a-8a59-422e-899e-01e5c4938f43",
+      "fromEntity": "f0f52418-a11e-4335-97c6-62c59e9163cc",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4ff1ec7b-cb64-4e48-91f7-2db61f1c8128",
+      "entity": "cd604547-70fc-47e3-b07f-2ce1da745794",
+      "fromEntity": "b1253435-17e1-4a28-9be5-2c0d3599609d",
+      "position": "a17po",
+      "toEntity": "f0f52418-a11e-4335-97c6-62c59e9163cc",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3eda9e19-ad6f-4a32-b4eb-a81ca371ca63",
+      "entity": "4ea42d7a-4e17-4b2a-b0a6-fcbbc1da8b72",
+      "fromEntity": "01023628-8e2d-4bce-80f3-c6cd49e19860",
+      "position": "a14WG",
+      "toEntity": "791b9eef-81ed-4389-a9c0-e991f38783cc",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "58fb9498-d1bb-4028-a7da-03351464189c",
+      "entity": "7ec55faf-c4e0-494a-88e2-3b3c6d2984f6",
+      "fromEntity": "01023628-8e2d-4bce-80f3-c6cd49e19860",
+      "position": "a12Ue",
+      "toEntity": "a704ce28-c557-4eae-9fbc-80ec37d64cef",
+      "type": "8fcfe5ef-3d91-47bd-8322-3830a998d26b"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a51d22b1-6d3d-4126-9e7f-cf72fb74c198",
+      "entity": "01023628-8e2d-4bce-80f3-c6cd49e19860",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a18z6",
+      "toEntity": "b1253435-17e1-4a28-9be5-2c0d3599609d",
+      "type": "cb60a1a6-6fb5-48c9-b936-200c5c271330"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Bankless"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "The Ultimate Guide to Crypto Finance. DeFi, NFTs, and cryptocurrencies. Level up. Go bankless."
+        },
+        {
+          "property": "41aa3d98-47b6-4a97-b7ec-427e575b910e",
+          "value": "2025-09-22T11:11:17.006Z"
+        },
+        {
+          "property": "a5776138-deb8-436f-8c98-3eccd100d98f",
+          "value": "https://rss.flightcast.com/p83fuj0y0u58o82l41xei7zo.xml"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "65e05c20-2409-4152-aacc-8a7f82e4d2f7",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1020475"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "12291d64-efe4-467a-a754-418f9a6f2b5f",
+      "entity": "ae4b7f56-a463-4ace-8557-56d5bb8a841d",
+      "fromEntity": "65e05c20-2409-4152-aacc-8a7f82e4d2f7",
+      "position": "a170o",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "87c97914-f54b-4c82-892e-2c7e24d02ad6",
+      "entity": "65e05c20-2409-4152-aacc-8a7f82e4d2f7",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a1BRq",
+      "toEntity": "056ae1e4-adb5-4fdc-99ca-9aadb8855365",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "51ecfdf8-9ea5-40d8-b760-0771a32386ee",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1499409058"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "0b37624a-ed4b-45b0-8cef-2cae26453b8f",
+      "entity": "73662a9d-130c-4d37-ad5f-4a15ea0afe5a",
+      "fromEntity": "51ecfdf8-9ea5-40d8-b760-0771a32386ee",
+      "position": "a14YA",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8e7eab12-a2e8-4c8d-ac42-ec9e4c624267",
+      "entity": "51ecfdf8-9ea5-40d8-b760-0771a32386ee",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a24pz",
+      "toEntity": "1b788149-3955-4800-8757-16ea4a0e9ece",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c580ffd3-7b5d-49d5-b368-6af7b5f0b189",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "41TNnXSv5ExcQSzEGLlGhy"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2352a32a-e1b3-4df0-a3ac-0131246d3096",
+      "entity": "1c947e1f-09fd-451f-bddc-94c50343e6ba",
+      "fromEntity": "c580ffd3-7b5d-49d5-b368-6af7b5f0b189",
+      "position": "a18YB",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ab6316b4-38e2-445c-8de9-562e4f90759b",
+      "entity": "c580ffd3-7b5d-49d5-b368-6af7b5f0b189",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a31Jb",
+      "toEntity": "1a608e9f-2f96-4b0a-9cbe-3be7d9ef4023",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "0080e6aa-2e4e-4c77-8163-eb48e05bb07a",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "5ll0fkqIGyUfSOn9CTfHjC"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3c67f95c-be97-4eca-a1f4-737d2ef4a0dc",
+      "entity": "f3b00e06-fa6e-4850-a21d-4dc97793c7f1",
+      "fromEntity": "0080e6aa-2e4e-4c77-8163-eb48e05bb07a",
+      "position": "a15LD",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "493c5cc2-9178-4f87-83ea-e2b1802cc438",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "6507846"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "436edcb0-9d6c-431b-bcc8-8d4db4f776a9",
+      "entity": "3d3fce94-2e52-42ff-8b28-c3a38a171fa2",
+      "fromEntity": "493c5cc2-9178-4f87-83ea-e2b1802cc438",
+      "position": "a114Z",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "9ee576a3-6c20-4ece-ad94-ec66034d5d47",
+      "entity": "493c5cc2-9178-4f87-83ea-e2b1802cc438",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a5BLO",
+      "toEntity": "f7b61393-6ff8-4f7a-b543-5f520f05ba97",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "580fd66e-9639-4e83-a4c3-4e726ca29bf8",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1013243"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "fe59f575-a7a3-4adf-a987-bb5fd7d5e3ce",
+      "entity": "50a7da20-4556-4fa2-a4bc-7c04017ee877",
+      "fromEntity": "580fd66e-9639-4e83-a4c3-4e726ca29bf8",
+      "position": "a12cg",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7ba58685-3cf2-4528-86d4-f565eeb794a8",
+      "entity": "580fd66e-9639-4e83-a4c3-4e726ca29bf8",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a67Ul",
+      "toEntity": "77bd19ce-5e32-41da-8d32-1fb7e692758f",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "52cdb6dc-2b36-42d3-9a4e-a5ee0bd7ec9d",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "5746207"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8e5f310b-f1de-4228-aa91-59a1d4052060",
+      "entity": "f551ff9a-e310-45c4-96a9-428d33bcf862",
+      "fromEntity": "52cdb6dc-2b36-42d3-9a4e-a5ee0bd7ec9d",
+      "position": "a15Zj",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5d273cce-d8c2-4be2-9f6e-3bd29305a861",
+      "entity": "52cdb6dc-2b36-42d3-9a4e-a5ee0bd7ec9d",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a70QU",
+      "toEntity": "a70a1e76-b53a-4aca-b84f-73cdda67894a",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "cc6cf4fc-1711-4c33-af64-2ff63304a63c",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "2730574"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "85841cd3-d730-408a-962c-0d0737d61532",
+      "entity": "2806d019-5a40-4dee-80d6-6457d9fb73dd",
+      "fromEntity": "cc6cf4fc-1711-4c33-af64-2ff63304a63c",
+      "position": "a19lC",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "49eb9bd9-bfad-40eb-a202-029befa72053",
+      "entity": "cc6cf4fc-1711-4c33-af64-2ff63304a63c",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a84Cn",
+      "toEntity": "b8f09556-4b52-4ce1-bb4b-4e3fc23b72c1",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6a15dee6-3ad0-4988-bcd6-a18fbf37c5cc",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "dir767799,rij9f"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "39f67dab-9a7c-4a85-ae33-90dadca790f6",
+      "entity": "219cd7bc-43d3-4859-a573-81128e78cd41",
+      "fromEntity": "6a15dee6-3ad0-4988-bcd6-a18fbf37c5cc",
+      "position": "a13vU",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ef15c28b-492f-4b18-941a-df891ac231fe",
+      "entity": "6a15dee6-3ad0-4988-bcd6-a18fbf37c5cc",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a99Zp",
+      "toEntity": "1b0eec47-7cf2-4bd9-b0c4-efd7bc3d4d4b",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "fd4bdf8e-38fa-4939-99a2-627ff0e33362",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "B08K57QC73"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "599037a7-4c6b-47cd-bc52-a01fd3f83672",
+      "entity": "3e92e5ff-f56e-44a4-9519-dbc89bda58b0",
+      "fromEntity": "fd4bdf8e-38fa-4939-99a2-627ff0e33362",
+      "position": "a1CJg",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ec69e22e-8078-4c12-94ff-31a377c75649",
+      "entity": "fd4bdf8e-38fa-4939-99a2-627ff0e33362",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "aA4G6",
+      "toEntity": "ac53c154-fa1a-41df-b1a6-7d44a2446838",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "873b7761-77e8-460c-842d-aab163753813",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1499409058"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2db0769d-3937-48eb-ba36-b9399f5e880e",
+      "entity": "4a0d17f3-66e7-4080-85aa-3f50bffcd06a",
+      "fromEntity": "873b7761-77e8-460c-842d-aab163753813",
+      "position": "a13kB",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4a6583ac-ca68-4fd8-8ae2-4bf674157a3e",
+      "entity": "873b7761-77e8-460c-842d-aab163753813",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "aBBhv",
+      "toEntity": "bdf44dd2-267f-4915-888b-6889f8849fb8",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "f112a202-115b-4dd4-a0ff-0546a2a4fdee",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1499409058"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "d94ce249-5faf-4687-b856-8b3b7ef6070a",
+      "entity": "3bb10fbe-a1a7-431b-81a2-1845190cb3a8",
+      "fromEntity": "f112a202-115b-4dd4-a0ff-0546a2a4fdee",
+      "position": "a1AAZ",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c61cfcab-7ce5-45fe-9869-efbb38570935",
+      "entity": "f112a202-115b-4dd4-a0ff-0546a2a4fdee",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "aC28K",
+      "toEntity": "19421873-4e46-4ae2-ab04-047c77ff1a93",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "abdc18df-6ac5-481b-abed-ee0bd336084a",
+      "entity": "7077c6ff-5e2e-4d82-8990-873314e6ef45",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a12ZX",
+      "toEntity": "4c81561d-1f95-4131-9cdd-dd20ab831ba2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "cbc02714-8f0d-463a-967e-645ad2658b54",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafkreidliqzzcgjqncd32h7mypg6wd4sktezvnlhtgxzc7cgael7x3okey"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "1600"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "1600"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "fcd403e5-54ee-4084-840e-9b45c395ceb4",
+      "entity": "045cbe55-30b6-49cb-834b-3b48681d72ef",
+      "fromEntity": "cbc02714-8f0d-463a-967e-645ad2658b54",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8fce0b3b-4834-4a70-9f0b-d925447131db",
+      "entity": "fd7ac0e4-6e2f-4f8e-9ee1-5f408fee36b7",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a1BLr",
+      "toEntity": "cbc02714-8f0d-463a-967e-645ad2658b54",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "0559421f-d238-4ce4-888d-828b404ca1ab",
+      "entity": "200f7c30-ac3d-46cf-91a4-ae0498049d3f",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a16qH",
+      "toEntity": "3b9e44ec-f0df-43e4-bb67-20df94464b65",
+      "type": "c72d9abb-bca8-4e86-b7e8-b71e91d2b37e"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c894161a-760a-448b-8111-f4ecc1d83015",
+      "entity": "7d5bcb59-2e0a-46fb-ace6-7fb0d494454b",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a2Bwy",
+      "toEntity": "d67c5b59-4529-4aea-86cf-40d2cff77f26",
+      "type": "c72d9abb-bca8-4e86-b7e8-b71e91d2b37e"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c72b87de-e94f-4600-b245-5c474ab03792",
+      "entity": "06917a12-081c-44f7-b780-1b54ee42f68c",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a11Fg",
+      "toEntity": "7c64aa12-3ee2-488a-92c3-1638efa54f21",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7ebfd502-1e0e-4012-ba01-61f9ed3a6cc4",
+      "entity": "d6340644-da66-40bd-a42b-c726a7bc5aab",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a25Dm",
+      "toEntity": "d53d7c84-5009-45ab-b950-6762e1494746",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "43001f9a-b90d-4d80-9443-cf5aefd64457",
+      "entity": "d33e78c1-ef35-439d-bff4-54597dae5339",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a389S",
+      "toEntity": "879418a2-98ec-4ee3-ab26-890bb575204e",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "43b1ec43-50ac-466d-87aa-93a07e56ef6f",
+      "entity": "63bae2c2-fcd8-4f41-8a3e-f5fa3a8391fc",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a4AG5",
+      "toEntity": "cc567a76-cc3e-4ddf-80d3-6fc0eb24645a",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c462f0d1-0099-4928-9e62-f5bf1ce6daa5",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://podcasts.apple.com/us/channel/bankless-premium-feed/id6473851767"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b3d82148-a331-4416-8afe-33a250ed2790",
+      "entity": "d454f7fc-d0e2-47a0-aa7a-c719fa8319ce",
+      "fromEntity": "c462f0d1-0099-4928-9e62-f5bf1ce6daa5",
+      "position": "a11Me",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3c987127-7cc2-4381-9b1f-f13f3f575fa6",
+      "entity": "c462f0d1-0099-4928-9e62-f5bf1ce6daa5",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a148e",
+      "toEntity": "1b788149-3955-4800-8757-16ea4a0e9ece",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "bb6ad6d1-0402-40bd-b558-97922c23b119",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://open.spotify.com/show/5ll0fkqIGyUfSOn9CTfHjC"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "fe16f0f6-a7e0-40d3-9e5b-371a1f4e8122",
+      "entity": "ea981378-f68a-4f28-8822-67016e6e12df",
+      "fromEntity": "bb6ad6d1-0402-40bd-b558-97922c23b119",
+      "position": "a1CFU",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3460eee5-d489-41fe-b546-a61ecc4e3272",
+      "entity": "bb6ad6d1-0402-40bd-b558-97922c23b119",
+      "fromEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "position": "a22aa",
+      "toEntity": "1a608e9f-2f96-4b0a-9cbe-3be7d9ef4023",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b8c3b5ba-95b1-45d8-8a12-ed8d604b81f2",
+      "entity": "8b44b5c4-434a-434a-8595-fa93d535cfe7",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a11sA",
+      "toEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "type": "f1873bbc-381f-4604-abad-76fed4f6d73f"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "b32f9a47-4ae9-4993-b5de-ac77d80239c0",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://podcasts.apple.com/us/podcast/how-crypto-neobanks-work-frax-cards-and-visas-role/id1499409058?i=1000733854753"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "dbb1e3e3-5e2a-4edf-a810-92564cdc6adf",
+      "entity": "5196e424-beff-4ff8-a7b2-43f39ce5d36e",
+      "fromEntity": "b32f9a47-4ae9-4993-b5de-ac77d80239c0",
+      "position": "a17fz",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "dde1a090-a5f9-41dd-a991-b6ee455bacfd",
+      "entity": "b32f9a47-4ae9-4993-b5de-ac77d80239c0",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a12Mj",
+      "toEntity": "1b788149-3955-4800-8757-16ea4a0e9ece",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "947aae05-d206-4199-87bc-df7eaf2a6b54",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://open.spotify.com/episode/7fBsZVPu4Eb3i4iPUq5Yaa"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "23ab635c-1d2b-461e-a427-62ed5a22ae40",
+      "entity": "c7599c37-6c9e-402d-8ac0-a7d1918943d9",
+      "fromEntity": "947aae05-d206-4199-87bc-df7eaf2a6b54",
+      "position": "a1609",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8eea94d6-551e-4eef-85ac-c8743dd55cc0",
+      "entity": "947aae05-d206-4199-87bc-df7eaf2a6b54",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a29RE",
+      "toEntity": "1a608e9f-2f96-4b0a-9cbe-3be7d9ef4023",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "87008ed5-bf9a-4f63-aa19-4370903dae5f",
+      "entity": "32f81da0-6b4e-4efe-9d9c-df7b253553f8",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a14j4",
+      "toEntity": "7c64aa12-3ee2-488a-92c3-1638efa54f21",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "1afbe819-eb18-444d-96c7-5db647b15c75",
+      "entity": "53e2afae-715a-482b-830d-e3c67b628a98",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a21yG",
+      "toEntity": "62971305-b710-4fc1-836d-cd2f509ce8eb",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "211effda-e00b-4694-adc5-468749af6f26",
+      "entity": "e3942415-333b-41a5-9963-df2b6d78a0dd",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a3317",
+      "toEntity": "fe0d8314-2d78-43f6-90c4-84314de97c2c",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "82509bc3-10c2-41d3-8a1f-beb4d85d2f62",
+      "entity": "9a3cd710-9cdf-493a-a960-1ac8f9346f7b",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a434y",
+      "toEntity": "9ef2b921-9770-482a-ab22-955684c9ab84",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "bda27365-5aa7-4651-8414-a2e3b5d8e406",
+      "entity": "f8ca7d58-2a8c-4869-9aad-df08c86c12cd",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a599J",
+      "toEntity": "07127681-e804-4d3a-838d-7875b7e70c47",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "490bd827-bfb8-4414-9955-02d842078b58",
+      "entity": "c4924597-d893-42ab-8fb5-fd1d10b8ab04",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a60Xi",
+      "toEntity": "f2ce20c5-1334-4a17-8a95-75ac56456cf5",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3343f07b-60b0-4d1e-9d1a-3e1a03d6a9d6",
+      "entity": "280ffc76-678d-47fa-9be3-8db1d25ca5c5",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a722u",
+      "toEntity": "18831984-022e-482f-a18a-8f6c7b2d90a2",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "14609229-014f-4284-9fca-7a1e66f694f7",
+      "entity": "f2b96377-c767-4a40-88a8-8f1038337740",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a8AW7",
+      "toEntity": "f1cb83d8-6fc8-423e-8a27-ac764841a01f",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c5f2bf27-0366-4d0a-b4d8-09af0fa1d3b7",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "On-chain economy"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "4ef55d41-b523-46bc-9e3e-399b0315e6a7",
+      "entity": "fd2ad4b5-4185-4929-a01f-40d999a32f8b",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "a9BEt",
+      "toEntity": "c5f2bf27-0366-4d0a-b4d8-09af0fa1d3b7",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "defca44c-849c-491c-8c89-e337149ec967",
+      "entity": "70bc2f3f-2eff-46b4-9990-6e9fb7cbf483",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "aA39S",
+      "toEntity": "308c3455-8103-4521-8b58-c1ff179c8b42",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "688d523e-8401-4fce-9b73-242938481cbd",
+      "entity": "33b46491-2b00-4ab9-aeca-33d054e0ea76",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "aB1tN",
+      "toEntity": "459c7abe-e3f0-4ab3-9950-17a16781ebf9",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "656f8e38-b5a1-48fd-a000-1ad4435ee901",
+      "entity": "58f34a0f-8992-455b-8b73-4916d0fb0cfb",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "aC6cQ",
+      "toEntity": "1a73490c-50c2-43a3-ba36-d78b6c87c93c",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2d1e5312-17c9-4541-9c13-35138a1666d8",
+      "entity": "5a7dd97b-4d3e-4216-92da-29c399a17da1",
+      "fromEntity": "c54349e2-0c0f-44b1-a03e-0631820bd35b",
+      "position": "aD0OJ",
+      "toEntity": "46ac9d4f-638e-4dc9-96aa-5dfa79be4394",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Ethereum's Next Decade | Vitalik Buterin"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "Ethereum just turned 10, and Vitalik Buterin returns to reflect on the last decade—and where it’s headed next.\n\nIn this conversation, Vitalik shares what surprised him most about Ethereum’s growth, the hard lessons from challenges like The DAO and NFTs, and what he’d do differently if starting again.\n\nWe explore Ethereum’s evolving cultural identity, privacy as a core value, the tradeoffs between L1 and L2, and how Vitalik envisions Ethereum surviving an AI-dominated future.\n\n------\n🎬 DEBRIEF | RYAN & DAVID UNPACKING THE EPISODE\nhttps://www.bankless.com/podcast/debrief-ethereums-next-decade-vitalik-buterin\n\n------\nBANKLESS SPONSOR TOOLS:\n\n🪙FRAX | SELF SUFFICIENT DeFi\nhttps://bankless.cc/Frax\n\n🦄UNISWAP | SWAP ON UNICHAIN\nhttps://bankless.cc/unichain\n\n🛞MANTLE | MODULAR LAYER 2 NETWORK\nhttps://bankless.cc/Mantle\n\n------\nTIMESTAMPS\n\n0:00 Intro\n0:52 Ethereum’s First 2 Years\n2:25 Ethereum’s Top Contributions\n4:18 Biggest Surprises\n7:37 What Took Longer than Expected\n9:05 Overcoming Challenges\n11:03 Lesson for Younger Vitalik\n15:53 Bitcoin vs Ethereum\n18:49 Ethereum’s Cultural Evolution\n32:11 Privacy on Ethereum\n37:42 Nation State Resistant Privacy\n43:03 Cypherpunk vs Mainstream\n56:05 World Ledger\n59:09 Ethereum in 2024\n1:02:23 Changes in the Ethereum Foundation\n1:10:10 Economic Alignment\n1:16:38 Scaling the L1\n1:31:21 Ethereum’s Barbell Strategy\n1:39:28 Ethereum Nationalism\n1:48:28 ETH Treasuries\n1:55:19 The Next 10 Years for Ethereum\n1:59:35 The Next 10 Years for Vitalik\n2:01:25 The Next 10 Years for Bankless\n2:02:52 Closing & Disclaimers\n\n------\nRESOURCES\n\nVitalik Buterin\nhttps://x.com/VitalikButerin\n\n2021 Endgame\nhttps://vitalik.eth.limo/general/2021/12/06/endgame.html\n\nConvex and Concave Dispositions\nhttps://vitalik.eth.limo/general/2020/11/08/concave.html\n\n------\nNot financial or tax advice. See our investment disclosures here:\nhttps://www.bankless.com/disclosures⁠"
+        },
+        {
+          "property": "77999397-f78d-44a7-bbc5-d93a617af47c",
+          "value": "2025-08-11T04:00:00.000Z"
+        },
+        {
+          "property": "87f919d5-560b-408c-be8d-318e2c5c098b",
+          "value": "https://episode.flightcast.com/01K221M46V4XRENY4Y3CH5NC27.mp3"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "33c3ca1d-24de-49e0-b558-5aa606ae4f15",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "262381889"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c8b762a9-ef38-4ea7-b637-f740e9a19a35",
+      "entity": "c95ea894-868f-42b9-8b26-45b1e6993de1",
+      "fromEntity": "33c3ca1d-24de-49e0-b558-5aa606ae4f15",
+      "position": "a1Afr",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "15ff5f95-5c4f-4a2e-b6b6-d4dbe5e84af0",
+      "entity": "33c3ca1d-24de-49e0-b558-5aa606ae4f15",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a13IF",
+      "toEntity": "056ae1e4-adb5-4fdc-99ca-9aadb8855365",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6f83f00c-42e4-417b-a628-3fbe18668071",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "1000721495852"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "cc1f6d34-e064-41f7-b212-668a515c5e99",
+      "entity": "34751250-c9e5-41b7-a3f8-90a4628b66e7",
+      "fromEntity": "6f83f00c-42e4-417b-a628-3fbe18668071",
+      "position": "a162t",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3c259f2b-5920-43e6-ba6b-42fa21ff01cc",
+      "entity": "6f83f00c-42e4-417b-a628-3fbe18668071",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a24pk",
+      "toEntity": "1b788149-3955-4800-8757-16ea4a0e9ece",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "6eab8e97-59f2-4cd9-a1fc-5b7939558382",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "0HMTsWMaJpuCICi5KOYryz"
+        },
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://open.spotify.com/episode/0HMTsWMaJpuCICi5KOYryz"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "504a989d-8a3d-4ce8-b7fd-ea0d635e0fae",
+      "entity": "6d318c9a-842b-4bdf-a051-cd0244ba6f06",
+      "fromEntity": "6eab8e97-59f2-4cd9-a1fc-5b7939558382",
+      "position": "a10JV",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "30d862e9-832f-4e3c-b398-2d415c74b5fa",
+      "entity": "6eab8e97-59f2-4cd9-a1fc-5b7939558382",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a46h8",
+      "toEntity": "1a608e9f-2f96-4b0a-9cbe-3be7d9ef4023",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "6233366b-c1f5-456d-9430-7b938ad236d5",
+      "entity": "83a314c5-5cf7-43f7-be09-add2172f2e3b",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a1BOk",
+      "toEntity": "972d201a-d780-4568-9e01-543f67b26bee",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e84f937f-76e6-4aca-ac1a-1d8331cce850",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafybeifijj46x2cut44gdob2sl65eugv3qkg4npnvc3gai2yo7avdxm62m"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "1400"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "1400"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "dc4e0994-3df2-4a86-a7c8-96671c974a24",
+      "entity": "de6a9ae6-26cd-4a7b-bf69-76145d7c1794",
+      "fromEntity": "e84f937f-76e6-4aca-ac1a-1d8331cce850",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b93d2d0f-dba1-4e49-af77-dca2fcd1af76",
+      "entity": "3bec609c-6ae5-4bc4-b3cd-5051fc4f1dce",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a11kp",
+      "toEntity": "e84f937f-76e6-4aca-ac1a-1d8331cce850",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "14925419-13cb-4b4f-a754-bd2362c3f6b0",
+      "entity": "4fe6bba9-0435-46fb-9bd6-7a7a1bd57a49",
+      "fromEntity": "f4e73670-dafa-47f9-b479-704755a9d998",
+      "position": "a16Lz",
+      "toEntity": "791b9eef-81ed-4389-a9c0-e991f38783cc",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c8437db4-375f-425c-a461-7d720e2eaff6",
+      "entity": "6e3522c4-eb39-449e-9061-770c395aee66",
+      "fromEntity": "f4e73670-dafa-47f9-b479-704755a9d998",
+      "position": "a1AWX",
+      "toEntity": "def1f7e5-92b0-47d6-9bea-befdde39c9e8",
+      "type": "8fcfe5ef-3d91-47bd-8322-3830a998d26b"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "de54640b-0f45-4211-932e-4e969bfc537b",
+      "entity": "f4e73670-dafa-47f9-b479-704755a9d998",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a14Pz",
+      "toEntity": "3b9e44ec-f0df-43e4-bb67-20df94464b65",
+      "type": "c72d9abb-bca8-4e86-b7e8-b71e91d2b37e"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a850e0b7-1e0b-4d17-9c85-a829d891d852",
+      "entity": "358879d6-16e7-437b-acf7-3cef67a702e5",
+      "fromEntity": "e7a905ce-85a5-46c5-977d-1a2a28f1d0ed",
+      "position": "a1Ab7",
+      "toEntity": "791b9eef-81ed-4389-a9c0-e991f38783cc",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "9162d42f-b238-4bf3-806e-9176a184b80b",
+      "entity": "f62749b0-e76c-4255-b312-45a06f5dbb97",
+      "fromEntity": "e7a905ce-85a5-46c5-977d-1a2a28f1d0ed",
+      "position": "a14w7",
+      "toEntity": "8c564667-b240-45c6-8deb-19acf5b21be2",
+      "type": "8fcfe5ef-3d91-47bd-8322-3830a998d26b"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "dda5e617-3c51-4674-84fe-d725ad798a3e",
+      "entity": "e7a905ce-85a5-46c5-977d-1a2a28f1d0ed",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a20rf",
+      "toEntity": "d67c5b59-4529-4aea-86cf-40d2cff77f26",
+      "type": "c72d9abb-bca8-4e86-b7e8-b71e91d2b37e"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "41071c49-2474-6bf3-a851-31ea69b57b20",
+      "values": [
+        {
+          "property": "a126ca53-0c8e-48d5-b888-82c734c38935",
+          "value": "Vitalik Buterin"
+        },
+        {
+          "property": "9b1f76ff-9711-404c-861e-59dc3fa7d037",
+          "value": "Russian-Canadian programmer and co-founder of Ethereum; he also co-founded Bitcoin Magazine and is widely recognized for advancing smart-contract and decentralized-application infrastructure."
+        },
+        {
+          "property": "0d625978-4b3c-4b57-a86f-de45c997c73c",
+          "value": "https://www.x.com/VitalikButerin"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "e7edf147-aa7b-4327-8116-f22b11296df0",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "38815"
+        },
+        {
+          "property": "9f1e43fd-63e3-4bde-97b9-b3d88c57031b",
+          "value": "id"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "090ead1a-6507-4b47-bc27-f007a8891ff1",
+      "entity": "b2bb8532-0128-4b8b-ac4e-82de8649b307",
+      "fromEntity": "e7edf147-aa7b-4327-8116-f22b11296df0",
+      "position": "a137t",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "b7076a46-96d9-4516-b538-2d6d3452d677",
+      "entity": "e7edf147-aa7b-4327-8116-f22b11296df0",
+      "fromEntity": "cbdd07fa-ce96-42be-bb30-91fd94dcbf57",
+      "position": "a15Ts",
+      "toEntity": "056ae1e4-adb5-4fdc-99ca-9aadb8855365",
+      "type": "49c5d5e1-679a-4dbd-bfd3-3f618f227c94"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "3517ab1c-2cde-4d0d-a896-4464ce32da43",
+      "entity": "1a3639f5-9060-4f03-8faf-10910ceceae4",
+      "fromEntity": "cbdd07fa-ce96-42be-bb30-91fd94dcbf57",
+      "position": "a18HF",
+      "toEntity": "7ed45f2b-c48b-419e-8e46-64d5ff680b0d",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "38ffb3b8-51c7-447d-98eb-f84d9f924376",
+      "values": [
+        {
+          "property": "8a743832-c094-4a62-b665-0c3cc2f9c7bc",
+          "value": "ipfs://bafybeidc2nayhg37flf3imu7hghefbex6u45gjyid35dpjtbsyupt7lrki"
+        },
+        {
+          "property": "7f6ad043-3e21-4257-a6d4-8bdad36b1d84",
+          "value": "1977"
+        },
+        {
+          "property": "f7b33e08-b76d-4190-aada-cadaa9f561e1",
+          "value": "2305"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "39ec060b-dac1-4b06-965d-fe57587944b2",
+      "entity": "4f8ca68c-d97d-43f7-9f51-f8fa55010d89",
+      "fromEntity": "38ffb3b8-51c7-447d-98eb-f84d9f924376",
+      "toEntity": "ba4e4146-0010-499d-a0a3-caaa7f579d0e",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "2db7fab3-5cf6-4247-b44c-3c46c5638968",
+      "entity": "9c0e0f8b-f250-40bf-874e-fc59b7ba3f74",
+      "fromEntity": "cbdd07fa-ce96-42be-bb30-91fd94dcbf57",
+      "position": "a1AYd",
+      "toEntity": "38ffb3b8-51c7-447d-98eb-f84d9f924376",
+      "type": "1155beff-fad5-49b7-a2e0-da4777b8792c"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "606ff01d-7deb-4597-859d-1b77deb3b1ab",
+      "entity": "ba5f9c69-f6e4-4a19-b5b3-61454a2bc694",
+      "fromEntity": "47e4051a-4ee7-4434-aec4-1bb5d4db18e3",
+      "position": "a10sS",
+      "toEntity": "791b9eef-81ed-4389-a9c0-e991f38783cc",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c0f7356e-1da6-4b2d-b9e1-c2054b95e728",
+      "entity": "c82cde63-9cb9-4f27-bc55-df294e7ba089",
+      "fromEntity": "47e4051a-4ee7-4434-aec4-1bb5d4db18e3",
+      "position": "a16iL",
+      "toEntity": "a704ce28-c557-4eae-9fbc-80ec37d64cef",
+      "type": "8fcfe5ef-3d91-47bd-8322-3830a998d26b"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a5595fb9-765a-4d05-b5ff-4046a65f1a09",
+      "entity": "47e4051a-4ee7-4434-aec4-1bb5d4db18e3",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a19i7",
+      "toEntity": "cbdd07fa-ce96-42be-bb30-91fd94dcbf57",
+      "type": "cb60a1a6-6fb5-48c9-b936-200c5c271330"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c1643520-61dc-4a56-baf0-a83de7311c9b",
+      "entity": "e17fa988-9a04-496f-a337-705d4de29363",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a153C",
+      "toEntity": "e42085a8-59e0-485d-bd96-e2c0a747e283",
+      "type": "f1873bbc-381f-4604-abad-76fed4f6d73f"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "7bd11b7e-4c68-4387-a61b-5eb1a18fb2b6",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://podcasts.apple.com/us/podcast/ethereums-next-decade-vitalik-buterin/id1499409058?i=1000721495852"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "03955d9c-3da1-4036-9290-8e00f0ac86dc",
+      "entity": "01435f2f-08cf-4817-be6e-5ac4fa9ea85b",
+      "fromEntity": "7bd11b7e-4c68-4387-a61b-5eb1a18fb2b6",
+      "position": "a18fN",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "840cf7aa-0b00-40cc-8eae-d293881a840c",
+      "entity": "7bd11b7e-4c68-4387-a61b-5eb1a18fb2b6",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a18lA",
+      "toEntity": "1b788149-3955-4800-8757-16ea4a0e9ece",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "ebda0aeb-434b-4f0b-9847-9693815cbe58",
+      "values": [
+        {
+          "property": "eed38e74-e679-46bf-8a42-ea3e4f8fb5fb",
+          "value": "https://open.spotify.com/episode/0HMTsWMaJpuCICi5KOYryz"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "a3e018fe-d3bf-47f3-945b-5597eda69650",
+      "entity": "4377d3ad-3190-4ce3-9ca1-4fed3188b1b1",
+      "fromEntity": "ebda0aeb-434b-4f0b-9847-9693815cbe58",
+      "position": "a12tX",
+      "toEntity": "706779bf-5377-44a6-8694-ea06cf87a3a2",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ba879695-6570-4e97-8897-4a1d72aca39b",
+      "entity": "ebda0aeb-434b-4f0b-9847-9693815cbe58",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a2BnD",
+      "toEntity": "1a608e9f-2f96-4b0a-9cbe-3be7d9ef4023",
+      "type": "1367bac7-dcea-4b80-86ad-a4a4cdd7c2cb"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8a796627-7f6d-4316-bf35-7b743a08a70f",
+      "entity": "2139f857-39c5-44dc-8ca7-836bb82762aa",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a17y2",
+      "toEntity": "7c64aa12-3ee2-488a-92c3-1638efa54f21",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "d3527fb5-da34-4602-9205-9622adee0821",
+      "entity": "1f9f74de-98e4-41bc-804d-1017f2392267",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a22w1",
+      "toEntity": "dd8ae813-0d37-4334-ab28-23b39a477f0c",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "63829c78-1d96-4256-83b8-4447b77f5f4b",
+      "entity": "48c2909c-a1ae-4715-adac-2547b2caa5ee",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a30qp",
+      "toEntity": "0c00bf69-63e5-4257-ade6-c5ec82b6d89a",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "7d78f8f8-1b60-480b-8686-d1edf8bbd258",
+      "entity": "07934c8b-8c16-4db7-ac4b-dbac826ab8ac",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a4AYw",
+      "toEntity": "d38ca101-77ca-4173-bd23-d1f516248b9a",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "e3ea3365-b0b2-46b5-80fc-1a979a15b231",
+      "entity": "5eebe6cb-fbde-4218-a667-ab36459b0d5e",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a56B8",
+      "toEntity": "a54fcb7d-2ecb-4524-84f7-f60d42708e6e",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "23beb337-e262-49f2-b8a8-1983de069bbc",
+      "entity": "4da1b9da-1855-44a3-83cc-a3b279e0c948",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a60SK",
+      "toEntity": "02da58db-23b3-455a-a7c1-0df18c689270",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "36888729-b14a-40c4-9f70-b45bfd131502",
+      "entity": "ee4dc9b6-86df-48dd-a7a8-8b400da03475",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a74ts",
+      "toEntity": "9088feef-e849-4790-9dda-8770e4f5af8f",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "77e6e596-4fef-4c14-a39c-2db90a47b2a7",
+      "entity": "99e16a81-2154-42c5-9e0f-a0d581ebdb32",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a81hl",
+      "toEntity": "6537f3a7-ee77-40b1-b325-219299364388",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "c182fe60-c74b-4241-b5da-3312e4e8f852",
+      "entity": "fdd80b98-e279-4a77-8f97-7ef453ddb227",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "a97Ku",
+      "toEntity": "e442e236-8e54-4db8-94e3-467d058671dc",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "8e839821-a9f6-4d43-82d0-1670df10ffcb",
+      "entity": "30acfd04-ffc5-4e8a-a7b9-2fc69477d39a",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "aA08s",
+      "toEntity": "54837aa8-9ddd-4b9b-b685-db44693943a8",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "5290b30a-e4f6-4106-9ba3-706dd50d7a60",
+      "entity": "9116ef10-298d-4f2b-9217-1084f927c77c",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "aB6lb",
+      "toEntity": "02143190-e5c4-4309-a7d2-61c7e37a85ac",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "ff3b6f09-9d76-4df5-a94f-ecce997ac2ee",
+      "entity": "91dadd21-c05f-4e6d-b139-8d0e9e2a86c5",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "aC3g4",
+      "toEntity": "a6fbabab-0bdc-4e86-be98-26ec9a243d43",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "cf9b8f9f-3c7c-4b18-a46d-597afdf9a368",
+      "entity": "6af95240-f732-428a-8d73-e67c1f6bedc4",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "aD71q",
+      "toEntity": "864adf54-69b5-45b7-99b4-da85cd19de29",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "302484f7-28a7-48f3-a0b9-9157e102f7e2",
+      "entity": "ece8799a-64d6-4d90-b504-3b371f05c217",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "aE9bn",
+      "toEntity": "26a5453c-76c7-4856-8186-a9ec00a2109c",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "88d941d6-8725-4896-9e48-8a6af79c0474",
+      "entity": "ef909401-d9ed-4bb3-be6a-aee233dd449d",
+      "fromEntity": "111c4242-ef2d-4f65-a7fe-d43a11c1afb8",
+      "position": "aFAZP",
+      "toEntity": "46ac9d4f-638e-4dc9-96aa-5dfa79be4394",
+      "type": "458fbc07-0dbf-4c92-8f57-16f3fdde7c32"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  }
+]

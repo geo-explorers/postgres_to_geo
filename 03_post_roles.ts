@@ -8,6 +8,7 @@ import { processEntity } from './post_entity.ts';
 const ops: Array<Op> = [];
 let addOps;
 const processingCache: Record<string, Entity> = {};
+const imageCache: Record<string, Entity> = {};
 
 const offset = 0
 const limit = 100
@@ -39,6 +40,7 @@ try {
         addOps = await processEntity({
             currentOps: ops,
             processingCache: processingCache,
+            imageCache: imageCache,
             entity: role
         })
         ops.push(...addOps.ops)

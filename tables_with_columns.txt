@@ -164,6 +164,14 @@
       {
         "column": "merged_from_chunk_ids",
         "type": "ARRAY"
+      },
+      {
+        "column": "is_verified",
+        "type": "boolean"
+      },
+      {
+        "column": "is_flagged",
+        "type": "boolean"
       }
     ]
   },
@@ -1434,6 +1442,10 @@
       {
         "column": "updated_at",
         "type": "timestamp with time zone"
+      },
+      {
+        "column": "logo",
+        "type": "text"
       }
     ]
   },

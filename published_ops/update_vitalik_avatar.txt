@@ -1,0 +1,27 @@
+[
+  {
+    "type": "CREATE_RELATION",
+    "relation": {
+      "id": "43bdb9d5-281b-47cb-a2ef-d4a5978c32e2",
+      "entity": "14b52e38-0d6f-4747-a35a-b9555c01afb5",
+      "fromEntity": "41071c49-2474-6bf3-a851-31ea69b57b20",
+      "position": "a10Rw",
+      "toEntity": "7ed45f2b-c48b-419e-8e46-64d5ff680b0d",
+      "type": "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  },
+  {
+    "type": "UPDATE_ENTITY",
+    "entity": {
+      "id": "c580ffd3-7b5d-49d5-b368-6af7b5f0b189",
+      "values": [
+        {
+          "property": "5e92c8a4-1714-4ee7-9a09-389ef4336aeb",
+          "value": "5ll0fkqIGyUfSOn9CTfHjC"
+        }
+      ]
+    },
+    "spaceId": "e252f9e1-d3ad-4460-8bf1-54f93b02f220"
+  }
+]
