@@ -2,6 +2,9 @@
   "name": "ethcc-hackathon-data-push",
   "module": "main.ts",
   "type": "module",
+  "scripts": {
+    "start:api": "tsx api/server.ts"
+  },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
@@ -11,9 +14,11 @@
     "@notionhq/client": "^3.0.1",
     "chart.js": "^4.5.1",
     "chartjs-node-canvas": "^5.0.0",
+    "crypto-js": "^4.2.0",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
+    "fast-levenshtein": "^3.0.0",
     "pg": "^8.16.3",
     "viem": "^2.23.2"
   },
