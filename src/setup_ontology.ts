@@ -482,8 +482,6 @@ export async function read_in_tables({
                 e.id,
                 e.name,
                 e.description,
-                e.podscribe_transcript,
-                e.bankless_transcript,
                 e.episode_number,
                 e.duration,
                 e.published_at AS air_date,
@@ -564,9 +562,15 @@ export async function read_in_tables({
             LEFT JOIN "${DB_ID}".${TABLES.QUOTES} AS q ON e.id = q.episode_id
             LEFT JOIN "${DB_ID}".${TABLES.CLAIMS} AS c ON c.episode_id = e.id
             LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t ON e.id = t.from_episode_id
-            WHERE (e.rn <= ${num_episodes}) AND ((e.podscribe_transcript IS NOT NULL) OR (e.bankless_transcript IS NOT NULL))
-            ${date_filter_str}
-            AND e.name = 'Does OpenAI Need a Bailout? Mamdani Wins, Socialism Rising, Filibuster Nuclear Option'
+            WHERE (e.rn <= ${num_episodes})
+              AND EXISTS (
+                SELECT 1
+                FROM "${DB_ID}".${TABLES.CLAIMS} c2
+                WHERE c2.episode_id = e.id
+                  AND c2.is_verified = TRUE
+                  AND c2.is_flagged = FALSE
+              )
+              ${date_filter_str}
             GROUP BY e.id, e.name, e.description, e.episode_number, e.duration,
                       e.air_date, e.avatar, e.audio_url, e.podcast_id
             ORDER BY e.air_date DESC;
