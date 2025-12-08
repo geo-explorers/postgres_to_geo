@@ -362,6 +362,7 @@ export function processNewRelation({
                 console.log(geoProperties)
                 
             }
+            console.log(`pre-existing relation found ${toEntityId}`)
             return { ops: ops, relationEntityId: relationEntity, position: geoProperties?.[0]?.position };
         }
     } else {
