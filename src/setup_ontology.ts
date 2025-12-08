@@ -576,8 +576,6 @@ export async function read_in_tables({
                   SELECT 1
                   FROM "${DB_ID}".${TABLES.CLAIMS} c2
                   WHERE c2.episode_id = e.id
-                    AND c2.is_verified = TRUE
-                    AND c2.is_flagged = FALSE
                 )
               ${date_filter_str}
             GROUP BY e.id, e.name, e.description, e.episode_number, e.duration,
