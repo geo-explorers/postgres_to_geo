@@ -10,7 +10,6 @@ import {
   printOps,
   publishOps,
   type Entity,
-  entityCache,
   buildEntityCached
 } from './functions.ts';
 import { processEntity } from '../post_entity.ts';
@@ -40,6 +39,8 @@ export async function processPodcastWorkflow(params: WorkflowParams): Promise<Wo
   const processingCache: Record<string, Entity> = {};
   const imageCache: Record<string, Entity> = {};
   const offset = 0;
+  // Create a fresh entity cache for this request to avoid stale data from previous API calls
+  const localEntityCache: Record<string, Record<string, any>> = {};
 
   try {
     console.log('Loading geo entities...');
@@ -60,7 +61,7 @@ export async function processPodcastWorkflow(params: WorkflowParams): Promise<Wo
 
     console.log('Formatting episodes...');
     const formattedEpisodes = tables.episodes.map(p =>
-      buildEntityCached(p, episodeBreakdown, SPACE_IDS.podcasts, tables, geoEntities, entityCache)
+      buildEntityCached(p, episodeBreakdown, SPACE_IDS.podcasts, tables, geoEntities, localEntityCache)
     );
 
     console.log('Formatting done. Processing entities...');
