@@ -83,13 +83,14 @@ topicBreakdown.relations = [
       entityBreakdown: null,
       image: false
   },
+  */
   {
       type: "subtopics",
       toEntityBreakdown: topicBreakdown,
       entityBreakdown: null,
       image: false
   },
-  */
+  
   {
       type: "cover",
       toEntityBreakdown: null,
@@ -406,7 +407,7 @@ export async function read_in_tables({
   
     const podcasts = await pgClient.query(`
       SELECT 
-          p.id, p.name, p.description, p.logo as avatar, p.is_explicit, p.rss_feed_url,
+          p.id, p.name, p.description, p.avatar, p.is_explicit, p.rss_feed_url,
           COALESCE(
             json_agg(
               DISTINCT jsonb_build_object(
@@ -472,8 +473,13 @@ export async function read_in_tables({
         //COALESCE(array_agg(g.person_id) FILTER (WHERE g.role IN ('host', 'coHost', 'guest_host', 'guestHost')), '{}') AS hosts,
         //ARRAY[e.podcast_id] as podcast,
 
-        
-        
+        /*
+        const ep_names = []
+
+      const inClauseEpNames = ep_names
+                .map(name => `'${name.replace(/'/g, "''")}'`) // SQL escape
+                .join(", ");
+        */
 
         const episodes = podcastIds.length
           ? await pgClient.query(`
@@ -482,15 +488,18 @@ export async function read_in_tables({
                 e.id,
                 e.name,
                 e.description,
+                e.podscribe_transcript,
+                e.bankless_transcript,
+                e.assembly_transcript,
                 e.episode_number,
                 e.duration,
-                e.published_at AS air_date,
-                e.logo AS avatar,
+                e.air_date,
+                e.avatar,
                 e.audio_url,
                 e.podcast_id,
                 ROW_NUMBER() OVER (
                   PARTITION BY e.podcast_id 
-                  ORDER BY e.published_at DESC
+                  ORDER BY e.air_date DESC
                 ) AS rn
               FROM "${DB_ID}".${TABLES.EPISODES} AS e
               WHERE e.podcast_id IN (${podcastIds.map(id => `'${id}'`).join(",")})
@@ -564,19 +573,31 @@ export async function read_in_tables({
             LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t ON e.id = t.from_episode_id
             WHERE (e.rn <= ${num_episodes})
               AND EXISTS (
-                SELECT 1
-                FROM "${DB_ID}".${TABLES.CLAIMS} c2
-                WHERE c2.episode_id = e.id
-                  AND c2.is_verified = TRUE
-                  AND c2.is_flagged = FALSE
-              )
+                  SELECT 1
+                  FROM "${DB_ID}".${TABLES.CLAIMS} c2
+                  WHERE c2.episode_id = e.id
+                    AND c2.is_verified = TRUE
+                    AND c2.is_flagged = FALSE
+                )
               ${date_filter_str}
             GROUP BY e.id, e.name, e.description, e.episode_number, e.duration,
                       e.air_date, e.avatar, e.audio_url, e.podcast_id
             ORDER BY e.air_date DESC;
           `)
           : [];
-          //AND e.name in (${inClause})
+          /*
+          AND EXISTS (
+                SELECT 1
+                FROM "${DB_ID}".${TABLES.CLAIMS} c2
+                WHERE c2.episode_id = e.id
+                  AND c2.is_verified = TRUE
+                  AND c2.is_flagged = FALSE
+              )
+          */
+
+
+          //AND ((e.podscribe_transcript IS NOT NULL) OR (e.bankless_transcript IS NOT NULL) OR (e.assembly_transcript IS NOT NULL))
+          //AND e.name in (${inClauseEpNames})
           //How Your Thoughts Are Built & How You Can Shape Them | Dr. Jennifer Groh
 
           /*
@@ -652,7 +673,7 @@ export async function read_in_tables({
         const people = personWhereClauses.length
             ? await pgClient.query(`
                 SELECT 
-                    p.id, p.name, p.logo as avatar, COALESCE(p.editor_description, p.description) AS description, p.x_url, p.linkedin_url, p.medium_url, p.wikipedia_url,
+                    p.id, p.name, p.avatar, p.description, p.x_url, p.linkedin_url, p.medium_url, p.wikipedia_url,
                     COALESCE(
                       json_agg(
                         DISTINCT jsonb_build_object(
@@ -815,7 +836,7 @@ export async function read_in_tables({
         ];
         const platforms = platformIds.length
         ? await pgClient.query(`
-            SELECT id, normalized_name as name, website as web_url, description, logo as avatar FROM "${DB_ID}".${TABLES.PLATFORMS}
+            SELECT id, name, website as web_url, description, logo as avatar FROM "${DB_ID}".${TABLES.PLATFORMS}
             WHERE id IN (${platformIds.map((id) => `'${id}'`).join(",")})
         `)
         : [];
