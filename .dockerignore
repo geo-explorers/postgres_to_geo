@@ -1,0 +1,67 @@
+# Git files
+.git
+.gitignore
+
+# Environment files
+.env
+.env.*
+.env.example
+.env.local
+
+# Node.js
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor/IDE files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+*.vimrc
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Project-specific data directories
+archive/
+deleted_ops/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Testing
+*.test.ts
+*.spec.ts
+__tests__/
+coverage/
+
+# Documentation
+README.md
+*.md
+
+# Docker files
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# CI/CD
+.github/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+.tmp/
+temp/
