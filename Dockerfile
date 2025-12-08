@@ -7,6 +7,19 @@ WORKDIR /app
 # Set Node environment to production
 ENV NODE_ENV=production
 
+# Install build dependencies for canvas (required by chartjs-node-canvas)
+# These are needed for native module compilation
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    cairo-dev \
+    pango-dev \
+    jpeg-dev \
+    giflib-dev \
+    librsvg-dev \
+    pixman-dev
+
 # Copy package files first for better layer caching
 COPY package.json package-lock.json ./
 
