@@ -522,7 +522,7 @@ export async function read_in_tables({
                 '[]'
               ) AS guests,
               COALESCE(
-                json_agg(DISTINCT jsonb_build_object('to_id', g.person_id, 'entity_id', g.id)) FILTER (WHERE g.role IN ('host', 'coHost', 'guest_host', 'guestHost')),
+                json_agg(DISTINCT jsonb_build_object('to_id', g.person_id, 'entity_id', g.id)) FILTER (WHERE g.role IN ('host', 'coHost', 'guest_host', 'guestHost') AND (g.should_verify_name IS NULL OR g.should_verify_name = false)),
                 '[]'
               ) AS hosts,
               COALESCE(
