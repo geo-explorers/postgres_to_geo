@@ -908,7 +908,8 @@ export async function read_in_tables({
         ? await pgClient.query(`
             SELECT c.id, c.episode_id, c.claim_text as name
             FROM "${DB_ID}".${TABLES.CLAIMS} as c
-            WHERE c.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")}) 
+            WHERE c.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")})
+              AND c.is_verified = true
         `)
         : [];
         console.log("Claims read")
