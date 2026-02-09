@@ -274,14 +274,12 @@ export const claimBreakdown = {
     types: [normalizeToUUID(typeToIdMap['claim'])],
     value_fields: ["name"],
     relations: [
-      /*
       {
-          type: "supporting_quotes",
-          toEntityBreakdown: quoteBreakdown,
+          type: "topics",
+          toEntityBreakdown: topicBreakdown,
           entityBreakdown: null,
-          image: false
+          image: false,
       },
-      */
     ],
 }
 
@@ -906,9 +904,23 @@ export async function read_in_tables({
         */
        const claims = episodeIds.length
         ? await pgClient.query(`
-            SELECT c.id, c.episode_id, c.claim_text as name
+            SELECT c.id, ce.episode_id, c.claim_text as name,
+            COALESCE(
+              json_agg(
+                DISTINCT jsonb_build_object(
+                  'to_id', tm.to_tag_id,
+                  'entity_id', null
+                )
+              ) FILTER (WHERE tm.to_tag_id IS NOT NULL),
+              '[]'
+            ) AS topics
             FROM "${DB_ID}".${TABLES.CLAIMS} as c
-            WHERE c.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")}) 
+            INNER JOIN "${DB_ID}".${TABLES.CLAIM_EPISODES} as ce ON c.id = ce.claim_id
+            LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} as tm ON c.id = tm.from_claim_id
+            WHERE ce.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")})
+              AND c.is_verified = true
+            GROUP BY c.id, ce.episode_id, c.claim_text, ce.id
+            ORDER BY ce.episode_id, ce.claim_order
         `)
         : [];
         console.log("Claims read")
