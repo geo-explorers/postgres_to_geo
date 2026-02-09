@@ -35,6 +35,7 @@ export const TABLES = {
   CLAIMS: "claims",
   QUOTES: "quotes",
   CLAIM_QUOTES: "claim_quotes",
+  CLAIM_EPISODES: "claim_episodes",
   TAG_MAP: "tag_map",
   TAGS: "tags",
 } as const;
