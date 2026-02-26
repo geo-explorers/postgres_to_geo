@@ -1,6 +1,8 @@
+
+
 import { typeToIdMap } from "./constants.ts";
 import PostgreSQLClient, { DB_ID, TABLES } from "./postgres-client.ts";
-import { flatten_api_response, searchEntities, searchEntities_w_backlinks, flatten_api_response_w_backlinks } from './functions.ts';
+import { flatten_api_response, searchEntities, normalizeToUUID, searchEntities_w_backlinks, flatten_api_response_w_backlinks } from './functions.ts';
 import { v4 as uuidv4 } from "uuid";
 import levenshtein from "fast-levenshtein";
 
@@ -69,7 +71,7 @@ export interface EntityBreakdown {
 export const topicBreakdown: EntityBreakdown = {
     table: "topics",
     not_unique: false,
-    types: [typeToIdMap['topic']],
+    types: [normalizeToUUID(typeToIdMap['topic'])],
     value_fields: ["name"],
     relations: [],
 }
@@ -83,14 +85,13 @@ topicBreakdown.relations = [
       entityBreakdown: null,
       image: false
   },
-  */
   {
       type: "subtopics",
       toEntityBreakdown: topicBreakdown,
       entityBreakdown: null,
       image: false
   },
-  
+  */
   {
       type: "cover",
       toEntityBreakdown: null,
@@ -103,7 +104,7 @@ topicBreakdown.relations = [
 export const platformBreakdown = {
     table: "platforms",
     not_unique: false,
-    types: [typeToIdMap['project']],
+    types: [normalizeToUUID(typeToIdMap['project'])],
     value_fields: ["name", 'web_url'],
     relations: [
         {
@@ -120,7 +121,7 @@ export const platformBreakdown = {
 export const sourceBreakdown = {
     table: "sources",
     not_unique: false,
-    types: [typeToIdMap['source']],
+    types: [normalizeToUUID(typeToIdMap['source'])],
     value_fields: ["source_db_identifier", 'web_url', 'source_database_key'],
     relations: [],
 }
@@ -128,7 +129,7 @@ export const sourceBreakdown = {
 export const personBreakdown = {
     table: "people",
     not_unique: false,
-    types: [typeToIdMap['person']],
+    types: [normalizeToUUID(typeToIdMap['person'])],
     value_fields: ["name", "description", "x_url"],
     relations: [
         {
@@ -155,7 +156,7 @@ export const personBreakdown = {
 export const listenOnBreakdown = {
     table: "listen_on_links",
     not_unique: false,
-    types: [typeToIdMap['source']],
+    types: [normalizeToUUID(typeToIdMap['source'])],
     value_fields: ["web_url"],
     relations: [],
 }
@@ -163,7 +164,7 @@ export const listenOnBreakdown = {
 export const podcastBreakdown = {
     table: "podcasts",
     not_unique: false,
-    types: [typeToIdMap['podcast']],
+    types: [normalizeToUUID(typeToIdMap['podcast'])],
     value_fields: ["name", "description", 'rss_feed_url'], //"date_founded",
     relations: [
         {
@@ -202,7 +203,7 @@ export const podcastBreakdown = {
 export const roleBreakdown = {
     table: "roles",
     not_unique: false,
-    types: [typeToIdMap['role']],
+    types: [normalizeToUUID(typeToIdMap['role'])],
     value_fields: ["name"],
     relations: [],
 }
@@ -210,7 +211,7 @@ export const roleBreakdown = {
 export const podcastAppearanceBreakdown = {
     table: "guests",
     not_unique: false,
-    types: [typeToIdMap['podcast_appearance']],
+    types: [normalizeToUUID(typeToIdMap['podcast_appearance'])],
     value_fields: [],
     relations: [
         {
@@ -225,7 +226,7 @@ export const podcastAppearanceBreakdown = {
 export const textBlockBreakdown = {
     table: "text_blocks",
     not_unique: true,
-    types: [typeToIdMap['text_block']],
+    types: [normalizeToUUID(typeToIdMap['text_block'])],
     value_fields: ["name", "markdown_content"],
     relations: [],
 }
@@ -233,7 +234,7 @@ export const textBlockBreakdown = {
 export const pageBreakdown = {
     table: "pages",
     not_unique: true,
-    types: [typeToIdMap['page']],
+    types: [normalizeToUUID(typeToIdMap['page'])],
     value_fields: ["name"],
     relations: [
       {
@@ -248,7 +249,7 @@ export const pageBreakdown = {
 export const selectorBreakdown = {
     table: "selectors",
     not_unique: false,
-    types: [typeToIdMap['selector']],
+    types: [normalizeToUUID(typeToIdMap['selector'])],
     value_fields: ["start_offset", "end_offset"],
     relations: [],
 }
@@ -256,7 +257,7 @@ export const selectorBreakdown = {
 export const quoteBreakdown = {
     table: "quotes",
     not_unique: false,
-    types: [typeToIdMap['quote']],
+    types: [normalizeToUUID(typeToIdMap['quote'])],
     value_fields: ["name"],
     relations: [
       {
@@ -271,7 +272,7 @@ export const quoteBreakdown = {
 export const claimBreakdown = {
     table: "claims",
     not_unique: false,
-    types: [typeToIdMap['claim']],
+    types: [normalizeToUUID(typeToIdMap['claim'])],
     value_fields: ["name"],
     relations: [
       /*
@@ -288,7 +289,7 @@ export const claimBreakdown = {
 export const episodeBreakdown = {
     table: "episodes",
     not_unique: false,
-    types: [typeToIdMap['episode']],
+    types: [normalizeToUUID(typeToIdMap['episode'])],
     value_fields: ["name", "description", "episode_number", "air_date", "duration", "audio_url"], 
     relations: [
         {
@@ -407,7 +408,7 @@ export async function read_in_tables({
   
     const podcasts = await pgClient.query(`
       SELECT 
-          p.id, p.name, p.description, p.avatar, p.is_explicit, p.rss_feed_url,
+          p.id, p.name, p.description, p.logo as avatar, p.is_explicit, p.rss_feed_url,
           COALESCE(
             json_agg(
               DISTINCT jsonb_build_object(
@@ -473,13 +474,8 @@ export async function read_in_tables({
         //COALESCE(array_agg(g.person_id) FILTER (WHERE g.role IN ('host', 'coHost', 'guest_host', 'guestHost')), '{}') AS hosts,
         //ARRAY[e.podcast_id] as podcast,
 
-        /*
-        const ep_names = []
-
-      const inClauseEpNames = ep_names
-                .map(name => `'${name.replace(/'/g, "''")}'`) // SQL escape
-                .join(", ");
-        */
+        
+        
 
         const episodes = podcastIds.length
           ? await pgClient.query(`
@@ -488,18 +484,15 @@ export async function read_in_tables({
                 e.id,
                 e.name,
                 e.description,
-                e.podscribe_transcript,
-                e.bankless_transcript,
-                e.assembly_transcript,
                 e.episode_number,
                 e.duration,
-                e.air_date,
-                e.avatar,
+                e.published_at AS air_date,
+                e.logo AS avatar,
                 e.audio_url,
                 e.podcast_id,
                 ROW_NUMBER() OVER (
                   PARTITION BY e.podcast_id 
-                  ORDER BY e.air_date DESC
+                  ORDER BY e.published_at DESC
                 ) AS rn
               FROM "${DB_ID}".${TABLES.EPISODES} AS e
               WHERE e.podcast_id IN (${podcastIds.map(id => `'${id}'`).join(",")})
@@ -573,29 +566,19 @@ export async function read_in_tables({
             LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t ON e.id = t.from_episode_id
             WHERE (e.rn <= ${num_episodes})
               AND EXISTS (
-                  SELECT 1
-                  FROM "${DB_ID}".${TABLES.CLAIMS} c2
-                  WHERE c2.episode_id = e.id
-                )
-              ${date_filter_str}
-            GROUP BY e.id, e.name, e.description, e.episode_number, e.duration,
-                      e.air_date, e.avatar, e.audio_url, e.podcast_id
-            ORDER BY e.air_date DESC;
-          `)
-          : [];
-          /*
-          AND EXISTS (
                 SELECT 1
                 FROM "${DB_ID}".${TABLES.CLAIMS} c2
                 WHERE c2.episode_id = e.id
                   AND c2.is_verified = TRUE
                   AND c2.is_flagged = FALSE
               )
-          */
-
-
-          //AND ((e.podscribe_transcript IS NOT NULL) OR (e.bankless_transcript IS NOT NULL) OR (e.assembly_transcript IS NOT NULL))
-          //AND e.name in (${inClauseEpNames})
+              ${date_filter_str}
+            GROUP BY e.id, e.name, e.description, e.episode_number, e.duration,
+                      e.air_date, e.avatar, e.audio_url, e.podcast_id
+            ORDER BY e.air_date DESC;
+          `)
+          : [];
+          //AND e.name in (${inClause})
           //How Your Thoughts Are Built & How You Can Shape Them | Dr. Jennifer Groh
 
           /*
@@ -671,7 +654,7 @@ export async function read_in_tables({
         const people = personWhereClauses.length
             ? await pgClient.query(`
                 SELECT 
-                    p.id, p.name, p.avatar, p.description, p.x_url, p.linkedin_url, p.medium_url, p.wikipedia_url,
+                    p.id, p.name, p.logo as avatar, COALESCE(p.editor_description, p.description) AS description, p.x_url, p.linkedin_url, p.medium_url, p.wikipedia_url,
                     COALESCE(
                       json_agg(
                         DISTINCT jsonb_build_object(
@@ -834,7 +817,7 @@ export async function read_in_tables({
         ];
         const platforms = platformIds.length
         ? await pgClient.query(`
-            SELECT id, name, website as web_url, description, logo as avatar FROM "${DB_ID}".${TABLES.PLATFORMS}
+            SELECT id, normalized_name as name, website as web_url, description, logo as avatar FROM "${DB_ID}".${TABLES.PLATFORMS}
             WHERE id IN (${platformIds.map((id) => `'${id}'`).join(",")})
         `)
         : [];
@@ -909,6 +892,8 @@ export async function read_in_tables({
             SELECT c.id, c.episode_id, c.claim_text as name
             FROM "${DB_ID}".${TABLES.CLAIMS} as c
             WHERE c.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")}) 
+              AND c.is_verified IS TRUE
+              AND c.is_flagged IS FALSE
         `)
         : [];
         console.log("Claims read")
@@ -1075,7 +1060,7 @@ export async function read_in_tables({
 }
 
 
-export async function loadGeoEntities(space?: string) {
+export async function loadGeoEntities() {
   const breakdowns = {
     people: personBreakdown,
     podcasts: podcastBreakdown,
@@ -1095,7 +1080,7 @@ export async function loadGeoEntities(space?: string) {
 
   for (const [key, breakdown] of Object.entries(breakdowns)) {
     geoEntities[key] = flatten_api_response(
-      await searchEntities({ type: breakdown.types, ...(space ? { spaceId: [space] } : {}) })
+      await searchEntities({ type: breakdown.types })
     );
   }
 
@@ -1103,7 +1088,7 @@ export async function loadGeoEntities(space?: string) {
   return geoEntities;
 }
 
-export async function loadGeoEntities_to_delete(space?: string) {
+export async function loadGeoEntities_to_delete() {
   const breakdowns = {
     people: personBreakdown,
     podcasts: podcastBreakdown,
@@ -1123,7 +1108,7 @@ export async function loadGeoEntities_to_delete(space?: string) {
 
   for (const [key, breakdown] of Object.entries(breakdowns)) {
     geoEntities[key] = flatten_api_response_w_backlinks(
-      await searchEntities_w_backlinks({ type: breakdown.types, ...(space ? { spaceId: [space] } : {}) })
+      await searchEntities_w_backlinks({ type: breakdown.types })
     );
   }
 
@@ -1146,3 +1131,689 @@ export async function loadGeoEntities_to_delete(space?: string) {
 // - I could filter the pages query to only return pages that have a tabs relation from the entity in question...
 // - This would likely need to be a setting in the ontology definitions...
 // Enable setting position for relations
+
+
+
+
+export async function read_in_tables_v2({
+  pgClient,
+  offset,
+  limit,
+  podcast_name,
+  num_episodes,
+  date_filter,
+}: {
+  
+  pgClient: any;
+  podcast_name: string[];
+  num_episodes: number;
+  date_filter: string;
+  offset?: number;
+  limit?: number;
+}): Promise<{
+    podcasts: any; episodes: any; hosts: any; guests: any; people: any; topics: any; sources: any; roles: any; platforms: any; listen_on_links: any; quotes: any; claims: any; pages: any; text_blocks: any; selectors: any;
+}> {
+
+    const inClause = podcast_name
+          .map(name => `'${name.replace(/'/g, "''")}'`) // SQL escape
+          .join(", ");
+
+    let date_filter_str = '';
+    if (date_filter) {
+      date_filter_str = `AND e.air_date > '${date_filter}'`
+    } else {
+      date_filter_str = ''
+    }
+  
+    const podcasts = await pgClient.query(`
+      SELECT 
+          p.id, p.name, p.description, p.logo as avatar, p.is_explicit, p.rss_feed_url,
+          COALESCE(
+            json_agg(
+              DISTINCT jsonb_build_object(
+                'to_id', h.person_id,
+                'entity_id', null
+              )
+            ) FILTER (WHERE h.id IS NOT NULL),
+            '[]'
+          ) AS hosts,
+          COALESCE(
+            json_agg(
+              DISTINCT jsonb_build_object(
+                'to_id', l.platform_id,
+                'entity_id', l.id
+              )
+            ) FILTER (WHERE l.id IS NOT NULL),
+            '[]'
+          ) AS listen_on,
+          COALESCE(
+            json_agg(
+              DISTINCT jsonb_build_object(
+                'to_id', t.to_tag_id,
+                'entity_id', null
+              )
+            ) FILTER (WHERE t.to_tag_id IS NOT NULL),
+            '[]'
+          ) AS topics,
+          COALESCE(
+            json_agg(
+              DISTINCT jsonb_build_object(
+                'to_id', ex.platform_id,
+                'entity_id', ex.id
+              )
+            ) FILTER (WHERE (ex.id IS NOT NULL) AND (ex.external_db_id <> 'NOT_FOUND')),
+            '[]'
+          ) AS sources
+      FROM "${DB_ID}".${TABLES.PODCASTS} AS p
+      LEFT JOIN "${DB_ID}".${TABLES.HOSTS} AS h
+          ON p.id = h.podcast_id
+      LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t
+          ON p.id = t.from_podcast_id
+      LEFT JOIN "${DB_ID}".${TABLES.EXTERNAL_IDS} AS ex
+        ON p.id = ex.podcast_id
+      LEFT JOIN "${DB_ID}".${TABLES.LISTEN_ON} AS l
+        ON p.id = l.podcast_id
+      WHERE p.name IN (${inClause})
+      GROUP BY p.id
+      LIMIT ${limit} OFFSET ${offset}
+  `);
+    //('${podcast_name}')
+    //('Lex Fridman Podcast', 'The Joe Rogan Experience', 'Up First from NPR', 'Freakonomics Radio', 'Huberman Lab', 'The Daily', 'Honestly with Bari Weiss', 'Bankless' )
+    //'Bankless', 'The Joe Rogan Experience', 'Freakonomics Radio', 'The Daily', 'Lex Fridman Podcast', 'Today, Explained', 'The Genius Life', 'All-In with Chamath, Jason, Sacks & Friedberg'
+
+    console.log("Podcast read")
+        const podcastIds = [
+            ...new Set(
+                podcasts
+                .flatMap((row: any) => [row.id])
+                .filter(Boolean)
+            ),
+        ];
+        //COALESCE(array_agg(g.person_id) FILTER (WHERE g.role = 'guest'), '{}') AS guests,
+        //COALESCE(array_agg(g.person_id) FILTER (WHERE g.role IN ('host', 'coHost', 'guest_host', 'guestHost')), '{}') AS hosts,
+        //ARRAY[e.podcast_id] as podcast,
+
+        
+        
+
+        const episodes = podcastIds.length
+          ? await pgClient.query(`
+            WITH ranked_episodes AS (
+              SELECT 
+                e.id,
+                e.name,
+                e.description,
+                e.episode_number,
+                e.duration,
+                e.published_at AS air_date,
+                e.logo AS avatar,
+                e.audio_url,
+                e.podcast_id,
+                ROW_NUMBER() OVER (
+                  PARTITION BY e.podcast_id 
+                  ORDER BY e.published_at DESC
+                ) AS rn
+              FROM "${DB_ID}".${TABLES.EPISODES} AS e
+              WHERE e.podcast_id IN (${podcastIds.map(id => `'${id}'`).join(",")})
+            )
+            SELECT 
+              e.id,
+              e.name,
+              e.description,
+              e.episode_number,
+              e.duration,
+              e.air_date,
+              e.avatar,
+              e.audio_url,
+              COALESCE(
+                json_agg(DISTINCT jsonb_build_object('to_id', e.podcast_id, 'entity_id', null)) FILTER (WHERE e.podcast_id IS NOT NULL),
+                '[]'
+              ) AS podcast,
+              COALESCE(
+                json_agg(DISTINCT jsonb_build_object('to_id', g.person_id, 'entity_id', g.id)) FILTER (WHERE g.role = 'guest'),
+                '[]'
+              ) AS guests,
+              COALESCE(
+                json_agg(DISTINCT jsonb_build_object('to_id', g.person_id, 'entity_id', g.id)) FILTER (WHERE g.role IN ('host', 'coHost', 'guest_host', 'guestHost')),
+                '[]'
+              ) AS hosts,
+              COALESCE(
+                json_agg(DISTINCT jsonb_build_object('to_id', g.person_id, 'entity_id', g.id)) FILTER (WHERE g.role NOT IN ('guest', 'host', 'coHost', 'guest_host', 'guestHost')),
+                '[]'
+              ) AS contributors,
+              COALESCE(
+                json_agg(DISTINCT jsonb_build_object('to_id', q.id, 'entity_id', null)) FILTER (WHERE q.id IS NOT NULL),
+                '[]'
+              ) AS notable_quotes,
+               COALESCE(
+                json_agg(DISTINCT jsonb_build_object('to_id', c.id, 'entity_id', null)) FILTER (WHERE c.id IS NOT NULL),
+                '[]'
+              ) AS notable_claims,
+              COALESCE(
+                json_agg(
+                  DISTINCT jsonb_build_object(
+                    'to_id', l.platform_id,
+                    'entity_id', l.id
+                  )
+                ) FILTER (WHERE (l.id IS NOT NULL) AND (l.url IS NOT NULL)),
+                '[]'
+              ) AS listen_on,
+              COALESCE(
+                json_agg(
+                  DISTINCT jsonb_build_object(
+                    'to_id', t.to_tag_id,
+                    'entity_id', null
+                  )
+                ) FILTER (WHERE t.to_tag_id IS NOT NULL),
+                '[]'
+              ) AS topics,
+              COALESCE(
+                json_agg(
+                  DISTINCT jsonb_build_object(
+                    'to_id', ex.platform_id,
+                    'entity_id', ex.id
+                  )
+                ) FILTER (WHERE (ex.id IS NOT NULL) AND (ex.external_db_id <> 'NOT_FOUND')),
+                '[]'
+              ) AS sources
+            FROM ranked_episodes e
+            LEFT JOIN "${DB_ID}".${TABLES.GUESTS} AS g ON e.id = g.episode_id
+            LEFT JOIN "${DB_ID}".${TABLES.EXTERNAL_IDS} AS ex ON e.id = ex.podcast_episode_id
+            LEFT JOIN "${DB_ID}".${TABLES.LISTEN_ON} AS l ON e.id = l.podcast_episode_id
+            LEFT JOIN "${DB_ID}".${TABLES.QUOTES} AS q ON e.id = q.episode_id
+            LEFT JOIN "${DB_ID}".${TABLES.CLAIMS} AS c ON c.episode_id = e.id
+            LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t ON e.id = t.from_episode_id
+            WHERE (e.rn <= ${num_episodes})
+              AND EXISTS (
+                SELECT 1
+                FROM "${DB_ID}".${TABLES.CLAIMS} c2
+                WHERE c2.episode_id = e.id
+                  AND c2.is_verified = TRUE
+                  AND c2.is_flagged = FALSE
+              )
+              ${date_filter_str}
+            GROUP BY e.id, e.name, e.description, e.episode_number, e.duration,
+                      e.air_date, e.avatar, e.audio_url, e.podcast_id
+            ORDER BY e.air_date DESC;
+          `)
+          : [];
+          //AND e.name in (${inClause})
+          //How Your Thoughts Are Built & How You Can Shape Them | Dr. Jennifer Groh
+
+          /*
+          LEFT JOIN "${DB_ID}".${TABLES.QUOTES} AS q ON e.id = q.episode_id
+          LEFT JOIN "${DB_ID}".${TABLES.CLAIM_QUOTES} AS cq ON cq.quote_id = q.id
+          LEFT JOIN "${DB_ID}".${TABLES.CLAIMS} AS c ON c.id = cq.claim_id
+          LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t ON e.id = t.from_episode_id
+          WHERE (e.rn > 0) AND (e.rn <= 5) AND (e.transcript IS NOT NULL)
+          */
+
+        console.log("Episodes read")
+        const episodeIds = [
+            ...new Set(
+                episodes
+                .flatMap((row: any) => [row.id])
+                .filter(Boolean)
+            ),
+        ];
+        
+        const hosts = podcastIds.length
+        ? await pgClient.query(`
+            SELECT * FROM "${DB_ID}".${TABLES.HOSTS}
+            WHERE podcast_id IN (${podcastIds.map((id) => `'${id}'`).join(",")})
+        `)
+        : [];
+
+        const hostIds = [
+            ...new Set(
+                hosts
+                .flatMap((row: any) => [row.person_id])
+                .filter(Boolean)
+            ),
+        ];
+
+        const guests = episodeIds.length //ARRAY[role] as roles,
+        ? await pgClient.query(`
+            SELECT id, person_id, episode_id, 
+            COALESCE(
+              json_agg(
+                DISTINCT jsonb_build_object(
+                  'to_id', role,
+                  'entity_id', null
+                )
+              ) FILTER (WHERE role IS NOT NULL),
+              '[]'
+            ) AS roles
+            FROM "${DB_ID}".${TABLES.GUESTS}
+            WHERE episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")})
+            GROUP BY id
+        `)
+        : [];
+        console.log("Guests read")
+
+        const guestIds = [
+            ...new Set(
+                guests
+                .flatMap((row: any) => [row.person_id])
+                .filter(Boolean)
+            ),
+        ];
+
+        let personWhereClauses = [];
+
+        if (hostIds.length > 0) {
+            personWhereClauses.push(`p.id IN (${hostIds.map((id) => `'${id}'`).join(",")})`);
+        }
+
+        if (guestIds.length > 0) {
+            personWhereClauses.push(`p.id IN (${guestIds.map((id) => `'${id}'`).join(",")})`);
+        }
+
+        //COALESCE(array_agg(t.id) FILTER (WHERE t.id IS NOT NULL), '{}') AS topics,
+        const people = personWhereClauses.length
+            ? await pgClient.query(`
+                SELECT 
+                    p.id, p.name, p.logo as avatar, COALESCE(p.editor_description, p.description) AS description, p.x_url, p.linkedin_url, p.medium_url, p.wikipedia_url,
+                    COALESCE(
+                      json_agg(
+                        DISTINCT jsonb_build_object(
+                          'to_id', t.to_tag_id,
+                          'entity_id', null
+                        )
+                      ) FILTER (WHERE t.to_tag_id IS NOT NULL),
+                      '[]'
+                    ) AS topics,
+                    COALESCE(
+                      json_agg(
+                        DISTINCT jsonb_build_object(
+                          'to_id', ex.platform_id,
+                          'entity_id', ex.id
+                        )
+                      ) FILTER (WHERE (ex.id IS NOT NULL) AND (ex.external_db_id <> 'NOT_FOUND')),
+                      '[]'
+                    ) AS sources
+                FROM "${DB_ID}".${TABLES.PEOPLE} as p
+                LEFT JOIN "${DB_ID}".${TABLES.EXTERNAL_IDS} AS ex
+                    ON p.id = ex.person_id
+                LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t 
+                    ON p.id = t.from_person_id
+                WHERE ${personWhereClauses.join(" OR ")}
+                GROUP BY p.id
+                `)
+            : [];
+            console.log("PEOPLE read")
+
+        const topics = await pgClient.query(`
+            SELECT t.id, t.name, t.description, t.logo as cover,
+            COALESCE(
+              json_agg(
+                DISTINCT jsonb_build_object(
+                  'to_id', tm.to_tag_id,
+                  'entity_id', null
+                )
+              ) FILTER (WHERE (tm.to_tag_id IS NOT NULL) AND (tm.tag_category = 'Broader topic')),
+              '[]'
+            ) AS broader_topics,
+            COALESCE(
+              json_agg(
+                DISTINCT jsonb_build_object(
+                  'to_id', tm.to_tag_id,
+                  'entity_id', null
+                )
+              ) FILTER (WHERE (tm.to_tag_id IS NOT NULL) AND (tm.tag_category = 'Subtopic')),
+              '[]'
+            ) AS subtopics
+            FROM "${DB_ID}".${TABLES.TAGS} as t
+            LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS tm
+              ON t.id = tm.from_tag_id
+            where t.name IS NOT NULL
+            AND EXISTS (
+              SELECT 1
+              FROM "${DB_ID}".${TABLES.TAG_MAP} tm2
+              WHERE tm2.to_tag_id = t.id
+            )
+            GROUP BY t.id
+            `);
+
+            for (const t of topics) {
+              if (t.name)
+                t.name = t.name.charAt(0).toUpperCase() + t.name.slice(1);
+            }
+            console.log("Topics read")
+
+        const podcastListenOnIds = [
+          ...new Set(
+            podcasts
+              .flatMap((p: any) => p.listen_on?.map((s: any) => s.entity_id) || [])
+              .filter(Boolean)
+          ),
+        ];
+
+        const episodeListenOnIds = [
+          ...new Set(
+            episodes
+              .flatMap((e: any) => e.listen_on?.map((s: any) => s.entity_id) || [])
+              .filter(Boolean)
+          ),
+        ];
+        let listenOnWhereClauses = [];
+        if (podcastListenOnIds.length > 0) {
+            listenOnWhereClauses.push(`id IN (${podcastListenOnIds.map((id) => `'${id}'`).join(",")})`);
+        }
+        if (episodeListenOnIds.length > 0) {
+            listenOnWhereClauses.push(`id IN (${episodeListenOnIds.map((id) => `'${id}'`).join(",")})`);
+        }
+        const listen_on_links = listenOnWhereClauses.length
+          ? await pgClient.query(`
+              SELECT 
+                  id, podcast_id, podcast_episode_id, platform_id, url as web_url
+              FROM "${DB_ID}".${TABLES.LISTEN_ON}
+              WHERE ${listenOnWhereClauses.join(" OR ")}
+              `)
+          : [];
+        console.log("Listen on read")
+
+
+
+        const podcastSourceIds = [
+          ...new Set(
+            podcasts
+              .flatMap((p: any) => p.sources?.map((s: any) => s.entity_id) || [])
+              .filter(Boolean)
+          ),
+        ];
+
+        const episodeSourceIds = [
+          ...new Set(
+            episodes
+              .flatMap((e: any) => e.sources?.map((s: any) => s.entity_id) || [])
+              .filter(Boolean)
+          ),
+        ];
+
+        const peopleSourceIds = [
+          ...new Set(
+            people
+              .flatMap((p: any) => p.sources?.map((s: any) => s.entity_id) || [])
+              .filter(Boolean)
+          ),
+        ];
+
+        let sourceWhereClauses = [];
+        if (podcastSourceIds.length > 0) {
+            sourceWhereClauses.push(`e.id IN (${podcastSourceIds.map((id) => `'${id}'`).join(",")})`);
+        }
+        if (episodeSourceIds.length > 0) {
+            sourceWhereClauses.push(`e.id IN (${episodeSourceIds.map((id) => `'${id}'`).join(",")})`);
+        }
+        if (peopleSourceIds.length > 0) {
+            sourceWhereClauses.push(`e.id IN (${peopleSourceIds.map((id) => `'${id}'`).join(",")})`);
+        }
+        let sources = sourceWhereClauses.length
+            ? await pgClient.query(`
+                SELECT 
+                    e.id, e.podcast_id, e.podcast_episode_id, e.platform_id, e.person_id, e.website as web_url, e.external_db_id as source_db_identifier, e.external_db_key as source_database_key
+                FROM "${DB_ID}".${TABLES.EXTERNAL_IDS} as e
+                WHERE (${sourceWhereClauses.join(" OR ")}) 
+                  AND (e.external_db_id <> 'NOT_FOUND')
+                  AND (e.external_db_key <> 'guid') 
+                  AND (e.external_db_key <> 'pcid')
+                `)
+            : [];
+            console.log("Sources read")
+        //sources = mergeSources(sources)
+        
+
+
+
+
+        const platformIds = [
+            ...new Set(
+                sources
+                .flatMap((row: any) => [row.platform_id])
+                .filter(Boolean)
+            ),
+        ];
+        const platforms = platformIds.length
+        ? await pgClient.query(`
+            SELECT id, normalized_name as name, website as web_url, description, logo as avatar FROM "${DB_ID}".${TABLES.PLATFORMS}
+            WHERE id IN (${platformIds.map((id) => `'${id}'`).join(",")})
+        `)
+        : [];
+        console.log("Platforms read")
+
+
+
+        let roles = await pgClient.query(`
+            SELECT DISTINCT role as id
+            FROM "${DB_ID}".${TABLES.GUESTS};
+        `);
+        roles = roles.map(r => {
+          const name = r.id
+              // replace underscores with spaces
+              .replace(/_/g, ' ')
+              // insert a space before capital letters (except at the start)
+              .replace(/([a-z])([A-Z])/g, '$1 $2')
+              // lowercase all, then capitalize the first word
+              .toLowerCase()
+              .replace(/^([a-z])/, (m) => m.toUpperCase());
+            
+            return { ...r, name };
+        });
+        console.log("Roles read")
+
+
+        const quotes = [];
+        /*
+        episodeIds.length //ARRAY[role] as roles,
+        ? await pgClient.query(`
+            SELECT q.id, q.quote_text as name, episode_id
+            FROM "${DB_ID}".${TABLES.QUOTES} as q
+            WHERE q.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")})
+            GROUP BY q.id
+        `)
+        : [];
+        */
+        console.log("Quotes read")
+
+        const quoteIds = [
+            ...new Set(
+                quotes
+                .flatMap((row: any) => [row.id])
+                .filter(Boolean)
+            ),
+        ];
+
+        /*
+        //Use this for when mapping claims to quotes
+        const claims = quoteIds.length
+        ? await pgClient.query(`
+            SELECT id, episode_id, claim_text as name, 
+            COALESCE(
+              json_agg(
+                DISTINCT jsonb_build_object(
+                  'to_id', cq.quote_id,
+                  'entity_id', null
+                )
+              ) FILTER (WHERE cq.quote_id IS NOT NULL),
+              '[]'
+            ) AS supporting_quotes
+            FROM "${DB_ID}".${TABLES.CLAIMS} as c
+            LEFT JOIN "${DB_ID}".${TABLES.CLAIM_QUOTES} AS cq
+                ON c.id = cq.claim_id
+            WHERE cq.quote_id IN (${quoteIds.map((id) => `'${id}'`).join(",")})
+            GROUP BY c.id
+        `)
+        : [];
+        */
+       const claims = episodeIds.length
+        ? await pgClient.query(`
+            SELECT c.id, c.episode_id, c.claim_text as name
+            FROM "${DB_ID}".${TABLES.CLAIMS} as c
+            WHERE c.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")}) 
+              AND c.is_verified IS TRUE
+              AND c.is_flagged IS FALSE
+        `)
+        : [];
+        console.log("Claims read")
+
+    interface TextBlock {
+      id: string;
+      episode_id: string;
+      page_id: string;
+      block_type: string;
+      name: string;
+      markdown_content: string;
+    }
+
+    interface Page {
+      id: string;
+      episode_id: string;
+      name: string; // "Transcript"
+      text_blocks: { to_id: string; entity_id: null }[];
+    }
+
+    // “Tables”
+    const text_blocks: TextBlock[] = [];
+    const pages: Page[] = [];
+
+    /*
+    for (const ep of episodes) {
+      const transcriptText = ep.transcript?.trim();
+      if (!transcriptText) {
+        ep.tabs = [];
+        continue;
+      }
+
+      // Split transcript text into chunks
+      const chunks = transcriptText
+        .split(/\n\n+/)
+        .map(chunk => chunk.trim())
+        .filter(Boolean);
+
+      // Create the transcript page
+      const pageId = `pg_${uuidv4().slice(0, 8)}`;
+      const pageBlocks = chunks.map(chunk => {
+        const blockId = `tb_${uuidv4().slice(0, 8)}`;
+        
+        // Add transcript block (with both episode_id + page_id)
+        text_blocks.push({
+          id: blockId,
+          episode_id: ep.id,
+          page_id: pageId,
+          block_type: "text",
+          name: chunk.slice(0, 36) + (chunk.length > 36 ? "..." : ""),
+          markdown_content: chunk,
+        });
+
+        // Reference for the page’s block list
+        return { to_id: blockId, entity_id: null };
+      });
+
+      // Create a page record for this transcript
+      const page: Page = {
+        id: pageId,
+        episode_id: ep.id,
+        name: "Transcript",
+        text_blocks: pageBlocks,
+      };
+
+      pages.push(page);
+
+      // Add reference to episode
+      ep.tabs = [{ to_id: pageId, entity_id: null }];
+
+      // Remove the original transcript text
+      delete ep.transcript;
+    }
+      */
+
+    interface Selector {
+      id: string;
+      start_offset: number;
+      end_offset: number;
+    }
+
+    // --- Helper: find max substring similarity and offsets ---
+    function maxSubstringSimilarityWithOffsets(
+      quote: string,
+      text: string
+    ): { similarity: number; start: number; end: number } {
+      if (!quote || !text) return { similarity: 0, start: 0, end: 0 };
+
+      const q = quote.toLowerCase();
+      const t = text.toLowerCase();
+      const qLen = q.length;
+      const tLen = t.length;
+
+      if (qLen > tLen) {
+        const sim = 1 - levenshtein.get(q, t) / Math.max(qLen, tLen);
+        return { similarity: sim, start: 0, end: tLen };
+      }
+
+      let maxSim = 0;
+      let bestStart = 0;
+
+      for (let i = 0; i <= tLen - qLen; i++) {
+        const window = t.slice(i, i + qLen);
+        const sim = 1 - levenshtein.get(q, window) / qLen;
+        if (sim > maxSim) {
+          maxSim = sim;
+          bestStart = i;
+        }
+        if (maxSim >= 1) break; // early exit on perfect match
+      }
+
+      return { similarity: maxSim, start: bestStart, end: bestStart + qLen };
+    }
+
+
+    // --- Create selectors table ---
+    const selectors: Selector[] = [];
+
+    /*
+    // --- Pre-group text blocks by episode_id ---
+    const blocksByEpisode: Record<string, TextBlock[]> = {};
+    for (const tb of text_blocks) {
+      if (!blocksByEpisode[tb.episode_id]) blocksByEpisode[tb.episode_id] = [];
+      blocksByEpisode[tb.episode_id].push(tb);
+    }
+
+    // --- Assign targets to quotes and create selectors ---
+    for (const quote of quotes) {
+      const relevantBlocks = blocksByEpisode[quote.episode_id] ?? [];
+
+      let bestMatch: { tb: TextBlock; similarity: number; start: number; end: number } | null = null;
+
+      for (const tb of relevantBlocks) {
+        const { similarity, start, end } = maxSubstringSimilarityWithOffsets(
+          quote.name,
+          tb.markdown_content
+        );
+
+        if (similarity >= 0.9 && (!bestMatch || similarity > bestMatch.similarity)) {
+          bestMatch = { tb, similarity, start, end };
+        }
+      }
+
+      if (bestMatch) {
+        const selectorId = `sel_${uuidv4().slice(0, 8)}`;
+
+        selectors.push({
+          id: selectorId,
+          start_offset: bestMatch.start,
+          end_offset: bestMatch.end,
+        });
+
+        quote.targets = [{ to_id: bestMatch.tb.id, entity_id: selectorId }];
+      } else {
+        quote.targets = [];
+      }
+    }
+      */
+
+
+
+    console.log("All read in")
+    return { podcasts, episodes, hosts, guests, people, topics, sources, roles, platforms, listen_on_links, claims, quotes, pages, text_blocks, selectors};
+}

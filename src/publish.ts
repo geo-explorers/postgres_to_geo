@@ -1,61 +1,222 @@
-import {Ipfs, type Op } from "@graphprotocol/grc-20";
-import { wallet } from "./wallet.ts";
-import { getSmartAccountWalletClient } from '@graphprotocol/grc-20';
+import {
+  daoSpace,
+  getSmartAccountWalletClient,
+  personalSpace,
+  type Op,
+} from "@geoprotocol/geo-sdk";
+import dotenv from "dotenv";
+import * as fs from "fs";
+import path from "node:path";
+import { voteYesOnProposal } from "./vote";
 
-// IMPORTANT: Be careful with your private key. Don't commit it to version control.
-// You can get your private key using https://www.geobrowser.io/export-wallet
-const privateKey = process.env.PK_SW;
-//const rpcUrl = process.env.RPC;
-const smartAccountWalletClient = await getSmartAccountWalletClient({
-  privateKey,
-  //rpcUrl, // optional
-});
+dotenv.config();
 
-type PublishOptions = {
-	spaceId: string;
-	editName: string;
-	author: string;
-	ops: Op[];
-};
+// ─── Configuration ───────────────────────────────────────────────────────────
 
-export async function publish(options: PublishOptions, network: string) {
-	const { cid } = await Ipfs.publishEdit({
-		name: options.editName,
-		author: options.author,
-		ops: options.ops,
-	});
+const TESTNET_RPC_URL = "https://rpc-geo-test-zc16z3tcvf.t.conduit.xyz";
 
-	console.log("CID: ", cid)
+// ─── GraphQL Helper ──────────────────────────────────────────────────────────
 
-	// This returns the correct contract address and calldata depending on the space id
-	// Make sure you use the correct space id in the URL below and the correct network.
-	//const url = "https://api-testnet.grc-20.thegraph.com";
-	const url = "https://hypergraph-v2-testnet.up.railway.app";
-	const result = await fetch(`${url}/space/${options.spaceId}/edit/calldata`, {
-		method: "POST",
-		body: JSON.stringify({
-			cid: cid,
-			// Optionally specify TESTNET or MAINNET. Defaults to MAINNET
-			network: network,
-		}),
-	});
+const API_URL = "https://testnet-api.geobrowser.io/graphql";
 
-	const { to, data } = await result.json();
+export async function gql(query: string, variables?: Record<string, any>) {
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query, variables }),
+  });
 
-	if (network == "TESTNET") {
-		return await wallet.sendTransaction({
-		//return await smartAccountWalletClient.sendTransaction({
-			to: to,
-			value: 0n,
-			data: data,
-		});
-	} else if (network == "MAINNET") {
-		return await smartAccountWalletClient.sendTransaction({
-			to: to,
-			value: 0n,
-			data: data,
-		});
-	} else {
-		console.error("ERROR: INCORRECT NETWORK SPECIFIED (CHOOSE EITHER TESTNET OR MAINNET")
-	}
+  if (!res.ok) {
+    throw new Error(`API error: ${res.status} ${res.statusText}`);
+  }
+
+  const json = await res.json();
+  if (json.errors) {
+    console.error("GraphQL errors:", JSON.stringify(json.errors, null, 2));
+    throw new Error(`GraphQL: ${json.errors[0].message}`);
+  }
+  return json.data;
 }
+
+export async function publishOps(ops: Op[], editName: string, input_space?: string) {
+  let proposalId;
+  let spaceId = process.env.DEMO_SPACE_ID; 
+  if (input_space) {
+    spaceId = input_space
+  }
+  if (!spaceId) throw new Error("DEMO_SPACE_ID not set in .env");
+
+  const privateKey = process.env.PK_SW as `0x${string}`;
+  if (!privateKey) throw new Error("PK_SW not set in .env");
+
+  const client = await getSmartAccountWalletClient({
+    privateKey: privateKey,
+    rpcUrl: TESTNET_RPC_URL,
+  });
+  const author = client.account.address
+
+  const personalSpaceData = await gql(`{
+    spaces(filter: { address: { is: "${author}" } }) { id type }
+  }`);
+  
+  if (!author)
+    throw new Error("Smart Wallet address not found from private key.");
+
+  console.log(`\nQuerying space ${spaceId} from the API...`);
+
+  const spaceData = await gql(`{
+    space(id: "${spaceId}") {
+      type
+      address
+      membersList { memberSpaceId }
+      editorsList { memberSpaceId }
+    }
+  }`);
+
+  if (!spaceData.space) throw new Error(`Space ${spaceId} not found`);
+
+  const { type: spaceType, address: daoAddress } = spaceData.space;
+  console.log(`  Space type: ${spaceType}  address: ${daoAddress}`);
+  console.log(`Publishing ${ops.length} operations...`);
+
+  let to: `0x${string}`;
+  let calldata: `0x${string}`;
+
+  if (spaceType === "PERSONAL") {
+    const result = await personalSpace.publishEdit({
+      name: editName,
+      spaceId,
+      ops,
+      author: spaceId, // this is the spaceId of the personal space
+      network: "TESTNET",
+    });
+    console.log("CID:", result.cid);
+    console.log("Edit ID:", result.editId);
+    to = result.to;
+    calldata = result.calldata;
+  } else {
+    // Resolve the caller's wallet address to their personal space ID
+    
+    const callerSpace = personalSpaceData.spaces?.find(
+      (s: any) => s.type === "PERSONAL",
+    );
+    if (!callerSpace) {
+      throw new Error(
+        `No personal space found for wallet ${author}. ` +
+          `Make sure this wallet has a personal space on the Geo testnet.`,
+      );
+    }
+    const callerSpaceId: string = callerSpace.id;
+    console.log(`  Caller personal space: ${callerSpaceId}`);
+
+    // Verify the caller's personal space is a member or editor of the DAO
+    const members: Array<{ memberSpaceId: string }> =
+      spaceData.space.membersList;
+    const editors: Array<{ memberSpaceId: string }> =
+      spaceData.space.editorsList;
+    const allCandidates = [...members, ...editors];
+    const isMemberOrEditor = allCandidates.some(
+      (m) => m.memberSpaceId === callerSpaceId,
+    );
+
+    if (!isMemberOrEditor) {
+      throw new Error(
+        `Your personal space (${callerSpaceId}) is not a member or editor of DAO space ${spaceId}. ` +
+          `Members: ${members.map((m) => m.memberSpaceId).join(", ")}  ` +
+          `Editors: ${editors.map((e) => e.memberSpaceId).join(", ")}`,
+      );
+    }
+
+    const result = await daoSpace.proposeEdit({
+      name: editName,
+      ops,
+      author: callerSpaceId,
+      network: "TESTNET",
+      callerSpaceId: `0x${callerSpaceId}` as `0x${string}`,
+      daoSpaceId: `0x${spaceId}` as `0x${string}`,
+      daoSpaceAddress: daoAddress as `0x${string}`,
+    });
+    console.log("proposalId:", result.proposalId)
+    proposalId = result.proposalId
+    
+    console.log("CID:", result.cid);
+    console.log("Edit ID:", result.editId);
+    to = result.to;
+    calldata = result.calldata;
+    
+  }
+
+  
+  const txHash = await client.sendTransaction({ to, data: calldata });
+  console.log("Transaction hash:", txHash);
+
+  if (proposalId) {
+    await voteYesOnProposal(proposalId)
+  }
+  return txHash;
+}
+
+
+
+// ─── printOps ────────────────────────────────────────────────────────────────
+// Serializes ops to a JSON file, converting UUID byte arrays to hex strings.
+
+function isUuidByteArray(obj: any): boolean {
+  if (typeof obj !== "object" || obj === null || Array.isArray(obj))
+    return false;
+  const keys = Object.keys(obj);
+  if (keys.length !== 16) return false;
+  for (let i = 0; i < 16; i++) {
+    if (!(String(i) in obj) || typeof obj[String(i)] !== "number") return false;
+  }
+  return true;
+}
+
+function uuidBytesToString(obj: any): string {
+  let hex = "";
+  for (let i = 0; i < 16; i++) {
+    hex += obj[String(i)].toString(16).padStart(2, "0");
+  }
+  return hex;
+}
+
+function convertUuidBytes(obj: any): any {
+  if (obj === null || obj === undefined) return obj;
+  if (typeof obj !== "object") {
+    if (
+      typeof obj === "string" &&
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+        obj,
+      )
+    ) {
+      return obj.replace(/-/g, "");
+    }
+    return obj;
+  }
+  if (isUuidByteArray(obj)) {
+    return uuidBytesToString(obj);
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(convertUuidBytes);
+  }
+  const result: any = {};
+  for (const key of Object.keys(obj)) {
+    result[key] = convertUuidBytes(obj[key]);
+  }
+  return result;
+}
+
+export function printOps(ops: any, outputDir: string, fn: string) {
+  console.log("NUMBER OF OPS: ", ops.length);
+
+  if (ops.length > 0) {
+    const convertedOps = convertUuidBytes(ops);
+    const outputText = JSON.stringify(convertedOps, null, 2);
+    const filePath = path.join(outputDir, fn);
+    fs.writeFileSync(filePath, outputText);
+    console.log(`OPS PRINTED to ${fn}`);
+  } else {
+    console.log("NO OPS TO PRINT");
+  }
+}
+

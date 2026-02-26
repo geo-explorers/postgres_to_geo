@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@geoprotocol/geo-sdk": "^0.10.1",
+    "@geoprotocol/grc-20": "^0.3.0",
     "@graphprotocol/grc-20": "^0.25.6",
     "@notionhq/client": "^3.0.1",
     "crypto-js": "^4.2.0",
