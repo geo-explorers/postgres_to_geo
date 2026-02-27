@@ -7,7 +7,6 @@ import {
 import dotenv from "dotenv";
 import * as fs from "fs";
 import path from "node:path";
-import { voteYesOnProposal } from "./vote";
 
 dotenv.config();
 
@@ -40,6 +39,8 @@ export async function gql(query: string, variables?: Record<string, any>) {
 
 export async function publishOps(ops: Op[], editName: string, input_space?: string) {
   let proposalId;
+  let isEditor;
+  let authorSpaceId;
   let spaceId = process.env.DEMO_SPACE_ID; 
   if (input_space) {
     spaceId = input_space
@@ -118,6 +119,9 @@ export async function publishOps(ops: Op[], editName: string, input_space?: stri
     const isMemberOrEditor = allCandidates.some(
       (m) => m.memberSpaceId === callerSpaceId,
     );
+    isEditor = editors.some(
+      (e) => e.memberSpaceId === callerSpaceId,
+    );
 
     if (!isMemberOrEditor) {
       throw new Error(
@@ -138,7 +142,7 @@ export async function publishOps(ops: Op[], editName: string, input_space?: stri
     });
     console.log("proposalId:", result.proposalId)
     proposalId = result.proposalId
-    
+    authorSpaceId = callerSpaceId
     console.log("CID:", result.cid);
     console.log("Edit ID:", result.editId);
     to = result.to;
@@ -150,8 +154,17 @@ export async function publishOps(ops: Op[], editName: string, input_space?: stri
   const txHash = await client.sendTransaction({ to, data: calldata });
   console.log("Transaction hash:", txHash);
 
-  if (proposalId) {
-    await voteYesOnProposal(proposalId)
+  if (proposalId && isEditor && authorSpaceId) {
+    const result = daoSpace.voteProposal({
+      authorSpaceId: authorSpaceId,
+      spaceId: spaceId,
+      proposalId: proposalId,
+      vote: "YES"
+    })
+    to = result.to;
+    calldata = result.calldata;
+    const txHash = await client.sendTransaction({ to, data: calldata });
+    console.log("Vote transaction hash:", txHash);
   }
   return txHash;
 }
