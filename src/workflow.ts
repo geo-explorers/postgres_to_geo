@@ -8,10 +8,10 @@ import {
 } from './setup_ontology.ts';
 import {
   printOps,
-  publishOps,
   type Entity,
   buildEntityCached
 } from './functions.ts';
+import { publishOps } from './publish.ts';
 import { processEntity } from '../post_entity.ts';
 
 export interface WorkflowParams {
