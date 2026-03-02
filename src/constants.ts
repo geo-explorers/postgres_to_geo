@@ -87,7 +87,7 @@ export const propertyToDataTypeMap: Record<string, string> = {
   "guests": "relation",
   "contributors": "relation",
   "episode_number": "integer",
-  "air_date": "date",
+  "air_date": "datetime",
   "audio_url": "text",
   "duration": "float",
   "rss_feed_url": "text",
