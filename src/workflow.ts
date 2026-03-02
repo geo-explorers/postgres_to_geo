@@ -9,9 +9,9 @@ import {
 import {
   printOps,
   type Entity,
-  buildEntityCached
+  buildEntityCached,
+  publishOps_w_spaces
 } from './functions.ts';
-import { publishOps } from './publish.ts';
 import { processEntity } from '../post_entity.ts';
 
 export interface WorkflowParams {
@@ -79,8 +79,7 @@ export async function processPodcastWorkflow(params: WorkflowParams): Promise<Wo
     console.log(`Generated ${ops.length} ops`);
 
     console.log('Publishing ops...');
-    const editName = `Publish ${formattedEpisodes.length} podcast episode(s)`;
-    await publishOps(ops, editName);
+    await publishOps_w_spaces(ops);
 
     const duration = Date.now() - startTime;
 
