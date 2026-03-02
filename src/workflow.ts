@@ -79,7 +79,8 @@ export async function processPodcastWorkflow(params: WorkflowParams): Promise<Wo
     console.log(`Generated ${ops.length} ops`);
 
     console.log('Publishing ops...');
-    await publishOps(ops);
+    const editName = `Publish ${formattedEpisodes.length} podcast episode(s)`;
+    await publishOps(ops, editName);
 
     const duration = Date.now() - startTime;
 
