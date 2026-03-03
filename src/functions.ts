@@ -712,6 +712,29 @@ export function matchEntities(
 // Cache to store already-built entities by table + id
 export const entityCache: Record<string, Record<string, any>> = {};
 
+// Index for O(1) normalized-name lookups into geoEntities.
+// Keyed by the geoRows array reference, maps normalized name -> array of matching geoEntities.
+const geoNameIndexCache = new WeakMap<any[], Map<string, any[]>>();
+
+function getGeoNameIndex(geoRows: any[]): Map<string, any[]> {
+  let index = geoNameIndexCache.get(geoRows);
+  if (index) return index;
+
+  index = new Map<string, any[]>();
+  for (const entity of geoRows) {
+    const normalized = normalizeName(entity.name);
+    if (!normalized) continue;
+    let bucket = index.get(normalized);
+    if (!bucket) {
+      bucket = [];
+      index.set(normalized, bucket);
+    }
+    bucket.push(entity);
+  }
+  geoNameIndexCache.set(geoRows, index);
+  return index;
+}
+
 export function buildEntityCached(
   row: any,
   breakdown: any,
@@ -1019,10 +1042,9 @@ if (!match) {
 // 3. Match on name similarity
 if (!match && row.name) {
     const localName = normalizeName(row.name);
-    let bestScore = 0;
-    let bestMatch: any = null;
 
-    for (const p of geoRows) {
+    // Helper: check type validity + exclude existingSources + URL/property alignment
+    const isValidCandidate = (p: any): boolean => {
         // enforce type + exclude existingSources
         const valid =
             p.relations?.some(r =>
@@ -1034,29 +1056,9 @@ if (!match && row.name) {
                 existingSources.includes(String(r.toEntityId)))
             );
 
-        if (!valid) continue;
+        if (!valid) return false;
 
-        // ✅ check URL/property alignment
-        /*
-        let mismatch = false;
-        for (const localVal of values) {
-            if (typeof localVal.value != "string") continue;
-            const localIsUrl = (/^https?:\/\//i.test(String(localVal.value)) || /\.(com|org|net|io|co|fm)$/i.test(String(localVal.value)));
-            if (!localIsUrl) continue;
-
-            // look for same propertyId in API values
-            const apiVal = p.values?.find(v => String(v.propertyId) === String(localVal.property));
-            if (apiVal && typeof apiVal.value == "string") {
-                const apiIsUrl = (/^https?:\/\//i.test(String(apiVal.value)) || /\.(com|org|net|io|co|fm)$/i.test(String(apiVal.value)));
-                if (apiIsUrl && String(apiVal.value) != String(localVal.value)) {
-                    mismatch = true; // same property, but URL differs
-                    break;
-                }
-            }
-        }
-        */
-       let mismatch = false;
-
+        // check URL/property alignment
         for (const localVal of values) {
             if (typeof localVal.value !== "string") continue;
 
@@ -1081,26 +1083,51 @@ if (!match && row.name) {
                     const apiNorm   = normalizeUrl_for_matching(apiVal.value);
 
                     if (localNorm !== apiNorm) {
-                        mismatch = true;
-                        break;
+                        return false; // URL mismatch
                     }
                 }
             }
         }
 
-        if (mismatch) continue; // 🚫 reject this candidate
+        return true;
+    };
 
-        const apiName = normalizeName(p.name);
-        const score = stringSimilarity(localName, apiName);
-
-        if (score > bestScore) {
-            bestScore = score;
-            bestMatch = p;
+    // --- Fast path: O(1) exact normalized-name lookup via index ---
+    if (localName) {
+        const nameIndex = getGeoNameIndex(geoRows);
+        const exactCandidates = nameIndex.get(localName);
+        if (exactCandidates) {
+            for (const p of exactCandidates) {
+                if (isValidCandidate(p)) {
+                    match = p; // exact normalized match (score = 1.0 > 0.9 threshold)
+                    break;
+                }
+            }
         }
     }
 
-    //console.log(bestScore);
-    if (bestScore > 0.9) match = bestMatch; // adjust threshold as needed
+    // --- Slow path: fuzzy scan fallback (only when exact lookup found nothing) ---
+    if (!match && localName) {
+        let bestScore = 0;
+        let bestMatch: any = null;
+
+        for (const p of geoRows) {
+            if (!isValidCandidate(p)) continue;
+
+            const apiName = normalizeName(p.name);
+            // Skip exact matches — already handled by index lookup above
+            if (apiName === localName) continue;
+
+            const score = stringSimilarity(localName, apiName);
+
+            if (score > bestScore) {
+                bestScore = score;
+                bestMatch = p;
+            }
+        }
+
+        if (bestScore > 0.9) match = bestMatch; // adjust threshold as needed
+    }
 }
 
   if (match) {
