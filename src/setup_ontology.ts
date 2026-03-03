@@ -274,14 +274,27 @@ export const claimBreakdown = {
     types: [typeToIdMap['claim']],
     value_fields: ["name"],
     relations: [
-      /*
       {
-          type: "supporting_quotes",
-          toEntityBreakdown: quoteBreakdown,
+          type: "topics",
+          toEntityBreakdown: topicBreakdown,
           entityBreakdown: null,
-          image: false
+          image: false,
       },
-      */
+    ],
+}
+
+export const episodeClaimBreakdown = {
+    table: "claim_episodes",
+    not_unique: false,
+    types: [typeToIdMap['claim_relation']],
+    value_fields: [],
+    relations: [
+      {
+          type: "topics",
+          toEntityBreakdown: topicBreakdown,
+          entityBreakdown: null,
+          image: false,
+      },
     ],
 }
 
@@ -391,7 +404,7 @@ export async function read_in_tables({
   offset?: number;
   limit?: number;
 }): Promise<{
-    podcasts: any; episodes: any; hosts: any; guests: any; people: any; topics: any; sources: any; roles: any; platforms: any; listen_on_links: any; quotes: any; claims: any; pages: any; text_blocks: any; selectors: any;
+    podcasts: any; episodes: any; hosts: any; guests: any; people: any; topics: any; sources: any; roles: any; platforms: any; listen_on_links: any; quotes: any; claims: any; claim_episodes: any; pages: any; text_blocks: any; selectors: any;
 }> {
 
     const inClause = podcast_name
@@ -904,11 +917,45 @@ export async function read_in_tables({
         `)
         : [];
         */
+       const claim_episodes = episodeIds.length
+        ? await pgClient.query(`
+            SELECT ce.id, ce.episode_id, ce.claim_id,
+            COALESCE(
+              json_agg(
+                DISTINCT jsonb_build_object(
+                  'to_id', tm.to_tag_id,
+                  'entity_id', null
+                )
+              ) FILTER (WHERE tm.to_tag_id IS NOT NULL),
+              '[]'
+            ) AS topics
+            FROM "${DB_ID}".${TABLES.CLAIM_EPISODES} as ce
+            LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} as tm ON tm.from_claim_episode_id = ce.id
+            WHERE ce.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")})
+            GROUP BY ce.id, ce.episode_id, ce.claim_id
+            ORDER BY ce.episode_id, ce.claim_order
+        `)
+        : [];
+        console.log("Claim episodes read")
+
        const claims = episodeIds.length
         ? await pgClient.query(`
-            SELECT c.id, c.episode_id, c.claim_text as name
+            SELECT c.id, c.claim_text as name,
+            COALESCE(
+              json_agg(
+                DISTINCT jsonb_build_object(
+                  'to_id', tm.to_tag_id,
+                  'entity_id', null
+                )
+              ) FILTER (WHERE tm.to_tag_id IS NOT NULL),
+              '[]'
+            ) AS topics
             FROM "${DB_ID}".${TABLES.CLAIMS} as c
-            WHERE c.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")}) 
+            INNER JOIN "${DB_ID}".${TABLES.CLAIM_EPISODES} as ce ON c.id = ce.claim_id
+            LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} as tm ON tm.from_claim_id = c.id
+            WHERE ce.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")})
+              AND c.is_verified = true
+            GROUP BY c.id, c.claim_text
         `)
         : [];
         console.log("Claims read")
@@ -1071,7 +1118,7 @@ export async function read_in_tables({
 
 
     console.log("All read in")
-    return { podcasts, episodes, hosts, guests, people, topics, sources, roles, platforms, listen_on_links, claims, quotes, pages, text_blocks, selectors};
+    return { podcasts, episodes, hosts, guests, people, topics, sources, roles, platforms, listen_on_links, claims, claim_episodes, quotes, pages, text_blocks, selectors};
 }
 
 
@@ -1086,6 +1133,7 @@ export async function loadGeoEntities(space?: string) {
     listen_on_links: listenOnBreakdown,
     topics: topicBreakdown,
     claims: claimBreakdown,
+    claim_episodes: episodeClaimBreakdown,
     quotes: quoteBreakdown,
     pages: pageBreakdown,
     text_blocks: textBlockBreakdown,
