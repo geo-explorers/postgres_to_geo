@@ -8,9 +8,9 @@ import {
 } from './setup_ontology.ts';
 import {
   printOps,
-  publishOps,
   type Entity,
-  buildEntityCached
+  buildEntityCached,
+  publishOps_w_spaces
 } from './functions.ts';
 import { processEntity } from '../post_entity.ts';
 
@@ -79,7 +79,7 @@ export async function processPodcastWorkflow(params: WorkflowParams): Promise<Wo
     console.log(`Generated ${ops.length} ops`);
 
     console.log('Publishing ops...');
-    await publishOps(ops);
+    await publishOps_w_spaces(ops);
 
     const duration = Date.now() - startTime;
 

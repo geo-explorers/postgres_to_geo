@@ -7,3 +7,5 @@ ethcc_testnet_ops_projects_all_tags
 ethcc_testnet_ops_to_publish
 ethcc_testnet_ops_x_followers
 ops_archive
+
+.claude/settings.local.json

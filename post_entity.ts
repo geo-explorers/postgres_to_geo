@@ -1,11 +1,51 @@
-import { propertyToIdMap } from "./src/constants.ts";
-import { type Op, Graph, Position, Id, SystemIds } from "@graphprotocol/grc-20";
-import { normalizeToUUID, processNewRelation,  addSpace  } from "./src/functions.ts";
+import { propertyToIdMap, propertyToDataTypeMap } from "./src/constants.ts";
+
+// Create reverse lookup: UUID → property name
+const idToPropertyMap: Record<string, string> = Object.fromEntries(
+    Object.entries(propertyToIdMap).map(([name, id]) => [id, name])
+);
+
+// Helper to get data type from property UUID
+function getDataTypeForProperty(propertyId: string): string {
+    const propertyName = idToPropertyMap[propertyId];
+    return propertyToDataTypeMap[propertyName] || "text";
+}
+
+// Helper to format value based on data type
+function formatValueForType(value: any, dataType: string): any {
+    if (value == null) return value;
+
+    if (dataType === "float64" || dataType === "float") {
+        return typeof value === "number" ? value : parseFloat(value);
+    } else if (dataType === "int64" || dataType === "integer64" || dataType === "integer") {
+        return typeof value === "number" ? value : parseInt(value, 10);
+    } else if (dataType === "boolean") {
+        return typeof value === "boolean" ? value : value === "true" || value === true;
+    } else if (dataType === "date") {
+        // If it's an ISO datetime string, extract just the date part
+        if (typeof value === "string" && value.includes("T")) {
+            return value.split("T")[0];
+        }
+        return value;
+    } else if (dataType === "time") {
+        // Extract just the time part with timezone: HH:MM:SS.sssZ
+        if (typeof value === "string" && value.includes("T")) {
+            return value.split("T")[1]; // e.g., "08:00:00.000Z"
+        }
+        return value;
+    }
+    // Default: return as-is (string)
+    return value;
+}
+//import { type Op, Graph, Position, Id, SystemIds } from "@graphprotocol/grc-20";
+import { type Op, Graph, Position, Id, SystemIds } from "@geoprotocol/geo-sdk";
+import { processNewRelation,  addSpace  } from "./src/functions.ts";
 import * as fs from "fs";
 type Value = {
   spaceId: string;
   property: string;
-  value: string;
+  value: string | number | boolean;
+  type?: string;
 };
 
 type Relation = {
@@ -86,7 +126,14 @@ export async function processEntity({
 
         if (!acc[v.spaceId]) acc[v.spaceId] = [];
         const { spaceId, ...rest } = v;
-        acc[v.spaceId].push(rest);
+        // Add type for the new SDK and format value appropriately
+        const dataType = v.type;
+        const valueWithType = {
+            ...rest,
+            value: formatValueForType(v.value, dataType),
+            type: dataType
+        };
+        acc[v.spaceId].push(valueWithType);
         return acc;
     }, {});
 

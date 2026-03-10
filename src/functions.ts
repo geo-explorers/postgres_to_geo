@@ -1,16 +1,16 @@
 import { v4 as uuidv4 } from 'uuid';
 import * as fs from "fs";
 import md5 from 'crypto-js/md5.js';
-import {Id, Base58, SystemIds, Graph, Position, type Op, IdUtils} from "@graphprotocol/grc-20";
+import {Id, Base58, SystemIds, Graph, Position, type Op, IdUtils} from "@geoprotocol/geo-sdk";
 import dotenv from "dotenv";
 import { validate as uuidValidate } from 'uuid';
 
-import { propertyToIdMap, testnetWalletAddress } from './constants.ts';
+import { propertyToIdMap, propertyToDataTypeMap, testnetWalletAddress } from './constants.ts';
 
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { publish } from './publish.ts';
+import { publishOps } from './publish.ts';
 
 
 function normalizeName_tmp(name: string): string {
@@ -89,48 +89,48 @@ export async function searchOps({
     if (!searchText) {
       return null;
     }
-    let match;
+    let match: any;
     if (propType == "URL") {
         match = ops.find(op =>
-            op.type === "UPDATE_ENTITY" &&
-            Array.isArray(op.entity?.values) &&
-            op.entity.values.some(
+            (op.type === "createEntity" || op.type === "updateEntity") &&
+            Array.isArray((op as any).values) &&
+            (op as any).values.some(
                 (v: { property: string; value: string }) =>
-                v.property == normalizeToUUID_STRING(property) &&
+                v.property == property &&
                 normalizeUrl(v.value) == normalizeUrl(searchText)
             )
         );
     } else {
         match = ops.find(op =>
-            op.type === "UPDATE_ENTITY" &&
-            Array.isArray(op.entity?.values) &&
-            op.entity.values.some(
+            (op.type === "createEntity" || op.type === "updateEntity") &&
+            Array.isArray((op as any).values) &&
+            (op as any).values.some(
                 (v: { property: string; value: string }) =>
-                v.property == normalizeToUUID_STRING(property) &&
+                v.property == property &&
                 String(v.value)?.toLowerCase() == searchText?.toLowerCase()
             )
         );
     }
 
-    
-    
+
+
     if (match) {
         if (typeId) {
             const matchType = ops.find(op =>
-                op.type == "CREATE_RELATION" &&
-                op.relation.fromEntity == match?.entity?.id &&
-                op.relation.type == SystemIds.TYPES_PROPERTY &&
-                op.relation.toEntity == normalizeToUUID_STRING(typeId)
+                op.type == "createRelation" &&
+                (op as any).fromEntity == match?.id &&
+                (op as any).relationType == SystemIds.TYPES_PROPERTY &&
+                (op as any).toEntity == typeId
             );
             if (matchType) {
-                //console.log("Match found", match.entity.id)
-                return match.entity.id
+                //console.log("Match found", match.id)
+                return match.id
             } else {
                 return null
             }
 
         } else {
-            return match.entity.id;
+            return match.id;
         }
     } else {
         return null
@@ -138,11 +138,11 @@ export async function searchOps({
 }
 
 export async function hasBeenEdited(ops: Array<Op>, entityId: string): Promise<boolean> {
-    
+
     let match;
     match = ops.find(op =>
-        op.type === "UPDATE_ENTITY" &&
-        op.entity.id === normalizeToUUID_STRING(entityId)
+        (op.type === "createEntity" || op.type === "updateEntity") &&
+        (op as any).id === entityId
     );
 
     if (match) {
@@ -150,8 +150,8 @@ export async function hasBeenEdited(ops: Array<Op>, entityId: string): Promise<b
     }
 
     match = ops.find(op =>
-        op.type === "CREATE_RELATION" &&
-        op.relation.fromEntity === normalizeToUUID_STRING(entityId)
+        op.type === "createRelation" &&
+        (op as any).fromEntity === entityId
     );
 
     if (match) {
@@ -226,8 +226,8 @@ export function valuePropertyExistsOnGeo(spaceId: string, entityOnGeo: any, prop
     if (entityOnGeo) {
         geoProperties = entityOnGeo?.values?.filter(
             (item: any) => 
-                item.spaceId === normalizeToUUID_STRING(spaceId) &&
-                item.propertyId === normalizeToUUID_STRING(propertyId)
+                item.spaceId === spaceId &&
+                item.propertyId === propertyId
         );
 
         if (geoProperties.length > 0) { //Note if it is greater than 1, we may be dealing with a multi space entity and I need to make sure I am in the correct space...
@@ -244,8 +244,8 @@ export function relationPropertyExistsOnGeo(spaceId: string, entityOnGeo: any, p
     if (entityOnGeo) {
         geoProperties = entityOnGeo?.relations?.filter(
             (item: any) => 
-                item.spaceId === normalizeToUUID_STRING(spaceId) &&
-                item.typeId === normalizeToUUID_STRING(propertyId)
+                item.spaceId === spaceId &&
+                item.typeId === propertyId
         );
         if (geoProperties.length > 0) { //Not true bc I am filtering by spaceId -> Note if it is greater than 1, we may be dealing with a multi space entity and I need to make sure I am in the correct space...
             return true;
@@ -297,13 +297,13 @@ export function processNewRelation({
 
     // Search in the current ops whether relation exists...
     const match = currenOps.find(op =>
-        op.type === "CREATE_RELATION" &&
-        op.relation.fromEntity === fromEntityId &&
-        op.relation.type === propertyId &&
-        op.relation.toEntity === toEntityId
+        op.type === "createRelation" &&
+        (op as any).fromEntity === fromEntityId &&
+        (op as any).relationType === propertyId &&
+        (op as any).toEntity === toEntityId
     );
     if (match) {
-        return { ops: ops, relationEntityId: match.relation.entity, position: match.relation.position };
+        return { ops: ops, relationEntityId: (match as any).entityId, position: (match as any).position };
     }
  
     const args = arguments[0];
@@ -461,6 +461,49 @@ export function readAllOpsFromFolder(): any[] {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Helper to check if an object is a UUID byte array (16 bytes, keys 0-15)
+function isUuidByteArray(obj: any): boolean {
+  if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) return false;
+  const keys = Object.keys(obj);
+  if (keys.length !== 16) return false;
+  for (let i = 0; i < 16; i++) {
+    if (!(String(i) in obj) || typeof obj[String(i)] !== 'number') return false;
+  }
+  return true;
+}
+
+// Convert UUID byte array to hex string without dashes
+function uuidBytesToString(obj: any): string {
+  let hex = '';
+  for (let i = 0; i < 16; i++) {
+    hex += obj[String(i)].toString(16).padStart(2, '0');
+  }
+  return hex;
+}
+
+// Recursively convert UUID byte arrays to strings in an object
+function convertUuidBytes(obj: any): any {
+  if (obj === null || obj === undefined) return obj;
+  if (typeof obj !== 'object') {
+    // If it's a string UUID with dashes, remove them
+    if (typeof obj === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(obj)) {
+      return obj.replace(/-/g, '');
+    }
+    return obj;
+  }
+  if (isUuidByteArray(obj)) {
+    return uuidBytesToString(obj);
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(convertUuidBytes);
+  }
+  const result: any = {};
+  for (const key of Object.keys(obj)) {
+    result[key] = convertUuidBytes(obj[key]);
+  }
+  return result;
+}
+
 export function printOps(ops: any, outputDir: string, fn: string) {
   //const outputDir = path.join(__dirname, '');
   console.log("NUMBER OF OPS: ", ops.length);
@@ -469,8 +512,12 @@ export function printOps(ops: any, outputDir: string, fn: string) {
     // Get existing filenames in the directory
     const existingFiles = fs.readdirSync(outputDir);
 
+    // Convert UUID byte arrays to strings and remove dashes from UUID strings
+    const convertedOps = convertUuidBytes(ops);
+
     // Create output text
-    const outputText = JSON.stringify(ops, null, 2);
+    const outputText = JSON.stringify(convertedOps, (_, v) => typeof v === "bigint" ? v.toString() : v, 2);
+    
 
     // Write to file
     const filename = fn;
@@ -483,7 +530,7 @@ export function printOps(ops: any, outputDir: string, fn: string) {
   }
 }
 
-export async function publishOps(ops: any) {
+export async function publishOps_w_spaces(ops: any) {
     if ((ops.length > 0) && (true)) {
         const iso = new Date().toISOString();
         let txHash;
@@ -491,12 +538,7 @@ export async function publishOps(ops: any) {
         
 
         for (const space of spaces) { 
-            txHash = await publish({
-                spaceId: space,
-                author: testnetWalletAddress,
-                editName: `Upload ${iso}`,
-                ops: await filterOps(ops, space), // An edit accepts an array of Ops
-            }, "TESTNET");
+            txHash = await publishOps(await filterOps(ops, space), `Upload ${iso}`, space)
     
             console.log(`Your transaction hash for ${space} is:`, txHash);
             console.log(iso);
@@ -518,7 +560,8 @@ export async function publishOps(ops: any) {
 export type Value = {
   spaceId: string;
   property: string;
-  value: string;
+  value: string | number | boolean;
+  type?: string;
 };
 
 export type Relation = {
@@ -617,12 +660,12 @@ export function matchEntities(
       for (const rel of localEntity.relations) {
         match = api.find(api =>
           api.relations?.some(r =>
-            r.typeId == normalizeToUUID(propertyToIdMap["sources"]) &&
+            r.typeId == propertyToIdMap["sources"] &&
             r.toEntity.name == rel.toEntity.name &&
             Array.isArray(r?.entity?.values) &&
             r.entity.values.some(v =>
-              v.propertyId == normalizeToUUID(propertyToIdMap["source_db_identifier"]) &&
-              v.value === rel.entity.values.filter(v => v.property == normalizeToUUID(propertyToIdMap["source_db_identifier"])).value
+              v.propertyId == propertyToIdMap["source_db_identifier"] &&
+              v.value === rel.entity.values.filter(v => v.property == propertyToIdMap["source_db_identifier"]).value
             )
           )
         );
@@ -669,6 +712,29 @@ export function matchEntities(
 // Cache to store already-built entities by table + id
 export const entityCache: Record<string, Record<string, any>> = {};
 
+// Index for O(1) normalized-name lookups into geoEntities.
+// Keyed by the geoRows array reference, maps normalized name -> array of matching geoEntities.
+const geoNameIndexCache = new WeakMap<any[], Map<string, any[]>>();
+
+function getGeoNameIndex(geoRows: any[]): Map<string, any[]> {
+  let index = geoNameIndexCache.get(geoRows);
+  if (index) return index;
+
+  index = new Map<string, any[]>();
+  for (const entity of geoRows) {
+    const normalized = normalizeName(entity.name);
+    if (!normalized) continue;
+    let bucket = index.get(normalized);
+    if (!bucket) {
+      bucket = [];
+      index.set(normalized, bucket);
+    }
+    bucket.push(entity);
+  }
+  geoNameIndexCache.set(geoRows, index);
+  return index;
+}
+
 export function buildEntityCached(
   row: any,
   breakdown: any,
@@ -708,16 +774,49 @@ export function buildEntityCached(
   // --- build values ---
   const values = (breakdown.value_fields ?? []).flatMap((field: string) => {
     const val = row[field];
-    return val != null
-      ? [{
-          spaceId,
-          property: normalizeToUUID(propertyToIdMap[field]),
-          value:
-            typeof val === "object" && val instanceof Date
-              ? val.toISOString()
-              : String(val),
-        }]
-      : [];
+    if (val == null) return [];
+
+    const dataType = propertyToDataTypeMap[field] || "text";
+    let formattedValue: any;
+
+    // Format value based on data type
+    if (dataType === "float64" || dataType === "float") {
+      formattedValue = typeof val === "number" ? val : parseFloat(val);
+    } else if (dataType === "int64" || dataType === "integer64" || dataType === "integer") {
+      formattedValue = typeof val === "number" ? val : parseInt(val, 10);
+    } else if (dataType === "boolean") {
+      formattedValue = typeof val === "boolean" ? val : val === "true" || val === true;
+    } else if (dataType === "date") {
+      // Keep as ISO string for dates
+      formattedValue = typeof val === "object" && val instanceof Date
+        ? val.toISOString().split('T')[0]  // Just the date part: YYYY-MM-DD
+        : String(val);
+    } else if (dataType === "datetime") {
+      formattedValue = typeof val === "object" && val instanceof Date
+        ? val.toISOString()
+        : String(val);
+    } else if (dataType === "time") {
+      // Extract just the time part with timezone: HH:MM:SS.sssZ
+      if (typeof val === "object" && val instanceof Date) {
+        formattedValue = val.toISOString().split('T')[1]; // e.g., "08:00:00.000Z"
+      } else if (typeof val === "string" && val.includes("T")) {
+        formattedValue = val.split("T")[1]; // Extract time from ISO string
+      } else {
+        formattedValue = String(val);
+      }
+    } else {
+      // Default to string for text and other types
+      formattedValue = typeof val === "object" && val instanceof Date
+        ? val.toISOString()
+        : String(val);
+    }
+
+    return [{
+      spaceId,
+      property: propertyToIdMap[field],
+      value: formattedValue,
+      type: dataType,
+    }];
   });
 
    // 🔹 STEP 1: Separate out source-type relations
@@ -738,7 +837,7 @@ export function buildEntityCached(
           return [
             {
               spaceId,
-              type: normalizeToUUID(propertyToIdMap[rel.type]),
+              type: propertyToIdMap[rel.type],
               toEntity: {
                 internal_id: IdUtils.generate(),
                 id: null,
@@ -819,7 +918,7 @@ export function buildEntityCached(
           if (rel.type == "sources" && childEntity.entityOnGeo) { //Todo - Check that this doesnt pull anything in if the child entity is empty (even if it just has a type...)
               //console.log("SOURCE FOUND")
               const hasSourceDbIdentifier = childEntity?.entityOnGeo?.values?.some(
-                v => v.propertyId === String(normalizeToUUID(propertyToIdMap["source_db_identifier"]))
+                v => v.propertyId === String(propertyToIdMap["source_db_identifier"])
               );
               if (hasSourceDbIdentifier) {
                 existingSources.push(childEntity.entityOnGeo.id)
@@ -827,8 +926,8 @@ export function buildEntityCached(
               
               //console.log(childEntity.entityOnGeo)
               if (!match) {                  
-                  const sourceTypeId = String(normalizeToUUID(propertyToIdMap["sources"]));
-                  const sourceDbPropId = String(normalizeToUUID(propertyToIdMap["source_db_identifier"]));
+                  const sourceTypeId = String(propertyToIdMap["sources"]);
+                  const sourceDbPropId = String(propertyToIdMap["source_db_identifier"]);
                   const sourceDbValue = String(
                     entitySide?.values?.find(v => String(v.property) == sourceDbPropId)?.value || ""
                   );
@@ -851,7 +950,7 @@ export function buildEntityCached(
       return [
         {
           spaceId,
-          type: normalizeToUUID(propertyToIdMap[rel.type]),
+          type: propertyToIdMap[rel.type],
           toEntity: childEntity,
           entity: entitySide,
         },
@@ -923,7 +1022,7 @@ if (!match) {
       // must not have a source already in existingSources
       p.relations?.every(r =>
         !(
-          String(r.typeId) === String(normalizeToUUID(propertyToIdMap["sources"])) &&
+          String(r.typeId) === String(propertyToIdMap["sources"]) &&
           existingSources.includes(String(r.toEntityId))
         )
       ) &&
@@ -943,10 +1042,9 @@ if (!match) {
 // 3. Match on name similarity
 if (!match && row.name) {
     const localName = normalizeName(row.name);
-    let bestScore = 0;
-    let bestMatch: any = null;
 
-    for (const p of geoRows) {
+    // Helper: check type validity + exclude existingSources + URL/property alignment
+    const isValidCandidate = (p: any): boolean => {
         // enforce type + exclude existingSources
         const valid =
             p.relations?.some(r =>
@@ -954,33 +1052,13 @@ if (!match && row.name) {
                 String(r.toEntityId) == String(breakdown.types[0])
             ) &&
             p.relations?.every(r =>
-                !(String(r.typeId) == String(normalizeToUUID(propertyToIdMap["sources"])) &&
+                !(String(r.typeId) == String(propertyToIdMap["sources"]) &&
                 existingSources.includes(String(r.toEntityId)))
             );
 
-        if (!valid) continue;
+        if (!valid) return false;
 
-        // ✅ check URL/property alignment
-        /*
-        let mismatch = false;
-        for (const localVal of values) {
-            if (typeof localVal.value != "string") continue;
-            const localIsUrl = (/^https?:\/\//i.test(String(localVal.value)) || /\.(com|org|net|io|co|fm)$/i.test(String(localVal.value)));
-            if (!localIsUrl) continue;
-
-            // look for same propertyId in API values
-            const apiVal = p.values?.find(v => String(v.propertyId) === String(localVal.property));
-            if (apiVal && typeof apiVal.value == "string") {
-                const apiIsUrl = (/^https?:\/\//i.test(String(apiVal.value)) || /\.(com|org|net|io|co|fm)$/i.test(String(apiVal.value)));
-                if (apiIsUrl && String(apiVal.value) != String(localVal.value)) {
-                    mismatch = true; // same property, but URL differs
-                    break;
-                }
-            }
-        }
-        */
-       let mismatch = false;
-
+        // check URL/property alignment
         for (const localVal of values) {
             if (typeof localVal.value !== "string") continue;
 
@@ -1005,26 +1083,51 @@ if (!match && row.name) {
                     const apiNorm   = normalizeUrl_for_matching(apiVal.value);
 
                     if (localNorm !== apiNorm) {
-                        mismatch = true;
-                        break;
+                        return false; // URL mismatch
                     }
                 }
             }
         }
 
-        if (mismatch) continue; // 🚫 reject this candidate
+        return true;
+    };
 
-        const apiName = normalizeName(p.name);
-        const score = stringSimilarity(localName, apiName);
-
-        if (score > bestScore) {
-            bestScore = score;
-            bestMatch = p;
+    // --- Fast path: O(1) exact normalized-name lookup via index ---
+    if (localName) {
+        const nameIndex = getGeoNameIndex(geoRows);
+        const exactCandidates = nameIndex.get(localName);
+        if (exactCandidates) {
+            for (const p of exactCandidates) {
+                if (isValidCandidate(p)) {
+                    match = p; // exact normalized match (score = 1.0 > 0.9 threshold)
+                    break;
+                }
+            }
         }
     }
 
-    //console.log(bestScore);
-    if (bestScore > 0.9) match = bestMatch; // adjust threshold as needed
+    // --- Slow path: fuzzy scan fallback (only when exact lookup found nothing) ---
+    if (!match && localName) {
+        let bestScore = 0;
+        let bestMatch: any = null;
+
+        for (const p of geoRows) {
+            if (!isValidCandidate(p)) continue;
+
+            const apiName = normalizeName(p.name);
+            // Skip exact matches — already handled by index lookup above
+            if (apiName === localName) continue;
+
+            const score = stringSimilarity(localName, apiName);
+
+            if (score > bestScore) {
+                bestScore = score;
+                bestMatch = p;
+            }
+        }
+
+        if (bestScore > 0.9) match = bestMatch; // adjust threshold as needed
+    }
 }
 
   if (match) {
@@ -1041,7 +1144,7 @@ if (!match && row.name) {
             return [
               {
                 spaceId,
-                type: normalizeToUUID(propertyToIdMap[rel.type]),
+                type: propertyToIdMap[rel.type],
                 toEntity: {
                   internal_id: IdUtils.generate(),
                   id: null,
@@ -1122,7 +1225,7 @@ if (!match && row.name) {
             if (rel.type == "sources" && childEntity.entityOnGeo) { //Todo - Check that this doesnt pull anything in if the child entity is empty (even if it just has a type...)
                 //console.log("SOURCE FOUND")
                 const hasSourceDbIdentifier = childEntity?.entityOnGeo?.values?.some(
-                  v => v.propertyId === String(normalizeToUUID(propertyToIdMap["source_db_identifier"]))
+                  v => v.propertyId === String(propertyToIdMap["source_db_identifier"])
                 );
                 if (hasSourceDbIdentifier) {
                   existingSources.push(childEntity.entityOnGeo.id)
@@ -1130,8 +1233,8 @@ if (!match && row.name) {
                 
                 //console.log(childEntity.entityOnGeo)
                 if (!match) {                  
-                    const sourceTypeId = String(normalizeToUUID(propertyToIdMap["sources"]));
-                    const sourceDbPropId = String(normalizeToUUID(propertyToIdMap["source_db_identifier"]));
+                    const sourceTypeId = String(propertyToIdMap["sources"]);
+                    const sourceDbPropId = String(propertyToIdMap["source_db_identifier"]);
                     const sourceDbValue = String(
                       entitySide?.values?.find(v => String(v.property) == sourceDbPropId)?.value || ""
                     );
@@ -1154,7 +1257,7 @@ if (!match && row.name) {
         return [
           {
             spaceId,
-            type: normalizeToUUID(propertyToIdMap[rel.type]),
+            type: propertyToIdMap[rel.type],
             toEntity: childEntity,
             entity: entitySide,
           },
@@ -1182,14 +1285,49 @@ if (!match && row.name) {
 }
 
 
-
-export function normalizeValue(v: any): string {
+export function normalizeValue_grc_update(v: any): string {
   if (v.value) return String(v.value);     // input style
-  if (v.string) return String(v.string);   // Geo API style
-  if (v.number) return String(v.number);
+  if (v.text) return String(v.text);   // Geo API style
+  if (v.integer) return String(v.integer);
+  if (v.float) return String(v.float);
+  if (v.decimal) return String(v.decimal);
   if (v.boolean) return String(v.boolean);
+  if (v.date) return String(v.date);
+  if (v.datetime) return String(v.datetime);
   if (v.time) return String(v.time);
   if (v.point) return String(v.point); //JSON.stringify(v.point); // if needed
+  //if (v.unit !== undefined) return String(v.unit);
+  //if (v.language !== undefined) return String(v.language);
+  return "";
+}
+
+
+export function normalizeValue(v: any): any { //Todo normalize date, datetime, time
+  if (v.value) return String(v.value);     // input style
+  if (v.text) return String(v.text);   // Geo API style
+  if (v.integer) return Number(v.integer);
+  if (v.float) return Number(v.float);
+  if (v.decimal) return Number(v.decimal);
+  if (v.boolean) return Boolean(v.boolean);
+  if (v.date) return String(v.date);
+  if (v.datetime) return String(v.datetime);
+  if (v.time) return String(v.time); 
+  if (v.point) return String(v.point); //JSON.stringify(v.point); // if needed
+  //if (v.unit !== undefined) return String(v.unit);
+  //if (v.language !== undefined) return String(v.language);
+  return "";
+}
+export function returnType(v: any): string { //Todo normalize date, datetime, time
+  //if (v.value) return String(v.value);     // input style
+  if (v.text) return "text";   // Geo API style
+  if (v.integer) return "integer";
+  if (v.float) return "float";
+  if (v.decimal) return "decimal";
+  if (v.boolean) return "boolean";
+  if (v.date) return "date";
+  if (v.datetime) return "datetime";
+  if (v.time) return "time"; 
+  if (v.point) return "point"; //JSON.stringify(v.point); // if needed
   //if (v.unit !== undefined) return String(v.unit);
   //if (v.language !== undefined) return String(v.language);
   return "";
@@ -1205,6 +1343,7 @@ export function flattenEntity(entity: any): any {
       spaceId: v.spaceId,
       propertyId: v.propertyId,
       value: normalizeValue(v),
+      type: returnType(v),
     })),
     // flatten relations recursively
     relations: (entity.relations?.nodes ?? []).map((r: any) => ({
@@ -1221,6 +1360,7 @@ export function flatten_api_response(response: any[]): any[] {
       spaceId: v.spaceId,
       propertyId: v.propertyId,
       value: normalizeValue(v),
+      type: returnType(v),
     })),
     relations: (item.relations?.nodes ?? []).map((r: any) => ({
       ...r,
@@ -1236,12 +1376,13 @@ export function flatten_api_response_w_backlinks(response: any[]): any[] {
       spaceId: v.spaceId,
       propertyId: v.propertyId,
       value: normalizeValue(v),
+      type: returnType(v),
     })),
     relations: (item.relations?.nodes ?? []).map((r: any) => ({
       ...r,
       entity: r.entity ? flattenEntity(r.entity) : null,
     })),
-    backlinks: (item.relations?.nodes ?? []).map((r: any) => ({
+    backlinks: (item.backlinks?.nodes ?? []).map((r: any) => ({
       ...r,
       entity: r.entity ? flattenEntity(r.entity) : null,
     })),
@@ -1258,7 +1399,8 @@ const mainnet_query_url = "https://hypergraph.up.railway.app/graphql";
 //const testnet_query_url = "https://geo-conduit.up.railway.app/graphql";
 //const testnet_query_url = "https://hypergraph-v2-testnet.up.railway.app/graphql"
 const testnet_query_url = "https://api-testnet.geobrowser.io/graphql"
-const QUERY_URL = testnet_query_url;
+const testnet_query_url_grc_update = "https://testnet-api.geobrowser.io/graphql"
+const QUERY_URL = testnet_query_url_grc_update;
 
 export async function fetchWithRetry(query: string, variables: any, retries = 3, delay = 200) {
     //console.log("FETCHING...")
@@ -1294,7 +1436,7 @@ export async function fetchWithRetry(query: string, variables: any, retries = 3,
 
 
 
-export async function searchEntities({
+export async function searchEntities_old({
   name, // Note: For V1, can assume always have name and type, but it is possible that there will not be a name to associate this with? 
   type,
   spaceId,
@@ -1412,6 +1554,131 @@ export async function searchEntities({
   return null;
 }
 
+export async function searchEntities({
+  name, // Note: For V1, can assume always have name and type, but it is possible that there will not be a name to associate this with? 
+  type,
+  spaceId,
+  property,
+  searchText,
+  typeId,
+  notTypeId
+}: {
+  name?: string;
+  type: string[];
+  spaceId?: string[];
+  property?: string;
+  searchText?: string | string[];
+  typeId?: string;
+  notTypeId?: string;
+}) {
+  
+  await new Promise(resolve => setTimeout(resolve, 200));
+
+  const query = `
+    query GetEntities(
+      ${name ?  '$name: String!': ''}
+      ${spaceId ? '$spaceId: [UUID!]' : ''}
+      $type: [UUID!]
+    ) {
+      entities(
+        filter: {
+          ${name ? 'name: {isInsensitive: $name},' : ''}  
+          ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}  
+          relations: {some: {typeId: {is: "8f151ba4de204e3c9cb499ddf96f48f1"}, toEntityId: {in: $type}}},
+        }
+      ) {
+        id
+        name
+        values {
+            nodes {
+                spaceId
+                propertyId
+                text
+                language
+                date
+                datetime
+                time
+                integer
+                float
+                decimal
+                unit
+                boolean
+                point
+            }
+        }
+        relations {
+            nodes {
+                id
+                spaceId
+                fromEntityId
+                toEntityId
+                typeId
+                verified
+                position
+                toSpaceId
+                entityId
+                entity {
+                  id
+                  name
+                  values {
+                      nodes {
+                          spaceId
+                          propertyId
+                          text
+                          language
+                          date
+                          datetime
+                          time
+                          integer
+                          float
+                          decimal
+                          unit
+                          boolean
+                          point
+                      }
+                  }
+                  relations {
+                      nodes {
+                          id
+                          spaceId
+                          fromEntityId
+                          toEntityId
+                          typeId
+                          position
+                          toSpaceId
+                          entityId
+                      }
+                  }
+                }
+            }
+        }
+      }
+    }
+  `;
+
+
+  const variables: Record<string, any> = {
+    name: name,
+    type: type,
+    spaceId: spaceId
+  };
+
+
+  const data = await fetchWithRetry(query, variables);
+  const entities = data?.data?.entities;
+  return entities
+
+  if (entities?.length === 1) {
+    return entities[0]?.id;
+  } else if (entities?.length > 1) {
+    console.error("DUPLICATE ENTITIES FOUND...");
+    console.log(entities);
+    return entities[0]?.id;
+  }
+
+  return null;
+}
+
 
 export async function searchEntities_w_backlinks({
   name, // Note: For V1, can assume always have name and type, but it is possible that there will not be a name to associate this with? 
@@ -1452,10 +1719,14 @@ export async function searchEntities_w_backlinks({
             nodes {
                 spaceId
                 propertyId
-                string
+                text
                 language
+                date
+                datetime
                 time
-                number
+                integer
+                float
+                decimal
                 unit
                 boolean
                 point
@@ -1479,10 +1750,14 @@ export async function searchEntities_w_backlinks({
                       nodes {
                           spaceId
                           propertyId
-                          string
+                          text
                           language
+                          date
+                          datetime
                           time
-                          number
+                          integer
+                          float
+                          decimal
                           unit
                           boolean
                           point
@@ -1495,7 +1770,6 @@ export async function searchEntities_w_backlinks({
                           fromEntityId
                           toEntityId
                           typeId
-                          verified
                           position
                           toSpaceId
                           entityId
@@ -1511,7 +1785,6 @@ export async function searchEntities_w_backlinks({
                 fromEntityId
                 toEntityId
                 typeId
-                verified
                 position
                 toSpaceId
                 entityId
@@ -1522,10 +1795,14 @@ export async function searchEntities_w_backlinks({
                       nodes {
                           spaceId
                           propertyId
-                          string
+                          text
                           language
+                          date
+                          datetime
                           time
-                          number
+                          integer
+                          float
+                          decimal
                           unit
                           boolean
                           point
@@ -1538,7 +1815,6 @@ export async function searchEntities_w_backlinks({
                           fromEntityId
                           toEntityId
                           typeId
-                          verified
                           position
                           toSpaceId
                           entityId

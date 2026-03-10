@@ -1,6 +1,6 @@
 import { typeToIdMap } from "./constants.ts";
 import PostgreSQLClient, { DB_ID, TABLES } from "./postgres-client.ts";
-import { flatten_api_response, searchEntities, searchEntities_w_backlinks, flatten_api_response_w_backlinks } from './functions.ts';
+import { flatten_api_response, searchEntities, normalizeToUUID, searchEntities_w_backlinks, flatten_api_response_w_backlinks } from './functions.ts';
 import { v4 as uuidv4 } from "uuid";
 import levenshtein from "fast-levenshtein";
 
@@ -69,7 +69,7 @@ export interface EntityBreakdown {
 export const topicBreakdown: EntityBreakdown = {
     table: "topics",
     not_unique: false,
-    types: [typeToIdMap['topic']],
+    types: [normalizeToUUID(typeToIdMap['topic'])],
     value_fields: ["name"],
     relations: [],
 }
@@ -103,7 +103,7 @@ topicBreakdown.relations = [
 export const platformBreakdown = {
     table: "platforms",
     not_unique: false,
-    types: [typeToIdMap['project']],
+    types: [normalizeToUUID(typeToIdMap['project'])],
     value_fields: ["name", 'web_url'],
     relations: [
         {
@@ -120,7 +120,7 @@ export const platformBreakdown = {
 export const sourceBreakdown = {
     table: "sources",
     not_unique: false,
-    types: [typeToIdMap['source']],
+    types: [normalizeToUUID(typeToIdMap['source'])],
     value_fields: ["source_db_identifier", 'web_url', 'source_database_key'],
     relations: [],
 }
@@ -128,7 +128,7 @@ export const sourceBreakdown = {
 export const personBreakdown = {
     table: "people",
     not_unique: false,
-    types: [typeToIdMap['person']],
+    types: [normalizeToUUID(typeToIdMap['person'])],
     value_fields: ["name", "description", "x_url"],
     relations: [
         {
@@ -155,7 +155,7 @@ export const personBreakdown = {
 export const listenOnBreakdown = {
     table: "listen_on_links",
     not_unique: false,
-    types: [typeToIdMap['source']],
+    types: [normalizeToUUID(typeToIdMap['source'])],
     value_fields: ["web_url"],
     relations: [],
 }
@@ -163,7 +163,7 @@ export const listenOnBreakdown = {
 export const podcastBreakdown = {
     table: "podcasts",
     not_unique: false,
-    types: [typeToIdMap['podcast']],
+    types: [normalizeToUUID(typeToIdMap['podcast'])],
     value_fields: ["name", "description", 'rss_feed_url'], //"date_founded",
     relations: [
         {
@@ -202,7 +202,7 @@ export const podcastBreakdown = {
 export const roleBreakdown = {
     table: "roles",
     not_unique: false,
-    types: [typeToIdMap['role']],
+    types: [normalizeToUUID(typeToIdMap['role'])],
     value_fields: ["name"],
     relations: [],
 }
@@ -210,7 +210,7 @@ export const roleBreakdown = {
 export const podcastAppearanceBreakdown = {
     table: "guests",
     not_unique: false,
-    types: [typeToIdMap['podcast_appearance']],
+    types: [normalizeToUUID(typeToIdMap['podcast_appearance'])],
     value_fields: [],
     relations: [
         {
@@ -225,7 +225,7 @@ export const podcastAppearanceBreakdown = {
 export const textBlockBreakdown = {
     table: "text_blocks",
     not_unique: true,
-    types: [typeToIdMap['text_block']],
+    types: [normalizeToUUID(typeToIdMap['text_block'])],
     value_fields: ["name", "markdown_content"],
     relations: [],
 }
@@ -233,7 +233,7 @@ export const textBlockBreakdown = {
 export const pageBreakdown = {
     table: "pages",
     not_unique: true,
-    types: [typeToIdMap['page']],
+    types: [normalizeToUUID(typeToIdMap['page'])],
     value_fields: ["name"],
     relations: [
       {
@@ -248,7 +248,7 @@ export const pageBreakdown = {
 export const selectorBreakdown = {
     table: "selectors",
     not_unique: false,
-    types: [typeToIdMap['selector']],
+    types: [normalizeToUUID(typeToIdMap['selector'])],
     value_fields: ["start_offset", "end_offset"],
     relations: [],
 }
@@ -256,7 +256,7 @@ export const selectorBreakdown = {
 export const quoteBreakdown = {
     table: "quotes",
     not_unique: false,
-    types: [typeToIdMap['quote']],
+    types: [normalizeToUUID(typeToIdMap['quote'])],
     value_fields: ["name"],
     relations: [
       {
@@ -271,7 +271,7 @@ export const quoteBreakdown = {
 export const claimBreakdown = {
     table: "claims",
     not_unique: false,
-    types: [typeToIdMap['claim']],
+    types: [normalizeToUUID(typeToIdMap['claim'])],
     value_fields: ["name"],
     relations: [
       /*
@@ -285,10 +285,25 @@ export const claimBreakdown = {
     ],
 }
 
+export const episodeClaimBreakdown = {
+    table: "claim_episodes",
+    not_unique: false,
+    types: [normalizeToUUID(typeToIdMap['claim_relation'])], // Maybe we dont need a type
+    value_fields: [],
+    relations: [
+      {
+            type: "topics",
+            toEntityBreakdown: topicBreakdown,
+            entityBreakdown: null,
+            image: false,
+        },
+    ],
+}
+
 export const episodeBreakdown = {
     table: "episodes",
     not_unique: false,
-    types: [typeToIdMap['episode']],
+    types: [normalizeToUUID(typeToIdMap['episode'])],
     value_fields: ["name", "description", "episode_number", "air_date", "duration", "audio_url"], 
     relations: [
         {
@@ -300,7 +315,7 @@ export const episodeBreakdown = {
         {
             type: "notable_claims",
             toEntityBreakdown: claimBreakdown,
-            entityBreakdown: null,
+            entityBreakdown: episodeClaimBreakdown,
             image: false,
         },
 
@@ -366,14 +381,6 @@ export const episodeBreakdown = {
         */
     ],
 }
-
-
-
-
-
-
-
-
 
 export async function read_in_tables({
   pgClient,
@@ -533,8 +540,8 @@ export async function read_in_tables({
                 json_agg(DISTINCT jsonb_build_object('to_id', q.id, 'entity_id', null)) FILTER (WHERE q.id IS NOT NULL),
                 '[]'
               ) AS notable_quotes,
-               COALESCE(
-                json_agg(DISTINCT jsonb_build_object('to_id', c.id, 'entity_id', null)) FILTER (WHERE c.id IS NOT NULL),
+              COALESCE(
+                json_agg(jsonb_build_object('to_id', c.id, 'entity_id', ce.id) ORDER BY ce.group_num, ce.claim_num) FILTER (WHERE c.id IS NOT NULL),
                 '[]'
               ) AS notable_claims,
               COALESCE(
@@ -569,7 +576,8 @@ export async function read_in_tables({
             LEFT JOIN "${DB_ID}".${TABLES.EXTERNAL_IDS} AS ex ON e.id = ex.podcast_episode_id
             LEFT JOIN "${DB_ID}".${TABLES.LISTEN_ON} AS l ON e.id = l.podcast_episode_id
             LEFT JOIN "${DB_ID}".${TABLES.QUOTES} AS q ON e.id = q.episode_id
-            LEFT JOIN "${DB_ID}".${TABLES.CLAIMS} AS c ON c.episode_id = e.id
+            LEFT JOIN "${DB_ID}".${TABLES.CLAIM_EPISODE} AS ce ON e.id = ce.episode_id
+            LEFT JOIN "${DB_ID}".${TABLES.CLAIMS} AS c ON c.id = ce.claim_id
             LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t ON e.id = t.from_episode_id
             WHERE (e.rn <= ${num_episodes})
               AND EXISTS (
@@ -904,14 +912,37 @@ export async function read_in_tables({
         `)
         : [];
         */
-       const claims = episodeIds.length
+
+      const claim_episodes = episodeIds.length
         ? await pgClient.query(`
-            SELECT c.id, c.episode_id, c.claim_text as name
-            FROM "${DB_ID}".${TABLES.CLAIMS} as c
-            WHERE c.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")}) 
+            SELECT ce.id, 
+            COALESCE(
+                json_agg(
+                  DISTINCT jsonb_build_object(
+                    'to_id', t.to_tag_id,
+                    'entity_id', null
+                  )
+                ) FILTER (WHERE t.to_tag_id IS NOT NULL),
+                '[]'
+              ) AS topics,
+            FROM "${DB_ID}".${TABLES.CLAIM_EPISODE} AS ce
+            LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t ON ce.id = t.from_claim_episode_id
+            WHERE c.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")})
         `)
         : [];
         console.log("Claims read")
+
+       const claims = episodeIds.length
+        ? await pgClient.query(`
+            SELECT c.id, c.claim_text as name
+            FROM "${DB_ID}".${TABLES.CLAIMS} as c
+            LEFT JOIN  "${DB_ID}".${TABLES.CLAIM_EPISODE} as ce ON c.id = ce.claim_id
+            WHERE ce.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")}) 
+        `)
+        : [];
+        console.log("Claims read")
+
+        
 
     interface TextBlock {
       id: string;
@@ -1075,7 +1106,7 @@ export async function read_in_tables({
 }
 
 
-export async function loadGeoEntities(space?: string) {
+export async function loadGeoEntities() {
   const breakdowns = {
     people: personBreakdown,
     podcasts: podcastBreakdown,
@@ -1095,7 +1126,7 @@ export async function loadGeoEntities(space?: string) {
 
   for (const [key, breakdown] of Object.entries(breakdowns)) {
     geoEntities[key] = flatten_api_response(
-      await searchEntities({ type: breakdown.types, ...(space ? { spaceId: [space] } : {}) })
+      await searchEntities({ type: breakdown.types })
     );
   }
 
@@ -1103,7 +1134,7 @@ export async function loadGeoEntities(space?: string) {
   return geoEntities;
 }
 
-export async function loadGeoEntities_to_delete(space?: string) {
+export async function loadGeoEntities_to_delete() {
   const breakdowns = {
     people: personBreakdown,
     podcasts: podcastBreakdown,
@@ -1123,7 +1154,7 @@ export async function loadGeoEntities_to_delete(space?: string) {
 
   for (const [key, breakdown] of Object.entries(breakdowns)) {
     geoEntities[key] = flatten_api_response_w_backlinks(
-      await searchEntities_w_backlinks({ type: breakdown.types, ...(space ? { spaceId: [space] } : {}) })
+      await searchEntities_w_backlinks({ type: breakdown.types })
     );
   }
 
