@@ -313,7 +313,7 @@ export const episodeBreakdown = {
         {
             type: "notable_claims",
             toEntityBreakdown: claimBreakdown,
-            entityBreakdown: null,
+            entityBreakdown: episodeClaimBreakdown,
             image: false,
         },
 
@@ -547,7 +547,7 @@ export async function read_in_tables({
                 '[]'
               ) AS notable_quotes,
                COALESCE(
-                json_agg(DISTINCT jsonb_build_object('to_id', c.id, 'entity_id', null)) FILTER (WHERE c.id IS NOT NULL),
+                json_agg(DISTINCT jsonb_build_object('to_id', c.id, 'entity_id', ce.id)) FILTER (WHERE c.id IS NOT NULL),
                 '[]'
               ) AS notable_claims,
               COALESCE(
@@ -582,13 +582,14 @@ export async function read_in_tables({
             LEFT JOIN "${DB_ID}".${TABLES.EXTERNAL_IDS} AS ex ON e.id = ex.podcast_episode_id
             LEFT JOIN "${DB_ID}".${TABLES.LISTEN_ON} AS l ON e.id = l.podcast_episode_id
             LEFT JOIN "${DB_ID}".${TABLES.QUOTES} AS q ON e.id = q.episode_id
-            LEFT JOIN "${DB_ID}".${TABLES.CLAIMS} AS c ON c.episode_id = e.id
+            LEFT JOIN "${DB_ID}".${TABLES.CLAIM_EPISODES} AS ce ON e.id = ce.episode_id
+            LEFT JOIN "${DB_ID}".${TABLES.CLAIMS} AS c ON c.id = ce.claim_id
             LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} AS t ON e.id = t.from_episode_id
             WHERE (e.rn <= ${num_episodes})
               AND EXISTS (
                   SELECT 1
-                  FROM "${DB_ID}".${TABLES.CLAIMS} c2
-                  WHERE c2.episode_id = e.id
+                  FROM "${DB_ID}".${TABLES.CLAIM_EPISODES} ce2
+                  WHERE ce2.episode_id = e.id
                 )
               ${date_filter_str}
             GROUP BY e.id, e.name, e.description, e.episode_number, e.duration,
@@ -952,9 +953,8 @@ export async function read_in_tables({
             ) AS topics
             FROM "${DB_ID}".${TABLES.CLAIMS} as c
             INNER JOIN "${DB_ID}".${TABLES.CLAIM_EPISODES} as ce ON c.id = ce.claim_id
-            LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} as tm ON tm.from_claim_id = c.id
+            LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} as tm ON tm.from_claim_episode_id = ce.id
             WHERE ce.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")})
-              AND c.is_verified = true
             GROUP BY c.id, c.claim_text
         `)
         : [];
@@ -1162,6 +1162,7 @@ export async function loadGeoEntities_to_delete(space?: string) {
     listen_on_links: listenOnBreakdown,
     topics: topicBreakdown,
     claims: claimBreakdown,
+    claim_episodes: episodeClaimBreakdown,
     quotes: quoteBreakdown,
     pages: pageBreakdown,
     text_blocks: textBlockBreakdown,

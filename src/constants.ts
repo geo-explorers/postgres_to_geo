@@ -132,7 +132,8 @@ export const typeToIdMap: Record<string, string> = {
   "podcast": "4c81561d1f9541319cdddd20ab831ba2",
   "podcast_appearance": "791b9eef81ed4389a9c0e991f38783cc",
   "selector": "813ca865db9b486490dec6764febaab3",
-  "episode": "972d201ad78045689e01543f67b26bee"
+  "episode": "972d201ad78045689e01543f67b26bee",
+  "claim_relation": "31ce915d47bc4f28bd7842a10cb5d14c"
 };
 
 //podcast: "69732974c632490d81a312ea567b2a8e",

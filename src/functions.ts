@@ -1354,6 +1354,7 @@ export function flattenEntity(entity: any): any {
 }
 
 export function flatten_api_response(response: any[]): any[] {
+  if (!Array.isArray(response)) return [];
   return response.map(item => ({
     ...item,
     values: (item.values?.nodes ?? []).map((v: any) => ({
@@ -1370,6 +1371,7 @@ export function flatten_api_response(response: any[]): any[] {
 }
 
 export function flatten_api_response_w_backlinks(response: any[]): any[] {
+  if (!Array.isArray(response)) return [];
   return response.map(item => ({
     ...item,
     values: (item.values?.nodes ?? []).map((v: any) => ({
@@ -1424,7 +1426,9 @@ export async function fetchWithRetry(query: string, variables: any, retries = 3,
             if (response.status === 502 || response.status === 503 || response.status === 504) {
                 await new Promise(resolve => setTimeout(resolve, delay * (2 ** i))); // exponential backoff
             } else {
-                break; // for other errors, don’t retry
+                console.log("searchEntities");
+                console.log(`SPACE: ${variables.space}; PROPERTY: ${variables.property}; searchText: ${variables.searchText}; typeId: ${variables.typeId}`);
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
         } else {
             console.log("searchEntities");
