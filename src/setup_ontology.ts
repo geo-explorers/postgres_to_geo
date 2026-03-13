@@ -273,14 +273,7 @@ export const claimBreakdown = {
     not_unique: false,
     types: [typeToIdMap['claim']],
     value_fields: ["name"],
-    relations: [
-      {
-          type: "topics",
-          toEntityBreakdown: topicBreakdown,
-          entityBreakdown: null,
-          image: false,
-      },
-    ],
+    relations: [],
 }
 
 export const episodeClaimBreakdown = {
