@@ -1107,7 +1107,7 @@ if (!match && row.name) {
     }
 
     // --- Slow path: fuzzy scan fallback (only when exact lookup found nothing) ---
-    if (!match && localName) {
+    if (!match && localName && !breakdown.skip_fuzzy_match) {
         let bestScore = 0;
         let bestMatch: any = null;
 

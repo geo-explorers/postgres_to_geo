@@ -63,6 +63,7 @@ export interface EntityBreakdown {
     entityBreakdown: EntityBreakdown | null;
     image: boolean;
   }[];
+  skip_fuzzy_match?: boolean;
 }
 
 
@@ -274,6 +275,7 @@ export const claimBreakdown = {
     types: [typeToIdMap['claim']],
     value_fields: ["name"],
     relations: [],
+    skip_fuzzy_match: true,
 }
 
 export const episodeClaimBreakdown = {
