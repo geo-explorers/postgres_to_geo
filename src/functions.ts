@@ -1107,7 +1107,7 @@ if (!match && row.name) {
     }
 
     // --- Slow path: fuzzy scan fallback (only when exact lookup found nothing) ---
-    if (!match && localName) {
+    if (!match && localName && !breakdown.skip_fuzzy_match) {
         let bestScore = 0;
         let bestMatch: any = null;
 
@@ -1407,13 +1407,25 @@ const QUERY_URL = testnet_query_url_grc_update;
 export async function fetchWithRetry(query: string, variables: any, retries = 3, delay = 200) {
     //console.log("FETCHING...")
     for (let i = 0; i < retries; i++) {
-        const response = await fetch(QUERY_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ query, variables }),
-        });
+        let response: Response;
+        try {
+            response = await fetch(QUERY_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ query, variables }),
+            });
+        } catch (err: any) {
+            // Network-level errors (socket closed, DNS failure, etc.)
+            if (i < retries - 1) {
+                console.log(`Retry # ${i} (network error: ${err.message})`);
+                await new Promise(resolve => setTimeout(resolve, delay * (2 ** i)));
+                continue;
+            }
+            console.error(`fetchWithRetry failed after ${retries} retries (network error: ${err.message}):\n  Variables: ${JSON.stringify(variables)}\n  Query: ${query}`);
+            throw err;
+        }
 
         if (response.ok) {
            //console.log("DONE FETCHING")
@@ -1426,13 +1438,11 @@ export async function fetchWithRetry(query: string, variables: any, retries = 3,
             if (response.status === 502 || response.status === 503 || response.status === 504) {
                 await new Promise(resolve => setTimeout(resolve, delay * (2 ** i))); // exponential backoff
             } else {
-                console.log("searchEntities");
-                console.log(`SPACE: ${variables.space}; PROPERTY: ${variables.property}; searchText: ${variables.searchText}; typeId: ${variables.typeId}`);
+                console.error(`fetchWithRetry failed (status ${response.status}):\n  Variables: ${JSON.stringify(variables)}\n  Query: ${query}`);
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
         } else {
-            console.log("searchEntities");
-            console.log(`SPACE: ${variables.space}; PROPERTY: ${variables.property}; searchText: ${variables.searchText}; typeId: ${variables.typeId}`);
+            console.error(`fetchWithRetry failed after ${retries} retries (status ${response.status}):\n  Variables: ${JSON.stringify(variables)}\n  Query: ${query}`);
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
     }
@@ -1559,7 +1569,7 @@ export async function searchEntities_old({
 }
 
 export async function searchEntities({
-  name, // Note: For V1, can assume always have name and type, but it is possible that there will not be a name to associate this with? 
+  name, // Note: For V1, can assume always have name and type, but it is possible that there will not be a name to associate this with?
   type,
   spaceId,
   property,
@@ -1575,117 +1585,134 @@ export async function searchEntities({
   typeId?: string;
   notTypeId?: string;
 }) {
-  
-  await new Promise(resolve => setTimeout(resolve, 200));
+  const PAGE_SIZE = 1000;
+  let allEntities: any[] = [];
+  let cursor: string | null = null;
 
-  const query = `
-    query GetEntities(
-      ${name ?  '$name: String!': ''}
-      ${spaceId ? '$spaceId: [UUID!]' : ''}
-      $type: [UUID!]
-    ) {
-      entities(
-        filter: {
-          ${name ? 'name: {isInsensitive: $name},' : ''}  
-          ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}  
-          relations: {some: {typeId: {is: "8f151ba4de204e3c9cb499ddf96f48f1"}, toEntityId: {in: $type}}},
-        }
+  while (true) {
+    await new Promise(resolve => setTimeout(resolve, 200));
+
+    const query = `
+      query GetEntities(
+        ${name ?  '$name: String!': ''}
+        ${spaceId ? '$spaceId: [UUID!]' : ''}
+        $type: [UUID!]
+        $first: Int!
+        $after: Cursor
       ) {
-        id
-        name
-        values {
-            nodes {
-                spaceId
-                propertyId
-                text
-                language
-                date
-                datetime
-                time
-                integer
-                float
-                decimal
-                unit
-                boolean
-                point
-            }
-        }
-        relations {
-            nodes {
-                id
-                spaceId
-                fromEntityId
-                toEntityId
-                typeId
-                verified
-                position
-                toSpaceId
-                entityId
-                entity {
-                  id
-                  name
-                  values {
-                      nodes {
-                          spaceId
-                          propertyId
-                          text
-                          language
-                          date
-                          datetime
-                          time
-                          integer
-                          float
-                          decimal
-                          unit
-                          boolean
-                          point
-                      }
-                  }
-                  relations {
-                      nodes {
-                          id
-                          spaceId
-                          fromEntityId
-                          toEntityId
-                          typeId
-                          position
-                          toSpaceId
-                          entityId
-                      }
-                  }
+        entitiesConnection(
+          first: $first
+          after: $after
+          filter: {
+            ${name ? 'name: {isInsensitive: $name},' : ''}
+            ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}
+            relations: {some: {typeId: {is: "8f151ba4de204e3c9cb499ddf96f48f1"}, toEntityId: {in: $type}}},
+          }
+        ) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          nodes {
+            id
+            name
+            values {
+                nodes {
+                    spaceId
+                    propertyId
+                    text
+                    language
+                    date
+                    datetime
+                    time
+                    integer
+                    float
+                    decimal
+                    unit
+                    boolean
+                    point
                 }
             }
+            relations {
+                nodes {
+                    id
+                    spaceId
+                    fromEntityId
+                    toEntityId
+                    typeId
+                    verified
+                    position
+                    toSpaceId
+                    entityId
+                    entity {
+                      id
+                      name
+                      values {
+                          nodes {
+                              spaceId
+                              propertyId
+                              text
+                              language
+                              date
+                              datetime
+                              time
+                              integer
+                              float
+                              decimal
+                              unit
+                              boolean
+                              point
+                          }
+                      }
+                      relations {
+                          nodes {
+                              id
+                              spaceId
+                              fromEntityId
+                              toEntityId
+                              typeId
+                              position
+                              toSpaceId
+                              entityId
+                          }
+                      }
+                    }
+                }
+            }
+          }
         }
       }
+    `;
+
+    const variables: Record<string, any> = {
+      name: name,
+      type: type,
+      spaceId: spaceId,
+      first: PAGE_SIZE,
+      after: cursor
+    };
+
+    const data = await fetchWithRetry(query, variables);
+    const connection = data?.data?.entitiesConnection;
+    const entities = connection?.nodes ?? [];
+    const pageInfo = connection?.pageInfo;
+
+    allEntities = allEntities.concat(entities);
+    console.log(`Fetched ${entities.length} entities (total so far: ${allEntities.length})`);
+
+    if (!pageInfo?.hasNextPage) {
+      break;
     }
-  `;
 
-
-  const variables: Record<string, any> = {
-    name: name,
-    type: type,
-    spaceId: spaceId
-  };
-
-
-  const data = await fetchWithRetry(query, variables);
-  const entities = data?.data?.entities;
-  return entities
-
-  if (entities?.length === 1) {
-    return entities[0]?.id;
-  } else if (entities?.length > 1) {
-    console.error("DUPLICATE ENTITIES FOUND...");
-    console.log(entities);
-    return entities[0]?.id;
+    cursor = pageInfo.endCursor;
   }
 
-  return null;
+  return allEntities;
 }
 
 
 export async function searchEntities_w_backlinks({
-  name, // Note: For V1, can assume always have name and type, but it is possible that there will not be a name to associate this with? 
+  name, // Note: For V1, can assume always have name and type, but it is possible that there will not be a name to associate this with?
   type,
   spaceId,
   property,
@@ -1701,156 +1728,173 @@ export async function searchEntities_w_backlinks({
   typeId?: string;
   notTypeId?: string;
 }) {
-  
-  await new Promise(resolve => setTimeout(resolve, 200));
+  const PAGE_SIZE = 1000;
+  let allEntities: any[] = [];
+  let cursor: string | null = null;
 
-  const query = `
-    query GetEntities(
-      ${name ?  '$name: String!': ''}
-      ${spaceId ? '$spaceId: [UUID!]' : ''}
-      $type: [UUID!]
-    ) {
-      entities(
-        filter: {
-          ${name ? 'name: {isInsensitive: $name},' : ''}  
-          ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}  
-          relations: {some: {typeId: {is: "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"}, toEntityId: {in: $type}}},
-        }
+  while (true) {
+    await new Promise(resolve => setTimeout(resolve, 200));
+
+    const query = `
+      query GetEntities(
+        ${name ?  '$name: String!': ''}
+        ${spaceId ? '$spaceId: [UUID!]' : ''}
+        $type: [UUID!]
+        $first: Int!
+        $after: Cursor
       ) {
-        id
-        name
-        values {
-            nodes {
-                spaceId
-                propertyId
-                text
-                language
-                date
-                datetime
-                time
-                integer
-                float
-                decimal
-                unit
-                boolean
-                point
-            }
-        }
-        relations {
-          nodes {
-                id
-                spaceId
-                fromEntityId
-                toEntityId
-                typeId
-                verified
-                position
-                toSpaceId
-                entityId
-                entity {
-                  id
-                  name
-                  values {
-                      nodes {
-                          spaceId
-                          propertyId
-                          text
-                          language
-                          date
-                          datetime
-                          time
-                          integer
-                          float
-                          decimal
-                          unit
-                          boolean
-                          point
-                      }
-                  }
-                  relations {
-                      nodes {
-                          id
-                          spaceId
-                          fromEntityId
-                          toEntityId
-                          typeId
-                          position
-                          toSpaceId
-                          entityId
-                    }
-                  }
-                }
+        entitiesConnection(
+          first: $first
+          after: $after
+          filter: {
+            ${name ? 'name: {isInsensitive: $name},' : ''}
+            ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}
+            relations: {some: {typeId: {is: "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"}, toEntityId: {in: $type}}},
           }
-        }
-        backlinks {
+        ) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
           nodes {
-                id
-                spaceId
-                fromEntityId
-                toEntityId
-                typeId
-                position
-                toSpaceId
-                entityId
-                entity {
-                  id
-                  name
-                  values {
-                      nodes {
-                          spaceId
-                          propertyId
-                          text
-                          language
-                          date
-                          datetime
-                          time
-                          integer
-                          float
-                          decimal
-                          unit
-                          boolean
-                          point
-                      }
-                  }
-                  relations {
-                      nodes {
-                          id
-                          spaceId
-                          fromEntityId
-                          toEntityId
-                          typeId
-                          position
-                          toSpaceId
-                          entityId
-                    }
-                  }
+            id
+            name
+            values {
+                nodes {
+                    spaceId
+                    propertyId
+                    text
+                    language
+                    date
+                    datetime
+                    time
+                    integer
+                    float
+                    decimal
+                    unit
+                    boolean
+                    point
                 }
+            }
+            relations {
+              nodes {
+                    id
+                    spaceId
+                    fromEntityId
+                    toEntityId
+                    typeId
+                    verified
+                    position
+                    toSpaceId
+                    entityId
+                    entity {
+                      id
+                      name
+                      values {
+                          nodes {
+                              spaceId
+                              propertyId
+                              text
+                              language
+                              date
+                              datetime
+                              time
+                              integer
+                              float
+                              decimal
+                              unit
+                              boolean
+                              point
+                          }
+                      }
+                      relations {
+                          nodes {
+                              id
+                              spaceId
+                              fromEntityId
+                              toEntityId
+                              typeId
+                              position
+                              toSpaceId
+                              entityId
+                        }
+                      }
+                    }
+              }
+            }
+            backlinks {
+              nodes {
+                    id
+                    spaceId
+                    fromEntityId
+                    toEntityId
+                    typeId
+                    position
+                    toSpaceId
+                    entityId
+                    entity {
+                      id
+                      name
+                      values {
+                          nodes {
+                              spaceId
+                              propertyId
+                              text
+                              language
+                              date
+                              datetime
+                              time
+                              integer
+                              float
+                              decimal
+                              unit
+                              boolean
+                              point
+                          }
+                      }
+                      relations {
+                          nodes {
+                              id
+                              spaceId
+                              fromEntityId
+                              toEntityId
+                              typeId
+                              position
+                              toSpaceId
+                              entityId
+                        }
+                      }
+                    }
+              }
+            }
           }
         }
       }
+    `;
+
+    const variables: Record<string, any> = {
+      name: name,
+      type: type,
+      spaceId: spaceId,
+      first: PAGE_SIZE,
+      after: cursor
+    };
+
+    const data = await fetchWithRetry(query, variables);
+    const connection = data?.data?.entitiesConnection;
+    const entities = connection?.nodes ?? [];
+    const pageInfo = connection?.pageInfo;
+
+    allEntities = allEntities.concat(entities);
+    console.log(`Fetched ${entities.length} entities with backlinks (total so far: ${allEntities.length})`);
+
+    if (!pageInfo?.hasNextPage) {
+      break;
     }
-  `;
 
-
-  const variables: Record<string, any> = {
-    name: name,
-    type: type,
-    spaceId: spaceId
-  };
-
-
-  const data = await fetchWithRetry(query, variables);
-  const entities = data?.data?.entities;
-  return entities
-
-  if (entities?.length === 1) {
-    return entities[0]?.id;
-  } else if (entities?.length > 1) {
-    console.error("DUPLICATE ENTITIES FOUND...");
-    console.log(entities);
-    return entities[0]?.id;
+    cursor = pageInfo.endCursor;
   }
 
-  return null;
+  return allEntities;
 }
 
