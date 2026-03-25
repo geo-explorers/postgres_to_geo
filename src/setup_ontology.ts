@@ -1135,11 +1135,33 @@ export async function loadGeoEntities(space?: string) {
   };
 
   const geoEntities: any = {};
+  const MAX_TYPE_RETRIES = 2;
 
   for (const [key, breakdown] of Object.entries(breakdowns)) {
-    geoEntities[key] = flatten_api_response(
-      await searchEntities({ type: breakdown.types, ...(space ? { spaceId: [space] } : {}) })
-    );
+    console.log(`Loading geo entities: ${key}...`);
+    let lastError: any = null;
+
+    for (let attempt = 0; attempt < MAX_TYPE_RETRIES; attempt++) {
+      try {
+        geoEntities[key] = flatten_api_response(
+          await searchEntities({ type: breakdown.types, ...(space ? { spaceId: [space] } : {}) })
+        );
+        lastError = null;
+        break;
+      } catch (err) {
+        lastError = err;
+        console.error(`Failed to load ${key} (attempt ${attempt + 1}/${MAX_TYPE_RETRIES}):`, err);
+        if (attempt < MAX_TYPE_RETRIES - 1) {
+          await new Promise(resolve => setTimeout(resolve, 5000));
+        }
+      }
+    }
+
+    if (lastError) {
+      throw new Error(`Failed to load entity type "${key}" after ${MAX_TYPE_RETRIES} attempts: ${lastError.message}`);
+    }
+
+    console.log(`Loaded ${geoEntities[key].length} ${key}`);
   }
 
   console.log("GEO API READ")
@@ -1164,11 +1186,33 @@ export async function loadGeoEntities_to_delete(space?: string) {
   };
 
   const geoEntities: any = {};
+  const MAX_TYPE_RETRIES = 2;
 
   for (const [key, breakdown] of Object.entries(breakdowns)) {
-    geoEntities[key] = flatten_api_response_w_backlinks(
-      await searchEntities_w_backlinks({ type: breakdown.types, ...(space ? { spaceId: [space] } : {}) })
-    );
+    console.log(`Loading geo entities (with backlinks): ${key}...`);
+    let lastError: any = null;
+
+    for (let attempt = 0; attempt < MAX_TYPE_RETRIES; attempt++) {
+      try {
+        geoEntities[key] = flatten_api_response_w_backlinks(
+          await searchEntities_w_backlinks({ type: breakdown.types, ...(space ? { spaceId: [space] } : {}) })
+        );
+        lastError = null;
+        break;
+      } catch (err) {
+        lastError = err;
+        console.error(`Failed to load ${key} (attempt ${attempt + 1}/${MAX_TYPE_RETRIES}):`, err);
+        if (attempt < MAX_TYPE_RETRIES - 1) {
+          await new Promise(resolve => setTimeout(resolve, 5000));
+        }
+      }
+    }
+
+    if (lastError) {
+      throw new Error(`Failed to load entity type "${key}" after ${MAX_TYPE_RETRIES} attempts: ${lastError.message}`);
+    }
+
+    console.log(`Loaded ${geoEntities[key].length} ${key}`);
   }
 
   console.log("GEO API READ")

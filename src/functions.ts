@@ -1404,8 +1404,7 @@ const testnet_query_url = "https://api-testnet.geobrowser.io/graphql"
 const testnet_query_url_grc_update = "https://testnet-api.geobrowser.io/graphql"
 const QUERY_URL = testnet_query_url_grc_update;
 
-export async function fetchWithRetry(query: string, variables: any, retries = 3, delay = 200) {
-    //console.log("FETCHING...")
+export async function fetchWithRetry(query: string, variables: any, retries = 5, delay = 1000, timeout = 30000) {
     for (let i = 0; i < retries; i++) {
         let response: Response;
         try {
@@ -1415,12 +1414,14 @@ export async function fetchWithRetry(query: string, variables: any, retries = 3,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ query, variables }),
+                signal: AbortSignal.timeout(timeout),
             });
         } catch (err: any) {
-            // Network-level errors (socket closed, DNS failure, etc.)
+            // Network-level errors (socket closed, DNS failure, timeout, etc.)
             if (i < retries - 1) {
-                console.log(`Retry # ${i} (network error: ${err.message})`);
-                await new Promise(resolve => setTimeout(resolve, delay * (2 ** i)));
+                const jitteredDelay = delay * (2 ** i) * (0.5 + Math.random() * 0.5);
+                console.log(`Retry # ${i} (network error: ${err.message}), waiting ${Math.round(jitteredDelay)}ms`);
+                await new Promise(resolve => setTimeout(resolve, jitteredDelay));
                 continue;
             }
             console.error(`fetchWithRetry failed after ${retries} retries (network error: ${err.message}):\n  Variables: ${JSON.stringify(variables)}\n  Query: ${query}`);
@@ -1428,15 +1429,14 @@ export async function fetchWithRetry(query: string, variables: any, retries = 3,
         }
 
         if (response.ok) {
-           //console.log("DONE FETCHING")
             return await response.json();
         }
 
         if (i < retries - 1) {
-            // Optional: only retry on certain error statuses
-            console.log("Retry #", i)
-            if (response.status === 502 || response.status === 503 || response.status === 504) {
-                await new Promise(resolve => setTimeout(resolve, delay * (2 ** i))); // exponential backoff
+            if (response.status === 429 || response.status === 502 || response.status === 503 || response.status === 504) {
+                const jitteredDelay = delay * (2 ** i) * (0.5 + Math.random() * 0.5);
+                console.log(`Retry # ${i} (status ${response.status}), waiting ${Math.round(jitteredDelay)}ms`);
+                await new Promise(resolve => setTimeout(resolve, jitteredDelay));
             } else {
                 console.error(`fetchWithRetry failed (status ${response.status}):\n  Variables: ${JSON.stringify(variables)}\n  Query: ${query}`);
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -1692,6 +1692,10 @@ export async function searchEntities({
       after: cursor
     };
 
+    if (cursor === null) {
+      console.log(`  searchEntities starting for types: ${type.join(', ')}`);
+    }
+
     const data = await fetchWithRetry(query, variables);
     const connection = data?.data?.entitiesConnection;
     const entities = connection?.nodes ?? [];
@@ -1879,6 +1883,10 @@ export async function searchEntities_w_backlinks({
       first: PAGE_SIZE,
       after: cursor
     };
+
+    if (cursor === null) {
+      console.log(`  searchEntities_w_backlinks starting for types: ${type.join(', ')}`);
+    }
 
     const data = await fetchWithRetry(query, variables);
     const connection = data?.data?.entitiesConnection;
