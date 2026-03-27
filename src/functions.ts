@@ -1404,8 +1404,7 @@ const testnet_query_url = "https://api-testnet.geobrowser.io/graphql"
 const testnet_query_url_grc_update = "https://testnet-api.geobrowser.io/graphql"
 const QUERY_URL = testnet_query_url_grc_update;
 
-export async function fetchWithRetry(query: string, variables: any, retries = 3, delay = 200) {
-    //console.log("FETCHING...")
+export async function fetchWithRetry(query: string, variables: any, retries = 5, delay = 1000, timeout = 30000) {
     for (let i = 0; i < retries; i++) {
         let response: Response;
         try {
@@ -1415,12 +1414,14 @@ export async function fetchWithRetry(query: string, variables: any, retries = 3,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ query, variables }),
+                signal: AbortSignal.timeout(timeout),
             });
         } catch (err: any) {
-            // Network-level errors (socket closed, DNS failure, etc.)
+            // Network-level errors (socket closed, DNS failure, timeout, etc.)
             if (i < retries - 1) {
-                console.log(`Retry # ${i} (network error: ${err.message})`);
-                await new Promise(resolve => setTimeout(resolve, delay * (2 ** i)));
+                const jitteredDelay = delay * (2 ** i) * (0.5 + Math.random() * 0.5);
+                console.log(`Retry # ${i} (network error: ${err.message}), waiting ${Math.round(jitteredDelay)}ms`);
+                await new Promise(resolve => setTimeout(resolve, jitteredDelay));
                 continue;
             }
             console.error(`fetchWithRetry failed after ${retries} retries (network error: ${err.message}):\n  Variables: ${JSON.stringify(variables)}\n  Query: ${query}`);
@@ -1428,15 +1429,14 @@ export async function fetchWithRetry(query: string, variables: any, retries = 3,
         }
 
         if (response.ok) {
-           //console.log("DONE FETCHING")
             return await response.json();
         }
 
         if (i < retries - 1) {
-            // Optional: only retry on certain error statuses
-            console.log("Retry #", i)
-            if (response.status === 502 || response.status === 503 || response.status === 504) {
-                await new Promise(resolve => setTimeout(resolve, delay * (2 ** i))); // exponential backoff
+            if (response.status === 429 || response.status === 502 || response.status === 503 || response.status === 504) {
+                const jitteredDelay = delay * (2 ** i) * (0.5 + Math.random() * 0.5);
+                console.log(`Retry # ${i} (status ${response.status}), waiting ${Math.round(jitteredDelay)}ms`);
+                await new Promise(resolve => setTimeout(resolve, jitteredDelay));
             } else {
                 console.error(`fetchWithRetry failed (status ${response.status}):\n  Variables: ${JSON.stringify(variables)}\n  Query: ${query}`);
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -1585,129 +1585,144 @@ export async function searchEntities({
   typeId?: string;
   notTypeId?: string;
 }) {
-  const PAGE_SIZE = 1000;
-  let allEntities: any[] = [];
-  let cursor: string | null = null;
+  const PAGE_SIZES = [1000, 500, 250, 100];
 
-  while (true) {
-    await new Promise(resolve => setTimeout(resolve, 200));
+  for (const pageSize of PAGE_SIZES) {
+    try {
+      let allEntities: any[] = [];
+      let cursor: string | null = null;
 
-    const query = `
-      query GetEntities(
-        ${name ?  '$name: String!': ''}
-        ${spaceId ? '$spaceId: [UUID!]' : ''}
-        $type: [UUID!]
-        $first: Int!
-        $after: Cursor
-      ) {
-        entitiesConnection(
-          first: $first
-          after: $after
-          filter: {
-            ${name ? 'name: {isInsensitive: $name},' : ''}
-            ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}
-            relations: {some: {typeId: {is: "8f151ba4de204e3c9cb499ddf96f48f1"}, toEntityId: {in: $type}}},
-          }
-        ) {
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-          nodes {
-            id
-            name
-            values {
-                nodes {
-                    spaceId
-                    propertyId
-                    text
-                    language
-                    date
-                    datetime
-                    time
-                    integer
-                    float
-                    decimal
-                    unit
-                    boolean
-                    point
-                }
-            }
-            relations {
-                nodes {
-                    id
-                    spaceId
-                    fromEntityId
-                    toEntityId
-                    typeId
-                    verified
-                    position
-                    toSpaceId
-                    entityId
-                    entity {
-                      id
-                      name
-                      values {
-                          nodes {
-                              spaceId
-                              propertyId
-                              text
-                              language
-                              date
-                              datetime
-                              time
-                              integer
-                              float
-                              decimal
-                              unit
-                              boolean
-                              point
-                          }
-                      }
-                      relations {
-                          nodes {
-                              id
-                              spaceId
-                              fromEntityId
-                              toEntityId
-                              typeId
-                              position
-                              toSpaceId
-                              entityId
-                          }
-                      }
+      while (true) {
+        await new Promise(resolve => setTimeout(resolve, 200));
+
+        const query = `
+          query GetEntities(
+            ${name ?  '$name: String!': ''}
+            ${spaceId ? '$spaceId: [UUID!]' : ''}
+            $type: [UUID!]
+            $first: Int!
+            $after: Cursor
+          ) {
+            entitiesConnection(
+              first: $first
+              after: $after
+              filter: {
+                ${name ? 'name: {isInsensitive: $name},' : ''}
+                ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}
+                relations: {some: {typeId: {is: "8f151ba4de204e3c9cb499ddf96f48f1"}, toEntityId: {in: $type}}},
+              }
+            ) {
+              pageInfo {
+                hasNextPage
+                endCursor
+              }
+              nodes {
+                id
+                name
+                values {
+                    nodes {
+                        spaceId
+                        propertyId
+                        text
+                        language
+                        date
+                        datetime
+                        time
+                        integer
+                        float
+                        decimal
+                        unit
+                        boolean
+                        point
                     }
                 }
+                relations {
+                    nodes {
+                        id
+                        spaceId
+                        fromEntityId
+                        toEntityId
+                        typeId
+                        verified
+                        position
+                        toSpaceId
+                        entityId
+                        entity {
+                          id
+                          name
+                          values {
+                              nodes {
+                                  spaceId
+                                  propertyId
+                                  text
+                                  language
+                                  date
+                                  datetime
+                                  time
+                                  integer
+                                  float
+                                  decimal
+                                  unit
+                                  boolean
+                                  point
+                              }
+                          }
+                          relations {
+                              nodes {
+                                  id
+                                  spaceId
+                                  fromEntityId
+                                  toEntityId
+                                  typeId
+                                  position
+                                  toSpaceId
+                                  entityId
+                              }
+                          }
+                        }
+                    }
+                }
+              }
             }
           }
+        `;
+
+        const variables: Record<string, any> = {
+          name: name,
+          type: type,
+          spaceId: spaceId,
+          first: pageSize,
+          after: cursor
+        };
+
+        if (cursor === null) {
+          console.log(`  searchEntities starting for types: ${type.join(', ')} (page size: ${pageSize})`);
         }
+
+        const data = await fetchWithRetry(query, variables);
+        const connection = data?.data?.entitiesConnection;
+        const entities = connection?.nodes ?? [];
+        const pageInfo = connection?.pageInfo;
+
+        allEntities = allEntities.concat(entities);
+        console.log(`Fetched ${entities.length} entities (total so far: ${allEntities.length})`);
+
+        if (!pageInfo?.hasNextPage) {
+          break;
+        }
+
+        cursor = pageInfo.endCursor;
       }
-    `;
 
-    const variables: Record<string, any> = {
-      name: name,
-      type: type,
-      spaceId: spaceId,
-      first: PAGE_SIZE,
-      after: cursor
-    };
-
-    const data = await fetchWithRetry(query, variables);
-    const connection = data?.data?.entitiesConnection;
-    const entities = connection?.nodes ?? [];
-    const pageInfo = connection?.pageInfo;
-
-    allEntities = allEntities.concat(entities);
-    console.log(`Fetched ${entities.length} entities (total so far: ${allEntities.length})`);
-
-    if (!pageInfo?.hasNextPage) {
-      break;
+      return allEntities;
+    } catch (err) {
+      const isLast = pageSize === PAGE_SIZES[PAGE_SIZES.length - 1];
+      if (isLast) throw err;
+      console.log(`searchEntities failed with page size ${pageSize}, reducing to ${PAGE_SIZES[PAGE_SIZES.indexOf(pageSize) + 1]}...`);
     }
-
-    cursor = pageInfo.endCursor;
   }
 
-  return allEntities;
+  return [];
 }
 
 
@@ -1728,173 +1743,188 @@ export async function searchEntities_w_backlinks({
   typeId?: string;
   notTypeId?: string;
 }) {
-  const PAGE_SIZE = 1000;
-  let allEntities: any[] = [];
-  let cursor: string | null = null;
+  const PAGE_SIZES = [1000, 500, 250, 100];
 
-  while (true) {
-    await new Promise(resolve => setTimeout(resolve, 200));
+  for (const pageSize of PAGE_SIZES) {
+    try {
+      let allEntities: any[] = [];
+      let cursor: string | null = null;
 
-    const query = `
-      query GetEntities(
-        ${name ?  '$name: String!': ''}
-        ${spaceId ? '$spaceId: [UUID!]' : ''}
-        $type: [UUID!]
-        $first: Int!
-        $after: Cursor
-      ) {
-        entitiesConnection(
-          first: $first
-          after: $after
-          filter: {
-            ${name ? 'name: {isInsensitive: $name},' : ''}
-            ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}
-            relations: {some: {typeId: {is: "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"}, toEntityId: {in: $type}}},
-          }
-        ) {
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-          nodes {
-            id
-            name
-            values {
-                nodes {
-                    spaceId
-                    propertyId
-                    text
-                    language
-                    date
-                    datetime
-                    time
-                    integer
-                    float
-                    decimal
-                    unit
-                    boolean
-                    point
+      while (true) {
+        await new Promise(resolve => setTimeout(resolve, 200));
+
+        const query = `
+          query GetEntities(
+            ${name ?  '$name: String!': ''}
+            ${spaceId ? '$spaceId: [UUID!]' : ''}
+            $type: [UUID!]
+            $first: Int!
+            $after: Cursor
+          ) {
+            entitiesConnection(
+              first: $first
+              after: $after
+              filter: {
+                ${name ? 'name: {isInsensitive: $name},' : ''}
+                ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}
+                relations: {some: {typeId: {is: "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"}, toEntityId: {in: $type}}},
+              }
+            ) {
+              pageInfo {
+                hasNextPage
+                endCursor
+              }
+              nodes {
+                id
+                name
+                values {
+                    nodes {
+                        spaceId
+                        propertyId
+                        text
+                        language
+                        date
+                        datetime
+                        time
+                        integer
+                        float
+                        decimal
+                        unit
+                        boolean
+                        point
+                    }
                 }
-            }
-            relations {
-              nodes {
-                    id
-                    spaceId
-                    fromEntityId
-                    toEntityId
-                    typeId
-                    verified
-                    position
-                    toSpaceId
-                    entityId
-                    entity {
-                      id
-                      name
-                      values {
-                          nodes {
-                              spaceId
-                              propertyId
-                              text
-                              language
-                              date
-                              datetime
-                              time
-                              integer
-                              float
-                              decimal
-                              unit
-                              boolean
-                              point
+                relations {
+                  nodes {
+                        id
+                        spaceId
+                        fromEntityId
+                        toEntityId
+                        typeId
+                        verified
+                        position
+                        toSpaceId
+                        entityId
+                        entity {
+                          id
+                          name
+                          values {
+                              nodes {
+                                  spaceId
+                                  propertyId
+                                  text
+                                  language
+                                  date
+                                  datetime
+                                  time
+                                  integer
+                                  float
+                                  decimal
+                                  unit
+                                  boolean
+                                  point
+                              }
                           }
-                      }
-                      relations {
-                          nodes {
-                              id
-                              spaceId
-                              fromEntityId
-                              toEntityId
-                              typeId
-                              position
-                              toSpaceId
-                              entityId
-                        }
-                      }
-                    }
-              }
-            }
-            backlinks {
-              nodes {
-                    id
-                    spaceId
-                    fromEntityId
-                    toEntityId
-                    typeId
-                    position
-                    toSpaceId
-                    entityId
-                    entity {
-                      id
-                      name
-                      values {
-                          nodes {
-                              spaceId
-                              propertyId
-                              text
-                              language
-                              date
-                              datetime
-                              time
-                              integer
-                              float
-                              decimal
-                              unit
-                              boolean
-                              point
+                          relations {
+                              nodes {
+                                  id
+                                  spaceId
+                                  fromEntityId
+                                  toEntityId
+                                  typeId
+                                  position
+                                  toSpaceId
+                                  entityId
+                            }
                           }
-                      }
-                      relations {
-                          nodes {
-                              id
-                              spaceId
-                              fromEntityId
-                              toEntityId
-                              typeId
-                              position
-                              toSpaceId
-                              entityId
                         }
-                      }
-                    }
+                  }
+                }
+                backlinks {
+                  nodes {
+                        id
+                        spaceId
+                        fromEntityId
+                        toEntityId
+                        typeId
+                        position
+                        toSpaceId
+                        entityId
+                        entity {
+                          id
+                          name
+                          values {
+                              nodes {
+                                  spaceId
+                                  propertyId
+                                  text
+                                  language
+                                  date
+                                  datetime
+                                  time
+                                  integer
+                                  float
+                                  decimal
+                                  unit
+                                  boolean
+                                  point
+                              }
+                          }
+                          relations {
+                              nodes {
+                                  id
+                                  spaceId
+                                  fromEntityId
+                                  toEntityId
+                                  typeId
+                                  position
+                                  toSpaceId
+                                  entityId
+                            }
+                          }
+                        }
+                  }
+                }
               }
             }
           }
+        `;
+
+        const variables: Record<string, any> = {
+          name: name,
+          type: type,
+          spaceId: spaceId,
+          first: pageSize,
+          after: cursor
+        };
+
+        if (cursor === null) {
+          console.log(`  searchEntities_w_backlinks starting for types: ${type.join(', ')} (page size: ${pageSize})`);
         }
+
+        const data = await fetchWithRetry(query, variables);
+        const connection = data?.data?.entitiesConnection;
+        const entities = connection?.nodes ?? [];
+        const pageInfo = connection?.pageInfo;
+
+        allEntities = allEntities.concat(entities);
+        console.log(`Fetched ${entities.length} entities with backlinks (total so far: ${allEntities.length})`);
+
+        if (!pageInfo?.hasNextPage) {
+          break;
+        }
+
+        cursor = pageInfo.endCursor;
       }
-    `;
 
-    const variables: Record<string, any> = {
-      name: name,
-      type: type,
-      spaceId: spaceId,
-      first: PAGE_SIZE,
-      after: cursor
-    };
-
-    const data = await fetchWithRetry(query, variables);
-    const connection = data?.data?.entitiesConnection;
-    const entities = connection?.nodes ?? [];
-    const pageInfo = connection?.pageInfo;
-
-    allEntities = allEntities.concat(entities);
-    console.log(`Fetched ${entities.length} entities with backlinks (total so far: ${allEntities.length})`);
-
-    if (!pageInfo?.hasNextPage) {
-      break;
+      return allEntities;
+    } catch (err) {
+      const isLast = pageSize === PAGE_SIZES[PAGE_SIZES.length - 1];
+      if (isLast) throw err;
+      console.log(`searchEntities_w_backlinks failed with page size ${pageSize}, reducing to ${PAGE_SIZES[PAGE_SIZES.indexOf(pageSize) + 1]}...`);
     }
-
-    cursor = pageInfo.endCursor;
   }
 
-  return allEntities;
+  return [];
 }
 
