@@ -1585,7 +1585,7 @@ export async function searchEntities({
   typeId?: string;
   notTypeId?: string;
 }) {
-  const PAGE_SIZE = 1000;
+  const PAGE_SIZE = 100;
   let allEntities: any[] = [];
   let cursor: string | null = null;
 
@@ -1732,7 +1732,7 @@ export async function searchEntities_w_backlinks({
   typeId?: string;
   notTypeId?: string;
 }) {
-  const PAGE_SIZE = 1000;
+  const PAGE_SIZE = 100;
   let allEntities: any[] = [];
   let cursor: string | null = null;
 
