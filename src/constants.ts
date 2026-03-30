@@ -24,7 +24,7 @@ export const propertyToIdMap: Record<string, string> = {
   "propertiesSourced": "198150d08f4e410a93299aab3ac3c1e3",
   "relationsSourced": "2596082ff4d34a619b6a831e253cb345",
   "format": "396f8c72dfd04b5791ea09c1b9321b2f",
-  "topics": "458fbc070dbf4c928f5716f3fdde7c32",
+  "topics": "806d52bc27e94c9193c057978b093351",
   "roles": "8fcfe5ef3d9147bd83223830a998d26b",
   "renderable_type": "2316bbe1c76f463583f23e03b4f1fe46",
   "supporting_quotes": "f9eeaf9d9eb741b1ac5d257c6e82e526",
@@ -38,7 +38,7 @@ export const propertyToIdMap: Record<string, string> = {
   "listen_on": "1367bac7dcea4b8086ada4a4cdd7c2cb",
   "hosts": "c72d9abbbca84e86b7e8b71e91d2b37e",
   "guests": "cb60a1a66fb548c9b936200c5c271330",
-  "contributors": "1ff591322d574671934a7b662e3cf66a",
+  "contributors": "fce8953f56af4e42a869725ed0b024f0",
   "episode_number": "9b5eced95c30473b8404f474a777db3a",
   "air_date": "77999397f78d44a7bbc5d93a617af47c",
   "audio_url": "87f919d5560b408cbe8d318e2c5c098b",
@@ -53,8 +53,8 @@ export const propertyToIdMap: Record<string, string> = {
   "end_offset": "79a677b597f84ca8a1cf24eef7837b61",
   "notable_quotes": "8d4ae49c226d40868ec3af5d5b2a65d0",
   "notable_claims": "e1371bcda7044396adb7ea7ecc8fe3d4",
-  "broader_topics": "3f0852c85f5245a1bd25d7a737430c01",
-  "subtopics": "4b5bbddf32b247bab0a6dbbab27f457d"
+  "broader_topics": "b35bd6d39fb64f3a8aeaf5a9b91b5ef6",
+  "subtopics": "39e40cadb23d4f63ab2faea1596436c7"
 };
 //'"bool" | "float64" | "text" | "point" | "date" | "time" | "datetime" | "schedule"
 export const propertyToDataTypeMap: Record<string, string> = {
