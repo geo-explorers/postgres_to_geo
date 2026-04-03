@@ -1134,7 +1134,7 @@ if (!match && row.name) {
     geo_id = match.id;
     entityOnGeo = match;
   }
-  
+
   const other_relations = (otherRelations ?? []).flatMap((rel: any) => {
       //const relatedItems = row[rel.type] ?? []; // now [{ to_id, entity_id }, ...]
       const relatedItems = Array.isArray(row[rel.type]) ? row[rel.type] : row[rel.type] ? [row[rel.type]] : []; // now [{ to_id, entity_id }, ...]
@@ -1429,7 +1429,20 @@ export async function fetchWithRetry(query: string, variables: any, retries = 5,
         }
 
         if (response.ok) {
-            return await response.json();
+            const json = await response.json();
+            // Detect GraphQL-level errors that return HTTP 200 but null data
+            if (json.errors && !json.data) {
+                const errMsg = `GraphQL errors with null data: ${JSON.stringify(json.errors)}`;
+                if (i < retries - 1) {
+                    const jitteredDelay = delay * (2 ** i) * (0.5 + Math.random() * 0.5);
+                    console.log(`Retry # ${i} (GraphQL error), waiting ${Math.round(jitteredDelay)}ms: ${errMsg}`);
+                    await new Promise(resolve => setTimeout(resolve, jitteredDelay));
+                    continue;
+                }
+                console.error(`fetchWithRetry failed after ${retries} retries (GraphQL error): ${errMsg}`);
+                throw new Error(errMsg);
+            }
+            return json;
         }
 
         if (i < retries - 1) {
@@ -1701,8 +1714,17 @@ export async function searchEntities({
 
         const data = await fetchWithRetry(query, variables);
         const connection = data?.data?.entitiesConnection;
-        const entities = connection?.nodes ?? [];
-        const pageInfo = connection?.pageInfo;
+
+        if (!connection) {
+          throw new Error(
+            `searchEntities: API returned null entitiesConnection ` +
+            `(types: ${type.join(', ')}, pageSize: ${pageSize}, cursor: ${cursor}, ` +
+            `errors: ${JSON.stringify(data?.errors ?? 'none')})`
+          );
+        }
+
+        const entities = connection.nodes ?? [];
+        const pageInfo = connection.pageInfo;
 
         allEntities = allEntities.concat(entities);
         console.log(`Fetched ${entities.length} entities (total so far: ${allEntities.length})`);
@@ -1904,8 +1926,17 @@ export async function searchEntities_w_backlinks({
 
         const data = await fetchWithRetry(query, variables);
         const connection = data?.data?.entitiesConnection;
-        const entities = connection?.nodes ?? [];
-        const pageInfo = connection?.pageInfo;
+
+        if (!connection) {
+          throw new Error(
+            `searchEntities_w_backlinks: API returned null entitiesConnection ` +
+            `(types: ${type.join(', ')}, pageSize: ${pageSize}, cursor: ${cursor}, ` +
+            `errors: ${JSON.stringify(data?.errors ?? 'none')})`
+          );
+        }
+
+        const entities = connection.nodes ?? [];
+        const pageInfo = connection.pageInfo;
 
         allEntities = allEntities.concat(entities);
         console.log(`Fetched ${entities.length} entities with backlinks (total so far: ${allEntities.length})`);
