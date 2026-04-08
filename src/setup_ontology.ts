@@ -463,8 +463,14 @@ export async function read_in_tables({
         ON p.id = l.podcast_id
       WHERE p.name IN (${inClause})
       GROUP BY p.id
-      LIMIT ${limit} OFFSET ${offset}
   `);
+  // Note: the caller already constrains the podcast set via `WHERE p.name IN (...)`.
+  // A previous `LIMIT ${limit} OFFSET ${offset}` clause was removed here because
+  // it silently truncated the 62-podcast input list to 5 (the value of the payload's
+  // `limit` field, which is driven by EXTRACTION_TARGET in pg-migrations). That env
+  // var semantically means "episodes per podcast", not "number of podcasts to
+  // process", and the truncation was causing 58 of the 63 daily podcasts to be
+  // skipped on every run. See PR description for empirical evidence.
     //('${podcast_name}')
     //('Lex Fridman Podcast', 'The Joe Rogan Experience', 'Up First from NPR', 'Freakonomics Radio', 'Huberman Lab', 'The Daily', 'Honestly with Bari Weiss', 'Bankless' )
     //'Bankless', 'The Joe Rogan Experience', 'Freakonomics Radio', 'The Daily', 'Lex Fridman Podcast', 'Today, Explained', 'The Genius Life', 'All-In with Chamath, Jason, Sacks & Friedberg'
