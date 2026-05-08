@@ -1649,7 +1649,7 @@ export async function searchEntities({
                         point
                     }
                 }
-                relations {
+                relations(first: 1000) {
                     nodes {
                         id
                         spaceId
@@ -1816,7 +1816,7 @@ export async function searchEntities_w_backlinks({
                         point
                     }
                 }
-                relations {
+                relations(first: 1000) {
                   nodes {
                         id
                         spaceId
@@ -1862,7 +1862,7 @@ export async function searchEntities_w_backlinks({
                         }
                   }
                 }
-                backlinks {
+                backlinks(first: 1000) {
                   nodes {
                         id
                         spaceId
