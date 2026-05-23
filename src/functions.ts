@@ -746,10 +746,32 @@ export function buildEntityCached(
 
   const tableName = breakdown.table;
 
-  // --- cache check ---
+  // --- cache check (by PG row.id) ---
   cache[tableName] = cache[tableName] || {};
   if (cache[tableName][row.id]) {
     return cache[tableName][row.id];
+  }
+
+  // --- cache check (by normalized name) ---
+  // Different PG rows can collapse to the same canonical name. Example: tags 17339
+  // "U.S.-Iran conflict" (hyphen) and 19302 "U.S.–Iran conflict" (em-dash) both
+  // normalize to "usiran conflict". The row.id cache above can't catch these
+  // because the ids differ. Without this secondary cache, two rows with the same
+  // canonical name produce two distinct entity objects with two random
+  // internal_ids; if neither resolves to an existing Geo entity via the
+  // geoEntities lookup (e.g. the first time the canonical is published), both
+  // get minted as new entities → within-run duplicate.
+  //
+  // Safe for nameless entity types (e.g. claim_relation, where value_fields=[]):
+  // the `if (row.name)` guard below falls through to existing row.id behavior
+  // unchanged — no regression for entities that don't have a name.
+  const nameCacheKey = `__name__${tableName}`;
+  cache[nameCacheKey] = cache[nameCacheKey] || {};
+  if (row.name) {
+    const localNameKey = normalizeName(row.name);
+    if (localNameKey && cache[nameCacheKey][localNameKey]) {
+      return cache[nameCacheKey][localNameKey];
+    }
   }
 
   let geo_id: string | null = null;
@@ -1278,8 +1300,15 @@ if (!match && row.name) {
     relations,
   };
 
-  // --- cache save ---
+  // --- cache save (by PG row.id) ---
   cache[tableName][row.id] = entity;
+
+  // --- cache save (by normalized name) ---
+  // See the matching "cache check (by normalized name)" block above for rationale.
+  if (row.name) {
+    const localNameKey = normalizeName(row.name);
+    if (localNameKey) cache[nameCacheKey][localNameKey] = entity;
+  }
 
   return entity;
 }
@@ -1625,6 +1654,7 @@ export async function searchEntities({
                 relations: {some: {typeId: {is: "8f151ba4de204e3c9cb499ddf96f48f1"}, toEntityId: {in: $type}}},
               }
             ) {
+              totalCount
               pageInfo {
                 hasNextPage
                 endCursor
@@ -1725,11 +1755,28 @@ export async function searchEntities({
 
         const entities = connection.nodes ?? [];
         const pageInfo = connection.pageInfo;
+        const totalCount = connection.totalCount;
 
         allEntities = allEntities.concat(entities);
         console.log(`Fetched ${entities.length} entities (total so far: ${allEntities.length})`);
 
         if (!pageInfo?.hasNextPage) {
+          // --- pagination integrity guard ---
+          // The API can return `{nodes: [], hasNextPage: false}` mid-pagination
+          // (e.g. under indexer pressure), which would silently terminate the loop
+          // with a partial result. The caller (loadGeoEntities) would then build
+          // an incomplete cache; subsequent buildEntityCached lookups would miss
+          // existing entities and create duplicates. Throwing here lets the outer
+          // PAGE_SIZES fallback retry with smaller pages or eventually surface
+          // the issue rather than publishing silent dups. See May-12 episode
+          // cascade in root_cause_analysis.md.
+          if (typeof totalCount === "number" && allEntities.length < totalCount) {
+            throw new Error(
+              `searchEntities: silent pagination truncation — hasNextPage=false at ` +
+              `${allEntities.length}/${totalCount} entities ` +
+              `(types: ${type.join(', ')}, pageSize: ${pageSize})`
+            );
+          }
           break;
         }
 
@@ -1792,6 +1839,7 @@ export async function searchEntities_w_backlinks({
                 relations: {some: {typeId: {is: "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"}, toEntityId: {in: $type}}},
               }
             ) {
+              totalCount
               pageInfo {
                 hasNextPage
                 endCursor
@@ -1937,11 +1985,20 @@ export async function searchEntities_w_backlinks({
 
         const entities = connection.nodes ?? [];
         const pageInfo = connection.pageInfo;
+        const totalCount = connection.totalCount;
 
         allEntities = allEntities.concat(entities);
         console.log(`Fetched ${entities.length} entities with backlinks (total so far: ${allEntities.length})`);
 
         if (!pageInfo?.hasNextPage) {
+          // --- pagination integrity guard (see searchEntities for full rationale) ---
+          if (typeof totalCount === "number" && allEntities.length < totalCount) {
+            throw new Error(
+              `searchEntities_w_backlinks: silent pagination truncation — hasNextPage=false at ` +
+              `${allEntities.length}/${totalCount} entities ` +
+              `(types: ${type.join(', ')}, pageSize: ${pageSize})`
+            );
+          }
           break;
         }
 
