@@ -10,6 +10,75 @@ export const SPACE_IDS = {
   podcasts: "b5a31f8182b042437ede0f84ee02f104",
 }
 
+// === Topic selection priority constants ===
+// Used by `buildEntityCached` to deterministically pick between multiple
+// existing Geo topics that share a canonical name. See root_cause_analysis.md
+// and the cross-space-topic-dups report for the surfacing of this bug.
+
+// The Root (Geo) space — canonical topics live here. NOTE: this is NOT the
+// same as the stale `SPACE_IDS.root` above (which predates the canonical-topic
+// concept and is left intact in case other tooling references it).
+export const ROOT_GEO_SPACE_ID = "a19c345ab9866679b001d7d2138d88a1";
+
+// The 13 canonical SPACE ids (per some-ids.md). At runtime we resolve each
+// space's `topicId` to discover which entity IDs represent these canonical
+// spaces — the rule-1 priority check is against that discovered set.
+export const CANONICAL_SPACE_IDS = new Set<string>([
+  "c9f267dcb0d270718c2a3c45a64afd32",  // Crypto
+  "41e851610e13a19441c4d980f2f2ce6b",  // AI
+  "52c7ae149838b6d47ce0f3b2a5974546",  // Health
+  "19f11bc6f1a62ac434936af814d1f8b5",  // Pharma
+  "870e3b3068661e6280fad2ab456829bc",  // Technology
+  "89bd89bf28ff8a0963faf92a8c905e20",  // World affairs
+  "4582fbbee28a16589154f7e36f1ee3c5",  // U.S. Politics
+  "d69608290513c2a91102c939b3265bd7",  // Industries
+  "ec349623f33236aee13c12dcd629ee81",  // Education
+  "9b611b848b12491b9b6b43f3cf019b8b",  // Software
+  "84a679ce188f061ac9a92380bac2bab5",  // Places
+  "784bfddae3f3976118c561bf28195b44",  // Documentation
+  "b5a31f8182b042437ede0f84ee02f104",  // Podcasts
+]);
+
+// Dataset spaces — topics here are NEVER selected (per the priority rules).
+// Identified only by ID; the GraphQL `SpaceTypes` enum has no DATASET value.
+export const DATASET_SPACE_IDS = new Set<string>([
+  "5908c73ad336472ccbd983491d2d17e4",  // Crypto datasets
+  "941964642f4d3e70ef48f54a3915277d",  // AI datasets
+  "44eb138f564fbed6ed9ce543de1b849c",  // Health datasets
+  "da96a4c26e718bfa6c27c3b1f3c316cd",  // World affairs datasets
+  "1b3d2963d14de99d4e440000125edb65",  // U.S. Politics datasets
+]);
+
+// Tag entities. A topic is "featured" / "curated" iff it has a relation
+// pointing to one of these (typeId is irrelevant — toEntityId is what counts).
+export const FEATURED_TAG_ENTITY_ID = "b69b8b1659df4e6d99d79956a30e8932";
+export const CURATED_TAG_ENTITY_ID  = "7f796eb5bfc5449c98649bf7d996a2ca";
+
+// Score property. A topic "has a score" iff its values array contains a
+// value with this propertyId. The "Score" property is "net upvotes minus
+// downvotes for an entity within a space."
+export const SCORE_PROPERTY_ID = "85a4668a42fa4f488969c0a9de0c294b";
+
+// Threaded through `buildEntityCached` for deterministic candidate selection
+// when multiple Geo topics share a canonical name. Populated once per workflow
+// run by `loadGeoEntities`. See root_cause_analysis.md / cross_space_topic_dups.csv.
+//
+// Lives in constants.ts (not setup_ontology.ts) to avoid a circular import
+// between setup_ontology.ts and functions.ts.
+export interface ScoringContext {
+  // Entity IDs that represent canonical spaces (e.g. the entity for the Crypto
+  // space). Resolved at startup by querying each canonical space's `topicId`.
+  canonicalSpaceTopicIds: Set<string>;
+  // Space IDs whose `type === 'PERSONAL'`. Any candidate that belongs to any
+  // of these is filtered out before sort.
+  personalSpaceIds: Set<string>;
+}
+
+export const EMPTY_SCORING_CONTEXT: ScoringContext = {
+  canonicalSpaceTopicIds: new Set(),
+  personalSpaceIds: new Set(),
+};
+
 export const propertyToIdMap: Record<string, string> = {
   "name": "a126ca530c8e48d5b88882c734c38935",
   "description": "9b1f76ff9711404c861e59dc3fa7d037",

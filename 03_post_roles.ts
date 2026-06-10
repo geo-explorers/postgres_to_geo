@@ -24,8 +24,8 @@ process.on('SIGINT', async () => {
 });
 
 try {
-    const geoEntities = await loadGeoEntities()
-    
+    const { geoEntities, scoringContext } = await loadGeoEntities()
+
     let tables = await read_in_tables({
         pgClient: pgClient,
         offset: offset,
@@ -33,7 +33,7 @@ try {
     });
 
     const formattedRoles = tables.roles.map(e =>
-        buildEntityCached(e, roleBreakdown, SPACE_IDS.podcasts, tables, geoEntities, entityCache)
+        buildEntityCached(e, roleBreakdown, SPACE_IDS.podcasts, tables, geoEntities, entityCache, scoringContext)
     );
 
     for (const role of formattedRoles) {

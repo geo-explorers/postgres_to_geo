@@ -44,7 +44,7 @@ export async function processPodcastWorkflow(params: WorkflowParams): Promise<Wo
 
   try {
     console.log('Loading geo entities...');
-    const geoEntities = await loadGeoEntities();
+    const { geoEntities, scoringContext } = await loadGeoEntities();
 
     console.log('Reading tables from PostgreSQL...');
     const tables = await read_in_tables({
@@ -61,7 +61,7 @@ export async function processPodcastWorkflow(params: WorkflowParams): Promise<Wo
 
     console.log('Formatting episodes...');
     const formattedEpisodes = tables.episodes.map(p =>
-      buildEntityCached(p, episodeBreakdown, SPACE_IDS.podcasts, tables, geoEntities, localEntityCache)
+      buildEntityCached(p, episodeBreakdown, SPACE_IDS.podcasts, tables, geoEntities, localEntityCache, scoringContext)
     );
 
     console.log('Formatting done. Processing entities...');

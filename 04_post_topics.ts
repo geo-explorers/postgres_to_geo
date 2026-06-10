@@ -25,11 +25,11 @@ process.on('SIGINT', async () => {
 });
 
 try {
-    const geoEntities = await loadGeoEntities()
+    const { geoEntities, scoringContext } = await loadGeoEntities()
 
     const text = JSON.stringify(geoEntities.topics, null, 2); // 2-space indentation
     fs.writeFileSync("geo_pull_topics.txt", text, "utf-8");
-    
+
     let tables = await read_in_tables({
         pgClient: pgClient,
         offset: offset,
@@ -37,9 +37,9 @@ try {
         podcast_name: ["none"],
         num_episodes: 0,
     });
-    
+
     const formattedTopics = tables.topics.map(e =>
-        buildEntityCached(e, topicBreakdown, SPACE_IDS.podcasts, tables, geoEntities, entityCache)
+        buildEntityCached(e, topicBreakdown, SPACE_IDS.podcasts, tables, geoEntities, entityCache, scoringContext)
     );
 
     
