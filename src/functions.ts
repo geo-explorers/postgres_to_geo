@@ -5,7 +5,18 @@ import {Id, Base58, SystemIds, Graph, Position, type Op, IdUtils} from "@geoprot
 import dotenv from "dotenv";
 import { validate as uuidValidate } from 'uuid';
 
-import { propertyToIdMap, propertyToDataTypeMap, testnetWalletAddress } from './constants.ts';
+import {
+  propertyToIdMap,
+  propertyToDataTypeMap,
+  testnetWalletAddress,
+  ROOT_GEO_SPACE_ID,
+  DATASET_SPACE_IDS,
+  FEATURED_TAG_ENTITY_ID,
+  CURATED_TAG_ENTITY_ID,
+  SCORE_PROPERTY_ID,
+  EMPTY_SCORING_CONTEXT,
+  type ScoringContext,
+} from './constants.ts';
 
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -735,13 +746,244 @@ function getGeoNameIndex(geoRows: any[]): Map<string, any[]> {
   return index;
 }
 
+// =========================================================================
+// Deterministic candidate selection — used by buildEntityCached when more
+// than one Geo entity shares the canonical name we're looking up.
+//
+// Priority (top wins, falls through to next rule on ties):
+//   1. Canonical space  — entity is the topic-representation of a canonical
+//                         Geo space (e.g. the Crypto space's topic entity).
+//   2. Canonical topic  — entity is in the Root (Geo) space.
+//   3. Featured topic   — entity has a relation to the Featured tag entity.
+//   4. Scored topic     — entity has a `Score` value. Both-scored = pick
+//                         higher and log a [BOTH_SCORED] structured warning.
+//   5. Curated topic    — entity has a relation to the Curated tag entity.
+//   6. Backlink count   — more backlinks wins (capped at 100; ties fall through).
+//   7. More data        — values.length + relations.length, more wins.
+//   8. Older topic      — earlier createdAt wins.
+//   9. UUID ascending   — absolute deterministic floor.
+//
+// Filters (applied BEFORE sort — these candidates are excluded entirely):
+//   - isValidCandidate(p) returns false (existing type/sources check)
+//   - any of p.spaceIds is in DATASET_SPACE_IDS
+//   - any of p.spaceIds is in ctx.personalSpaceIds
+// =========================================================================
+
+function isInDatasetSpace(p: any): boolean {
+  const sids = p?.spaceIds;
+  if (!Array.isArray(sids)) return false;
+  for (const s of sids) if (DATASET_SPACE_IDS.has(String(s))) return true;
+  return false;
+}
+
+function isInPersonalSpace(p: any, ctx: ScoringContext): boolean {
+  const sids = p?.spaceIds;
+  if (!Array.isArray(sids)) return false;
+  for (const s of sids) if (ctx.personalSpaceIds.has(String(s))) return true;
+  return false;
+}
+
+function isCanonicalSpace(p: any, ctx: ScoringContext): boolean {
+  return ctx.canonicalSpaceTopicIds.has(String(p?.id ?? ""));
+}
+
+function isCanonicalTopic(p: any): boolean {
+  const sids = p?.spaceIds;
+  if (!Array.isArray(sids)) return false;
+  return sids.includes(ROOT_GEO_SPACE_ID);
+}
+
+function hasRelationTo(p: any, targetEntityId: string): boolean {
+  const rels = p?.relations;
+  if (!Array.isArray(rels)) return false;
+  for (const r of rels) {
+    if (String(r?.toEntityId ?? "") === targetEntityId) return true;
+  }
+  return false;
+}
+
+function isFeatured(p: any): boolean {
+  return hasRelationTo(p, FEATURED_TAG_ENTITY_ID);
+}
+
+function isCurated(p: any): boolean {
+  return hasRelationTo(p, CURATED_TAG_ENTITY_ID);
+}
+
+/**
+ * Returns the entity's score (net upvotes minus downvotes) or null if the
+ * Score property is not set. Score values can be stored as integer, float,
+ * decimal, or text — we read the normalized `value` first, then fall back to
+ * the raw fields. Returns null if no parseable number is found.
+ */
+function getScore(p: any): number | null {
+  const values = p?.values;
+  if (!Array.isArray(values)) return null;
+  for (const v of values) {
+    if (String(v?.propertyId ?? "") !== SCORE_PROPERTY_ID) continue;
+    // After flatten_api_response, the normalized form lives in `value`
+    if (v.value != null && v.value !== "") {
+      const n = Number(v.value);
+      if (Number.isFinite(n)) return n;
+    }
+    // Defensive fallback for un-flattened entities (e.g. backlink targets)
+    for (const k of ["integer", "float", "decimal", "text"] as const) {
+      if (v?.[k] != null && v[k] !== "") {
+        const n = Number(v[k]);
+        if (Number.isFinite(n)) return n;
+      }
+    }
+    // Property was present but unreadable — treat as "scored, value unknown"
+    return null;
+  }
+  return null;
+}
+
+function hasScore(p: any): boolean {
+  const values = p?.values;
+  if (!Array.isArray(values)) return false;
+  for (const v of values) {
+    if (String(v?.propertyId ?? "") === SCORE_PROPERTY_ID) return true;
+  }
+  return false;
+}
+
+function getBacklinkCount(p: any): number {
+  // backlinks comes from the GraphQL `backlinks(first: 100)` field — capped at 100.
+  // searchEntities_w_backlinks flattens it; searchEntities leaves it as `{ nodes }`.
+  const bl = p?.backlinks;
+  if (Array.isArray(bl)) return Math.min(bl.length, 100);
+  const nodes = bl?.nodes;
+  if (Array.isArray(nodes)) return Math.min(nodes.length, 100);
+  return 0;
+}
+
+function getDataCount(p: any): number {
+  const vlen = Array.isArray(p?.values) ? p.values.length : 0;
+  const rlen = Array.isArray(p?.relations) ? p.relations.length : 0;
+  return vlen + rlen;
+}
+
+function getCreatedAtNumeric(p: any): number {
+  const c = p?.createdAt;
+  if (c == null) return Number.POSITIVE_INFINITY; // unknown age sorts last
+  const n = Number(c);
+  return Number.isFinite(n) ? n : Number.POSITIVE_INFINITY;
+}
+
+/**
+ * Builds the comparator used to sort filtered candidates worst-first → best-first
+ * is a misnomer; `Array.sort` with this comparator places the BEST candidate at
+ * index 0. Returns negative when a should be ranked higher (earlier) than b.
+ *
+ * `canonicalName` is passed only so the [BOTH_SCORED] warning can include it.
+ */
+function buildPriorityComparator(ctx: ScoringContext, canonicalName: string): (a: any, b: any) => number {
+  return (a: any, b: any): number => {
+    // 1. canonical space
+    const aCs = isCanonicalSpace(a, ctx);
+    const bCs = isCanonicalSpace(b, ctx);
+    if (aCs !== bCs) return aCs ? -1 : 1;
+
+    // 2. canonical topic
+    const aCt = isCanonicalTopic(a);
+    const bCt = isCanonicalTopic(b);
+    if (aCt !== bCt) return aCt ? -1 : 1;
+
+    // 3. featured
+    const aFt = isFeatured(a);
+    const bFt = isFeatured(b);
+    if (aFt !== bFt) return aFt ? -1 : 1;
+
+    // 4. scored
+    const aHs = hasScore(a);
+    const bHs = hasScore(b);
+    if (aHs !== bHs) return aHs ? -1 : 1;
+    if (aHs && bHs) {
+      const aScore = getScore(a) ?? 0;
+      const bScore = getScore(b) ?? 0;
+      // Both candidates have a score — emit a structured warning so we can
+      // surface these for Armando's review in the daily report.
+      const higher = aScore >= bScore ? a : b;
+      const lower  = aScore >= bScore ? b : a;
+      const higherScore = aScore >= bScore ? aScore : bScore;
+      const lowerScore  = aScore >= bScore ? bScore : aScore;
+      try {
+        console.warn(JSON.stringify({
+          event: "BOTH_SCORED",
+          canonical: canonicalName,
+          picked_id: higher.id,
+          picked_score: higherScore,
+          other_id: lower.id,
+          other_score: lowerScore,
+        }));
+      } catch { /* logging best-effort */ }
+      if (aScore !== bScore) return aScore > bScore ? -1 : 1;
+      // identical scores — fall through to next rule
+    }
+
+    // 5. curated
+    const aCu = isCurated(a);
+    const bCu = isCurated(b);
+    if (aCu !== bCu) return aCu ? -1 : 1;
+
+    // 6. backlinks
+    const aBl = getBacklinkCount(a);
+    const bBl = getBacklinkCount(b);
+    if (aBl !== bBl) return bBl - aBl;
+
+    // 7. data count
+    const aDc = getDataCount(a);
+    const bDc = getDataCount(b);
+    if (aDc !== bDc) return bDc - aDc;
+
+    // 8. age — older wins
+    const aAge = getCreatedAtNumeric(a);
+    const bAge = getCreatedAtNumeric(b);
+    if (aAge !== bAge) return aAge - bAge;
+
+    // 9. UUID floor
+    return String(a?.id ?? "").localeCompare(String(b?.id ?? ""));
+  };
+}
+
+/**
+ * Apply the filters + priority comparator to an array of name-matching
+ * candidates. Returns the chosen entity, or undefined if every candidate was
+ * filtered out. Centralised so both the exact-name fast path and the fuzzy
+ * fallback can share the logic.
+ *
+ * `isValid` is the type/sources check from the caller's closure — kept as the
+ * first filter because it depends on per-call state (existingSources).
+ */
+function selectBestCandidate(
+  candidates: any[],
+  ctx: ScoringContext,
+  isValid: (p: any) => boolean,
+  canonicalName: string,
+): any | undefined {
+  if (!Array.isArray(candidates) || candidates.length === 0) return undefined;
+  const filtered: any[] = [];
+  for (const p of candidates) {
+    if (!isValid(p)) continue;
+    if (isInDatasetSpace(p)) continue;
+    if (isInPersonalSpace(p, ctx)) continue;
+    filtered.push(p);
+  }
+  if (filtered.length === 0) return undefined;
+  if (filtered.length === 1) return filtered[0];
+  filtered.sort(buildPriorityComparator(ctx, canonicalName));
+  return filtered[0];
+}
+
 export function buildEntityCached(
   row: any,
   breakdown: any,
   spaceId: string,
   tables: Record<string, any[]>,
   geoEntities: Record<string, any[]>,
-  cache: Record<string, Record<string, any>>
+  cache: Record<string, Record<string, any>>,
+  scoringContext: ScoringContext = EMPTY_SCORING_CONTEXT,
 ): any {
 
   const tableName = breakdown.table;
@@ -915,7 +1157,8 @@ export function buildEntityCached(
               spaceId,
               tables,
               scopedGeoEntities,
-              cache
+              cache,
+              scoringContext,
           );
 
           // build entity side if entityBreakdown is provided
@@ -931,12 +1174,13 @@ export function buildEntityCached(
                   spaceId,
                   tables,
                   geoEntities,
-                  cache
+                  cache,
+                  scoringContext,
                   );
               }
           }
 
-          
+
           if (rel.type == "sources" && childEntity.entityOnGeo) { //Todo - Check that this doesnt pull anything in if the child entity is empty (even if it just has a type...)
               //console.log("SOURCE FOUND")
               const hasSourceDbIdentifier = childEntity?.entityOnGeo?.values?.some(
@@ -1115,16 +1359,23 @@ if (!match && row.name) {
     };
 
     // --- Fast path: O(1) exact normalized-name lookup via index ---
+    // When multiple Geo entities share the same canonical name, we no longer
+    // pick "whichever pagination delivered first". Instead we apply the
+    // deterministic priority rules (see selectBestCandidate above): personal
+    // and dataset-space entities are filtered out, then survivors are sorted
+    // by canonical-space → canonical-topic → featured → scored → curated →
+    // backlinks → data count → age → UUID. Same data, same pick, every run.
     if (localName) {
         const nameIndex = getGeoNameIndex(geoRows);
         const exactCandidates = nameIndex.get(localName);
-        if (exactCandidates) {
-            for (const p of exactCandidates) {
-                if (isValidCandidate(p)) {
-                    match = p; // exact normalized match (score = 1.0 > 0.9 threshold)
-                    break;
-                }
-            }
+        if (exactCandidates && exactCandidates.length > 0) {
+            const chosen = selectBestCandidate(
+                exactCandidates,
+                scoringContext,
+                isValidCandidate,
+                localName,
+            );
+            if (chosen) match = chosen;
         }
     }
 
@@ -1222,7 +1473,8 @@ if (!match && row.name) {
                 spaceId,
                 tables,
                 scopedGeoEntities,
-                cache
+                cache,
+                scoringContext,
             );
 
             // build entity side if entityBreakdown is provided
@@ -1238,7 +1490,8 @@ if (!match && row.name) {
                     spaceId,
                     tables,
                     geoEntities,
-                    cache
+                    cache,
+                    scoringContext,
                     );
                 }
             }
@@ -1662,6 +1915,8 @@ export async function searchEntities({
               nodes {
                 id
                 name
+                spaceIds
+                createdAt
                 values {
                     nodes {
                         spaceId
@@ -1723,6 +1978,11 @@ export async function searchEntities({
                               }
                           }
                         }
+                    }
+                }
+                backlinks(first: 100) {
+                    nodes {
+                        id
                     }
                 }
               }

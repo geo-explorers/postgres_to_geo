@@ -1,6 +1,7 @@
-import { typeToIdMap } from "./constants.ts";
+import { typeToIdMap, CANONICAL_SPACE_IDS, type ScoringContext } from "./constants.ts";
 import PostgreSQLClient, { DB_ID, TABLES } from "./postgres-client.ts";
 import { flatten_api_response, searchEntities, searchEntities_w_backlinks, flatten_api_response_w_backlinks } from './functions.ts';
+import { gql } from './publish.ts';
 import { v4 as uuidv4 } from "uuid";
 import levenshtein from "fast-levenshtein";
 
@@ -1123,7 +1124,7 @@ export async function read_in_tables({
 }
 
 
-export async function loadGeoEntities(space?: string) {
+export async function loadGeoEntities(space?: string): Promise<{ geoEntities: any; scoringContext: ScoringContext }> {
   const breakdowns = {
     people: personBreakdown,
     podcasts: podcastBreakdown,
@@ -1170,8 +1171,69 @@ export async function loadGeoEntities(space?: string) {
     console.log(`Loaded ${geoEntities[key].length} ${key}`);
   }
 
-  console.log("GEO API READ")
-  return geoEntities;
+  console.log("GEO API READ");
+
+  const scoringContext = await buildScoringContext(geoEntities);
+  return { geoEntities, scoringContext };
+}
+
+/**
+ * Builds the `ScoringContext` consumed by `buildEntityCached` for deterministic
+ * topic selection. Two batch queries against the Geo API:
+ *   1. For each canonical space ID, resolve its `topicId` (the entity that
+ *      represents the space). These IDs satisfy priority rule 1.
+ *   2. For each unique space ID found across all loaded `geoEntities`, fetch
+ *      `space(id) { type }` and add the `PERSONAL` ones to the filter set.
+ * Safe to call repeatedly — pure read-only.
+ */
+async function buildScoringContext(geoEntities: any): Promise<ScoringContext> {
+  // 1. Canonical-space topicIds — one query per canonical space (small, 13 of them).
+  console.log(`Resolving canonical-space topicIds (${CANONICAL_SPACE_IDS.size} spaces)...`);
+  const canonicalSpaceTopicIds = new Set<string>();
+  await Promise.all([...CANONICAL_SPACE_IDS].map(async (spaceId) => {
+    try {
+      const data: any = await gql(`{ space(id: "${spaceId}") { topicId } }`);
+      const topicId = data?.space?.topicId;
+      if (topicId) canonicalSpaceTopicIds.add(String(topicId));
+    } catch (err) {
+      console.warn(`buildScoringContext: failed to resolve topicId for canonical space ${spaceId}:`, err);
+    }
+  }));
+  console.log(`  Resolved ${canonicalSpaceTopicIds.size} canonical-space topic entity IDs`);
+
+  // 2. Personal-space discovery — collect every unique spaceId we'll match
+  //    against, then batch-classify with `space(id).type`.
+  const uniqueSpaceIds = new Set<string>();
+  for (const tableEntities of Object.values(geoEntities) as any[][]) {
+    for (const entity of tableEntities ?? []) {
+      for (const sid of (entity?.spaceIds ?? [])) {
+        if (sid) uniqueSpaceIds.add(String(sid));
+      }
+    }
+  }
+  console.log(`Classifying ${uniqueSpaceIds.size} unique space IDs by type (PERSONAL vs DAO)...`);
+  const personalSpaceIds = new Set<string>();
+  const spaceIdArray = [...uniqueSpaceIds];
+  const CONCURRENCY = 32;
+  for (let i = 0; i < spaceIdArray.length; i += CONCURRENCY) {
+    const batch = spaceIdArray.slice(i, i + CONCURRENCY);
+    await Promise.all(batch.map(async (spaceId) => {
+      try {
+        const data: any = await gql(`{ space(id: "${spaceId}") { type } }`);
+        const type = data?.space?.type;
+        if (type === "PERSONAL") personalSpaceIds.add(spaceId);
+      } catch (err) {
+        // A space we can't classify is treated as non-personal (least surprise);
+        // worst case is a personal-space candidate sneaks through, which is
+        // strictly safer than rejecting valid DAO candidates.
+      }
+    }));
+    if (i + CONCURRENCY < spaceIdArray.length) {
+      await new Promise(r => setTimeout(r, 100));
+    }
+  }
+  console.log(`  Found ${personalSpaceIds.size} personal spaces`);
+  return { canonicalSpaceTopicIds, personalSpaceIds };
 }
 
 export async function loadGeoEntities_to_delete(space?: string) {

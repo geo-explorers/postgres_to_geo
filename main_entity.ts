@@ -26,7 +26,7 @@ process.on('SIGINT', async () => {
 });
 
 try {
-    const geoEntities = await loadGeoEntities()
+    const { geoEntities, scoringContext } = await loadGeoEntities()
     //const podcast_name = ['All-In with Chamath, Jason, Sacks & Friedberg', 'Lex Fridman Podcast', 'The Joe Rogan Experience', 'Up First from NPR', 'Freakonomics Radio', 'Huberman Lab', 'The Daily', 'Honestly with Bari Weiss', 'Bankless']
     const podcast_name = ['The Joe Rogan Experience']
     const fn = `test_grc_update.txt`;
@@ -55,7 +55,7 @@ try {
     
     
     const formattedEpisodes = tables.episodes.map(p =>
-        buildEntityCached(p, episodeBreakdown, SPACE_IDS.podcasts, tables, geoEntities, entityCache)
+        buildEntityCached(p, episodeBreakdown, SPACE_IDS.podcasts, tables, geoEntities, entityCache, scoringContext)
     );
 
     
