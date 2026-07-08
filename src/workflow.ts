@@ -13,6 +13,7 @@ import {
   publishOps_w_spaces
 } from './functions.ts';
 import { processEntity } from '../post_entity.ts';
+import { classifyEpisodeSpace } from './space_classifier.ts';
 
 export interface WorkflowParams {
   podcast_name: string[];
@@ -61,7 +62,7 @@ export async function processPodcastWorkflow(params: WorkflowParams): Promise<Wo
 
     console.log('Formatting episodes...');
     const formattedEpisodes = tables.episodes.map(p =>
-      buildEntityCached(p, episodeBreakdown, SPACE_IDS.podcasts, tables, geoEntities, localEntityCache, scoringContext)
+      buildEntityCached(p, episodeBreakdown, classifyEpisodeSpace({ episode: p, tables }), tables, geoEntities, localEntityCache, scoringContext)
     );
 
     console.log('Formatting done. Processing entities...');
