@@ -8,6 +8,7 @@ export const mainnetWalletAddress = config.SW_ADDRESS;
 export const SPACE_IDS = {
   root: "2a98e6b4372844a49b8e02e15f0677c8",
   podcasts: "b5a31f8182b042437ede0f84ee02f104",
+  crypto: "c9f267dcb0d270718c2a3c45a64afd32",   // topical space; same id as in CANONICAL_SPACE_IDS
 }
 
 // === Topic selection priority constants ===

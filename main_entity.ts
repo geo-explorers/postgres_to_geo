@@ -5,6 +5,7 @@ import PostgreSQLClient from "./src/postgres-client.ts";
 import { topicBreakdown, platformBreakdown, sourceBreakdown, personBreakdown, listenOnBreakdown, podcastBreakdown, roleBreakdown, podcastAppearanceBreakdown, episodeBreakdown, quoteBreakdown, claimBreakdown, read_in_tables, pageBreakdown, textBlockBreakdown, loadGeoEntities } from './src/setup_ontology.ts';
 import { printOps, publishOps, type Entity, entityCache, buildEntityCached, publishOps_w_spaces } from './src/functions.ts';
 import { processEntity } from './post_entity.ts';
+import { classifyEpisodeSpace } from './src/space_classifier.ts';
 import * as fs from "fs";
 
 const ops: Array<Op> = [];
@@ -55,7 +56,7 @@ try {
     
     
     const formattedEpisodes = tables.episodes.map(p =>
-        buildEntityCached(p, episodeBreakdown, SPACE_IDS.podcasts, tables, geoEntities, entityCache, scoringContext)
+        buildEntityCached(p, episodeBreakdown, classifyEpisodeSpace({ episode: p, tables }), tables, geoEntities, entityCache, scoringContext)
     );
 
     

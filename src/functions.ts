@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import { validate as uuidValidate } from 'uuid';
 
 import {
+  SPACE_IDS,
   propertyToIdMap,
   propertyToDataTypeMap,
   testnetWalletAddress,
@@ -1542,6 +1543,15 @@ if (!match && row.name) {
   });
   relations.push(...other_relations)
 
+
+  // Only brand-new entities go to the classified target space; existing (matched)
+  // entities keep publishing to Podcasts exactly as before. Restamp only THIS node's
+  // own values + relation-wrappers — nested children self-decided during recursion.
+  const effectiveSpaceId = entityOnGeo ? SPACE_IDS.podcasts : spaceId;
+  if (effectiveSpaceId !== spaceId) {
+    for (const v of values)    v.spaceId = effectiveSpaceId;
+    for (const r of relations) r.spaceId = effectiveSpaceId;
+  }
 
   // --- final entity ---
   const entity = {
