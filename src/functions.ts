@@ -1339,6 +1339,20 @@ if (!match && row.name) {
                 String(v.propertyId) === String(localVal.property)
             );
 
+            // Podcast rows: a same-named candidate WITHOUT any rss_feed_url is
+            // rejected — different shows can share a name (e.g. Blockworks' and
+            // Goalhanger's "Empire"), and only an agreeing RSS feed proves it's
+            // the same show. Candidates WITH an rss value are handled by the
+            // mismatch check below; equal-RSS candidates were already matched by
+            // the URL step before name matching.
+            if (
+                !apiVal &&
+                tableName === "podcasts" &&
+                String(localVal.property) === String(propertyToIdMap["rss_feed_url"])
+            ) {
+                return false;
+            }
+
             if (apiVal && typeof apiVal.value === "string") {
                 const apiIsUrl = (
                     /^https?:\/\//i.test(String(apiVal.value)) ||
