@@ -67,8 +67,22 @@ type FindIn = z.infer<typeof FindInput>;
 type PruneIn = z.infer<typeof PruneInput>;
 type SweepIn = z.infer<typeof SweepInput>;
 
-function sinceFrom(input: { since?: string; window_hours: number }): string {
-  return input.since ?? new Date(Date.now() - input.window_hours * 3600_000).toISOString();
+// Console/dashboard triggers deliver RAW JSON — zod defaults and validation do
+// NOT apply on that path (verified: '{}' reached the fn with window_hours
+// undefined and crashed Date.toISOString). Treat input as untrusted.
+function sinceFrom(input: { since?: string; window_hours?: number }): string {
+  if (input.since) {
+    const d = new Date(input.since);
+    if (Number.isNaN(d.getTime())) throw new Error(`invalid 'since' date: ${JSON.stringify(input.since)}`);
+    return d.toISOString();
+  }
+  const hours = Number(input.window_hours);
+  const h = Number.isFinite(hours) && hours > 0 ? hours : 48;
+  return new Date(Date.now() - h * 3600_000).toISOString();
+}
+function boundedMax(v: unknown): number {
+  const n = Number(v);
+  return Number.isFinite(n) && n >= 1 && n <= 500 ? Math.floor(n) : 50;
 }
 
 export const episodeDedupFind = hatchet.task({
@@ -94,9 +108,12 @@ export const episodeDedupPrune = hatchet.task({
   inputValidator: PruneInput,
   concurrency: CONCURRENCY,
   fn: async (input: PruneIn, ctx) => {
+    if (!input?.plan || !Array.isArray(input.plan.groups)) {
+      throw new Error("episodes.dedup.prune requires a 'plan' (the output of episodes.dedup.find)");
+    }
     return await executePrunePlan(input.plan, {
-      dryRun: input.dry_run,
-      maxDeletions: input.max_deletions,
+      dryRun: input.dry_run ?? true,
+      maxDeletions: boundedMax(input.max_deletions),
       signal: ctx.abortController.signal,
     });
   },
@@ -117,8 +134,8 @@ export const episodeDedupSweep = hatchet.task({
     const signal = ctx.abortController.signal;
     const plan = await findDuplicateEpisodes({ sinceIso: sinceFrom(input), signal });
     const report = await executePrunePlan(plan, {
-      dryRun: input.dry_run,
-      maxDeletions: input.max_deletions,
+      dryRun: input.dry_run ?? true,
+      maxDeletions: boundedMax(input.max_deletions),
       signal,
     });
     return { plan, report };
