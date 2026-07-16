@@ -50,17 +50,17 @@ async function episodesInWindow(spaceId: string, sinceEpoch: number, signal?: Ab
         pageInfo { hasNextPage endCursor }
         nodes {
           id name createdAt
-          rel: relations(filter: { typeId: { is: "${PROP_PODCAST}" } }) { toEntityId }
-          vals: values(filter: { propertyId: { is: "${PROP_AIR_DATE}" } }) { date datetime text }
+          rel: relations(filter: { typeId: { is: "${PROP_PODCAST}" } }) { nodes { toEntityId } }
+          vals: values(filter: { propertyId: { is: "${PROP_AIR_DATE}" } }) { nodes { date datetime text } }
         }
       }
     }`);
     const c = d?.entitiesConnection;
     for (const n of c?.nodes ?? []) {
-      const v = n.vals?.[0] ?? {};
+      const v = n.vals?.nodes?.[0] ?? {};
       out.push({
         id: n.id, name: (n.name ?? '').trim(), createdAt: Number(n.createdAt),
-        show: n.rel?.[0]?.toEntityId ?? '',
+        show: n.rel?.nodes?.[0]?.toEntityId ?? '',
         airDate: String(v.date ?? v.datetime ?? v.text ?? '').slice(0, 10),
         spaceId,
       });
@@ -82,18 +82,18 @@ async function episodesNamed(name: string, signal?: AbortSignal): Promise<Ep[]> 
       }, first: 20) {
         nodes {
           id name createdAt spaceIds
-          rel: relations(filter: { typeId: { is: "${PROP_PODCAST}" } }) { toEntityId }
-          vals: values(filter: { propertyId: { is: "${PROP_AIR_DATE}" } }) { date datetime text }
+          rel: relations(filter: { typeId: { is: "${PROP_PODCAST}" } }) { nodes { toEntityId } }
+          vals: values(filter: { propertyId: { is: "${PROP_AIR_DATE}" } }) { nodes { date datetime text } }
         }
       }
     }`,
     { name },
   );
   return (d?.entitiesConnection?.nodes ?? []).map((n: any) => {
-    const v = n.vals?.[0] ?? {};
+    const v = n.vals?.nodes?.[0] ?? {};
     return {
       id: n.id, name: (n.name ?? '').trim(), createdAt: Number(n.createdAt),
-      show: n.rel?.[0]?.toEntityId ?? '',
+      show: n.rel?.nodes?.[0]?.toEntityId ?? '',
       airDate: String(v.date ?? v.datetime ?? v.text ?? '').slice(0, 10),
       spaceId: (n.spaceIds ?? [])[0] ?? PODCASTS_SPACE,
     };
