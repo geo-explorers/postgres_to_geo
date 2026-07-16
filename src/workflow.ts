@@ -32,7 +32,17 @@ export interface WorkflowResult {
  * Core workflow function that processes podcast episodes and publishes to Geo protocol
  * Extracted from main_entity.ts for reusability
  */
-export async function processPodcastWorkflow(params: WorkflowParams): Promise<WorkflowResult> {
+export async function processPodcastWorkflow(
+  params: WorkflowParams,
+  opts: { signal?: AbortSignal } = {},
+): Promise<WorkflowResult> {
+  const { signal } = opts;
+  // Zombie guard: once Hatchet cancels/times out this run, the signal aborts.
+  // Checked after the corpus sweep, per episode, and immediately before publish —
+  // a dead run must stop consuming and must NEVER publish.
+  const assertAlive = (where: string) => {
+    if (signal?.aborted) throw new Error(`Run cancelled/timed out — aborting at ${where} (nothing published)`);
+  };
   const startTime = Date.now();
   const pgClient = new PostgreSQLClient();
 
@@ -45,7 +55,8 @@ export async function processPodcastWorkflow(params: WorkflowParams): Promise<Wo
 
   try {
     console.log('Loading geo entities...');
-    const { geoEntities, scoringContext } = await loadGeoEntities();
+    const { geoEntities, scoringContext } = await loadGeoEntities(undefined, signal);
+    assertAlive('after corpus load');
 
     console.log('Reading tables from PostgreSQL...');
     const tables = await read_in_tables({
@@ -68,6 +79,7 @@ export async function processPodcastWorkflow(params: WorkflowParams): Promise<Wo
     console.log('Formatting done. Processing entities...');
 
     for (const episode of formattedEpisodes) {
+      assertAlive('episode loop');
       const addOps = await processEntity({
         currentOps: ops,
         processingCache: processingCache,
@@ -80,6 +92,7 @@ export async function processPodcastWorkflow(params: WorkflowParams): Promise<Wo
     console.log(`Generated ${ops.length} ops`);
 
     console.log('Publishing ops...');
+    assertAlive('pre-publish');
     await publishOps_w_spaces(ops);
 
     const duration = Date.now() - startTime;

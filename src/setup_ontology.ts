@@ -1124,7 +1124,7 @@ export async function read_in_tables({
 }
 
 
-export async function loadGeoEntities(space?: string): Promise<{ geoEntities: any; scoringContext: ScoringContext }> {
+export async function loadGeoEntities(space?: string, signal?: AbortSignal): Promise<{ geoEntities: any; scoringContext: ScoringContext }> {
   const breakdowns = {
     people: personBreakdown,
     podcasts: podcastBreakdown,
@@ -1151,7 +1151,7 @@ export async function loadGeoEntities(space?: string): Promise<{ geoEntities: an
     for (let attempt = 0; attempt < MAX_TYPE_RETRIES; attempt++) {
       try {
         geoEntities[key] = flatten_api_response(
-          await searchEntities({ type: breakdown.types, ...(space ? { spaceId: [space] } : {}) })
+          await searchEntities({ type: breakdown.types, ...(space ? { spaceId: [space] } : {}), signal })
         );
         lastError = null;
         break;
