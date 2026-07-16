@@ -1,6 +1,5 @@
 import { z } from "zod";
-import { ConcurrencyLimitStrategy } from "@hatchet-dev/typescript-sdk";
-import type { Duration } from "@hatchet-dev/typescript-sdk/v1/client/duration";
+import { ConcurrencyLimitStrategy, type Duration } from "@hatchet-dev/typescript-sdk/v1";
 import { hatchet } from "./client.ts";
 import {
   findDuplicateEpisodes,
