@@ -13,7 +13,8 @@
 // Same-name episodes on DIFFERENT shows are never grouped (name+show key).
 
 import type { Op } from '@geoprotocol/geo-sdk';
-import { gql, publishOps } from '../publish.ts';
+import { publishOps } from '../publish.ts';
+import { gql } from './client.ts';
 import { deleteEntity, queryBacklinks } from './delete_entity.ts';
 import {
   CRYPTO_SPACE, PODCASTS_SPACE, PROP_AIR_DATE, PROP_PODCAST, TYPES_PROP, TYPE_EPISODE,
