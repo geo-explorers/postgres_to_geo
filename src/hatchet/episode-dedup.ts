@@ -41,7 +41,7 @@ const PruneGroupSchema = z.object({
   name: z.string(),
   show: z.string(),
   keep: z.string(),
-  prune: z.array(z.string()),
+  prune: z.array(z.object({ id: z.string(), spaceId: z.string() })),
   spaceId: z.string(),
 });
 const PrunePlanSchema = z.object({
