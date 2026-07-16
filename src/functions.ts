@@ -1894,7 +1894,8 @@ export async function searchEntities({
   property,
   searchText,
   typeId,
-  notTypeId
+  notTypeId,
+  signal
 }: {
   name?: string;
   type: string[];
@@ -1903,6 +1904,7 @@ export async function searchEntities({
   searchText?: string | string[];
   typeId?: string;
   notTypeId?: string;
+  signal?: AbortSignal;
 }) {
   const PAGE_SIZES = [1000, 500, 250, 100];
 
@@ -1912,6 +1914,13 @@ export async function searchEntities({
       let cursor: string | null = null;
 
       while (true) {
+        // Cancellation check per page: a cancelled/timed-out run must stop the
+        // (potentially hours-long) sweep promptly instead of running as a zombie.
+        if (signal?.aborted) {
+          const err: any = new Error('searchEntities aborted: run was cancelled or timed out');
+          err.aborted = true;
+          throw err;
+        }
         await new Promise(resolve => setTimeout(resolve, 200));
 
         const query = `
@@ -2068,7 +2077,9 @@ export async function searchEntities({
       }
 
       return allEntities;
-    } catch (err) {
+    } catch (err: any) {
+      // Abort is not a transient API failure — never retry at a smaller page size.
+      if (err?.aborted || signal?.aborted) throw err;
       const isLast = pageSize === PAGE_SIZES[PAGE_SIZES.length - 1];
       if (isLast) throw err;
       console.log(`searchEntities failed with page size ${pageSize}, reducing to ${PAGE_SIZES[PAGE_SIZES.indexOf(pageSize) + 1]}...`);
