@@ -5,7 +5,6 @@ import { hatchet } from "./client.ts";
 import {
   findDuplicateEpisodes,
   executePrunePlan,
-  type PrunePlan,
 } from "../graph_ops/episode_dedup.ts";
 
 /**
@@ -37,8 +36,24 @@ const FindInput = z.object({
   window_hours: z.number().int().min(1).max(24 * 365).default(48),
 });
 
+// Full structural schema — the SDK converts inputValidator to JSON Schema at
+// worker registration, so z.custom() is not allowed (it crashed the worker).
+const PruneGroupSchema = z.object({
+  name: z.string(),
+  show: z.string(),
+  keep: z.string(),
+  prune: z.array(z.string()),
+  spaceId: z.string(),
+});
+const PrunePlanSchema = z.object({
+  window: z.object({ since: z.string(), until: z.string().optional() }),
+  scanned: z.number(),
+  groups: z.array(PruneGroupSchema),
+  review: z.array(z.string()),
+  surplus: z.number(),
+});
 const PruneInput = z.object({
-  plan: z.custom<PrunePlan>((v) => !!v && typeof v === "object" && Array.isArray((v as any).groups)),
+  plan: PrunePlanSchema,
   dry_run: z.boolean().default(true),
   max_deletions: z.number().int().min(1).max(500).default(50),
 });
