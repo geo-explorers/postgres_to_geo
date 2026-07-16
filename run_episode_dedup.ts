@@ -23,7 +23,7 @@ if (planFile) {
   console.log('plan saved → episode-prune-plan.json');
 }
 console.log(`scanned=${plan.scanned} groups=${plan.groups.length} surplus=${plan.surplus} review=${plan.review.length}`);
-for (const g of plan.groups.slice(0, 15)) console.log(`  PRUNE "${g.name.slice(0, 55)}" keep=${g.keep.slice(0, 8)} prune=[${g.prune.map((p: string) => p.slice(0, 8)).join(',')}]`);
+for (const g of plan.groups.slice(0, 15)) console.log(`  PRUNE "${g.name.slice(0, 55)}" keep=${g.keep.slice(0, 8)} prune=[${g.prune.map((p: { id: string }) => p.id.slice(0, 8)).join(',')}]`);
 if (plan.groups.length > 15) console.log(`  ... and ${plan.groups.length - 15} more`);
 for (const r of plan.review) console.log(`  REVIEW ${r}`);
 

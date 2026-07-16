@@ -23,9 +23,11 @@ import {
 export type PruneGroup = {
   name: string;
   show: string;
-  keep: string;                  // canonical (oldest) entity id
-  prune: string[];               // later mints, oldest→newest
-  spaceId: string;
+  keep: string;                                    // canonical (oldest) entity id
+  prune: Array<{ id: string; spaceId: string }>;   // later mints with THEIR OWN space —
+                                                   // cross-space twins (classifier-era) live
+                                                   // in a different space than the keep
+  spaceId: string;                                 // keep's space (informational)
 }
 export type PrunePlan = {
   window: { since: string; until?: string };
@@ -138,7 +140,11 @@ export async function findDuplicateEpisodes(opts: {
         if (inc > 0) { referenced = true; review.push(`HAS-INCOMING(${inc}) "${name}" twin=${twin.id.slice(0, 8)}`); break; }
       }
       if (referenced) continue;
-      groups.push({ name, show, keep: s[0].id, prune: s.slice(1).map(e => e.id), spaceId: s[0].spaceId });
+      groups.push({
+        name, show, keep: s[0].id,
+        prune: s.slice(1).map(e => ({ id: e.id, spaceId: e.spaceId })),
+        spaceId: s[0].spaceId,
+      });
       surplus += s.length - 1;
     }
   }
@@ -176,18 +182,20 @@ export async function executePrunePlan(plan: PrunePlan, opts: {
     if (!(alive?.e?.[0]?.spaceIds ?? []).length) { skipped.push({ name: g.name, reason: 'canonical missing' }); continue; }
     let ok = true;
     for (const twin of g.prune) {
-      const t = await gql(`{ e: entities(filter: { id: { is: "${twin}" } }) { spaceIds } }`);
-      if (!(t?.e?.[0]?.spaceIds ?? []).length) { ok = false; skipped.push({ name: g.name, reason: `twin ${twin.slice(0, 8)} already gone` }); break; }
-      const inc = (await queryBacklinks(twin)).length;
-      if (inc > 0) { ok = false; skipped.push({ name: g.name, reason: `twin ${twin.slice(0, 8)} gained ${inc} incoming refs` }); break; }
+      const t = await gql(`{ e: entities(filter: { id: { is: "${twin.id}" } }) { spaceIds } }`);
+      if (!(t?.e?.[0]?.spaceIds ?? []).length) { ok = false; skipped.push({ name: g.name, reason: `twin ${twin.id.slice(0, 8)} already gone` }); break; }
+      const inc = (await queryBacklinks(twin.id)).length;
+      if (inc > 0) { ok = false; skipped.push({ name: g.name, reason: `twin ${twin.id.slice(0, 8)} gained ${inc} incoming refs` }); break; }
     }
     if (!ok) continue;
     for (const twin of g.prune) {
+      // Delete each twin in ITS OWN space — the keep's space is wrong for
+      // cross-space twins and made the deletion a silent no-op.
       const ops = await deleteEntity({
-        entityId: twin, spaceId: g.spaceId,
+        entityId: twin.id, spaceId: twin.spaceId,
         excludeFromOrphanCheck: [g.keep, g.show],
       });
-      opsBySpace.set(g.spaceId, [...(opsBySpace.get(g.spaceId) ?? []), ...ops]);
+      opsBySpace.set(twin.spaceId, [...(opsBySpace.get(twin.spaceId) ?? []), ...ops]);
     }
     executed++;
   }
