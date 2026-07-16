@@ -37,8 +37,15 @@ type PublishResult = { [K in keyof WorkflowResult]: WorkflowResult[K] };
 export const podcastPublish = hatchet.task({
   name: "podcast.publish",
   retries: 0,
-  executionTimeout: "120m", // >> real runtime; single-unit duration (engine v0.89.6)
-  scheduleTimeout: "180m", // a queued run must not be cancelled while one is running
+  // 2026-07-16: raised from 120m after the zombie-run incident. The corpus sweep
+  // grows with the graph and real runs now take up to ~7h under API degradation;
+  // when executionTimeout fired, Hatchet marked the run FAILED and freed the
+  // maxRuns=1 slot, but processPodcastWorkflow has no abort wiring — the process
+  // kept running and PUBLISHED hours later with a stale corpus, concurrently with
+  // the next run → duplicate episodes. Same zombie behavior applies to manual
+  // console cancels: do not cancel runs until the workflow is cancellation-aware.
+  executionTimeout: "360m",
+  scheduleTimeout: "420m", // must exceed executionTimeout: a queued run must not be cancelled while one is running
   inputValidator: PodcastPublishInput,
   concurrency: {
     maxRuns: 1,
