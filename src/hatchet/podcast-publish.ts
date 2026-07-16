@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { ConcurrencyLimitStrategy } from "@hatchet-dev/typescript-sdk";
-import type { Duration } from "@hatchet-dev/typescript-sdk/v1/client/duration";
+import { ConcurrencyLimitStrategy } from "@hatchet-dev/typescript-sdk/v1";
+import type { Duration } from "@hatchet-dev/typescript-sdk/v1";
 import { hatchet } from "./client.ts";
 import { processPodcastWorkflow, type WorkflowResult } from "../workflow.ts";
 

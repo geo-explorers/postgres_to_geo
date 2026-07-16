@@ -9,7 +9,7 @@
 // cleanup of relation targets that lose their last external reference.
 
 import { Graph, type Op } from '@geoprotocol/geo-sdk';
-import { gql } from '../publish.ts';
+import { gql } from './client.ts';
 import { EXCLUDED_RELATION_TYPE_IDS, EXCLUDED_VALUE_PROPERTY_IDS } from './constants.ts';
 
 export type RelationRecord = {
