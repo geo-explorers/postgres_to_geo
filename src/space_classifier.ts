@@ -30,13 +30,16 @@ export interface ClassificationRule {
 // PRE-NORMALIZED so matching is O(1) and normalization can't drift between the
 // list and the comparison. `normalizeName` lowercases, drops "the", &→and, strips
 // punctuation/periods, and collapses whitespace — applied to both sides.
-// "Empire" is a known name collision (a crypto show and an unrelated history show);
-// name matching can't distinguish them — see podcast_space_migration_analysis.md.
+// "Empire" is deliberately NOT listed: the only podcasts row named Empire is
+// Goalhanger's history show (feed …/empirepodcast, verified against the DB
+// 2026-07-17); Blockworks' crypto Empire is not ingested. Listing the name
+// routed history episodes to the Crypto space. If the crypto Empire is ever
+// ingested, re-add it keyed by rss_feed_url (…/empire), not by name.
 const CRYPTO_PODCAST_NAMES: ReadonlySet<string> = new Set(
   [
     'Bankless', 'What Bitcoin Did', 'TFTC: A Bitcoin Podcast', 'Bitcoin Audible',
     'Stephan Livera Podcast', 'Coin Bureau', 'Unchained', '0xResearch',
-    'Epicenter', 'The Breakdown', 'The Pomp Podcast', 'Empire',
+    'Epicenter', 'The Breakdown', 'The Pomp Podcast',
   ].map((n) => normalizeName(n)!),
 );
 
