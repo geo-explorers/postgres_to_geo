@@ -1276,7 +1276,7 @@ if (!match) {
   */
   const localUrls = extractUrls(values, false);
 
-  match = geoRows.find(p => {
+  const urlMatches = geoRows.filter(p => {
     const apiUrls = extractUrls(p.values, true);
 
     return (
@@ -1303,6 +1303,24 @@ if (!match) {
       )
     );
   });
+
+  if (urlMatches.length === 1) {
+    match = urlMatches[0];
+  } else if (urlMatches.length > 1) {
+    // Two Geo entities carrying the same URL value is a graph defect (e.g. the
+    // Empire feed residue, 2026-07): corpus order must not decide the winner.
+    // Pick deterministically via the shared priority rules and flag it.
+    console.warn(
+      `URL match ambiguous for "${row.name}" (${tableName}): ` +
+      `${urlMatches.map(p => String(p.id)).join(", ")} — applying priority rules`
+    );
+    match = selectBestCandidate(
+      urlMatches,
+      scoringContext,
+      () => true,
+      normalizeName(row.name) ?? "",
+    );
+  }
   //console.log(localUrls);
 }
 
