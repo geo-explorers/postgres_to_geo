@@ -51,16 +51,20 @@ const PrunePlanSchema = z.object({
   review: z.array(z.string()),
   surplus: z.number(),
 });
+// max_deletions has no upper bound: the prune fuse (surplus > maxDeletions)
+// is the mass-delete guard; a schema ceiling only blocks large legitimate
+// cleanups (a 516-twin plan was unrunnable under the old max(500)).
 const PruneInput = z.object({
   plan: PrunePlanSchema,
   dry_run: z.boolean().default(true),
-  max_deletions: z.number().int().min(1).max(500).default(50),
+  max_deletions: z.number().int().min(1).default(50),
 });
 
 const SweepInput = z.object({
+  since: z.string().datetime().optional(),
   window_hours: z.number().int().min(1).max(24 * 365).default(48),
   dry_run: z.boolean().default(true),
-  max_deletions: z.number().int().min(1).max(500).default(50),
+  max_deletions: z.number().int().min(1).default(50),
 });
 
 type FindIn = z.infer<typeof FindInput>;
@@ -80,9 +84,19 @@ function sinceFrom(input: { since?: string; window_hours?: number }): string {
   const h = Number.isFinite(hours) && hours > 0 ? hours : 48;
   return new Date(Date.now() - h * 3600_000).toISOString();
 }
-function boundedMax(v: unknown): number {
+// The operator's max_deletions is trusted as given — the prune fuse
+// (plan.surplus > maxDeletions → throw) is the actual mass-delete guard, and
+// an upper bound here only blocks legitimate large cleanups (a 516-twin plan
+// was unrunnable with the old 1..500 cap). Absent input keeps the safe
+// default; INVALID input fails loudly instead of silently substituting a
+// different limit than the operator asked for.
+function parseMaxDeletions(v: unknown): number {
+  if (v === undefined || v === null) return 50;
   const n = Number(v);
-  return Number.isFinite(n) && n >= 1 && n <= 500 ? Math.floor(n) : 50;
+  if (!Number.isFinite(n) || n < 1) {
+    throw new Error(`invalid max_deletions: ${JSON.stringify(v)} — must be a number >= 1`);
+  }
+  return Math.floor(n);
 }
 
 export const episodeDedupFind = hatchet.task({
@@ -113,7 +127,7 @@ export const episodeDedupPrune = hatchet.task({
     }
     return await executePrunePlan(input.plan, {
       dryRun: input.dry_run ?? true,
-      maxDeletions: boundedMax(input.max_deletions),
+      maxDeletions: parseMaxDeletions(input.max_deletions),
       signal: ctx.abortController.signal,
     });
   },
@@ -135,7 +149,7 @@ export const episodeDedupSweep = hatchet.task({
     const plan = await findDuplicateEpisodes({ sinceIso: sinceFrom(input), signal });
     const report = await executePrunePlan(plan, {
       dryRun: input.dry_run ?? true,
-      maxDeletions: boundedMax(input.max_deletions),
+      maxDeletions: parseMaxDeletions(input.max_deletions),
       signal,
     });
     return { plan, report };
