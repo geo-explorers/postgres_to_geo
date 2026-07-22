@@ -275,7 +275,16 @@ export const claimBreakdown = {
     not_unique: false,
     types: [typeToIdMap['claim']],
     value_fields: ["name"],
-    relations: [],
+    // Claim → Topics (Geo property 806d52bc…): the claims query already
+    // selects each claim's topic tag ids — attach them to the Claim entity.
+    relations: [
+      {
+          type: "topics",
+          toEntityBreakdown: topicBreakdown,
+          entityBreakdown: null,
+          image: false,
+      },
+    ],
     skip_fuzzy_match: true,
 }
 
@@ -955,7 +964,7 @@ export async function read_in_tables({
             ) AS topics
             FROM "${DB_ID}".${TABLES.CLAIMS} as c
             INNER JOIN "${DB_ID}".${TABLES.CLAIM_EPISODES} as ce ON c.id = ce.claim_id
-            LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} as tm ON tm.from_claim_episode_id = ce.id
+            LEFT JOIN "${DB_ID}".${TABLES.TAG_MAP} as tm ON tm.from_claim_id = c.id
             WHERE ce.episode_id IN (${episodeIds.map((id) => `'${id}'`).join(",")})
             GROUP BY c.id, c.claim_text
         `)
