@@ -1,9 +1,10 @@
 import {
-  daoSpace,
-  getSmartAccountWalletClient,
-  personalSpace,
+  createGeoClient,
+  createGeoWalletClient,
+  GeoTestnetConfig,
   type Op,
 } from "@geoprotocol/geo-sdk";
+import { privateKeyToAccount } from "viem/accounts";
 import dotenv from "dotenv";
 import * as fs from "fs";
 import path from "node:path";
@@ -11,12 +12,17 @@ import path from "node:path";
 dotenv.config();
 
 // ─── Configuration ───────────────────────────────────────────────────────────
+// Network config (RPC, chain id 55516, contract addresses) resolves from the
+// SDK — never hardcode contracts or RPC here (testnet-v2 migration notice).
 
-const TESTNET_RPC_URL = "https://rpc-geo-test-zc16z3tcvf.t.conduit.xyz";
+const GEO_NETWORK = GeoTestnetConfig;
+const geo = createGeoClient({ network: GEO_NETWORK });
 
 // ─── GraphQL Helper ──────────────────────────────────────────────────────────
+// Migration notice says api-testnet.geobrowser.io; the 0.20-beta SDK config
+// says testnet-api-v2.geobrowser.io — GEO_API_URL env wins if they diverge.
 
-const API_URL = "https://testnet-api.geobrowser.io/graphql";
+const API_URL = process.env.GEO_API_URL ?? "https://api-testnet.geobrowser.io/graphql";
 
 export async function gql(query: string, variables?: Record<string, any>) {
   const res = await fetch(API_URL, {
@@ -50,11 +56,15 @@ export async function publishOps(ops: Op[], editName: string, input_space?: stri
   const privateKey = process.env.PK_SW as `0x${string}`;
   if (!privateKey) throw new Error("PK_SW not set in .env");
 
-  const client = await getSmartAccountWalletClient({
-    privateKey: privateKey,
-    rpcUrl: TESTNET_RPC_URL,
+  // 0.20: Safe-based smart account -> ZeroDev Kernel (sponsored EIP-7702).
+  // NOTE address derivation changes vs the old Safe wallet — the personal-
+  // space lookup below runs against whatever address this client signs as;
+  // verify the space binding survives the migration before first publish.
+  const client = await createGeoWalletClient({
+    signer: privateKeyToAccount(privateKey),
+    network: GEO_NETWORK,
   });
-  const author = client.account.address
+  const author = client.account!.address
 
   const personalSpaceData = await gql(`{
     spaces(filter: { address: { is: "${author}" } }) { id type }
@@ -84,12 +94,11 @@ export async function publishOps(ops: Op[], editName: string, input_space?: stri
   let calldata: `0x${string}`;
 
   if (spaceType === "PERSONAL") {
-    const result = await personalSpace.publishEdit({
+    const result = await geo.personalSpaces.publishEdit({
       name: editName,
       spaceId,
       ops,
       author: spaceId, // this is the spaceId of the personal space
-      network: "TESTNET",
     });
     console.log("CID:", result.cid);
     console.log("Edit ID:", result.editId);
@@ -131,13 +140,12 @@ export async function publishOps(ops: Op[], editName: string, input_space?: stri
       );
     }
 
-    const result = await daoSpace.proposeEdit({
+    const result = await geo.daoSpaces.proposeEdit({
       name: editName,
       ops,
       author: callerSpaceId,
-      network: "TESTNET",
-      callerSpaceId: `0x${callerSpaceId}` as `0x${string}`,
-      daoSpaceId: `0x${spaceId}` as `0x${string}`,
+      callerSpaceId: `0x${callerSpaceId}`,
+      daoSpaceId: `0x${spaceId}`,
       daoSpaceAddress: daoAddress as `0x${string}`,
     });
     console.log("proposalId:", result.proposalId)
@@ -151,11 +159,16 @@ export async function publishOps(ops: Op[], editName: string, input_space?: stri
   }
 
   
-  const txHash = await client.sendTransaction({ to, data: calldata });
+  const txHash = await client.sendTransaction({
+    account: client.account!,
+    chain: client.chain,
+    to,
+    data: calldata,
+  });
   console.log("Transaction hash:", txHash);
 
   if (proposalId && isEditor && authorSpaceId) {
-    const result = daoSpace.voteProposal({
+    const result = geo.daoSpaces.voteProposal({
       authorSpaceId: authorSpaceId,
       spaceId: spaceId,
       proposalId: proposalId,
@@ -163,7 +176,12 @@ export async function publishOps(ops: Op[], editName: string, input_space?: stri
     })
     to = result.to;
     calldata = result.calldata;
-    const txHash = await client.sendTransaction({ to, data: calldata });
+    const txHash = await client.sendTransaction({
+      account: client.account!,
+      chain: client.chain,
+      to,
+      data: calldata,
+    });
     console.log("Vote transaction hash:", txHash);
   }
   return txHash;

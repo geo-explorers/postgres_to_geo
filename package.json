@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@geoprotocol/geo-sdk": "^0.14.0",
-    "@geoprotocol/grc-20": "^0.3.0",
+    "@geoprotocol/geo-sdk": "0.20.0-beta.8",
+    "@geoprotocol/grc-20": "^0.4.1",
     "@graphprotocol/grc-20": "^0.25.6",
     "@hatchet-dev/typescript-sdk": "^1.24.3",
     "@notionhq/client": "^3.0.1",
