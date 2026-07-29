@@ -35,7 +35,7 @@ export interface ClassificationRule {
 // 2026-07-17); Blockworks' crypto Empire is not ingested. Listing the name
 // routed history episodes to the Crypto space. If the crypto Empire is ever
 // ingested, re-add it keyed by rss_feed_url (…/empire), not by name.
-const CRYPTO_PODCAST_NAMES: ReadonlySet<string> = new Set(
+export const CRYPTO_PODCAST_NAMES: ReadonlySet<string> = new Set(
   [
     'Bankless', 'What Bitcoin Did', 'TFTC: A Bitcoin Podcast', 'Bitcoin Audible',
     'Stephan Livera Podcast', 'Coin Bureau', 'Unchained', '0xResearch',
