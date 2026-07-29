@@ -328,15 +328,22 @@ export function processNewRelation({
     }
     if (entityOnGeo) {
         
+        // Existence is SPACE-AGNOSTIC: a copy of this relation in any space
+        // means it is already published — re-creating it in another space is
+        // what manufactured cross-space duplicates (investigation 2026-07-28).
         geoProperties = entityOnGeo?.relations?.filter(
             (item) => 
-                item.spaceId == spaceId &&
                 item.typeId == propertyId &&
                 item.toEntityId == toEntityId
         );
         if (!geoProperties) {
             geoProperties = []
         }
+        // Deletion stays SAME-SPACE-scoped: cross-space duplicate pairs on
+        // legacy dual-resident entities are the fold cleanup's job, not a
+        // publish run's side effect. Prefer the target-space copy as primary.
+        const sameSpace = geoProperties.filter((item: any) => item.spaceId == spaceId);
+        const primary = sameSpace[0] ?? geoProperties[0];
 
         if (geoProperties.length == 0) {
             addOps = Graph.createRelation({
@@ -348,7 +355,7 @@ export function processNewRelation({
             });
             ops.push(...addOps.ops);
         } else {
-            if ((last_position) && (Position.compare(geoProperties?.[0]?.position, last_position) != 1)){
+            if ((last_position) && (Position.compare(primary?.position, last_position) != 1)){
                 console.error("WRITE CODE TO UPDATE RELATION POSITION")
                 
                 //addOps = Graph.createRelation({
@@ -359,15 +366,15 @@ export function processNewRelation({
                 //Update position of relation to correctly set one.
                 //geoProperties?.[0]?.id
             } 
-            if ((geoProperties.length > 1)) {
+            if ((sameSpace.length > 1)) {
                 console.error("DUPLICATE relations found on: ", fromEntityId)
-                for (let i = 1; i < geoProperties.length; i++) {
-                    addOps = Graph.deleteRelation({id: geoProperties?.[i]?.id})
+                for (let i = 1; i < sameSpace.length; i++) {
+                    addOps = Graph.deleteRelation({id: sameSpace?.[i]?.id})
                     ops.push(...addOps.ops);
                     console.log("DUPLICATES REMOVED")
                 }
             }
-            relationEntity = geoProperties?.[0]?.entityId;
+            relationEntity = primary?.entityId;
             if (!relationEntity) {
                 relationEntity = "RELATION EXISTS - ERROR FINDING RELATION ENTITY"
                 console.error(relationEntity)
@@ -375,7 +382,7 @@ export function processNewRelation({
                 
             }
             //console.log(`pre-existing relation found ${toEntityId}`)
-            return { ops: ops, relationEntityId: relationEntity, position: geoProperties?.[0]?.position };
+            return { ops: ops, relationEntityId: relationEntity, position: primary?.position };
         }
     } else {
         //console.log("From entity: ", normalizeToUUID(fromEntityId))
@@ -977,6 +984,18 @@ function selectBestCandidate(
   return filtered[0];
 }
 
+/** Pick the space an entity's ops publish into. New entities go to the
+ *  classified target space; existing entities stay where they already reside —
+ *  classified space when resident there, legacy Podcasts when resident there,
+ *  otherwise their first residency. Never spreads residency on update. */
+export function chooseEffectiveSpace(entityOnGeo: any, classifiedSpaceId: string): string {
+  if (!entityOnGeo) return classifiedSpaceId;
+  const residencies: string[] = entityOnGeo.spaceIds ?? [];
+  if (residencies.includes(classifiedSpaceId)) return classifiedSpaceId;
+  if (residencies.includes(SPACE_IDS.podcasts)) return SPACE_IDS.podcasts;
+  return residencies[0] ?? SPACE_IDS.podcasts;
+}
+
 export function buildEntityCached(
   row: any,
   breakdown: any,
@@ -1576,10 +1595,15 @@ if (!match && row.name) {
   relations.push(...other_relations)
 
 
-  // Only brand-new entities go to the classified target space; existing (matched)
-  // entities keep publishing to Podcasts exactly as before. Restamp only THIS node's
-  // own values + relation-wrappers — nested children self-decided during recursion.
-  const effectiveSpaceId = entityOnGeo ? SPACE_IDS.podcasts : spaceId;
+  // Target-space invariant: updates are only ever written into a space the
+  // entity already inhabits; only BIRTHS choose a space (the classified one).
+  // The previous rule (`entityOnGeo ? podcasts : spaceId`) assumed every
+  // existing entity was a Podcasts resident — for crypto-born entities that
+  // stamped Podcasts copies onto them on first re-publish, manufacturing
+  // dual-space residency (~10% of each cohort; investigation 2026-07-28).
+  // Restamp only THIS node's own values + relation-wrappers — nested children
+  // self-decided during recursion.
+  const effectiveSpaceId = chooseEffectiveSpace(entityOnGeo, spaceId);
   if (effectiveSpaceId !== spaceId) {
     for (const v of values)    v.spaceId = effectiveSpaceId;
     for (const r of relations) r.spaceId = effectiveSpaceId;

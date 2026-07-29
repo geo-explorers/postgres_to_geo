@@ -112,13 +112,16 @@ export async function processEntity({
     //The same way I publish ops by spaceId, I should filter and add ops to the ops array by spaceId using createEntity
     //If there are multiple space_ids in values, filter them out and apply `await addSpace(ops, currSpaceId)` to each individually
     //Does it even make sense to have spaceIds in my entities?
+    // Space-agnostic: an identical value in ANY space is already-published
+    // content — re-creating it in another space manufactured dual residency
+    // (investigation 2026-07-28).
     const existing = new Set(
-        entityOnGeo?.values.map(v => `${v.spaceId}:${v.propertyId}:${v.value}`)
+        entityOnGeo?.values.map(v => `${v.propertyId}:${v.value}`)
     );
 
     // Step 1: group by spaceId, filtering out duplicates
     const grouped = entity.values.reduce((acc, v) => {
-        const key = `${v.spaceId}:${v.property}:${v.value}`;
+        const key = `${v.property}:${v.value}`;
         if (existing.has(key)) {
             // already exists → skip
             return acc;
