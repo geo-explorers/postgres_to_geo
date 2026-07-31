@@ -146,7 +146,8 @@ export async function publishOps(ops: Op[], editName: string, input_space?: stri
       author: callerSpaceId,
       callerSpaceId: `0x${callerSpaceId}`,
       daoSpaceId: `0x${spaceId}`,
-      daoSpaceAddress: daoAddress as `0x${string}`,
+      // 0.20.2 resolves the DAO address from the space id itself —
+      // daoSpaceAddress param removed (daoAddress kept above for logging).
     });
     console.log("proposalId:", result.proposalId)
     proposalId = result.proposalId

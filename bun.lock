@@ -6,7 +6,7 @@
       "name": "ethcc-hackathon-data-push",
       "dependencies": {
         "@biomejs/biome": "^1.9.4",
-        "@geoprotocol/geo-sdk": "0.20.0-beta.8",
+        "@geoprotocol/geo-sdk": "0.20.2",
         "@geoprotocol/grc-20": "^0.4.1",
         "@graphprotocol/grc-20": "^0.25.6",
         "@hatchet-dev/typescript-sdk": "^1.24.3",
@@ -116,7 +116,7 @@
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.25.5", "", { "os": "win32", "cpu": "x64" }, "sha512-TXv6YnJ8ZMVdX+SXWVBo/0p8LTcrUYngpWjvm91TMjjBQii7Oz11Lw5lbDV5Y0TzuhSJHwiH4hEtC1I42mMS0g=="],
 
-    "@geoprotocol/geo-sdk": ["@geoprotocol/geo-sdk@0.20.0-beta.8", "", { "dependencies": { "@geoprotocol/grc-20": "^0.4.1", "@zerodev/sdk": "^5.5.10", "effect": "^3.17.13", "fflate": "^0.8.2", "fractional-indexing-jittered": "^1.0.0", "image-size": "^2.0.2", "uuid": "^13.0.0", "viem": "^2.37.6" } }, "sha512-xzrbuIfNSPwTE1a+5O1pnh0/yRjBAWkFOreaov0BoWMGnIo/t6Tedmr+LdA4O2uezuQ3vEmG7orCAxxZQHrDfw=="],
+    "@geoprotocol/geo-sdk": ["@geoprotocol/geo-sdk@0.20.2", "", { "dependencies": { "@geoprotocol/grc-20": "^0.4.1", "@zerodev/sdk": "^5.5.10", "effect": "^3.17.13", "fflate": "^0.8.2", "fractional-indexing-jittered": "^1.0.0", "image-size": "^2.0.2", "uuid": "^13.0.0", "viem": "^2.37.6" } }, "sha512-dNAecbZH0Gy/sBBmNQ0AZF+jw94qbMtBSRQmMuDFcxiemDZhetVSH1/yjVjir7OUlofONTR3+dpQWhmBnspd4g=="],
 
     "@geoprotocol/grc-20": ["@geoprotocol/grc-20@0.4.1", "", { "dependencies": { "@bokuweb/zstd-wasm": "^0.0.27" } }, "sha512-J5trJZBydDOO5GsEMzy9ukX9GetblBMLnn4ugpTFOcwS4akA54Lxg/uYJbXUDh5EVPir3PAzC6UN6EiBz0K/Ww=="],
 
@@ -661,10 +661,6 @@
     "form-data/mime-types": ["mime-types@2.1.35", "", { "dependencies": { "mime-db": "1.52.0" } }, "sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw=="],
 
     "http-errors/statuses": ["statuses@2.0.1", "", {}, "sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ=="],
-
-    "tinyglobby/fdir": ["fdir@6.4.6", "", { "peerDependencies": { "picomatch": "^3 || ^4" } }, "sha512-hiFoqpyZcfNm1yc4u8oWCf9A2c4D3QjCrks3zmoVKVxpQRzmPNar1hUJcBG2RQHvEVGDN+Jm81ZheVLAQMK6+w=="],
-
-    "tinyglobby/picomatch": ["picomatch@4.0.2", "", {}, "sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg=="],
 
     "form-data/mime-types/mime-db": ["mime-db@1.52.0", "", {}, "sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg=="],
   }
