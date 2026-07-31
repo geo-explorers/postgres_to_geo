@@ -64,7 +64,9 @@ export async function publishOps(ops: Op[], editName: string, input_space?: stri
     signer: privateKeyToAccount(privateKey),
     network: GEO_NETWORK,
   });
-  const author = client.account!.address
+  // The migrated API stores space addresses lowercase and compares
+  // case-sensitively — a checksummed wallet address matches nothing.
+  const author = client.account!.address.toLowerCase()
 
   const personalSpaceData = await gql(`{
     spaces(filter: { address: { is: "${author}" } }) { id type }
