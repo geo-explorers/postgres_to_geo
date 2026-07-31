@@ -1749,7 +1749,7 @@ const mainnet_query_url = "https://hypergraph.up.railway.app/graphql";
 //const testnet_query_url = "https://geo-conduit.up.railway.app/graphql";
 //const testnet_query_url = "https://hypergraph-v2-testnet.up.railway.app/graphql"
 const testnet_query_url = "https://api-testnet.geobrowser.io/graphql"
-const testnet_query_url_grc_update = "https://testnet-api.geobrowser.io/graphql"
+const testnet_query_url_grc_update = process.env.GEO_API_URL ?? "https://api-testnet.geobrowser.io/graphql"
 const QUERY_URL = testnet_query_url_grc_update;
 
 export async function fetchWithRetry(query: string, variables: any, retries = 5, delay = 1000, timeout = 30000) {
