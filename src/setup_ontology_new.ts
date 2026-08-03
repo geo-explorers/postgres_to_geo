@@ -1,4 +1,4 @@
-import { typeToIdMap } from "./constants.ts";
+import { typeToIdMap, CANONICAL_SPACE_IDS } from "./constants.ts";
 import PostgreSQLClient, { DB_ID, TABLES } from "./postgres-client.ts";
 import { flatten_api_response, searchEntities, normalizeToUUID, searchEntities_w_backlinks, flatten_api_response_w_backlinks } from './functions.ts';
 import { v4 as uuidv4 } from "uuid";
@@ -1125,8 +1125,11 @@ export async function loadGeoEntities() {
   const geoEntities: any = {};
 
   for (const [key, breakdown] of Object.entries(breakdowns)) {
+    // Corpus scope = spaces we may write into. Personal/dataset spaces are
+    // excluded on purpose: matching an entity there routes publishes into
+    // spaces we don't own (incident 2026-08-03, curator space 7f28e45c…).
     geoEntities[key] = flatten_api_response(
-      await searchEntities({ type: breakdown.types })
+      await searchEntities({ type: breakdown.types, spaceId: Array.from(CANONICAL_SPACE_IDS) })
     );
   }
 
