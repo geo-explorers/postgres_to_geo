@@ -12,6 +12,7 @@ import {
   testnetWalletAddress,
   ROOT_GEO_SPACE_ID,
   DATASET_SPACE_IDS,
+  CANONICAL_SPACE_IDS,
   FEATURED_TAG_ENTITY_ID,
   CURATED_TAG_ENTITY_ID,
   SCORE_PROPERTY_ID,
@@ -557,6 +558,11 @@ export async function publishOps_w_spaces(ops: any) {
         
 
         for (const space of spaces) { 
+            if (!CANONICAL_SPACE_IDS.has(String(space))) {
+                console.warn(`SKIP publish to non-canonical space ${space}: ` +
+                    `${(await filterOps(ops, space)).length} ops dropped (allowlist guard)`);
+                continue;
+            }
             txHash = await publishOps(await filterOps(ops, space), `Upload ${iso}`, space)
     
             console.log(`Your transaction hash for ${space} is:`, txHash);
@@ -993,7 +999,12 @@ export function chooseEffectiveSpace(entityOnGeo: any, classifiedSpaceId: string
   const residencies: string[] = entityOnGeo.spaceIds ?? [];
   if (residencies.includes(classifiedSpaceId)) return classifiedSpaceId;
   if (residencies.includes(SPACE_IDS.podcasts)) return SPACE_IDS.podcasts;
-  return residencies[0] ?? SPACE_IDS.podcasts;
+  // Confused-deputy guard (incident 2026-08-03): residency can point at spaces
+  // we must never write into — e.g. a curator's personal space whose entity
+  // name-matched ours. Only canonical residencies are followable; anything
+  // else publishes into the classified target instead.
+  const canonical = residencies.find(r => CANONICAL_SPACE_IDS.has(String(r)));
+  return canonical ?? classifiedSpaceId;
 }
 
 export function buildEntityCached(
@@ -1840,7 +1851,7 @@ export async function searchEntities_old({
       entities(
         filter: {
           ${name ? 'name: {isInsensitive: $name},' : ''}  
-          ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}  
+          ${spaceId ? 'spaceIds: {overlaps: $spaceId},' : ''}  
           relations: {some: {typeId: {is: "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"}, toEntityId: {in: $type}}},
         }
       ) {
@@ -1978,7 +1989,7 @@ export async function searchEntities({
               after: $after
               filter: {
                 ${name ? 'name: {isInsensitive: $name},' : ''}
-                ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}
+                ${spaceId ? 'spaceIds: {overlaps: $spaceId},' : ''}
                 relations: {some: {typeId: {is: "8f151ba4de204e3c9cb499ddf96f48f1"}, toEntityId: {in: $type}}},
               }
             ) {
@@ -2172,7 +2183,7 @@ export async function searchEntities_w_backlinks({
               after: $after
               filter: {
                 ${name ? 'name: {isInsensitive: $name},' : ''}
-                ${spaceId ? 'spaceIds: {containedBy: $spaceId},' : ''}
+                ${spaceId ? 'spaceIds: {overlaps: $spaceId},' : ''}
                 relations: {some: {typeId: {is: "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"}, toEntityId: {in: $type}}},
               }
             ) {
