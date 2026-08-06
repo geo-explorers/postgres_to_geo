@@ -1133,6 +1133,8 @@ export async function read_in_tables({
 }
 
 
+import { getOrFetch } from './geo_cache/index.ts';
+
 export async function loadGeoEntities(space?: string, signal?: AbortSignal): Promise<{ geoEntities: any; scoringContext: ScoringContext }> {
   const breakdowns = {
     people: personBreakdown,
@@ -1153,31 +1155,49 @@ export async function loadGeoEntities(space?: string, signal?: AbortSignal): Pro
   const geoEntities: any = {};
   const MAX_TYPE_RETRIES = 2;
 
+  // Corpus scope = spaces this publisher may write into (incident 2026-08-03,
+  // PR #32 — the scoping originally landed in setup_ontology_new.ts, a dead
+  // variant; this is the loader workflow.ts actually uses). An explicit
+  // `space` argument narrows further.
+  const corpusScope = space ? [space] : [...CANONICAL_SPACE_IDS];
+
   for (const [key, breakdown] of Object.entries(breakdowns)) {
     console.log(`Loading geo entities: ${key}...`);
-    let lastError: any = null;
 
-    for (let attempt = 0; attempt < MAX_TYPE_RETRIES; attempt++) {
-      try {
-        geoEntities[key] = flatten_api_response(
-          await searchEntities({ type: breakdown.types, ...(space ? { spaceId: [space] } : {}), signal })
-        );
-        lastError = null;
-        break;
-      } catch (err) {
-        lastError = err;
-        console.error(`Failed to load ${key} (attempt ${attempt + 1}/${MAX_TYPE_RETRIES}):`, err);
-        if (attempt < MAX_TYPE_RETRIES - 1) {
-          await new Promise(resolve => setTimeout(resolve, 5000));
+    const fetchType = async () => {
+      let lastError: any = null;
+      for (let attempt = 0; attempt < MAX_TYPE_RETRIES; attempt++) {
+        try {
+          return flatten_api_response(
+            await searchEntities({ type: breakdown.types, spaceId: corpusScope, signal })
+          );
+        } catch (err) {
+          lastError = err;
+          console.error(`Failed to load ${key} (attempt ${attempt + 1}/${MAX_TYPE_RETRIES}):`, err);
+          if (attempt < MAX_TYPE_RETRIES - 1) {
+            await new Promise(resolve => setTimeout(resolve, 5000));
+          }
         }
       }
-    }
+      throw new Error(`Failed to load entity type "${key}" after ${MAX_TYPE_RETRIES} attempts: ${lastError?.message}`);
+    };
 
-    if (lastError) {
-      throw new Error(`Failed to load entity type "${key}" after ${MAX_TYPE_RETRIES} attempts: ${lastError.message}`);
-    }
+    // Head-stamped cache: a corpus whose stamp still matches the graph's edit
+    // head is served from Postgres in seconds instead of re-paging the API
+    // (~45 min all-types). Entries self-heal via geo_cache.validate and the
+    // inline head check; torn reads are covered by stamping BEFORE the fetch.
+    const { value, source } = await getOrFetch<any[]>({
+      key: `corpus:${key}:${space ?? "canonical"}`,
+      bucket: "pinned",
+      footprint: { spaceIds: corpusScope, typeIds: breakdown.types },
+      footprintFromResult: (rows) => ({
+        entityIds: rows.map((r: any) => String(r?.id ?? "")).filter(Boolean),
+      }),
+      fetch: fetchType,
+    });
+    geoEntities[key] = value;
 
-    console.log(`Loaded ${geoEntities[key].length} ${key}`);
+    console.log(`Loaded ${geoEntities[key].length} ${key} (${source})`);
   }
 
   console.log("GEO API READ");
