@@ -3,7 +3,7 @@ import { ConcurrencyLimitStrategy } from "@hatchet-dev/typescript-sdk/v1";
 import type { Duration } from "@hatchet-dev/typescript-sdk/v1";
 import { hatchet } from "./client.ts";
 import PostgreSQLClient, { DB_ID, TABLES } from "../postgres-client.ts";
-import { publishOps_w_spaces } from "../functions.ts";
+import { publishOps } from "../publish.ts";
 import { processPodcastWorkflow } from "../workflow.ts";
 import {
   buildClaimDeletionOps,
@@ -103,7 +103,10 @@ export const updateEpisodeClaims = hatchet.task({
         const batch = rows.slice(i, i + input.batch_size);
 
         // ── Phase 1: delete existing on-chain claims ──
-        const deleteOps = [];
+        // Deletion ops are plain SDK ops with no space tags, so they must be
+        // published per space via publishOps(ops, editName, spaceId) — the
+        // graph_ops convention (publishOps_w_spaces would silently no-op).
+        const deleteOpsBySpace: Record<string, unknown[]> = {};
         const rebuild: EpisodeRow[] = [];
         for (const episode of batch) {
           try {
@@ -118,7 +121,9 @@ export const updateEpisodeClaims = hatchet.task({
             if (episodeEntityId) {
               const relations = await queryEpisodeClaimRelations(episodeEntityId);
               const plan = await buildClaimDeletionOps(episodeEntityId, relations);
-              deleteOps.push(...plan.ops);
+              for (const [spaceId, ops] of Object.entries(plan.opsBySpace)) {
+                (deleteOpsBySpace[spaceId] ??= []).push(...ops);
+              }
               result.claims_deleted += plan.claimsDeleted;
             }
             rebuild.push(episode);
@@ -131,10 +136,17 @@ export const updateEpisodeClaims = hatchet.task({
         }
 
         if (signal.aborted) throw new Error("cancelled");
-        if (deleteOps.length > 0) {
-          console.log(`Publishing ${deleteOps.length} deletion ops for batch of ${batch.length}...`);
-          await publishOps_w_spaces(deleteOps);
-          result.ops_created += deleteOps.length;
+        for (const [spaceId, ops] of Object.entries(deleteOpsBySpace)) {
+          console.log(
+            `Publishing ${ops.length} deletion ops in space ${spaceId} for batch of ${batch.length}...`
+          );
+          const txHash = await publishOps(
+            ops as any,
+            `Update episode claims: delete stale claims (${batch.length} episode(s))`,
+            spaceId
+          );
+          console.log(`Deletion tx for ${spaceId}: ${txHash}`);
+          result.ops_created += ops.length;
         }
 
         // ── Phase 2: rebuild via the standard export path ──

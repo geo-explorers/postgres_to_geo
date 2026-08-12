@@ -64,7 +64,12 @@ export async function queryEpisodeClaimRelations(
 }
 
 export interface ClaimDeletionPlan {
-  ops: Op[];
+  /** Deletion ops grouped by the space each claim resides in. Ops carry no
+   *  space themselves — the caller must publish each group with
+   *  `publishOps(ops, editName, spaceId)` (the graph_ops convention; the
+   *  export pipeline's publishOps_w_spaces only routes its own space-tagged
+   *  op format and silently no-ops on plain SDK ops). */
+  opsBySpace: Record<string, Op[]>;
   claimsDeleted: number;
 }
 
@@ -81,32 +86,37 @@ export async function buildClaimDeletionOps(
   episodeEntityId: string,
   relations: EpisodeClaimRelation[]
 ): Promise<ClaimDeletionPlan> {
-  const ops: Op[] = [];
+  const opsBySpace: Record<string, Op[]> = {};
   const deletingIds = new Set<string>();
   let claimsDeleted = 0;
+  const push = (spaceId: string, ops: Op[]) => {
+    (opsBySpace[spaceId] ??= []).push(...ops);
+  };
 
   for (const rel of relations) {
-    ops.push(
-      ...(await deleteEntity({
+    push(
+      rel.spaceId,
+      await deleteEntity({
         entityId: rel.toEntityId,
         spaceId: rel.spaceId,
         excludeFromOrphanCheck: [episodeEntityId],
         deletingIds,
-      }))
+      })
     );
     claimsDeleted++;
 
     if (rel.entityId && !deletingIds.has(rel.entityId)) {
-      ops.push(
-        ...(await deleteEntity({
+      push(
+        rel.spaceId,
+        await deleteEntity({
           entityId: rel.entityId,
           spaceId: rel.spaceId,
           excludeFromOrphanCheck: [episodeEntityId],
           deletingIds,
-        }))
+        })
       );
     }
   }
 
-  return { ops, claimsDeleted };
+  return { opsBySpace, claimsDeleted };
 }
