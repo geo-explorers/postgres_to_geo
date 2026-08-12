@@ -1,6 +1,7 @@
 import { hatchet } from "./hatchet/client.ts";
 import { podcastPublish } from "./hatchet/podcast-publish.ts";
 import { episodeDedupFind, episodeDedupPrune, episodeDedupSweep } from "./hatchet/episode-dedup.ts";
+import { updateEpisodeClaims } from "./hatchet/update-episode-claims.ts";
 
 /**
  * postgres-to-geo worker entrypoint (run: `npm run start:worker`).
@@ -15,7 +16,7 @@ import { episodeDedupFind, episodeDedupPrune, episodeDedupSweep } from "./hatche
  */
 async function main(): Promise<void> {
   const worker = await hatchet.worker("postgres-to-geo-worker", {
-    workflows: [podcastPublish, episodeDedupFind, episodeDedupPrune, episodeDedupSweep],
+    workflows: [podcastPublish, episodeDedupFind, episodeDedupPrune, episodeDedupSweep, updateEpisodeClaims],
     slots: 2, // concurrency=1 on the task is the real gate; slots just bound local capacity
   });
   await worker.start();
