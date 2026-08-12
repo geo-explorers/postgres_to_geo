@@ -400,14 +400,19 @@ export async function read_in_tables({
   podcast_name,
   num_episodes,
   date_filter,
+  episode_ids,
 }: {
-  
+
   pgClient: any;
   podcast_name: string[];
   num_episodes: number;
   date_filter: string;
   offset?: number;
   limit?: number;
+  /** Restrict the episode window to these PG episode ids (update flows). All
+   *  downstream tables (claims, quotes, ...) derive from the episode result,
+   *  so this one filter scopes the whole read. */
+  episode_ids?: number[];
 }): Promise<{
     podcasts: any; episodes: any; hosts: any; guests: any; people: any; topics: any; sources: any; roles: any; platforms: any; listen_on_links: any; quotes: any; claims: any; claim_episodes: any; pages: any; text_blocks: any; selectors: any;
 }> {
@@ -422,6 +427,11 @@ export async function read_in_tables({
     } else {
       date_filter_str = ''
     }
+
+    // Numeric coercion makes the inline list injection-safe.
+    const episode_ids_str = episode_ids?.length
+      ? `AND e.id IN (${episode_ids.map(id => Number(id)).join(",")})`
+      : '';
   
     const podcasts = await pgClient.query(`
       SELECT 
@@ -603,6 +613,7 @@ export async function read_in_tables({
                   WHERE ce2.episode_id = e.id
                 )
               ${date_filter_str}
+              ${episode_ids_str}
             GROUP BY e.id, e.name, e.description, e.episode_number, e.duration,
                       e.air_date, e.avatar, e.audio_url, e.podcast_id
             ORDER BY e.air_date DESC;

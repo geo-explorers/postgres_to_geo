@@ -20,6 +20,8 @@ export interface WorkflowParams {
   limit: number;
   num_episodes: number;
   date_filter: string;
+  /** Restrict processing to these PG episode ids (update flows). */
+  episode_ids?: number[];
 }
 
 export interface WorkflowResult {
@@ -65,7 +67,8 @@ export async function processPodcastWorkflow(
       limit: params.limit,
       podcast_name: params.podcast_name,
       num_episodes: params.num_episodes,
-      date_filter: params.date_filter
+      date_filter: params.date_filter,
+      episode_ids: params.episode_ids
     });
 
     console.log(`Found ${tables.episodes.length} episodes`);
