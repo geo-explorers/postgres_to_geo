@@ -1959,7 +1959,7 @@ export async function searchEntities({
   notTypeId?: string;
   signal?: AbortSignal;
 }) {
-  const PAGE_SIZES = [1000, 500, 250, 100];
+  const PAGE_SIZES = [100, 50, 25];
 
   for (const pageSize of PAGE_SIZES) {
     try {
@@ -2160,7 +2160,7 @@ export async function searchEntities_w_backlinks({
   typeId?: string;
   notTypeId?: string;
 }) {
-  const PAGE_SIZES = [1000, 500, 250, 100];
+  const PAGE_SIZES = [100, 50, 25];
 
   for (const pageSize of PAGE_SIZES) {
     try {
