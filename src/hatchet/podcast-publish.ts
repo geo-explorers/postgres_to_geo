@@ -35,11 +35,17 @@ type PublishResult = { [K in keyof WorkflowResult]: WorkflowResult[K] };
  * which would kill a running ~25-min non-idempotent publish when the next trigger
  * arrives. retries=0 because the publish is not idempotent.
  */
-// Env-configurable timeouts (Hatchet duration strings, e.g. "360m", "6h").
+// Env-configurable timeouts (Hatchet duration strings, e.g. "1440m", "24h").
+// Defaults raised 6h → 24h on 2026-08-27: after a week of timed-out runs the
+// unpublished-episode backlog is large, and a catch-up run must be allowed to
+// finish the episode loop + publish rather than die mid-way (the corpus sweep
+// itself no longer dominates — see paginateEntitiesConnection in functions.ts).
+// NOTE: pg-migrations' triggerExportViaTask polls only 3h (EXPORT_POLL_TIMEOUT_MS)
+// and logs the export as failed after that even though the run continues.
 // Cast: env values can't be statically checked against the SDK's Duration
 // template type; invalid strings fail loudly at task registration.
-const EXECUTION_TIMEOUT = (process.env.PUBLISH_EXECUTION_TIMEOUT ?? "360m") as Duration;
-const SCHEDULE_TIMEOUT = (process.env.PUBLISH_SCHEDULE_TIMEOUT ?? "420m") as Duration;
+const EXECUTION_TIMEOUT = (process.env.PUBLISH_EXECUTION_TIMEOUT ?? "1440m") as Duration;
+const SCHEDULE_TIMEOUT = (process.env.PUBLISH_SCHEDULE_TIMEOUT ?? "1500m") as Duration;
 
 export const podcastPublish = hatchet.task({
   name: "podcast.publish",

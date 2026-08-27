@@ -1763,8 +1763,16 @@ const testnet_query_url = "https://api-testnet.geobrowser.io/graphql"
 const testnet_query_url_grc_update = process.env.GEO_API_URL ?? "https://api-testnet.geobrowser.io/graphql"
 const QUERY_URL = testnet_query_url_grc_update;
 
-export async function fetchWithRetry(query: string, variables: any, retries = 5, delay = 1000, timeout = 30000) {
+export type FetchWithRetryResult = { json: any; bytes: number; ms: number };
+
+/**
+ * fetchWithRetryEx — the retry policy of fetchWithRetry, but it also reports
+ * the response size and the wall time of the SUCCESSFUL attempt so callers can
+ * adapt page sizes to what the API actually returns (paginateEntitiesConnection).
+ */
+export async function fetchWithRetryEx(query: string, variables: any, retries = 5, delay = 1000, timeout = 30000): Promise<FetchWithRetryResult> {
     for (let i = 0; i < retries; i++) {
+        const attemptStart = Date.now();
         let response: Response;
         try {
             response = await fetch(QUERY_URL, {
@@ -1788,7 +1796,8 @@ export async function fetchWithRetry(query: string, variables: any, retries = 5,
         }
 
         if (response.ok) {
-            const json = await response.json();
+            const text = await response.text();
+            const json = JSON.parse(text);
             // Detect GraphQL-level errors that return HTTP 200 but null data
             if (json.errors && !json.data) {
                 const errMsg = `GraphQL errors with null data: ${JSON.stringify(json.errors)}`;
@@ -1801,7 +1810,7 @@ export async function fetchWithRetry(query: string, variables: any, retries = 5,
                 console.error(`fetchWithRetry failed after ${retries} retries (GraphQL error): ${errMsg}`);
                 throw new Error(errMsg);
             }
-            return json;
+            return { json, bytes: Buffer.byteLength(text), ms: Date.now() - attemptStart };
         }
 
         if (i < retries - 1) {
@@ -1818,6 +1827,12 @@ export async function fetchWithRetry(query: string, variables: any, retries = 5,
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
     }
+    // Every path above returns or throws; this only guards against retries <= 0.
+    throw new Error(`fetchWithRetry: no attempts made (retries=${retries})`);
+}
+
+export async function fetchWithRetry(query: string, variables: any, retries = 5, delay = 1000, timeout = 30000) {
+    return (await fetchWithRetryEx(query, variables, retries, delay, timeout)).json;
 }
 
 
@@ -1940,6 +1955,190 @@ export async function searchEntities_old({
   return null;
 }
 
+// ── Cursor pagination: adaptive page size + in-place resume ──────────────────
+//
+// History. The corpus sweep used a fixed page size with a fallback "ladder"
+// (1000→500→250→100; 100→50→25 after #36) that RESTARTED the whole type from
+// its first page whenever one page failed. Measured against the live API on
+// 2026-08-27, that shape is wrong on two counts:
+//   1. Per-request cost is nearly flat (≈1.3 s for 100–500 rows of most types)
+//      and `totalCount` alone costs ≈2.6 s on the 300k-row types — sweep time
+//      is governed by page COUNT. #36's 10× more pages turned a ~25-min sweep
+//      into a 6 h+ one that never finished (every publish since 2026-08-20
+//      timed out inside `claims`), and each 503 burst that outlasted
+//      fetchWithRetry threw away hours of progress via the ladder restart.
+//   2. Cursors are keyset (`primary_key_asc`), so a sweep can resume from its
+//      last cursor with a DIFFERENT page size — nothing requires a restart.
+// Row weight differs ~50× between types (claims ≈2 KB/row, episodes ≈59 KB/row
+// — the latter is the 63 MB/1000-row page that OOM-killed the API in #36), so
+// the page size is adapted per type from measured response bytes instead of
+// being one global constant: start small, grow at most 2× per page toward a
+// byte budget, shrink at once when a page is heavy or slow.
+//
+// All knobs are env-overridable (same convention as PUBLISH_*_TIMEOUT).
+
+function envInt(name: string, fallback: number): number {
+  const raw = process.env[name];
+  const n = raw === undefined || raw === "" ? NaN : Number(raw);
+  return Number.isFinite(n) && n > 0 ? Math.floor(n) : fallback;
+}
+
+/** First page of every type — 100 rows is the size #36 established as safe for the heaviest type. */
+const SEARCH_PAGE_SIZE_START = envInt("SEARCH_PAGE_SIZE_START", 100);
+const SEARCH_PAGE_SIZE_MAX = envInt("SEARCH_PAGE_SIZE_MAX", 500);
+const SEARCH_PAGE_SIZE_MIN = envInt("SEARCH_PAGE_SIZE_MIN", 25);
+/** Target response size per page. 6 MB ≈ the 100-row episodes page that has been running safely since #36. */
+const SEARCH_PAGE_BYTE_BUDGET = envInt("SEARCH_PAGE_BYTE_BUDGET_KB", 6144) * 1024;
+/** A page slower than this halves the next one — gaia kills queries client-side at ~12 s. */
+const SEARCH_PAGE_SLOW_MS = envInt("SEARCH_PAGE_SLOW_MS", 12000);
+/** Consecutive failures at ONE cursor before the sweep gives up (each waits 15 s·2ⁿ, capped at 5 min). */
+const SEARCH_MAX_PAGE_FAILURES = envInt("SEARCH_MAX_PAGE_FAILURES", 8);
+const SEARCH_PAGE_THROTTLE_MS = envInt("SEARCH_PAGE_THROTTLE_MS", 200);
+
+function abortError(fn: string): Error {
+  const err: any = new Error(`${fn} aborted: run was cancelled or timed out`);
+  err.aborted = true;
+  return err;
+}
+
+/** Sleep that returns early once the run is cancelled (the caller re-checks the signal). */
+async function sleepAbortable(ms: number, signal?: AbortSignal): Promise<void> {
+  const step = 1000;
+  for (let waited = 0; waited < ms; waited += step) {
+    if (signal?.aborted) return;
+    await new Promise(resolve => setTimeout(resolve, Math.min(step, ms - waited)));
+  }
+}
+
+/** Next page size from the page just fetched: grow ≤2× toward the byte budget, shrink at once when heavy or slow. */
+export function nextPageSize(current: number, rows: number, bytes: number, ms: number): number {
+  if (rows <= 0) return current;
+  if (ms > SEARCH_PAGE_SLOW_MS) return Math.max(SEARCH_PAGE_SIZE_MIN, Math.floor(current / 2));
+  const perRow = bytes / rows;
+  const target = Math.max(SEARCH_PAGE_SIZE_MIN, Math.min(SEARCH_PAGE_SIZE_MAX, Math.floor(SEARCH_PAGE_BYTE_BUDGET / perRow)));
+  return target > current ? Math.min(target, current * 2) : target;
+}
+
+interface PaginateParams {
+  /** Caller name for logs/errors, e.g. "searchEntities". */
+  fn: string;
+  /** Log noun, e.g. "entities" / "entities with backlinks" (kept: ops tooling greps these lines). */
+  noun: string;
+  typeIds: string[];
+  /** Builds the query text; `totalCount` is requested only when asked (first page + integrity re-check). */
+  buildQuery: (includeTotalCount: boolean) => string;
+  /** Query variables WITHOUT `first`/`after`, which the paginator owns. */
+  variables: Record<string, any>;
+  signal?: AbortSignal;
+}
+
+/**
+ * Walk an `entitiesConnection` to the end and return every node.
+ *
+ * - `totalCount` is fetched on the first page only (it is a full count of the
+ *   filtered set on every request that asks for it).
+ * - A failed page is retried AT THE SAME CURSOR with a smaller page size after
+ *   a cool-down; fetched pages are never discarded. Only SEARCH_MAX_PAGE_FAILURES
+ *   consecutive failures at one cursor abandon the sweep.
+ * - Cancellation (`signal`) is honoured between pages and during cool-downs;
+ *   an aborted run stops within seconds and never retries.
+ * - Integrity guard (see root_cause_analysis.md, May-12 cascade): the API can
+ *   answer `{nodes: [], hasNextPage: false}` mid-way under pressure. If the
+ *   last page leaves us short of the count taken at the start, the count is
+ *   re-read (entities may legitimately have been deleted during a long sweep);
+ *   a real shortfall is treated as a failed page — retried from the same
+ *   cursor, never returned as a silently partial corpus.
+ */
+export async function paginateEntitiesConnection({ fn, noun, typeIds, buildQuery, variables, signal }: PaginateParams): Promise<any[]> {
+  const allEntities: any[] = [];
+  let cursor: string | null = null;
+  let pageSize = Math.max(SEARCH_PAGE_SIZE_MIN, Math.min(SEARCH_PAGE_SIZE_START, SEARCH_PAGE_SIZE_MAX));
+  let totalCountAtStart: number | null = null;
+  let failures = 0;
+
+  console.log(`  ${fn} starting for types: ${typeIds.join(', ')} (page size: ${pageSize}, adaptive up to ${SEARCH_PAGE_SIZE_MAX})`);
+
+  while (true) {
+    // Cancellation check per page: a cancelled/timed-out run must stop the
+    // (potentially hours-long) sweep promptly instead of running as a zombie.
+    if (signal?.aborted) throw abortError(fn);
+    await sleepAbortable(SEARCH_PAGE_THROTTLE_MS, signal);
+    if (signal?.aborted) throw abortError(fn);
+
+    const isFirstPage = cursor === null;
+    try {
+      const { json, bytes, ms } = await fetchWithRetryEx(buildQuery(isFirstPage), { ...variables, first: pageSize, after: cursor });
+      const connection = json?.data?.entitiesConnection;
+      if (!connection) {
+        throw new Error(
+          `${fn}: API returned null entitiesConnection ` +
+          `(types: ${typeIds.join(', ')}, pageSize: ${pageSize}, cursor: ${cursor}, ` +
+          `errors: ${JSON.stringify(json?.errors ?? 'none')})`
+        );
+      }
+      if (isFirstPage && typeof connection.totalCount === "number") totalCountAtStart = connection.totalCount;
+
+      const entities: any[] = connection.nodes ?? [];
+      const pageInfo = connection.pageInfo;
+      const fetchedAfter = allEntities.length + entities.length;
+      const kb = Math.round(bytes / 1024);
+
+      if (!pageInfo?.hasNextPage) {
+        if (totalCountAtStart !== null && fetchedAfter < totalCountAtStart) {
+          const fresh = await freshTotalCount(buildQuery, variables);
+          const reference = fresh ?? totalCountAtStart;
+          if (fetchedAfter < reference) {
+            throw new Error(
+              `${fn}: silent pagination truncation — hasNextPage=false at ` +
+              `${fetchedAfter}/${reference} entities (types: ${typeIds.join(', ')}, pageSize: ${pageSize})`
+            );
+          }
+        }
+        allEntities.push(...entities);
+        console.log(`Fetched ${entities.length} ${noun} (total so far: ${allEntities.length}) [${pageSize}/page, ${kb} KB, ${ms} ms, last page]`);
+        return allEntities;
+      }
+
+      allEntities.push(...entities);
+      cursor = pageInfo.endCursor;
+      failures = 0;
+      const next = nextPageSize(pageSize, entities.length, bytes, ms);
+      console.log(`Fetched ${entities.length} ${noun} (total so far: ${allEntities.length}) [${pageSize}/page, ${kb} KB, ${ms} ms${next !== pageSize ? `, next page size ${next}` : ''}]`);
+      pageSize = next;
+    } catch (err: any) {
+      // Abort is not a transient API failure — never retry.
+      if (err?.aborted || signal?.aborted) throw err;
+      failures += 1;
+      if (failures > SEARCH_MAX_PAGE_FAILURES) {
+        throw new Error(
+          `${fn}: giving up after ${failures} consecutive page failures at cursor ${cursor} ` +
+          `(${allEntities.length} ${noun} fetched, types: ${typeIds.join(', ')}): ${err?.message ?? err}`
+        );
+      }
+      const reduced = Math.max(SEARCH_PAGE_SIZE_MIN, Math.floor(pageSize / 2));
+      const coolDownMs = Math.min(300_000, 15_000 * 2 ** (failures - 1));
+      console.log(
+        `${fn}: page failed at cursor ${cursor} (${allEntities.length} ${noun} fetched so far, ` +
+        `failure ${failures}/${SEARCH_MAX_PAGE_FAILURES}): ${err?.message ?? err}. ` +
+        `Resuming from the same cursor in ${coolDownMs / 1000}s with page size ${reduced}.`
+      );
+      pageSize = reduced;
+      await sleepAbortable(coolDownMs, signal);
+    }
+  }
+}
+
+/** One cheap `first: 1` request for a current totalCount; null when it cannot be read. */
+async function freshTotalCount(buildQuery: (includeTotalCount: boolean) => string, variables: Record<string, any>): Promise<number | null> {
+  try {
+    const { json } = await fetchWithRetryEx(buildQuery(true), { ...variables, first: 1, after: null });
+    const n = json?.data?.entitiesConnection?.totalCount;
+    return typeof n === "number" ? n : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function searchEntities({
   name, // Note: For V1, can assume always have name and type, but it is possible that there will not be a name to associate this with?
   type,
@@ -1959,24 +2158,7 @@ export async function searchEntities({
   notTypeId?: string;
   signal?: AbortSignal;
 }) {
-  const PAGE_SIZES = [100, 50, 25];
-
-  for (const pageSize of PAGE_SIZES) {
-    try {
-      let allEntities: any[] = [];
-      let cursor: string | null = null;
-
-      while (true) {
-        // Cancellation check per page: a cancelled/timed-out run must stop the
-        // (potentially hours-long) sweep promptly instead of running as a zombie.
-        if (signal?.aborted) {
-          const err: any = new Error('searchEntities aborted: run was cancelled or timed out');
-          err.aborted = true;
-          throw err;
-        }
-        await new Promise(resolve => setTimeout(resolve, 200));
-
-        const query = `
+  const buildQuery = (includeTotalCount: boolean) => `
           query GetEntities(
             ${name ?  '$name: String!': ''}
             ${spaceId ? '$spaceId: [UUID!]' : ''}
@@ -1993,7 +2175,7 @@ export async function searchEntities({
                 relations: {some: {typeId: {is: "8f151ba4de204e3c9cb499ddf96f48f1"}, toEntityId: {in: $type}}},
               }
             ) {
-              totalCount
+              ${includeTotalCount ? 'totalCount' : ''}
               pageInfo {
                 hasNextPage
                 endCursor
@@ -2076,72 +2258,15 @@ export async function searchEntities({
           }
         `;
 
-        const variables: Record<string, any> = {
-          name: name,
-          type: type,
-          spaceId: spaceId,
-          first: pageSize,
-          after: cursor
-        };
-
-        if (cursor === null) {
-          console.log(`  searchEntities starting for types: ${type.join(', ')} (page size: ${pageSize})`);
-        }
-
-        const data = await fetchWithRetry(query, variables);
-        const connection = data?.data?.entitiesConnection;
-
-        if (!connection) {
-          throw new Error(
-            `searchEntities: API returned null entitiesConnection ` +
-            `(types: ${type.join(', ')}, pageSize: ${pageSize}, cursor: ${cursor}, ` +
-            `errors: ${JSON.stringify(data?.errors ?? 'none')})`
-          );
-        }
-
-        const entities = connection.nodes ?? [];
-        const pageInfo = connection.pageInfo;
-        const totalCount = connection.totalCount;
-
-        allEntities = allEntities.concat(entities);
-        console.log(`Fetched ${entities.length} entities (total so far: ${allEntities.length})`);
-
-        if (!pageInfo?.hasNextPage) {
-          // --- pagination integrity guard ---
-          // The API can return `{nodes: [], hasNextPage: false}` mid-pagination
-          // (e.g. under indexer pressure), which would silently terminate the loop
-          // with a partial result. The caller (loadGeoEntities) would then build
-          // an incomplete cache; subsequent buildEntityCached lookups would miss
-          // existing entities and create duplicates. Throwing here lets the outer
-          // PAGE_SIZES fallback retry with smaller pages or eventually surface
-          // the issue rather than publishing silent dups. See May-12 episode
-          // cascade in root_cause_analysis.md.
-          if (typeof totalCount === "number" && allEntities.length < totalCount) {
-            throw new Error(
-              `searchEntities: silent pagination truncation — hasNextPage=false at ` +
-              `${allEntities.length}/${totalCount} entities ` +
-              `(types: ${type.join(', ')}, pageSize: ${pageSize})`
-            );
-          }
-          break;
-        }
-
-        cursor = pageInfo.endCursor;
-      }
-
-      return allEntities;
-    } catch (err: any) {
-      // Abort is not a transient API failure — never retry at a smaller page size.
-      if (err?.aborted || signal?.aborted) throw err;
-      const isLast = pageSize === PAGE_SIZES[PAGE_SIZES.length - 1];
-      if (isLast) throw err;
-      console.log(`searchEntities failed with page size ${pageSize}, reducing to ${PAGE_SIZES[PAGE_SIZES.indexOf(pageSize) + 1]}...`);
-    }
-  }
-
-  return [];
+  return paginateEntitiesConnection({
+    fn: "searchEntities",
+    noun: "entities",
+    typeIds: type,
+    buildQuery,
+    variables: { name, type, spaceId },
+    signal,
+  });
 }
-
 
 export async function searchEntities_w_backlinks({
   name, // Note: For V1, can assume always have name and type, but it is possible that there will not be a name to associate this with?
@@ -2150,7 +2275,8 @@ export async function searchEntities_w_backlinks({
   property,
   searchText,
   typeId,
-  notTypeId
+  notTypeId,
+  signal
 }: {
   name?: string;
   type: string[];
@@ -2159,18 +2285,9 @@ export async function searchEntities_w_backlinks({
   searchText?: string | string[];
   typeId?: string;
   notTypeId?: string;
+  signal?: AbortSignal;
 }) {
-  const PAGE_SIZES = [100, 50, 25];
-
-  for (const pageSize of PAGE_SIZES) {
-    try {
-      let allEntities: any[] = [];
-      let cursor: string | null = null;
-
-      while (true) {
-        await new Promise(resolve => setTimeout(resolve, 200));
-
-        const query = `
+  const buildQuery = (includeTotalCount: boolean) => `
           query GetEntities(
             ${name ?  '$name: String!': ''}
             ${spaceId ? '$spaceId: [UUID!]' : ''}
@@ -2187,7 +2304,7 @@ export async function searchEntities_w_backlinks({
                 relations: {some: {typeId: {is: "8f151ba4-de20-4e3c-9cb4-99ddf96f48f1"}, toEntityId: {in: $type}}},
               }
             ) {
-              totalCount
+              ${includeTotalCount ? 'totalCount' : ''}
               pageInfo {
                 hasNextPage
                 endCursor
@@ -2308,59 +2425,13 @@ export async function searchEntities_w_backlinks({
           }
         `;
 
-        const variables: Record<string, any> = {
-          name: name,
-          type: type,
-          spaceId: spaceId,
-          first: pageSize,
-          after: cursor
-        };
-
-        if (cursor === null) {
-          console.log(`  searchEntities_w_backlinks starting for types: ${type.join(', ')} (page size: ${pageSize})`);
-        }
-
-        const data = await fetchWithRetry(query, variables);
-        const connection = data?.data?.entitiesConnection;
-
-        if (!connection) {
-          throw new Error(
-            `searchEntities_w_backlinks: API returned null entitiesConnection ` +
-            `(types: ${type.join(', ')}, pageSize: ${pageSize}, cursor: ${cursor}, ` +
-            `errors: ${JSON.stringify(data?.errors ?? 'none')})`
-          );
-        }
-
-        const entities = connection.nodes ?? [];
-        const pageInfo = connection.pageInfo;
-        const totalCount = connection.totalCount;
-
-        allEntities = allEntities.concat(entities);
-        console.log(`Fetched ${entities.length} entities with backlinks (total so far: ${allEntities.length})`);
-
-        if (!pageInfo?.hasNextPage) {
-          // --- pagination integrity guard (see searchEntities for full rationale) ---
-          if (typeof totalCount === "number" && allEntities.length < totalCount) {
-            throw new Error(
-              `searchEntities_w_backlinks: silent pagination truncation — hasNextPage=false at ` +
-              `${allEntities.length}/${totalCount} entities ` +
-              `(types: ${type.join(', ')}, pageSize: ${pageSize})`
-            );
-          }
-          break;
-        }
-
-        cursor = pageInfo.endCursor;
-      }
-
-      return allEntities;
-    } catch (err) {
-      const isLast = pageSize === PAGE_SIZES[PAGE_SIZES.length - 1];
-      if (isLast) throw err;
-      console.log(`searchEntities_w_backlinks failed with page size ${pageSize}, reducing to ${PAGE_SIZES[PAGE_SIZES.indexOf(pageSize) + 1]}...`);
-    }
-  }
-
-  return [];
+  return paginateEntitiesConnection({
+    fn: "searchEntities_w_backlinks",
+    noun: "entities with backlinks",
+    typeIds: type,
+    buildQuery,
+    variables: { name, type, spaceId },
+    signal,
+  });
 }
 
