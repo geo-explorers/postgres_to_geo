@@ -24,6 +24,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { publishOps } from './publish.ts';
+import { claimName } from './claim_name.ts';
 
 
 function normalizeName_tmp(name: string): string {
@@ -1018,6 +1019,19 @@ export function buildEntityCached(
 ): any {
 
   const tableName = breakdown.table;
+
+  // Claims are minted with claimName (bare sentence-ending period stripped):
+  // 99.2% of crypto.claims rows end in one — the extraction prompt teaches
+  // full sentences — and the export carried the period onto every published
+  // Claim name. Shaped HERE, before the name caches, matching, and value
+  // build read row.name, so the whole build sees one consistent name.
+  // Idempotent, so the row.id-cache re-entry path is safe. Matching is
+  // unaffected: the local name cache and candidate scoring go through
+  // normalizeName (which already strips periods), and claims skip fuzzy
+  // graph matching entirely (claimBreakdown.skip_fuzzy_match).
+  if (tableName === 'claims' && typeof row.name === 'string') {
+    row.name = claimName(row.name);
+  }
 
   // --- cache check (by PG row.id) ---
   cache[tableName] = cache[tableName] || {};
