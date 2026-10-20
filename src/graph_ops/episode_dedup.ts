@@ -39,27 +39,27 @@ export type PrunePlan = {
 
 type Ep = { id: string; name: string; createdAt: number; show: string; airDate: string; spaceId: string };
 
+// Pages in id order (each asks for the ids after the last one), by the typeId/spaceId arguments.
+// Since Geo's 15 s gateway (2026-10-13), the Types-relation filter with a cursor answered 504 from a
+// 7-day window (16 s); this shape read 14 days (209 episodes) in 3 s. Geo caps `first` at 1000.
+const PAGE = 1000;
+
 async function episodesInWindow(spaceId: string, sinceEpoch: number, signal?: AbortSignal): Promise<Ep[]> {
   const out: Ep[] = [];
-  let after = '';
+  let last = '';
   for (let page = 0; page < 100; page++) {
     if (signal?.aborted) throw new Error('dedup.find aborted');
     const d = await gql(`{
-      entitiesConnection(filter: {
-        spaceIds: { in: ["${spaceId}"] }
-        createdAt: { greaterThan: "${sinceEpoch}" }
-        relations: { some: { typeId: { is: "${TYPES_PROP}" } toEntityId: { in: ["${TYPE_EPISODE}"] } } }
-      }, first: 200${after ? `, after: "${after}"` : ''}) {
-        pageInfo { hasNextPage endCursor }
-        nodes {
-          id name createdAt
-          rel: relations(filter: { typeId: { is: "${PROP_PODCAST}" } }) { nodes { toEntityId } }
-          vals: values(filter: { propertyId: { is: "${PROP_AIR_DATE}" } }) { nodes { date datetime text } }
-        }
+      entities(typeId: "${TYPE_EPISODE}", spaceId: "${spaceId}", first: ${PAGE}, orderBy: ID_ASC, filter: {
+        createdAt: { greaterThan: "${sinceEpoch}" }${last ? `\n        id: { greaterThan: "${last}" }` : ''}
+      }) {
+        id name createdAt
+        rel: relations(filter: { typeId: { is: "${PROP_PODCAST}" } }) { nodes { toEntityId } }
+        vals: values(filter: { propertyId: { is: "${PROP_AIR_DATE}" } }) { nodes { date datetime text } }
       }
     }`);
-    const c = d?.entitiesConnection;
-    for (const n of c?.nodes ?? []) {
+    const nodes = d?.entities ?? [];
+    for (const n of nodes) {
       const v = n.vals?.nodes?.[0] ?? {};
       out.push({
         id: n.id, name: (n.name ?? '').trim(), createdAt: Number(n.createdAt),
@@ -68,8 +68,8 @@ async function episodesInWindow(spaceId: string, sinceEpoch: number, signal?: Ab
         spaceId,
       });
     }
-    if (!c?.pageInfo?.hasNextPage) break;
-    after = c.pageInfo.endCursor;
+    if (nodes.length < PAGE) break;
+    last = nodes[nodes.length - 1].id;
   }
   return out;
 }
