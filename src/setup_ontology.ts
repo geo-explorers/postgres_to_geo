@@ -65,6 +65,8 @@ export interface EntityBreakdown {
     image: boolean;
   }[];
   skip_fuzzy_match?: boolean;
+  /** Rows may carry `geo_id` = the Geo entity they ARE (mirrored from the KG); link by id, publish nothing of their own. */
+  geo_linked?: boolean;
 }
 
 
@@ -73,6 +75,7 @@ export const topicBreakdown: EntityBreakdown = {
     not_unique: false,
     types: [typeToIdMap['topic']],
     value_fields: ["name"],
+    geo_linked: true,
     relations: [],
 }
 
@@ -737,8 +740,17 @@ export async function read_in_tables({
             : [];
             console.log("PEOPLE read")
 
+        // tags.geo_id arrives with pg-migrations' curated-topic sync (#73);
+        // publishing keeps working by name until that migration has run.
+        const [{ has_geo_id }] = await pgClient.query(`
+            SELECT EXISTS (
+              SELECT 1 FROM information_schema.columns
+              WHERE table_schema = '${DB_ID}' AND table_name = '${TABLES.TAGS}' AND column_name = 'geo_id'
+            ) AS has_geo_id`);
+        if (!has_geo_id) console.warn("tags.geo_id not found: curated topics link by name until the pg-migrations migration has run");
+        const geoIdColumn = has_geo_id ? "t.geo_id" : "NULL::text";
         const topics = await pgClient.query(`
-            SELECT t.id, t.name, t.description, t.logo as cover,
+            SELECT t.id, ${geoIdColumn} AS geo_id, t.name, t.description, t.logo as cover,
             COALESCE(
               json_agg(
                 DISTINCT jsonb_build_object(
