@@ -738,7 +738,7 @@ export async function read_in_tables({
             console.log("PEOPLE read")
 
         const topics = await pgClient.query(`
-            SELECT t.id, t.name, t.description, t.logo as cover,
+            SELECT t.id, t.geo_id, t.name, t.description, t.logo as cover,
             COALESCE(
               json_agg(
                 DISTINCT jsonb_build_object(

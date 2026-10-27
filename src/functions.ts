@@ -742,6 +742,20 @@ export const entityCache: Record<string, Record<string, any>> = {};
 // Keyed by the geoRows array reference, maps normalized name -> array of matching geoEntities.
 const geoNameIndexCache = new WeakMap<any[], Map<string, any[]>>();
 
+// Geo id → entity, per loaded corpus (same WeakMap lifetime as the name index).
+const geoIdIndexCache = new WeakMap<any[], Map<string, any>>();
+function getGeoIdIndex(geoRows: any[]): Map<string, any> {
+  let index = geoIdIndexCache.get(geoRows);
+  if (index) return index;
+  index = new Map<string, any>();
+  for (const p of geoRows) {
+    const id = String(p?.id ?? "").trim().toLowerCase();
+    if (id && !index.has(id)) index.set(id, p);
+  }
+  geoIdIndexCache.set(geoRows, index);
+  return index;
+}
+
 function getGeoNameIndex(geoRows: any[]): Map<string, any[]> {
   let index = geoNameIndexCache.get(geoRows);
   if (index) return index;
@@ -1052,9 +1066,18 @@ export function buildEntityCached(
   // Safe for nameless entity types (e.g. claim_relation, where value_fields=[]):
   // the `if (row.name)` guard below falls through to existing row.id behavior
   // unchanged — no regression for entities that don't have a name.
+  // Geo-linked rows (tags.geo_id, mirrored from the knowledge graph by the
+  // pg-migrations curated-topic sync): the Geo entity IS the row. It is
+  // resolved by id — never by name, never fuzzily, never minted anew — and its
+  // values are Geo's to edit, so only its relations publish from here.
+  const pinnedGeoId: string | null =
+    typeof row.geo_id === "string" && /^[0-9a-f]{32}$/i.test(row.geo_id.trim())
+      ? row.geo_id.trim().toLowerCase()
+      : null;
+
   const nameCacheKey = `__name__${tableName}`;
   cache[nameCacheKey] = cache[nameCacheKey] || {};
-  if (row.name) {
+  if (row.name && !pinnedGeoId) {
     const localNameKey = normalizeName(row.name);
     if (localNameKey && cache[nameCacheKey][localNameKey]) {
       return cache[nameCacheKey][localNameKey];
@@ -1081,7 +1104,7 @@ export function buildEntityCached(
   // - CHECK AND SEE WHETHER RELATION ENTITIES EXIST ON GEO IF THIS ENTITY EXISTS ON GEO
 
   // --- build values ---
-  const values = (breakdown.value_fields ?? []).flatMap((field: string) => {
+  const values: any[] = pinnedGeoId ? [] : (breakdown.value_fields ?? []).flatMap((field: string) => {
     const val = row[field];
     if (val == null) return [];
 
@@ -1369,7 +1392,23 @@ if (!match) {
 }
 
 // 3. Match on name similarity
-if (!match && row.name) {
+  let pinnedButUnloaded = false;
+  if (pinnedGeoId) {
+    const byId = getGeoIdIndex(geoRows).get(pinnedGeoId);
+    if (byId) {
+      match = byId;
+    } else {
+      // Not in the loaded corpus (pagination gap, or a type this breakdown
+      // doesn't load): still link BY ID, but publish nothing on the node itself.
+      // Without entityOnGeo the relation-existence check cannot run, and
+      // re-creating its hierarchy edges every run would stack duplicates.
+      pinnedButUnloaded = true;
+      geo_id = pinnedGeoId;
+      console.warn(`[PINNED_UNLOADED] ${tableName} row ${row.id} "${row.name}" → ${pinnedGeoId} not in the loaded corpus; linking by id, skipping its own ops`);
+    }
+  }
+
+if (!match && !pinnedGeoId && row.name) {
     const localName = normalizeName(row.name);
 
     // Helper: check type validity + exclude existingSources + URL/property alignment
@@ -1485,7 +1524,10 @@ if (!match && row.name) {
     entityOnGeo = match;
   }
 
-  const other_relations = (otherRelations ?? []).flatMap((rel: any) => {
+  // Pinned rows publish hierarchy edges only: no cover/avatar from PG either.
+  const other_relations: any[] = pinnedButUnloaded
+    ? []
+    : (otherRelations ?? []).filter((rel: any) => !(pinnedGeoId && rel.image)).flatMap((rel: any) => {
       //const relatedItems = row[rel.type] ?? []; // now [{ to_id, entity_id }, ...]
       const relatedItems = Array.isArray(row[rel.type]) ? row[rel.type] : row[rel.type] ? [row[rel.type]] : []; // now [{ to_id, entity_id }, ...]
         return relatedItems.flatMap((relatedItem: any) => {
