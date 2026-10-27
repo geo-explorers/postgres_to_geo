@@ -55,6 +55,10 @@ export const DATASET_SPACE_IDS = new Set<string>([
 export const FEATURED_TAG_ENTITY_ID = "b69b8b1659df4e6d99d79956a30e8932";
 export const CURATED_TAG_ENTITY_ID  = "7f796eb5bfc5449c98649bf7d996a2ca";
 
+// What a Geo entity id looks like (32 hex). The pg-migrations curated-topic
+// sync writes tags.geo_id in this form; anything else is not a link.
+export const GEO_ID_RE = /^[0-9a-f]{32}$/i;
+
 // Score property. A topic "has a score" iff its values array contains a
 // value with this propertyId. The "Score" property is "net upvotes minus
 // downvotes for an entity within a space."

@@ -7,6 +7,7 @@ import { validate as uuidValidate } from 'uuid';
 
 import {
   SPACE_IDS,
+  GEO_ID_RE,
   propertyToIdMap,
   propertyToDataTypeMap,
   testnetWalletAddress,
@@ -1066,18 +1067,23 @@ export function buildEntityCached(
   // Safe for nameless entity types (e.g. claim_relation, where value_fields=[]):
   // the `if (row.name)` guard below falls through to existing row.id behavior
   // unchanged — no regression for entities that don't have a name.
-  // Geo-linked rows (tags.geo_id, mirrored from the knowledge graph by the
-  // pg-migrations curated-topic sync): the Geo entity IS the row. It is
-  // resolved by id — never by name, never fuzzily, never minted anew — and its
-  // values are Geo's to edit, so only its relations publish from here.
-  const pinnedGeoId: string | null =
-    typeof row.geo_id === "string" && /^[0-9a-f]{32}$/i.test(row.geo_id.trim())
+  // Geo-linked rows (breakdown.geo_linked; today tags.geo_id, mirrored from
+  // the knowledge graph by pg-migrations' curated-topic sync): the Geo entity
+  // IS the row. It is resolved by id — never by name, never fuzzily, never
+  // minted anew — and Geo owns its values, type and cover; only pipeline-born
+  // edges to UNLINKED rows publish from here. Finalised as `pinnedGeoId`
+  // below, once the corpus lookup has applied the space exclusions.
+  const pinnedCandidate: string | null =
+    breakdown.geo_linked === true && typeof row.geo_id === "string" && GEO_ID_RE.test(row.geo_id.trim())
       ? row.geo_id.trim().toLowerCase()
       : null;
+  if (breakdown.geo_linked === true && row.geo_id != null && !pinnedCandidate) {
+    console.warn(`[PINNED_MALFORMED] ${tableName} row ${row.id} "${row.name}": geo_id "${row.geo_id}" is not a Geo id; falling back to name matching`);
+  }
 
   const nameCacheKey = `__name__${tableName}`;
   cache[nameCacheKey] = cache[nameCacheKey] || {};
-  if (row.name && !pinnedGeoId) {
+  if (row.name && !pinnedCandidate) {
     const localNameKey = normalizeName(row.name);
     if (localNameKey && cache[nameCacheKey][localNameKey]) {
       return cache[nameCacheKey][localNameKey];
@@ -1093,6 +1099,29 @@ export function buildEntityCached(
   const existingSources: any[] = [];
   let match: any;
   let sourceMatch;
+
+  // Pinned resolution (see pinnedCandidate above).
+  let pinnedGeoId: string | null = null;
+  if (pinnedCandidate) {
+    const byId = getGeoIdIndex(geoRows).get(pinnedCandidate);
+    if (byId && (isInDatasetSpace(byId) || isInPersonalSpace(byId, scoringContext))) {
+      // Same exclusion selectBestCandidate applies on the name path: a
+      // dataset/personal-space entity is never a link target, tagged or not.
+      console.warn(`[PINNED_REFUSED] ${tableName} row ${row.id} "${row.name}" → ${pinnedCandidate} lives in a dataset/personal space; falling back to name matching`);
+    } else if (byId) {
+      pinnedGeoId = pinnedCandidate;
+      match = byId;
+    } else {
+      // Not in the loaded corpus (pagination gap, or deleted on Geo — the
+      // sync clears dead links on its next run): link BY ID, publish nothing
+      // of the node's own. Without entityOnGeo the relation-existence check
+      // cannot run, and re-creating edges every run would stack duplicates.
+      pinnedGeoId = pinnedCandidate;
+      geo_id = pinnedCandidate;
+      console.warn(`[PINNED_UNLOADED] ${tableName} row ${row.id} "${row.name}" → ${pinnedCandidate} not in the loaded corpus; linking by id, skipping its own ops`);
+    }
+  }
+  const pinnedUnloaded = pinnedGeoId !== null && !match;
 
   // TODO - 
   // Filter to see whether there are sources relations being passed in [look at all sourced in the list]
@@ -1293,8 +1322,8 @@ export function buildEntityCached(
     });
 });
 
-  // --- type relations ---
-  for (const type of breakdown.types) {
+  // --- type relations --- (Geo owns a pinned row's type)
+  for (const type of pinnedGeoId ? [] : breakdown.types) {
     relations.push({
       spaceId,
       type: SystemIds.TYPES_PROPERTY,
@@ -1392,22 +1421,6 @@ if (!match) {
 }
 
 // 3. Match on name similarity
-  let pinnedButUnloaded = false;
-  if (pinnedGeoId) {
-    const byId = getGeoIdIndex(geoRows).get(pinnedGeoId);
-    if (byId) {
-      match = byId;
-    } else {
-      // Not in the loaded corpus (pagination gap, or a type this breakdown
-      // doesn't load): still link BY ID, but publish nothing on the node itself.
-      // Without entityOnGeo the relation-existence check cannot run, and
-      // re-creating its hierarchy edges every run would stack duplicates.
-      pinnedButUnloaded = true;
-      geo_id = pinnedGeoId;
-      console.warn(`[PINNED_UNLOADED] ${tableName} row ${row.id} "${row.name}" → ${pinnedGeoId} not in the loaded corpus; linking by id, skipping its own ops`);
-    }
-  }
-
 if (!match && !pinnedGeoId && row.name) {
     const localName = normalizeName(row.name);
 
@@ -1524,8 +1537,9 @@ if (!match && !pinnedGeoId && row.name) {
     entityOnGeo = match;
   }
 
-  // Pinned rows publish hierarchy edges only: no cover/avatar from PG either.
-  const other_relations: any[] = pinnedButUnloaded
+  // Pinned rows publish pipeline-born edges to UNLINKED rows only: no
+  // cover/avatar from PG, and no linked↔linked edges (Geo already holds them).
+  const other_relations: any[] = pinnedUnloaded
     ? []
     : (otherRelations ?? []).filter((rel: any) => !(pinnedGeoId && rel.image)).flatMap((rel: any) => {
       //const relatedItems = row[rel.type] ?? []; // now [{ to_id, entity_id }, ...]
@@ -1584,6 +1598,9 @@ if (!match && !pinnedGeoId && row.name) {
             (r: any) => r.id == to_id
             );
             if (!relatedRow) return [];
+            if (pinnedGeoId && rel.toEntityBreakdown?.geo_linked && typeof relatedRow.geo_id === "string" && GEO_ID_RE.test(relatedRow.geo_id.trim())) {
+              return []; // linked → linked: Geo's own hierarchy, mirrored INTO pg, never published back
+            }
 
             // build toEntity side
             const childEntity = buildEntityCached(
@@ -1691,7 +1708,9 @@ if (!match && !pinnedGeoId && row.name) {
 
   // --- cache save (by normalized name) ---
   // See the matching "cache check (by normalized name)" block above for rationale.
-  if (row.name) {
+  // Pinned rows stay out of the name cache so same-named unlinked rows
+  // always go through candidate selection (order-independent).
+  if (row.name && !pinnedGeoId) {
     const localNameKey = normalizeName(row.name);
     if (localNameKey) cache[nameCacheKey][localNameKey] = entity;
   }
